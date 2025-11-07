@@ -1,0 +1,132 @@
+<link rel="stylesheet" href="styles.css">
+<script src="js.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+
+
+
+<div class="welcome-block-creative"><!-- CABEÇALHO DE BOAS-VINDAS -->
+    <header class="welcome-hero">
+        <h1>Bem-vindos(as) ao Curso Geohab - Introdução!</h1>
+        <p>Sua jornada de aprendizado sobre a plataforma Geohab e o mundo dos dados geoespaciais começa agora.</p>
+        <button class="btn btn-danger btn-geohab-popover" title="Escolha o ambiente de acesso" type="button" data-toggle="popover" data-html="true" data-content="
+          &lt;a class='popover-link-button' href='https://geo.cdhu.sp.gov.br/' target='_blank'&gt;
+            Produção
+          &lt;/a&gt;
+          &lt;a class='popover-link-button' href='https://geohab.cdhu.sp.gov.br/' target='_blank' 
+             style='background-color: #f8f9fa; color: #343a40 !important;'&gt;
+            Treinamento
+          &lt;/a&gt;
+        ">Acessar Geohab</button>
+    </header>
+    <main class="welcome-content">
+
+        <!-- SEÇÃO DE INFORMAÇÕES IMPORTANTES EM CARDS -->
+        <h2 class="welcome-section-title">Seus Primeiros Passos:</h2>
+        <ul class="info-grid">
+            <li class="info-card">
+                <div class="info-card-icon"><!-- Ícone: Play (CÓDIGO COMPLETO) --><svg>
+                        <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                    </svg></div>
+                <div>
+                    <h4 class="info-card-title"><a class="stretched-link" href="#video-apresentacao">Módulo Inicial</a></h4>
+                    <p class="info-card-text">Comece assistindo ao vídeo de apresentação do projeto de Georreferenciamento da CDHU.</p>
+                </div>
+            </li>
+            <li class="info-card">
+                <div class="info-card-icon"><!-- Ícone: Checklist --><svg>
+                        <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path>
+                        <rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect>
+                    </svg></div>
+                <div>
+                    <h4 class="info-card-title"><a class="stretched-link" href="/mod/quiz/view.php?id=965&amp;forceview=1">Questionário Inicial</a></h4>
+                    <p class="info-card-text">Ajude-nos a entender seu nível de conhecimento para direcionarmos melhor o conteúdo.</p>
+                </div>
+            </li>
+            <li class="info-card">
+                <div class="info-card-icon"><!-- Ícone: Livro/Documento --><svg>
+                        <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
+                        <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
+                    </svg></div>
+                <div>
+                    <h4 class="info-card-title"><a class="stretched-link" href="/mod/page/view.php?id=966&amp;forceview=1">Materiais de Apoio</a></h4>
+                    <p class="info-card-text">Todos os módulos possuem uma seção de materiais de apoio. Recomendamos a leitura!</p>
+                </div>
+            </li>
+            <li class="info-card">
+                <div class="info-card-icon"><!-- Ícone: Alvo/Foco (CÓDIGO COMPLETO) --><svg>
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <circle cx="12" cy="12" r="6"></circle>
+                        <circle cx="12" cy="12" r="2"></circle>
+                    </svg></div>
+                <div>
+                    <h4 class="info-card-title">Lições "Fixe o Conhecimento"</h4>
+                    <p class="info-card-text">Ao final de cada tópico, realize as lições para reforçar o aprendizado.</p>
+                </div>
+            </li>
+        </ul>
+
+        <h2 class="welcome-section-title"><br>Navegue pelos Módulos:</h2>
+        <div class="module-shortcut-grid">
+
+            <!-- Atalho para o Módulo 1 -->
+            <a href="#coursecontentsection1" class="module-shortcut-card js-module-link" data-section-target="1">
+                <div class="shortcut-icon">
+                    <!-- Ícone: Apresentação (Bandeira) -->
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"></path>
+                        <line x1="4" y1="22" x2="4" y2="15"></line>
+                    </svg>
+                </div>
+                <h5 class="shortcut-title ">1. Conceitos Fundamentais</h5>
+            </a>
+
+            <!-- Atalho para o Módulo 2 -->
+            <a href="#coursecontentsection10" class="module-shortcut-card js-module-link" data-section-target="10">
+                <div class="shortcut-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+                        <polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"></polygon>
+                        <line x1="8" y1="2" x2="8" y2="18"></line>
+                        <line x1="16" y1="6" x2="16" y2="22"></line>
+                    </svg>
+                </div>
+                <h5 class="shortcut-title">2. Primeiro Contato com o Geohab</h5>
+            </a>
+
+            <!-- Atalho para o Módulo 3 -->
+            <a href="#coursecontentsection16" class="module-shortcut-card js-module-link" data-section-target="16">
+                <div class="shortcut-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M3 3l7.07 16.97 2.52-7.39 7.39-2.52L3 3z"></path>
+                        <path d="M13 13l6 6"></path>
+                    </svg>
+                </div>
+                <h5 class="shortcut-title ">3. Utilização Prática da Plataforma</h5>
+            </a>
+            <!-- Atalho para o Módulo 4 -->
+            <a href="#coursecontentsection22" class="module-shortcut-card js-module-link" data-section-target="22">
+                <div class="shortcut-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path>
+                    </svg>
+                </div>
+                <h5 class="shortcut-title ">4. Visualização e Estilização de Dados</h5>
+            </a>
+        </div>
+
+        <!-- SEÇÃO DE SUPORTE -->
+        <div class="support-section">
+            <h3>Precisa de Ajuda?</h3>
+            <p>Para dúvidas referentes <strong>ao conteúdo do curso</strong>, utilize o <span class="badge-link badge-text-purple"><a title="Clique aqui para dúvidas do curso" href="https://edu-homolog/mod/forum/view.php?id=624" target="_blank" rel="noopener">Fórum de Dúvidas</a></span>.</p>
+            <p>Para <strong>suporte técnico na plataforma Geohab</strong>, abra um chamado via <strong><span class="badge-link badge-text-red"><a title="Abra um chamado clicando aqui" href="https://cda.cdhu.sp.gov.br/front/ticket.php" target="_blank" rel="noopener">CDA</a></span></strong>.</p>
+        </div>
+    </main>
+    <!-- RODAPÉ -->
+    <footer class="welcome-footer">Desejamos a todos um excelente aprendizado!<br><strong>Equipe Geohab</strong></footer>
+</div>
+</body>
+
+

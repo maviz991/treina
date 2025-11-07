@@ -1,0 +1,1290 @@
+@charset "UTF-8";
+/* ADEQUAÇÃO VISUAL DO MOODLE UNICDHU - SCSS
+VERSÃO 1.1 - Boost Union
+DATA: 25/04/2025 */
+.bg-primary {
+  background-color: black !important;
+}
+
+.navbar.navbar-dark.bg-primary .nav-link.active {
+  border-bottom-color: red;
+}
+
+.navbar.navbar-dark.bg-dark .custom-switch .custom-control-input:checked ~ .custom-control-label::after, .navbar.navbar-dark.bg-primary .custom-switch .custom-control-input:checked ~ .custom-control-label::after {
+  background-color: red;
+}
+
+.course-content-item a {
+  color: #e41a1f !important;
+}
+
+.flexsections .course-section {
+  border-radius: 1rem;
+  border: 1px dotted gray;
+  padding: 5px 15px 5px 15px;
+}
+
+.course-card .card-img-top, .theme-card .card-img-top {
+  background-position: right top;
+  height: 11rem;
+}
+
+.course-section .availabilityinfo {
+  border-radius: 5px;
+}
+
+/*Extra - nao esta no prod*/
+/*
+  Centraliza verticalmente o radio button com a sua label
+  em questões de múltipla escolha para um alinhamento perfeito.
+*/
+.form-check-inline .form-check-input {
+  position: static;
+  margin-top: -9px;
+  margin-right: 0.3125rem 5px;
+  margin-left: 0;
+}
+
+/* Border dos vídeos*/
+.activity-item .activity-altcontent img {
+  border-radius: 0rem;
+}
+
+/* START - h5 destaque classe especial*/
+.destaque-h5 {
+  text-align: justify;
+  font-family: "sans-serif", axiforma;
+  background: #f5f4f4;
+  padding: 10px;
+  border-radius: 10px;
+  font-weight: 700 !important;
+  margin-top: 1.5rem;
+}
+.destaque-h5 strong {
+  font-weight: 700 !important;
+}
+
+/* END- h5 destaque classe especial*/
+/* START - Bagde-color (fundo colorido)*/
+.badge-color-red {
+  display: inline-block;
+  background-color: #e91a1a;
+  color: white;
+  border: solid 0px #000;
+  border-radius: 3px;
+  padding: 0.25em 0.6em;
+  font-size: 0.705rem;
+  font-weight: 500;
+}
+
+.badge-color-purple {
+  display: inline-block;
+  background-color: #5d0067;
+  color: white;
+  border: solid 0px #000;
+  border-radius: 3px;
+  padding: 0.25em 0.6em;
+  font-size: 0.705rem;
+  font-weight: 500;
+}
+
+.badge-color-purple2 {
+  display: inline-block;
+  background-color: #7d5d9f;
+  color: white;
+  border: solid 0px #000;
+  border-radius: 3px;
+  padding: 0.25em 0.6em;
+  font-size: 0.705rem;
+  font-weight: 500;
+}
+
+.badge-color-black {
+  display: inline-block;
+  background-color: #000000;
+  color: white;
+  border: solid 0px #000;
+  border-radius: 3px;
+  padding: 0.25em 0.6em;
+  font-size: 0.705rem;
+  font-weight: 500;
+}
+
+.badge-color-yellow {
+  display: inline-block;
+  background-color: #fddd11;
+  color: white;
+  border: solid 0px #000;
+  border-radius: 3px;
+  padding: 0.25em 0.6em;
+  font-size: 0.705rem;
+  font-weight: 500;
+}
+
+.badge-color-gray {
+  display: inline-block;
+  background-color: #b8c1ca;
+  color: white;
+  border: solid 0px #000;
+  border-radius: 3px;
+  padding: 0.25em 0.6em;
+  font-size: 0.705rem;
+  font-weight: 500;
+}
+
+.badge-color-gold {
+  display: inline-block;
+  background-color: #cc8f04;
+  color: white;
+  border: solid 0px #000;
+  border-radius: 3px;
+  padding: 0.25em 0.6em;
+  font-size: 0.705rem;
+  font-weight: 500;
+}
+
+.badge-color-ouro {
+  display: inline-block;
+  background-color: #f5a924;
+  color: white;
+  border: solid 0px #000;
+  border-radius: 3px;
+  padding: 0.25em 0.6em;
+  font-size: 0.705rem;
+  font-weight: 500;
+}
+
+.badge-color-azul-claro {
+  display: inline-block;
+  background-color: #84d0f0;
+  color: white;
+  border: solid 0px #000;
+  border-radius: 3px;
+  padding: 0.25em 0.6em;
+  font-size: 0.705rem;
+  font-weight: 500;
+}
+
+.badge-color-green {
+  display: inline-block;
+  background-color: #009036;
+  color: white;
+  border: solid 0px #000;
+  border-radius: 3px;
+  padding: 0.25em 0.6em;
+  font-size: 0.705rem;
+  font-weight: 500;
+}
+
+.badge-color-auto {
+  display: inline-block;
+  background-color: currentColor;
+  color: white;
+  border: solid 0px #000;
+  border-radius: 3px;
+  padding: 0.25em 0.6em;
+  font-size: 0.705rem;
+  font-weight: 500;
+}
+
+/* END - Badges*/
+/* START - bagde circular numeros*/
+.badge-circular-red {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 24px;
+  height: 24px;
+  background-color: #e91a1a;
+  color: white;
+  border-radius: 50%;
+  font-weight: bold;
+  font-size: 14px;
+  margin-right: 6px;
+  vertical-align: middle;
+}
+
+.badge-circular-green {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 24px;
+  height: 24px;
+  background-color: #1ae96b;
+  color: white;
+  border-radius: 50%;
+  font-weight: bold;
+  font-size: 14px;
+  margin-right: 6px;
+  vertical-align: middle;
+}
+
+.badge-circular-blue {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 24px;
+  height: 24px;
+  background-color: #321ae9;
+  color: white;
+  border-radius: 50%;
+  font-weight: bold;
+  font-size: 14px;
+  margin-right: 6px;
+  vertical-align: middle;
+}
+
+.badge-circular-yellow {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 24px;
+  height: 24px;
+  background-color: #f9a825;
+  color: white;
+  border-radius: 50%;
+  font-weight: bold;
+  font-size: 14px;
+  margin-right: 6px;
+  vertical-align: middle;
+}
+
+/* END - Bagde circular numeros*/
+/* START - Bagde de links*/
+.badge-link {
+  display: inline-block;
+  background-color: #f9fafa;
+  color: #666;
+  border: 1px solid rgba(120, 119, 119, 0.1019607843);
+  border-style: solid;
+  border-radius: 10px;
+  border-width: thin;
+  padding: 0.25em 0.6em;
+  font-size: 0.675rem;
+  font-weight: 700 !important;
+  vertical-align: middle;
+  cursor: help;
+}
+.badge-link a {
+  color: inherit;
+  text-decoration: none !important;
+}
+
+.badge-text-blue {
+  color: #0092C8;
+}
+
+.badge-text-lilac {
+  color: #B96AD9;
+}
+
+.badge-text-gray {
+  color: #777879;
+}
+
+.badge-text-red {
+  color: #ef0009;
+}
+
+.badge-text-salmon {
+  color: #d67c5c;
+}
+
+.badge-text-purple {
+  color: #5d0067;
+}
+
+.badge-text-gold {
+  color: #cc8f04;
+}
+
+.badge-text-black {
+  color: #000000;
+}
+
+/*Start - links dentro do Popover*/
+.popover-link-button {
+  display: block;
+  width: 100%;
+  background-color: #000000;
+  color: #ffffff !important;
+  border-radius: 3px;
+  padding: 0.5em 0.8em;
+  font-size: 0.85rem;
+  font-weight: 500;
+  text-align: center;
+  text-decoration: none !important;
+  margin-bottom: 5px;
+  transition: opacity 0.2s;
+}
+
+.popover-link-button:hover {
+  color: #ebebeb;
+  opacity: 0.8;
+}
+
+/*END*/
+/*Start - mensagem alerta icone padrao*/
+.alert-custom {
+  position: relative;
+  padding-left: 3rem;
+}
+.alert-custom::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 1rem;
+  transform: translateY(-50%);
+  width: 24px;
+  height: 24px;
+  background-image: url("https://raw.githubusercontent.com/maviz991/icons/bef91ae7d3ee22011c81e51c09951305c71deaae/icons_pasta/info-sign.svg");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  filter: invert(25%) sepia(63%) saturate(1152%) hue-rotate(344deg) brightness(94%) contrast(91%);
+}
+
+/*END*/
+/* The flip card container */
+.flip-card-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  justify-content: center;
+  margin: 2rem auto;
+}
+
+.flip-card {
+  background-color: transparent;
+  width: 200px;
+  height: 300px;
+  perspective: 1500px;
+  flex: 0 0 auto;
+}
+
+.flip-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+
+.flip-card:hover .flip-card-inner {
+  transform: rotateY(180deg);
+}
+
+.flip-card-front,
+.flip-card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  border-radius: 10px;
+  padding: 1rem;
+  box-sizing: border-box;
+}
+
+.flip-card-front {
+  background-color: black;
+  color: white;
+}
+
+.flip-card-back {
+  background-color: #e41a1f;
+  color: white;
+  transform: rotateY(180deg);
+}
+
+/*Modal image*/
+/* Estilo para as imagens que disparam o modal */
+.modal-trigger-img {
+  border-radius: 5px;
+  cursor: zoom-in;
+  transition: 0.3s;
+  width: auto;
+  display: block;
+  margin: 1rem auto 2rem auto;
+}
+
+.modal-trigger-img:hover {
+  opacity: 0.7;
+}
+
+@media (max-width: 768px) {
+  .modal-trigger-img {
+    width: 100%;
+    float: none;
+    height: auto;
+  }
+}
+/* O Modal (background) */
+.image-modal-popup {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  padding-top: 100px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.616);
+}
+
+/* Conteúdo do Modal (a imagem grande dentro) */
+.modal-display-img {
+  max-width: -moz-fit-content;
+  max-width: fit-content;
+  max-height: -webkit-fill-available;
+  height: 70%;
+  display: block;
+  margin: 1rem auto 2rem auto;
+  box-sizing: border-box;
+}
+
+/* Legenda do Modal */
+.modal-caption-text {
+  margin: auto;
+  display: block;
+  width: 60%;
+  max-width: 700px;
+  text-align: center;
+  color: #ccc;
+  padding: 10px 0;
+  height: 150px;
+}
+
+/* Animação de Zoom */
+.modal-display-img, .modal-caption-text {
+  animation-name: zoom;
+  animation-duration: 1s;
+}
+
+@keyframes zoom {
+  from {
+    transform: scale(0);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+/* O BOTÃO DE FECHAR */
+.custom-close {
+  position: absolute;
+  top: 70px;
+  right: 75px;
+  color: #ffffff;
+  font-size: 50px;
+  font-weight: bold;
+  transition: 0.3s;
+  z-index: 1001;
+}
+
+.custom-close:hover,
+.custom-close:focus {
+  color: #ff0000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* Responsividade do Modal */
+@media only screen and (max-width: 700px) {
+  .modal-display-img {
+    width: 100%;
+    padding-top: inherit;
+    height: auto;
+  }
+  .custom-close {
+    top: 45px;
+    right: 35px;
+  }
+}
+/* --- CORREÇÃO DA IMAGEM DECORATIVA --- */
+.img-decoration {
+  display: block;
+  width: 400px;
+  height: auto;
+  margin: 1.5rem 2rem 2rem 2rem;
+  cursor: zoom-in;
+}
+
+/* Regra de responsividade da imagem decorativa */
+@media (max-width: 768px) {
+  .img-decoration {
+    float: none;
+    display: block;
+    width: 100%;
+    height: auto;
+    margin: 1rem auto 2rem auto; /* centraliza no mobile */
+  }
+}
+/* Loopa Zoom*/
+/* Reset básico e boa prática */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: sans-serif;
+}
+
+/* O container que ancora a lupa */
+.img-magnifier-container {
+  position: relative;
+  display: inline-block; /* Garante que o container tenha o tamanho da imagem */
+}
+
+/* A lupa em si */
+.img-magnifier-glass {
+  position: absolute;
+  border: 2px solid #fff;
+  border-radius: 0%; /* Torna a lupa redonda */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4); /* Adiciona uma sombra para profundidade */
+  cursor: none; /* Esconde o cursor do mouse quando sobre a lupa */
+  /* Defina o tamanho da lupa aqui */
+  width: 200px;
+  height: 150px;
+}
+
+/* --------------------------------------------*/
+/*               DIGITO - START                 /
+/* --------------------------------------------*/
+.txt-animado {
+  font-size: 12px;
+  font-weight: 300;
+}
+
+.txt-animado span {
+  position: relative;
+}
+
+.txt-animado span::before {
+  content: "";
+  color: #414141;
+  animation: palavras 10s infinite;
+}
+
+.txt-animado span::after {
+  content: "";
+  position: absolute;
+  height: 100%;
+  border-left: 1.5px solid #414141;
+  right: -6px;
+  animation: cursor 0.8s infinite, digita 10s steps(8) infinite;
+  width: calc(100% + 15px);
+  background-color: #ffffff;
+}
+
+@keyframes digita {
+  10%, 15%, 30%, 35%, 50%, 55%, 70%, 75%, 90%, 95% {
+    width: 0;
+  }
+  5%, 20%, 25%, 40%, 45%, 60%, 65%, 80%, 85% {
+    width: calc(100% + 15px);
+  }
+}
+@keyframes cursor {
+  0% {
+    border-left: 1.5px solid #212121;
+  }
+}
+@keyframes palavras {
+  0%, 20% {
+    content: "SSARU";
+  }
+  21%, 40% {
+    content: "Terras";
+  }
+  41%, 60% {
+    content: "SPHU ";
+  }
+  61%, 80% {
+    content: "DPDU ";
+  }
+  81%, 100% {
+    content: "CDHU ";
+  }
+}
+.img-decoration-full {
+  display: block;
+  max-width: 100%; /* nunca passa da largura do container */
+  height: auto; /* mantém a proporção */
+  margin: 1.5rem auto; /* centraliza */
+}
+
+/* Responsividade extra (opcional) */
+@media (max-width: 768px) {
+  .img-decoration-full {
+    width: 100%;
+    margin: 1rem auto 2rem auto;
+  }
+}/*# sourceMappingURL=styles.css.map */
+
+
+/* --- ESTILOS GERAIS (dos seus guias) --- */
+.guide-container { 
+  font-family: 'Montserrat', sans-serif;
+  background-color: #ffffff;
+  color: #333;
+  padding: 0px;
+  border-radius: 8px;
+  line-height: 1.6;
+}
+
+.guide-container h2 {
+  font-family: 'Axiforma', 'Montserrat', sans-serif;
+  color: #000000;
+  font-weight: 700;
+  font-size: 1.8em;
+  border-left: 4px solid #ff1100;
+  padding-left: 15px;
+  margin-top: 2em;
+  margin-bottom: 1em;
+}
+
+.guide-container p, .guide-container li {
+  text-align: justify;
+}
+
+.guide-container ul {
+  list-style-position: outside;
+  padding-left: 20px;
+}
+
+.guide-container li {
+  margin-bottom: 10px; /* Adiciona mais respiro entre os itens da lista */
+}
+
+/* --- [NOVO] Estilos específicos para este conteúdo --- */
+.btn-geohab-popover {
+  /* Estilos para o botão Geohab para que se destaque */
+  font-weight: bold;
+  /* Adicione mais estilos do .btn-danger se precisar */
+}
+
+/* Caixa de atenção (amarela) */
+.attention-box {
+  background-color: #fffbe6;
+  border: 1px solid #ffe58f;
+  border-left: 5px solid #faad14;
+  padding: 20px;
+  border-radius: 8px;
+  margin: 20px 0;
+}
+
+.guide-header {
+  text-align: left;
+  color: #000;
+  font-family: Axiforma, 'sans-serif';
+  
+}
+.guide-header h1 {
+  font-family: 'Axiforma', 'Montserrat', sans-serif;
+  font-size: 2.5em;
+  font-weight: 700;
+  color: #000000;
+  border-left: 4px solid #ff1100;
+  padding-left: 10px;
+}
+
+.guide-header p {
+  font-size: 1.1em;
+  color: #555;
+  margin: 0;
+  text-align: justify;
+}
+
+
+/* =================================================================== */
+/*             VERSÃO CRIATIVA: BLOCO DE BOAS-VINDAS 2.0               */
+/* =================================================================== */
+
+/* --- O Contêiner Principal --- */
+.welcome-block-creative {
+  font-family: 'Montserrat', sans-serif;
+  background-color: #f9f9f9; /* Fundo levemente acinzentado */
+  border: 1px solid #e0e0e0;
+  border-radius: 12px;
+  overflow: hidden; /* Garante que os filhos respeitem o border-radius */
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.07);
+}
+
+/* --- O Cabeçalho "Herói" --- */
+.welcome-hero {
+  background-color: #ffffff;
+  padding: 40px 30px;
+  text-align: center;
+  border-bottom: 1px solid #e0e0e0;
+}
+.welcome-hero h1 {
+  font-family: 'Axiforma', 'Montserrat', sans-serif;
+  font-size: 2.8em;
+  color: #000000;
+  margin: 0 0 10px 0;
+}
+.welcome-hero p {
+  font-size: 1.2em;
+  color: #555;
+  max-width: 700px;
+  margin: 0 auto 25px auto;
+  line-height: 1.7;
+}
+.welcome-hero .btn-geohab-popover {
+  padding: 12px 28px;
+  font-size: 1.1em;
+  font-weight: bold;
+  border-radius: 8px;
+}
+
+
+
+/* --- Grade de Informações (Cards) --- */
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Grid responsivo */
+  gap: 25px;
+  margin-top: 20px;
+  padding: 0;
+  list-style-type: none;
+}
+
+.info-card {
+  position: relative; /* ESSENCIAL */
+  background-color: #ffffff;
+  border: 1px solid #e8e8e8;
+  border-radius: 8px;
+  padding: 25px;
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+.info-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+}
+
+.info-card-icon {
+  flex-shrink: 0;
+  color: #ff1100; /* Cor primária da marca */
+}
+.info-card-icon svg {
+  width: 32px;
+  height: 32px;
+}
+
+.info-card-icon svg {
+  fill: none !important; /* FORÇA o preenchimento a ser transparente */
+  stroke: currentColor !important; /* FORÇA o contorno a usar a cor herdada */
+}
+
+.info-card-title {
+  font-family: 'Axiforma', 'Montserrat', sans-serif;
+  font-weight: 700;
+  margin: 0 0 5px 0;
+  color: #000;
+}
+.info-card-text {
+  margin: 0;
+  font-size: 0.95em;
+  text-decoration: none; 
+  line-height: 1.6;
+  color: #444;
+}
+
+/* --- Seção de Suporte (baseada na sua .attention-box) --- */
+.support-section {
+  background-color: #fffbe6;
+  border: 1px solid #ffe58f;
+  border-left: 5px solid #faad14;
+  padding: 25px;
+  border-radius: 8px;
+  margin-top: 40px;
+}
+.support-section h3 {
+  margin-top: 0;
+  font-family: 'Axiforma', 'Montserrat', sans-serif;
+  color: #000;
+}
+
+/* --- Rodapé --- */
+.welcome-footer {
+  text-align: right;
+  padding: 20px 30px;
+  background-color: #ffffff;
+  border-top: 1px solid #e0e0e0;
+  font-style: italic;
+  color: #666;
+}
+
+/* Ajuste para quando um card inteiro vira um link */
+.card-link-wrapper {
+  text-decoration: none; /* Remove o sublinhado */
+  color: inherit; /* Faz o texto herdar a cor do card, em vez de ficar azul */
+}
+.card-link-wrapper:hover {
+  text-decoration: none; /* Garante que não apareça sublinhado no hover */
+}
+
+/* O link esticado que preencherá o card */
+.info-card .stretched-link::after {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1;
+  content: "";
+}
+
+/* Garante que o texto do link não fique sublinhado */
+.info-card .stretched-link {
+  text-decoration: none;
+  color: inherit;
+}
+.info-card .stretched-link:hover {
+  text-decoration: none;
+}
+
+/* Garante que os SVGs incompletos não quebrem o layout */
+.info-card-icon svg {
+  width: 32px;
+  height: 32px;
+}
+
+/* =================================================================== */
+/*             COMPONENTE: GRADE DE ATALHOS PARA MÓDULOS               */
+/* =================================================================== */
+
+/* --- O Contêiner da Grade de Atalhos --- */
+.module-shortcut-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+  margin-top: 30px;
+  margin-bottom: 40px;
+}
+
+/* --- O Card de Atalho Individual --- */
+.module-shortcut-card {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  background-color: #ffffff;
+  border: 1px solid #e8e8e8;
+  border-radius: 8px;
+  padding: 20px;
+  text-align: left;
+  text-decoration: none;
+  color: #333;
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out, border-color 0.2s ease-in-out;
+}
+.module-shortcut-card:hover {
+  transform: translateY(-7px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+  border-color: #ff1100; /* Cor primária no hover */
+  color: #333;
+  text-decoration: none;
+}
+
+.shortcut-icon {
+  color: #ff1100;
+}
+.shortcut-icon svg {
+  width: 28px;
+  height: 28px;
+}
+
+.shortcut-title {
+  font-family: 'Axiforma', 'Montserrat', sans-serif;
+  font-weight: 700;
+  font-size: 1.1em;
+  color: #000;
+  margin: 0;
+}
+
+/* =================================================================== */
+/*             COMPONENTE: SEÇÃO DE CONTEÚDO (VÍDEO)                 */
+/* =================================================================== */
+
+/* --- O Contêiner Principal da Seção --- */
+.content-section {
+  background-color: #ffffff; /* Fundo branco para contrastar com o cinza da página */
+  border-radius: 12px;
+  padding: 30px;
+  margin-top: 40px; /* Espaçamento entre o bloco de boas-vindas e este */
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.07);
+}
+
+/* --- Estilo para o vídeo dentro da âncora --- */
+#video-apresentacao {
+  margin-top: 20px; /* Espaço entre o título e o vídeo */
+  max-width: 800px; /* Respeita a largura original que você definiu */
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* --- Estilizando o player que o Moodle injeta --- */
+#video-apresentacao .video-js {
+  width: 100% !important; /* Força a ocupar todo o espaço do contêiner #video-apresentacao */
+  height: auto !important;
+  border-radius: 15px; /* Cantos arredondados consistentes com os cards */
+  overflow: hidden; /* Essencial para que o iframe respeite as bordas */
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  background-color: transparent;
+}
+
+
+/* =================================================================== */
+/*             TÍTULOS PADRÃO                                          */
+/* =================================================================== */
+
+.guide-container-title {
+  font-family: 'Axiforma', 'Montserrat', sans-serif;
+  color: #000000;
+  font-weight: 700;
+  font-size: 1.8em;
+  border-left: 4px solid #ff1100;
+  padding-left: 15px;
+  margin-top: 0;
+  margin-bottom: 25px; /* Aumenta o espaço depois do título */
+}
+
+/* Ajustei o subtítulo para H3 para melhor hierarquia */
+.welcome-section-title {
+  font-family: 'Axiforma', 'Montserrat', sans-serif;
+  font-size: 1.5em;
+  font-weight: 700;
+  color: #333;
+  margin-top: 0;
+  margin-bottom: 20px;
+}
+
+/* =================================================================== */
+/*             COMPONENTE: HEADER DO MÓDULO                          */
+/* =================================================================== */
+
+.module-header {
+  display: flex !important;
+  align-items: center; /* Alinha o ícone e o texto verticalmente */
+  gap: 20px;
+  padding: 0px 20px 10px 0; /* Mais padding para um header destacado */
+  background-color: #fdfdfd; /* Um branco levemente diferente para sutileza */
+  border-bottom: 1px solid #e0e0e0; /* Divisor visual */
+}
+
+.module-header-simple {
+  display: flex !important;
+  padding: 0px 20px 10px 0; /* Mais padding para um header destacado */
+  align-items: center;
+  gap: 30px;
+}
+.module-header-simple .module-header-icon svg { width: 32px; height: 32px; color: #ff1100; }
+.module-header-simple .module-title { font-size: 2.2em; margin: 0; }
+.module-header-simple .module-subtitle { font-size: 1.1em; color: #555; margin: 0; }
+
+.module-header-icon {
+  flex-shrink: 0;
+  color: #ff1100; /* Cor primária da marca */
+  
+}
+.module-header-icon svg {
+  width: 40px; /* Ícone um pouco maior para destaque */
+  height: 40px;
+}
+.module-header-icon svg {
+  fill: none !important; /* FORÇA o preenchimento a ser transparente */
+  stroke: currentColor !important; /* FORÇA o contorno a usar a cor herdada */
+}
+.module-title {
+  font-family: 'Axiforma', 'Montserrat', sans-serif;
+  font-size: 2em; /* Tamanho intermediário entre h1 e h2 */
+  font-weight: 700;
+  color: #000000;
+  margin: 0;
+}
+
+.module-subtitle {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.1em;
+  color: #555;
+  margin: 5px 0 0 0;
+}
+
+/* O conteúdo principal do módulo agora terá seu próprio padding */
+.module-content {
+  padding: 30px;
+}
+
+/* =================================================================== */
+/*             COMPONENTE: INTRODUÇÃO DO MÓDULO                      */
+/* =================================================================== */
+
+/* --- O Contêiner Principal do Bloco --- */
+.module-intro-block {
+  background-color: #ffffff;
+  border-radius: 12px;
+  padding: 30px;
+  margin-top: 40px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.07);
+}
+.module-intro-block p, .module-intro-block li {
+  text-align: justify;
+  font-family: 'Montserrat', sans-serif;
+  line-height: 1.7;
+  color: #444;
+}
+
+/* --- Grade de Informações-Chave (Público, Pré-reqs) --- */
+.key-info-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 25px;
+  margin-top: 25px;
+  margin-bottom: 30px;
+}
+.key-info-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 15px;
+}
+.key-info-icon {
+  flex-shrink: 0;
+  color: #ff1100; /* Cor primária */
+  margin-top: 5px;
+}
+.key-info-icon svg {
+  width: 24px;
+  height: 24px;
+}
+.key-info-icon svg {
+  fill: none !important; /* FORÇA o preenchimento a ser transparente */
+  stroke: currentColor !important; /* FORÇA o contorno a usar a cor herdada */
+}
+.key-info-title {
+  font-family: 'Axiforma', 'Montserrat', sans-serif;
+  text-align: justify;
+  font-weight: 700;
+  margin: 0 0 5px 0;
+  color: #000;
+}
+.key-info-text {
+  font-family: 'Montserrat', sans-serif;
+  text-align: justify;
+  margin: 0;
+  font-size: 0.95em;
+  color: #555;
+}
+
+/* --- Lista de Objetivos de Aprendizagem Estilizada --- */
+.learning-objectives {
+  text-align: justify;
+  font-family: 'Montserrat', sans-serif;
+  list-style: none; /* Remove os números padrão */
+  padding-left: 0;
+  counter-reset: objective-counter; /* Inicia nosso contador customizado */
+}
+.learning-objectives li {
+  counter-increment: objective-counter; /* Aumenta o contador a cada item */
+  text-align: justify;
+  font-family: 'Montserrat', sans-serif;
+  display: flex;
+  align-items: flex-start;
+  gap: 15px;
+  margin-bottom: 15px;
+  font-size: 1.05em;
+}
+/* --- Nova Classe para a Seção com Fundo --- */
+.highlighted-section .welcome-section-title{
+  background-color: #f9f9f9; /* O mesmo cinza claro do welcome-block-creative */
+  border: 1px solid #e0e0e0;
+  text-align: justify;
+  border-radius: 12px;
+  padding: 30px;
+  margin-top: 0px; /* Espaço para separar da seção anterior */
+}
+/* O círculo numerado customizado */
+.learning-objectives li::before {
+  content: counter(objective-counter);
+  flex-shrink: 0;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 28px;
+  height: 28px;
+  background-color: #ff1100;
+  color: white;
+  border-radius: 50%;
+  font-weight: bold;
+  font-size: 14px;
+  margin-top: 2px;
+}
+
+/* --- O header interno do módulo (ícone + título) --- */
+
+
+/* --- A descrição e metadados --- */
+.welcome-hero p.module-description { /* Classe específica para o parágrafo de descrição */
+  margin-top: 25px;
+  text-align: justify;
+  line-height: 1.7;
+  color: #444;
+}
+.welcome-hero .key-info-grid {
+  margin-top: 30px;
+  margin-bottom: 0; /* Remove a margem extra no final do header */
+}
+/* ... (estilos do key-info-grid que já temos) ... */
+
+/* --- Conteúdo Principal (agora só contém os objetivos) --- */
+
+/* Título e lista de objetivos */
+.welcome-content .welcome-section-title {
+  margin-top: 0;
+}
+
+/* =================================================================== */
+/*             USO NOS Welcome dos módulos                    */
+/* =================================================================== */
+
+/* --- O Contêiner Principal --- */
+/* PRECISAMOS REMOVER O PADDING DELE para o efeito funcionar */
+.welcome-block-creative {
+  padding: 0; /* MUITO IMPORTANTE! */
+  background-color: #f9f9f9;
+  border: 1px solid #e0e0e0;
+  border-radius: 12px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.07);
+}
+/* --- O Wrapper que Centraliza o Conteúdo --- */
+.content-wrapper {
+  background-color: #ffffff;
+  padding: 40px 30px;
+  text-align: left;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+
+/* --- Ajustes nos componentes existentes --- */
+.welcome-content {
+  padding: 40px 30px; /* Garante que os objetivos também tenham padding */
+}
+
+/* =================================================================== */
+/*             FOOTER DO BLOCO (Layout de 2 Colunas)          */
+/* =================================================================== */
+
+.welcome-footer-modulo {
+  display: flex; /* Ativa o Flexbox */
+  justify-content: space-between; /* Empurra os itens para as extremidades */
+  align-items: center; /* Alinha verticalmente no centro */
+  flex-wrap: wrap; /* Permite que quebre a linha em telas pequenas */
+  gap: 20px; /* Espaço entre os itens se eles quebrarem a linha */
+  
+  padding: 25px 30px;
+  background-color: #ffffff;
+  border-top: 1px solid #e0e0e0;
+}
+
+/* --- A Coluna do Botão (Esquerda) --- */
+.footer-action {
+  flex-grow: 1.5; /* Permite que esta coluna cresça */
+  text-align: right; /* Centraliza o botão dentro desta coluna */
+}
+
+/* --- A Coluna do Texto (Direita) --- */
+.footer-text {
+  flex-grow: 1; /* Permite que esta coluna cresça */
+  text-align: right; /* Alinha o texto à direita */
+  font-style: italic;
+  color: #666;
+  font-size: 0.9em;
+}
+
+/* --- Responsividade para telas pequenas --- */
+@media (max-width: 600px) {
+  .welcome-footer {
+    flex-direction: column; /* Empilha as colunas verticalmente */
+    justify-content: center; /* Centraliza tudo */
+  }
+  .footer-action,
+  .footer-text {
+    text-align: center; /* Centraliza todo o conteúdo em telas pequenas */
+    width: 100%;
+  }
+}
+
+/* =================================================================== */
+/*             COMPONENTE: BLOCO DE CONCLUSÃO / CERTIFICADO            */
+/* =================================================================== */
+
+/* --- O Contêiner Principal --- */
+.completion-block {
+  background-color: #ffffff;
+  border: 1px solid #e0e0e0;
+  border-radius: 12px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.07);
+  margin-top: 40px;
+  text-align: center; /* Centraliza todo o conteúdo */
+  padding: 40px 30px;
+}
+
+/* --- O Header de Celebração --- */
+.completion-header {
+  margin-bottom: 25px;
+}
+.completion-header .module-header-icon svg {
+  width: 48px; /* Ícone maior para mais impacto */
+  height: 48px;
+  color: #ff1100;
+  margin-bottom: 15px;
+}
+.completion-header .module-title {
+  font-size: 2.2em;
+}
+.completion-header .module-subtitle {
+  font-size: 1.2em;
+  color: #555;
+  max-width: 600px; /* Limita a largura do subtítulo */
+  margin: 10px auto 0 auto; /* Centraliza o subtítulo */
+}
+
+/* --- O Texto de Instrução --- */
+.completion-text {
+  font-family: 'Montserrat', sans-serif;
+  color: #444;
+  line-height: 1.7;
+  max-width: 650px;
+  margin: 0 auto 30px auto;
+}
+
+/* --- O Botão de Ação Final --- */
+.completion-action .btn {
+  font-size: 1.2em;
+  font-weight: 700;
+  padding: 15px 40px;
+  border-radius: 8px;
+}
+
+/* =================================================================== */
+/*             ESTILO PARA ATALHOS DE MÓDULOS BLOQUEADOS               */
+/* =================================================================== */
+
+/* O ícone de cadeado continua o mesmo */
+.module-shortcut-card.locked::after {
+  content: '';
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  width: 18px;
+  height: 18px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%236c757d' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='3' y='11' width='18' height='11' rx='2' ry='2'%3E%3C/rect%3E%3Cpath d='M7 11V7a5 5 0 0 1 10 0v4'%3E%3C/path%3E%3C/svg%3E");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  z-index: 2; /* Garante que o cadeado fique visível */
+}
