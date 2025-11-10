@@ -165,42 +165,83 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // ===================================================================
-    // INÍCIO: LÓGICA PARA BARRAS DE PROGRESSO DE MÓDULO
+    // INÍCIO: LÓGICA PARA BARRA DE PROGRESSO (VIA WEB SERVICE EDWISER)
     // ===================================================================
-    document.querySelectorAll('.module-progress-container').forEach(progressContainer => {
-        const sectionNumber = progressContainer.getAttribute('data-module-section');
-        if (!sectionNumber) return;
 
-        // Encontra a seção do Moodle correspondente
-        const moodleSection = document.querySelector(`#section-${sectionNumber}`);
-        if (!moodleSection) return;
+    const progressContainer = document.querySelector('.course-progress-container');
+    const courseProgressFill = document.getElementById('course-progress-fill');
+    const courseProgressText = document.getElementById('course-progress-text');
 
-        // Encontra todas as atividades com rastreamento de conclusão DENTRO daquela seção
-        const activities = moodleSection.querySelectorAll('.activity-item[data-activityname]');
-        
-        // Encontra todas as atividades CONCLUÍDAS DENTRO daquela seção
-        // O Moodle adiciona a classe .complete ou um ícone de check
-        const completedActivities = moodleSection.querySelectorAll('.activity-item.complete, .activity-item .completion-check');
+    if (progressContainer && courseProgressFill && courseProgressText) {
+        const courseId = progressContainer.getAttribute('data-courseid');
 
-        const totalActivities = activities.length;
-        const completedCount = completedActivities.length;
+        if (courseId) {
+            // Usa a API 'require' do Moodle para carregar o módulo AJAX
+            require(['core/ajax'], function(ajax) {
+                
+                // Faz a chamada para o Web Service do formato Edwiser
+                const ajaxRequest = ajax.call([{
+                    methodname: 'format_remuiformat_course_progress_data',
+                    args: { courseid: courseId },
+                    done: function(response) {
+                        // --- SUCESSO! ---
+                        const percentage = response.percentage || 0;
+                        
+                        console.log(`Progresso recebido do Web Service: ${percentage}%`);
 
-        let progressPercent = 0;
-        if (totalActivities > 0) {
-            progressPercent = Math.round((completedCount / totalActivities) * 100);
+                        // Atualiza a barra e o texto com os dados recebidos
+                        courseProgressFill.style.width = percentage + '%';
+                        courseProgressText.textContent = `${percentage}% concluído`;
+                    },
+                    fail: function(ex) {
+                        // --- FALHA! ---
+                        console.error("Falha ao chamar o Web Service de progresso:", ex);
+                        courseProgressText.textContent = "Erro ao carregar progresso.";
+                    }
+                }]);
+            });
+        } else {
+            console.error("Não foi possível encontrar o 'data-courseid' no contêiner da barra de progresso.");
         }
+    }
 
-        // Atualiza a barra de progresso e o texto
-        const progressBarFill = progressContainer.querySelector('.module-progress-bar-fill');
-        const progressText = progressContainer.querySelector('.progress-text');
+// ===================================================================
+// INÍCIO: LÓGICA PARA BARRAS DE PROGRESSO DE MÓDULO (VERSÃO FINAL)
+// ===================================================================
+document.querySelectorAll('.module-progress-container').forEach(progressContainer => {
+    const sectionNumber = progressContainer.getAttribute('data-module-section');
+    if (!sectionNumber) return;
 
-        if (progressBarFill) {
-            progressBarFill.style.width = progressPercent + '%';
-        }
-        if (progressText) {
-            progressText.textContent = `${progressPercent}% concluído`;
-        }
-    });
+    const moodleSection = document.querySelector(`#section-${sectionNumber}`);
+    if (!moodleSection) return;
+
+    // CONTAGEM TOTAL: Encontra todas as atividades rastreáveis na seção.
+    const activitiesInSection = moodleSection.querySelectorAll('.activity .activity-completion');
+    const totalActivities = activitiesInSection.length;
+
+    // [SELETOR CORRIGIDO] CONTAGEM DE CONCLUÍDAS:
+    // Procura por atividades que contenham um botão com a classe 'btn-success' dentro da área de conclusão.
+    const completedInSection = moodleSection.querySelectorAll('.activity .activity-completion .btn-success');
+    const completedCount = completedInSection.length;
+
+    let progressPercent = 0;
+    if (totalActivities > 0) {
+        progressPercent = Math.round((completedCount / totalActivities) * 100);
+    }
+    
+    // Log final para confirmar
+    console.log(`Progresso Módulo ${sectionNumber}: ${completedCount} de ${totalActivities} concluídas = ${progressPercent}%`);
+
+    // Atualiza a barra de progresso e o texto
+    const progressBarFill = progressContainer.querySelector('.module-progress-bar-fill');
+    const progressText = progressContainer.querySelector('.progress-text');
+
+    if (progressBarFill) progressBarFill.style.width = progressPercent + '%';
+    if (progressText) progressText.textContent = `${progressPercent}% concluído`;
+});
+// ===================================================================
+// FIM: LÓGICA PARA BARRAS DE PROGRESSO DE MÓDULO
+// ===================================================================
 
 }); // Fim do 'DOMContentLoaded'
 </script>
