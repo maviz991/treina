@@ -702,16 +702,16 @@ body {
 /*             VERSÃO CRIATIVA: BLOCO DE BOAS-VINDAS 2.0               */
 /* =================================================================== */
 
-/* --- O Contêiner Principal --- */
+/* --- O Contêiner Principal ---
 .welcome-block-creative {
   font-family: 'Montserrat', sans-serif;
-  background-color: #f9f9f9; /* Fundo levemente acinzentado */
-  border: 1px solid #e0e0e0;
+  background-color: #f9f9f9;
+  border: 0px transparent #e0e0e0;
   border-radius: 12px;
-  overflow: hidden; /* Garante que os filhos respeitem o border-radius */
+  overflow: hidden; /* Garante que os filhos respeitem o border-radius 
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.07);
 }
-
+*/
 /* --- O Cabeçalho "Herói" --- */
 .welcome-hero {
   background-color: #ffffff;
@@ -1154,12 +1154,15 @@ body {
 /* --- O Contêiner Principal --- */
 /* PRECISAMOS REMOVER O PADDING DELE para o efeito funcionar */
 .welcome-block-creative {
+  font-family: 'Montserrat', sans-serif;
   padding: 0; /* MUITO IMPORTANTE! */
   background-color: #f9f9f9;
   border: 1px solid #e0e0e0;
   border-radius: 12px;
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.07);
+  overflow: hidden;
 }
+
 /* --- O Wrapper que Centraliza o Conteúdo --- */
 .content-wrapper {
   background-color: #ffffff;
@@ -1288,3 +1291,4 @@ body {
   background-position: center;
   z-index: 2; /* Garante que o cadeado fique visível */
 }
+
