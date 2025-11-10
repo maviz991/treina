@@ -1,4 +1,4 @@
-// Um único "ouvinte" para garantir que todo o nosso código rode depois que a página carregar
+<script>
 document.addEventListener('DOMContentLoaded', function() {
 
     // ===================================================================
@@ -116,49 +116,128 @@ document.addEventListener('DOMContentLoaded', function() {
     // FIM: LÓGICA PARA INJETAR NOME DO USUÁRIO
     // ===================================================================
 
+    // ===================================================================
+    // INÍCIO: LÓGICA PARA CARDS DE ATALHO (SINALIZAÇÃO DE BLOQUEIO)
+    // ===================================================================
+    const shortcutCards = document.querySelectorAll('.module-shortcut-card');
+    shortcutCards.forEach(card => {
+        const sectionNumber = card.getAttribute('data-section-target');
+        if (!sectionNumber) return;
 
- // ===================================================================
-// INÍCIO: LÓGICA PARA CARDS DE ATALHO (SINALIZAÇÃO E CLIQUE)
-// ===================================================================
-
-// --- LÓGICA PARA VERIFICAR E MARCAR OS CARDS COM CADEADO ---
-const shortcutCards = document.querySelectorAll('.module-shortcut-card');
-shortcutCards.forEach(card => {
-    const sectionNumber = card.getAttribute('data-section-target');
-    if (!sectionNumber) return;
-
-    // Tenta encontrar a seção
-    const moodleSection = document.querySelector(`#section-${sectionNumber}`) || document.querySelector(`.course-section-header[data-number='${sectionNumber}']`);
-    
-    if (moodleSection) {
-        const lockIcon = moodleSection.querySelector('.icon.fa-lock');
-        if (lockIcon) {
-            card.classList.add('locked'); // Apenas adiciona a classe para o CSS mostrar o cadeado
-        }
-    }
-});
-
-// --- LÓGICA DE CLIQUE E ROLAGEM SUAVE (APLICADA A TODOS OS CARDS) ---
-const allModuleLinks = document.querySelectorAll('.js-module-link');
-
-allModuleLinks.forEach(link => {
-    link.addEventListener('click', function(e) {
-        // NÃO HÁ MAIS BLOQUEIO AQUI
-        e.preventDefault(); 
-
-        const anchorTargetId = this.getAttribute('href');
-        const anchorTarget = document.querySelector(anchorTargetId);
-
-        if (anchorTarget) {
-            anchorTarget.scrollIntoView({
-                behavior: 'smooth',
-                block: 'start'
-            });
+        const moodleSection = document.querySelector(`#section-${sectionNumber}`) || document.querySelector(`.course-section-header[data-number='${sectionNumber}']`);
+        if (moodleSection && moodleSection.querySelector('.icon.fa-lock')) {
+            card.classList.add('locked');
         }
     });
-});
-// ===================================================================
-// FIM: LÓGICA PARA CARDS DE ATALHO
-// ===================================================================
+
+    // ===================================================================
+    // INÍCIO: LÓGICA DE CLIQUE PARA ABRIR SEÇÃO E ROLAR (PARA OS CARDS DE ATALHO)
+    // ===================================================================
+    const moduleShortcutLinks = document.querySelectorAll('.module-shortcut-card.js-module-link');
+    moduleShortcutLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+
+            const sectionNumber = this.getAttribute('data-section-target');
+            if (sectionNumber) {
+                const sectionTitleLink = document.querySelector(`#coursecontentsection${sectionNumber} a, .section[data-sectionid='${sectionNumber}'] a`);
+                if (sectionTitleLink) {
+                    sectionTitleLink.click(); // Abre a seção do Moodle
+                }
+            }
+
+            const anchorTargetId = this.getAttribute('href');
+            const anchorTarget = document.querySelector(anchorTargetId);
+            if (anchorTarget) {
+                setTimeout(() => {
+                    anchorTarget.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }, 100);
+            }
+        });
+    });
+
+    // ===================================================================
+    // INÍCIO: LÓGICA DE CLIQUE APENAS PARA ROLAGEM SUAVE (OUTROS LINKS)
+    // ===================================================================
+    const simpleScrollLinks = document.querySelectorAll('.js-scroll-link:not(.js-module-link)');
+    simpleScrollLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+
+            const anchorTargetId = this.getAttribute('href');
+            const anchorTarget = document.querySelector(anchorTargetId);
+            if (anchorTarget) {
+                anchorTarget.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        });
+    });
+    // ===================================================================
+    // INÍCIO: LÓGICA PARA BOTÃO CONTEXTUAL (Voltar ao Topo / Início)
+    // ===================================================================
+    document.querySelectorAll('.js-context-button-container').forEach(container => {
+        const button = container.querySelector('a');
+        if (!button) return; // Segurança
+
+        const urlParams = new URLSearchParams(window.location.search);
+        const sectionParam = urlParams.get('section'); // Pega o valor do parâmetro 'section'
+
+        // CONDIÇÃO ATUALIZADA:
+        // A página é considerada "principal" se:
+        // 1. O parâmetro 'section' NÃO existe.
+        // OU
+        // 2. O parâmetro 'section' existe e é igual a '0'.
+        if (!urlParams.has('section') || sectionParam === '0') {
+            // ESTAMOS NA PÁGINA PRINCIPAL DO CURSO
+            button.textContent = button.dataset.toplevelText || "Voltar ao topo";
+            button.href = button.dataset.toplevelHref || "#page-wrapper";
+            button.classList.add('js-scroll-link');
+            button.classList.remove('js-module-link'); // Garante que a lógica de abrir seção não seja acionada
+        } else {
+            // ESTAMOS EM UMA PÁGINA DE SEÇÃO INTERNA (ex: section=1, section=2, etc.)
+            button.textContent = button.dataset.sectionText || "Voltar para o Início do Curso";
+            button.href = button.dataset.sectionHref || `/course/view.php?id=${urlParams.get('id')}`;
+            button.classList.remove('js-scroll-link');
+        }
+        
+        // Exibe o contêiner do botão após a lógica
+        container.style.display = 'block'; 
+    });
+
+    // --- OUVINTE DE CLIQUE ÚNICO E INTELIGENTE ---
+    document.body.addEventListener('click', function(e) {
+        const link = e.target.closest('a');
+
+        // Se não for um link com a classe js-scroll-link, não faz nada
+        if (!link || !link.classList.contains('js-scroll-link')) {
+            return;
+        }
+
+        // --- Chegamos aqui, então é um link de rolagem ---
+        e.preventDefault(); // Impede o "pulo"
+
+        // LÓGICA DE ROLAGEM SUAVE (para todos os js-scroll-link)
+        const anchorTargetId = link.getAttribute('href');
+        if (anchorTargetId && anchorTargetId.startsWith('#')) {
+            const anchorTarget = document.querySelector(anchorTargetId);
+            if (anchorTarget) {
+                setTimeout(() => {
+                    anchorTarget.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }, 100);
+            }
+        }
+        
+    });
+    
+
 
 }); // Fim do 'DOMContentLoaded'
+</script>
