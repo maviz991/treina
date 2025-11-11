@@ -747,7 +747,7 @@ body {
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Grid responsivo */
   gap: 25px;
   margin-top: 20px;
-  padding: 0;
+  padding: 0px;
   list-style-type: none;
 }
 
@@ -1153,7 +1153,7 @@ body {
 
 /* Título e lista de objetivos */
 .welcome-content .welcome-section-title {
-  margin-top: 0;
+  margin-top: 20px;
 }
 
 /* =================================================================== */
