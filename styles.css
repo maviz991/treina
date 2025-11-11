@@ -658,13 +658,25 @@ body {
   margin-bottom: 10px; /* Adiciona mais respiro entre os itens da lista */
 }
 
-/* --- [NOVO] Estilos específicos para este conteúdo --- */
+/* --- Estilos específicos para este conteúdo --- */
 .btn-geohab-popover {
-  /* Estilos para o botão Geohab para que se destaque */
   font-weight: bold;
-  /* Adicione mais estilos do .btn-danger se precisar */
+}
+.btn-geohab-continue {
+  font-family: 'Montserrat';
+  font-weight: normal !important;
+  border-radius: 0 12px 0 8px !important;
+  font-size: 12px !important;
+  text-decoration: none;
+  color: #212425;
+  background-color: #b5c1ca;
+  padding: 4px !important;
 }
 
+.btn-geohab-continue:hover {
+  color: white;
+  text-decoration: none;
+}
 /* Caixa de atenção (amarela) */
 .attention-box {
   background-color: #fffbe6;
@@ -739,7 +751,13 @@ body {
   border-radius: 8px;
 }
 
-
+.hero-actions {
+  display: flex;
+  justify-content: right; /* Centraliza os botões */
+  align-items: center; /* Alinha verticalmente */
+  flex-wrap: wrap; /* Permite que os botões quebrem a linha em telas pequenas */
+  gap: 15px; /* Espaçamento entre os botões */
+}
 
 /* --- Grade de Informações (Cards) --- */
 .info-grid {
@@ -747,7 +765,7 @@ body {
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Grid responsivo */
   gap: 25px;
   margin-top: 20px;
-  padding: 0px;
+  padding: 0;
   list-style-type: none;
 }
 
@@ -1153,7 +1171,7 @@ body {
 
 /* Título e lista de objetivos */
 .welcome-content .welcome-section-title {
-  margin-top: 20px;
+  margin-top: 15px;
 }
 
 /* =================================================================== */
@@ -1326,10 +1344,10 @@ body {
 
 .course-progress-bar-fill {
   height: 100%;
-  background-color: #902200; /* Verde */
+  background-color: #ff1100; /* Verde */
   width: 0%;
   border-radius: 0; /* CANTOS QUADRADOS */
-  transition: width 2s ease-in-out;
+  transition: width 1.5s ease-in-out;
 }
 
 .course-progress-text {

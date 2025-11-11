@@ -10,19 +10,30 @@
 
 <body>
     <div class="welcome-block-creative"><!-- CABEÇALHO DE BOAS-VINDAS -->
+        <div classe="hero-actions" style="text-align: right; background-color: white;">
+            <a href="#" class="btn btn-secondary" id="resume-course-button" style="border-radius: 0 10px 0 8px !important; padding: 4px !important;">
+                Continuar de onde parei
+            </a>
+        </div>
         <header class="welcome-hero">
             <h1>Bem-vindos(as) ao Curso Geohab - Introdução!</h1>
             <p>Sua jornada de aprendizado sobre a plataforma Geohab e o mundo dos dados geoespaciais começa agora.</p>
             <button class="btn btn-danger btn-geohab-popover" title="Escolha o ambiente de acesso" type="button" data-toggle="popover" data-html="true" data-content="
-              &lt;a class='popover-link-button' href='https://geo.cdhu.sp.gov.br/' target='_blank'&gt;
-                Produção
-              &lt;/a&gt;
-              &lt;a class='popover-link-button' href='https://geohab.cdhu.sp.gov.br/' target='_blank' 
-                 style='background-color: #f8f9fa; color: #343a40 !important;'&gt;
-                Treinamento
-              &lt;/a&gt;
-            ">Acessar Geohab</button>
+                  &lt;a class='popover-link-button' href='https://geo.cdhu.sp.gov.br/' target='_blank'&gt;
+                    Produção
+                  &lt;/a&gt;
+                  &lt;a class='popover-link-button' href='https://geohab.cdhu.sp.gov.br/' target='_blank' 
+                     style='background-color: #f8f9fa; color: #343a40 !important;'&gt;
+                    Treinamento
+                  &lt;/a&gt;
+                ">Acessar Geohab</button>
         </header>
+        <div class="course-progress-container" data-courseid="29"> <!-- [IMPORTANTE] Mude para o ID do seu curso -->
+            <div class="course-progress-bar">
+                <div class="course-progress-bar-fill" id="course-progress-fill"></div>
+            </div>
+            <div class="course-progress-text" id="course-progress-text"></div>
+        </div>
         <main class="welcome-content">
     
             <!-- SEÇÃO DE INFORMAÇÕES IMPORTANTES EM CARDS -->

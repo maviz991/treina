@@ -208,7 +208,9 @@ document.addEventListener('DOMContentLoaded', function() {
 // ===================================================================
 // INÍCIO: LÓGICA PARA BARRAS DE PROGRESSO DE MÓDULO (VERSÃO FINAL)
 // ===================================================================
-document.querySelectorAll('.module-progress-container').forEach(progressContainer => {
+
+// [CORREÇÃO] O seletor agora procura pela classe unificada E pelo data-attribute
+document.querySelectorAll('.course-progress-container[data-module-section]').forEach(progressContainer => {
     const sectionNumber = progressContainer.getAttribute('data-module-section');
     if (!sectionNumber) return;
 
@@ -219,7 +221,7 @@ document.querySelectorAll('.module-progress-container').forEach(progressContaine
     const activitiesInSection = moodleSection.querySelectorAll('.activity .activity-completion');
     const totalActivities = activitiesInSection.length;
 
-    // [SELETOR CORRIGIDO] CONTAGEM DE CONCLUÍDAS:
+    // CONTAGEM DE CONCLUÍDAS:
     // Procura por atividades que contenham um botão com a classe 'btn-success' dentro da área de conclusão.
     const completedInSection = moodleSection.querySelectorAll('.activity .activity-completion .btn-success');
     const completedCount = completedInSection.length;
@@ -233,7 +235,7 @@ document.querySelectorAll('.module-progress-container').forEach(progressContaine
     console.log(`Progresso Módulo ${sectionNumber}: ${completedCount} de ${totalActivities} concluídas = ${progressPercent}%`);
 
     // Atualiza a barra de progresso e o texto
-    const progressBarFill = progressContainer.querySelector('.module-progress-bar-fill');
+    const progressBarFill = progressContainer.querySelector('.course-progress-bar-fill');
     const progressText = progressContainer.querySelector('.progress-text');
 
     if (progressBarFill) progressBarFill.style.width = progressPercent + '%';
@@ -243,5 +245,79 @@ document.querySelectorAll('.module-progress-container').forEach(progressContaine
 // FIM: LÓGICA PARA BARRAS DE PROGRESSO DE MÓDULO
 // ===================================================================
 
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+// INÍCIO: LÓGICA FINAL E ABRANGENTE PARA BOTÃO "CONTINUAR"
+// Esta versão inclui o play do vídeo e corrige o link de colapsar.
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+
+const resumeButton = document.getElementById('resume-course-button');
+const courseIdMatch = document.body.className.match(/course-(\d+)/);
+
+if (resumeButton && courseIdMatch) {
+    const courseIdForResume = courseIdMatch[1];
+    const storageKey = `moodle-last-activity-${courseIdForResume}`;
+
+    // 1. AO CARREGAR A PÁGINA: Verifica se há uma URL salva
+    const lastVisitedUrl = localStorage.getItem(storageKey);
+    if (lastVisitedUrl) {
+        resumeButton.href = lastVisitedUrl;
+        resumeButton.style.display = 'inline-block';
+    }
+
+    // Função para salvar a URL no localStorage, com filtros
+    function saveLastUrl(url) {
+        const isInvalidLink = ['update=', 'delete=', 'hide=', 'move.php'].some(term => url.includes(term));
+        if (!isInvalidLink) {
+            console.log(`(Versão Final Corrigida) CLIQUE: Salvando a URL: ${url}`);
+            localStorage.setItem(storageKey, url);
+        }
+    }
+
+    // 2. AO CLICAR EM QUALQUER LINK DE NAVEGAÇÃO: Salva a URL
+    const allNavigationLinks = document.querySelectorAll(
+        'h3.sectionname a:not(.quickeditlink), ' +
+        'li.activity a.aalink:not(.quickeditlink), ' +
+        'footer .btn-geohab-popover'
+    );
+    console.log(`(Versão Final Corrigida) "Ouvintes" de navegação adicionados a ${allNavigationLinks.length} links.`);
+    allNavigationLinks.forEach(link => {
+        link.addEventListener('click', function() {
+            saveLastUrl(this.href);
+        });
+    });
+
+    // 3. [CORRIGIDO] LÓGICA PARA BOTÕES DE COLAPSAR/EXPANDIR
+    const collapseButtons = document.querySelectorAll('a[data-toggle="collapse"]');
+    console.log(`(Versão Final Corrigida) "Ouvintes" de colapso adicionados a ${collapseButtons.length} botões.`);
+    collapseButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            // Salva a URL da PÁGINA ATUAL, pois o usuário não está navegando para outro lugar
+            saveLastUrl(window.location.href);
+        });
+    });
+
+    // 4. [NOVO] LÓGICA PARA O BOTÃO DE PLAY DO VÍDEO
+    const videoPlayButtons = document.querySelectorAll('.vjs-big-play-button');
+    console.log(`(Versão Final Corrigida) "Ouvintes" de play adicionados a ${videoPlayButtons.length} vídeos.`);
+    videoPlayButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            // Encontra a âncora do vídeo (ex: #video-apresentacao) subindo na árvore DOM
+            const videoContainer = this.closest('[id^="video-"]');
+            if (videoContainer) {
+                // Monta a URL com a âncora para que a página role até o vídeo
+                const urlWithAnchor = `${window.location.pathname}${window.location.search}#${videoContainer.id}`;
+                saveLastUrl(urlWithAnchor);
+            } else {
+                // Se não encontrar uma âncora, salva a URL da página atual
+                saveLastUrl(window.location.href);
+            }
+        });
+    });
+}
+// ===================================================================
+// FIM: LÓGICA PARA BOTÃO "CONTINUAR"
+// ===================================================================
+
 }); // Fim do 'DOMContentLoaded'
 </script>
+
