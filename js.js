@@ -1,7 +1,111 @@
+
+
 <script>
+// ===================================================================
+// SCRIPT FINAL E COMPLETO PARA O CURSO GEOHAB
+// ===================================================================
+
 document.addEventListener('DOMContentLoaded', function() {
 
-    // ===================================================================
+    // ===============================================================
+    // PARTE 1: RASTREADOR DE NAVEGAÇÃO (BOTÃO "CONTINUAR")
+    // Esta parte DEVE rodar em TODAS as páginas do curso.
+    // ===============================================================
+    try {
+        const courseIdMatch = document.body.className.match(/course-(\d+)/);
+        if (courseIdMatch) {
+            const courseIdForResume = courseIdMatch[1];
+            const storageKey = `moodle-last-activity-${courseIdForResume}`;
+
+            // Função centralizada para salvar a URL com filtros
+            function saveLastUrl(url) {
+                if (!url || typeof url !== 'string') return;
+                const isInvalidLink = ['update=', 'delete=', 'hide=', 'move.php', 'javascript:;'].some(term => url.includes(term));
+                if (!isInvalidLink) {
+                    console.log(`(RASTREADOR) Salvando a URL: ${url}`);
+                    localStorage.setItem(storageKey, url);
+                }
+            }
+
+            // OUVINTE DE CLIQUE ÚNICO E INTELIGENTE (agora independente do botão)
+            document.body.addEventListener('click', function(e) {
+                const target = e.target;
+                const collapseButton = target.closest('a[data-toggle="collapse"]');
+                const playButton = target.closest('.vjs-big-play-button');
+                const navLink = target.closest('h3.sectionname a:not(.quickeditlink), li.activity a.aalink:not(.quickeditlink), footer .btn-geohab-popover');
+
+                if (collapseButton) {
+                    const anchor = collapseButton.getAttribute('href');
+                    if (anchor && anchor.startsWith('#')) {
+                        const urlWithAnchor = `${window.location.pathname}${window.location.search}${anchor}`;
+                        saveLastUrl(urlWithAnchor);
+                    }
+                } else if (playButton) {
+                    const videoContainer = playButton.closest('[id^="video-"]');
+                    if (videoContainer) {
+                        const urlWithAnchor = `${window.location.pathname}${window.location.search}#${videoContainer.id}`;
+                        saveLastUrl(urlWithAnchor);
+                    } else {
+                        saveLastUrl(window.location.href);
+                    }
+                } else if (navLink) {
+                    saveLastUrl(navLink.href);
+                }
+            });
+            console.log("(RASTREADOR) 'Ouvintes' de navegação estão ativos.");
+        }
+    } catch (e) {
+        console.error("Erro na lógica do Rastreador:", e);
+    }
+
+    // ===============================================================
+    // PARTE 2: EXIBIDOR DO BOTÃO "CONTINUAR"
+    // Esta parte só precisa rodar na página onde o botão existe.
+    // ===============================================================
+    try {
+        const resumeButton = document.getElementById('resume-course-button');
+        if (resumeButton) {
+            const courseIdMatch = document.body.className.match(/course-(\d+)/);
+            if (courseIdMatch) {
+                const courseIdForResume = courseIdMatch[1];
+                const storageKey = `moodle-last-activity-${courseIdForResume}`;
+                const lastVisitedUrl = localStorage.getItem(storageKey);
+                if (lastVisitedUrl) {
+                    resumeButton.href = lastVisitedUrl;
+                    resumeButton.style.display = 'inline-block';
+                    console.log("(EXIBIDOR) Botão 'Continuar' configurado para:", lastVisitedUrl);
+                }
+            }
+        }
+    } catch (e) {
+        console.error("Erro na lógica do Exibidor:", e);
+    }
+
+// ===================================================================
+// INÍCIO: LÓGGICA DE INICIALIZAÇÃO DE COMPONENTES BOOTSTRAP (jQuery + Bootstrap)
+// ===================================================================
+
+// Pede ao Moodle para carregar o jQuery E o JavaScript do Bootstrap
+require(['jquery', 'core/popper', 'core/bootstrap'], function($, popper) {
+    // Agora, o '$' está pronto e a função .popover() existe.
+    
+    // Não precisamos de $(document).ready() aqui, pois o 'require' já garante que tudo está carregado.
+    console.log("jQuery e Bootstrap estão prontos. Inicializando popovers...");
+    
+    // Inicializa todos os popovers na página
+    $('[data-toggle="popover"]').popover();
+
+    // Lógica para fechar o popover ao clicar fora (opcional, mas recomendado)
+    $('body').on('click', function (e) {
+        $('[data-toggle="popover"]').each(function () {
+            if (!$(this).is(e.target) && $(this).has(e.target).length === 0 && $('.popover').has(e.target).length === 0) {
+                $(this).popover('hide');
+            }
+        });
+    });
+});
+
+        // ===================================================================
     // FUNÇÃO HELPER: Verifica se estamos na página principal do curso
     // ===================================================================
     function isCourseHomePage() {
@@ -245,79 +349,5 @@ document.querySelectorAll('.course-progress-container[data-module-section]').for
 // FIM: LÓGICA PARA BARRAS DE PROGRESSO DE MÓDULO
 // ===================================================================
 
-// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
-// INÍCIO: LÓGICA FINAL E ABRANGENTE PARA BOTÃO "CONTINUAR"
-// Esta versão inclui o play do vídeo e corrige o link de colapsar.
-// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
-
-const resumeButton = document.getElementById('resume-course-button');
-const courseIdMatch = document.body.className.match(/course-(\d+)/);
-
-if (resumeButton && courseIdMatch) {
-    const courseIdForResume = courseIdMatch[1];
-    const storageKey = `moodle-last-activity-${courseIdForResume}`;
-
-    // 1. AO CARREGAR A PÁGINA: Verifica se há uma URL salva
-    const lastVisitedUrl = localStorage.getItem(storageKey);
-    if (lastVisitedUrl) {
-        resumeButton.href = lastVisitedUrl;
-        resumeButton.style.display = 'inline-block';
-    }
-
-    // Função para salvar a URL no localStorage, com filtros
-    function saveLastUrl(url) {
-        const isInvalidLink = ['update=', 'delete=', 'hide=', 'move.php'].some(term => url.includes(term));
-        if (!isInvalidLink) {
-            console.log(`(Versão Final Corrigida) CLIQUE: Salvando a URL: ${url}`);
-            localStorage.setItem(storageKey, url);
-        }
-    }
-
-    // 2. AO CLICAR EM QUALQUER LINK DE NAVEGAÇÃO: Salva a URL
-    const allNavigationLinks = document.querySelectorAll(
-        'h3.sectionname a:not(.quickeditlink), ' +
-        'li.activity a.aalink:not(.quickeditlink), ' +
-        'footer .btn-geohab-popover'
-    );
-    console.log(`(Versão Final Corrigida) "Ouvintes" de navegação adicionados a ${allNavigationLinks.length} links.`);
-    allNavigationLinks.forEach(link => {
-        link.addEventListener('click', function() {
-            saveLastUrl(this.href);
-        });
-    });
-
-    // 3. [CORRIGIDO] LÓGICA PARA BOTÕES DE COLAPSAR/EXPANDIR
-    const collapseButtons = document.querySelectorAll('a[data-toggle="collapse"]');
-    console.log(`(Versão Final Corrigida) "Ouvintes" de colapso adicionados a ${collapseButtons.length} botões.`);
-    collapseButtons.forEach(button => {
-        button.addEventListener('click', function() {
-            // Salva a URL da PÁGINA ATUAL, pois o usuário não está navegando para outro lugar
-            saveLastUrl(window.location.href);
-        });
-    });
-
-    // 4. [NOVO] LÓGICA PARA O BOTÃO DE PLAY DO VÍDEO
-    const videoPlayButtons = document.querySelectorAll('.vjs-big-play-button');
-    console.log(`(Versão Final Corrigida) "Ouvintes" de play adicionados a ${videoPlayButtons.length} vídeos.`);
-    videoPlayButtons.forEach(button => {
-        button.addEventListener('click', function() {
-            // Encontra a âncora do vídeo (ex: #video-apresentacao) subindo na árvore DOM
-            const videoContainer = this.closest('[id^="video-"]');
-            if (videoContainer) {
-                // Monta a URL com a âncora para que a página role até o vídeo
-                const urlWithAnchor = `${window.location.pathname}${window.location.search}#${videoContainer.id}`;
-                saveLastUrl(urlWithAnchor);
-            } else {
-                // Se não encontrar uma âncora, salva a URL da página atual
-                saveLastUrl(window.location.href);
-            }
-        });
-    });
-}
-// ===================================================================
-// FIM: LÓGICA PARA BOTÃO "CONTINUAR"
-// ===================================================================
-
-}); // Fim do 'DOMContentLoaded'
+});
 </script>
-
