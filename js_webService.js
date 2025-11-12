@@ -1,108 +1,262 @@
 
 
+<script>
 // ===================================================================
 // SCRIPT FINAL E COMPLETO PARA O CURSO GEOHAB
 // ===================================================================
 
 document.addEventListener('DOMContentLoaded', function() {
 
-    // ===============================================================
-    // PARTE 1: RASTREADOR DE NAVEGAÇÃO (BOTÃO "CONTINUAR")
-    // Esta parte DEVE rodar em TODAS as páginas do curso.
-    // ===============================================================
-    try {
-        const courseIdMatch = document.body.className.match(/course-(\d+)/);
-        if (courseIdMatch) {
-            const courseIdForResume = courseIdMatch[1];
-            const storageKey = `moodle-last-activity-${courseIdForResume}`;
+// ===============================================================
+// SISTEMA DE "CONTINUAR ONDE PAROU" PARA MOODLE
+// Usa User Preferences do Moodle para armazenar progresso
+// ===============================================================
 
-            // Função centralizada para salvar a URL com filtros
-            function saveLastUrl(url) {
-                if (!url || typeof url !== 'string') return;
-                const isInvalidLink = ['update=', 'delete=', 'hide=', 'move.php', 'javascript:;'].some(term => url.includes(term));
-                if (!isInvalidLink) {
-                    console.log(`(RASTREADOR) Salvando a URL: ${url}`);
-                    localStorage.setItem(storageKey, url);
+(function() {
+    'use strict';
+
+    // ===============================================================
+    // PARTE 1: RASTREADOR DE LOCALIZAÇÃO (EXECUTA EM TODA PÁGINA)
+    // ===============================================================
+    function trackUserProgress() {
+        try {
+            const courseIdMatch = document.body.className.match(/course-(\d+)/);
+            if (!courseIdMatch) {
+                console.log("(RASTREADOR) Não é uma página de curso.");
+                return;
+            }
+
+            const courseId = courseIdMatch[1];
+            let sectionNumber = null;
+            let cmId = null;
+
+            // ESTRATÉGIA 1: Detectar Course Module ID (atividade específica)
+            // Verifica se estamos em uma página de atividade (mod/xxx/view.php)
+            const urlParams = new URLSearchParams(window.location.search);
+            cmId = urlParams.get('id'); // ID do course module
+            
+            if (cmId) {
+                console.log(`(RASTREADOR) Detectada atividade cmid=${cmId}`);
+                
+                // Buscar informações do módulo usando web service
+                require(['core/ajax'], function(ajax) {
+                    ajax.call([{
+                        methodname: 'core_course_get_course_module',
+                        args: { cmid: parseInt(cmId) },
+                        done: function(response) {
+                            if (response && response.cm) {
+                                sectionNumber = response.cm.sectionnum;
+                                console.log(`(RASTREADOR) Atividade está na seção ${sectionNumber}`);
+                                saveProgress(courseId, sectionNumber, cmId);
+                            }
+                        },
+                        fail: function(ex) {
+                            console.warn("(RASTREADOR) Falha ao obter info do módulo:", ex);
+                            // Fallback para outras estratégias
+                            detectSectionFromPage(courseId);
+                        }
+                    }]);
+                });
+                return;
+            }
+
+            // ESTRATÉGIA 2: Detectar seção pela URL (course/view.php?section=X)
+            sectionNumber = urlParams.get('section');
+            if (sectionNumber && sectionNumber !== '0') {
+                console.log(`(RASTREADOR) Seção detectada pela URL: ${sectionNumber}`);
+                saveProgress(courseId, sectionNumber, null);
+                return;
+            }
+
+            // ESTRATÉGIA 3: Detectar seção pelo breadcrumb ou hash
+            const hash = window.location.hash;
+            const sectionMatch = hash.match(/#section-(\d+)/);
+            if (sectionMatch) {
+                sectionNumber = sectionMatch[1];
+                if (sectionNumber !== '0') {
+                    console.log(`(RASTREADOR) Seção detectada pelo hash: ${sectionNumber}`);
+                    saveProgress(courseId, sectionNumber, null);
+                    return;
                 }
             }
 
-            // OUVINTE DE CLIQUE ÚNICO E INTELIGENTE (agora independente do botão)
-            document.body.addEventListener('click', function(e) {
-                const target = e.target;
-                const collapseButton = target.closest('a[data-toggle="collapse"]');
-                const playButton = target.closest('.vjs-big-play-button');
-                const navLink = target.closest('h3.sectionname a:not(.quickeditlink), li.activity a.aalink:not(.quickeditlink), footer .btn-geohab-popover');
-
-                if (collapseButton) {
-                    const anchor = collapseButton.getAttribute('href');
-                    if (anchor && anchor.startsWith('#')) {
-                        const urlWithAnchor = `${window.location.pathname}${window.location.search}${anchor}`;
-                        saveLastUrl(urlWithAnchor);
+            // ESTRATÉGIA 4: Procurar no breadcrumb
+            const breadcrumbLinks = document.querySelectorAll('.breadcrumb a, nav.breadcrumb a');
+            for (let i = breadcrumbLinks.length - 1; i >= 0; i--) {
+                const link = breadcrumbLinks[i];
+                const linkParams = new URLSearchParams(link.search);
+                if (linkParams.has('section')) {
+                    sectionNumber = linkParams.get('section');
+                    if (sectionNumber !== '0') {
+                        console.log(`(RASTREADOR) Seção detectada pelo breadcrumb: ${sectionNumber}`);
+                        saveProgress(courseId, sectionNumber, null);
+                        return;
                     }
-                } else if (playButton) {
-                    const videoContainer = playButton.closest('[id^="video-"]');
-                    if (videoContainer) {
-                        const urlWithAnchor = `${window.location.pathname}${window.location.search}#${videoContainer.id}`;
-                        saveLastUrl(urlWithAnchor);
-                    } else {
-                        saveLastUrl(window.location.href);
-                    }
-                } else if (navLink) {
-                    saveLastUrl(navLink.href);
                 }
-            });
-            console.log("(RASTREADOR) 'Ouvintes' de navegação estão ativos.");
+            }
+
+            console.log("(RASTREADOR) Página principal ou seção 0. Não salvando.");
+
+        } catch (e) {
+            console.error("(RASTREADOR) Erro:", e);
         }
-    } catch (e) {
-        console.error("Erro na lógica do Rastreador:", e);
+    }
+
+    // Função auxiliar para detectar seção diretamente do DOM
+    function detectSectionFromPage(courseId) {
+        const mainContent = document.querySelector('div[role="main"], #region-main');
+        if (!mainContent) return;
+
+        // Procurar por section-X no DOM
+        const sectionContainer = mainContent.querySelector('[id^="section-"]');
+        if (sectionContainer) {
+            const sectionIdMatch = sectionContainer.id.match(/section-(\d+)/);
+            if (sectionIdMatch) {
+                const sectionNumber = sectionIdMatch[1];
+                if (sectionNumber !== '0') {
+                    console.log(`(RASTREADOR) Seção detectada pelo DOM: ${sectionNumber}`);
+                    saveProgress(courseId, sectionNumber, null);
+                }
+            }
+        }
+    }
+
+    // Salvar progresso usando User Preferences do Moodle
+    function saveProgress(courseId, sectionNumber, cmId) {
+        require(['core/ajax', 'core/notification'], function(ajax, notification) {
+            const preferences = [
+                {
+                    name: `course_${courseId}_last_section`,
+                    value: sectionNumber.toString()
+                }
+            ];
+
+            if (cmId) {
+                preferences.push({
+                    name: `course_${courseId}_last_cmid`,
+                    value: cmId.toString()
+                });
+            }
+
+            ajax.call([{
+                methodname: 'core_user_set_user_preferences',
+                args: { preferences: preferences },
+                done: function() {
+                    console.log(`✓ (RASTREADOR) Progresso salvo: Seção ${sectionNumber}` + 
+                               (cmId ? `, Atividade ${cmId}` : ''));
+                },
+                fail: function(ex) {
+                    console.error("✗ (RASTREADOR) Falha ao salvar:", ex);
+                    notification.exception(ex);
+                }
+            }]);
+        });
     }
 
     // ===============================================================
     // PARTE 2: EXIBIDOR DO BOTÃO "CONTINUAR"
-    // Esta parte só precisa rodar na página onde o botão existe.
     // ===============================================================
-    try {
+    function setupContinueButton() {
         const resumeButton = document.getElementById('resume-course-button');
-        if (resumeButton) {
-            const courseIdMatch = document.body.className.match(/course-(\d+)/);
-            if (courseIdMatch) {
-                const courseIdForResume = courseIdMatch[1];
-                const storageKey = `moodle-last-activity-${courseIdForResume}`;
-                const lastVisitedUrl = localStorage.getItem(storageKey);
-                if (lastVisitedUrl) {
-                    resumeButton.href = lastVisitedUrl;
-                    resumeButton.style.display = 'inline-block';
-                    console.log("(EXIBIDOR) Botão 'Continuar' configurado para:", lastVisitedUrl);
-                }
-            }
+        if (!resumeButton) {
+            console.log("(EXIBIDOR) Botão #resume-course-button não encontrado.");
+            return;
         }
-    } catch (e) {
-        console.error("Erro na lógica do Exibidor:", e);
+
+        const courseIdMatch = document.body.className.match(/course-(\d+)/);
+        if (!courseIdMatch) return;
+
+        const courseId = courseIdMatch[1];
+
+        require(['core/ajax', 'core/notification'], function(ajax, notification) {
+            // Buscar preferências do usuário
+            ajax.call([{
+                methodname: 'core_user_get_user_preferences',
+                args: {
+                    name: `course_${courseId}_last_section`
+                },
+                done: function(response) {
+                    if (response && response.preferences && response.preferences.length > 0) {
+                        const lastSection = response.preferences[0].value;
+                        
+                        if (lastSection && lastSection !== '0') {
+                            // Verificar se também temos cmid salvo
+                            ajax.call([{
+                                methodname: 'core_user_get_user_preferences',
+                                args: { name: `course_${courseId}_last_cmid` },
+                                done: function(cmResponse) {
+                                    let targetUrl;
+                                    
+                                    if (cmResponse && cmResponse.preferences && cmResponse.preferences.length > 0) {
+                                        const lastCmId = cmResponse.preferences[0].value;
+                                        targetUrl = `/mod/view.php?id=${lastCmId}`;
+                                        console.log(`(EXIBIDOR) Redirecionando para atividade ${lastCmId}`);
+                                    } else {
+                                        targetUrl = `/course/view.php?id=${courseId}&section=${lastSection}`;
+                                        console.log(`(EXIBIDOR) Redirecionando para seção ${lastSection}`);
+                                    }
+                                    
+                                    resumeButton.href = targetUrl;
+                                    resumeButton.style.display = 'inline-block';
+                                    resumeButton.classList.add('btn', 'btn-primary');
+                                }
+                            }]);
+                        } else {
+                            resumeButton.style.display = 'none';
+                            console.log("(EXIBIDOR) Sem progresso para exibir.");
+                        }
+                    } else {
+                        resumeButton.style.display = 'none';
+                        console.log("(EXIBIDOR) Nenhuma preferência encontrada.");
+                    }
+                },
+                fail: function(ex) {
+                    console.error("(EXIBIDOR) Erro ao buscar preferências:", ex);
+                    resumeButton.style.display = 'none';
+                }
+            }]);
+        });
     }
+
+    // ===============================================================
+    // INICIALIZAÇÃO
+    // ===============================================================
+    
+    // Executar quando o DOM estiver pronto
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', function() {
+            trackUserProgress();
+            setupContinueButton();
+        });
+    } else {
+        trackUserProgress();
+        setupContinueButton();
+    }
+
+})();
 
 // ===================================================================
 // INÍCIO: LÓGGICA DE INICIALIZAÇÃO DE COMPONENTES BOOTSTRAP (jQuery + Bootstrap)
 // ===================================================================
 
 // Pede ao Moodle para carregar o jQuery E o JavaScript do Bootstrap
-require(['jquery', 'core/popper', 'core/bootstrap'], function($, popper) {
-    // Agora, o '$' está pronto e a função .popover() existe.
-    
-    // Não precisamos de $(document).ready() aqui, pois o 'require' já garante que tudo está carregado.
-    console.log("jQuery e Bootstrap estão prontos. Inicializando popovers...");
-    
-    // Inicializa todos os popovers na página
-    $('[data-toggle="popover"]').popover();
-
-    // Lógica para fechar o popover ao clicar fora (opcional, mas recomendado)
-    $('body').on('click', function (e) {
-        $('[data-toggle="popover"]').each(function () {
-            if (!$(this).is(e.target) && $(this).has(e.target).length === 0 && $('.popover').has(e.target).length === 0) {
-                $(this).popover('hide');
-            }
+try {
+    require(['jquery', 'core/popper', 'core/bootstrap'], function($) {
+        console.log("jQuery e Bootstrap foram carregados. Inicializando popovers...");
+        $('[data-toggle="popover"]').popover();
+        $('body').on('click', function (e) {
+            $('[data-toggle="popover"]').each(function () {
+                if (!$(this).is(e.target) && $(this).has(e.target).length === 0 && $('.popover').has(e.target).length === 0) {
+                    $(this).popover('hide');
+                }
+            });
         });
+    }, function(err) {
+        console.warn("Módulo 'core/bootstrap' não pôde ser carregado. Popovers podem não funcionar. Erro:", err.message);
     });
-});
+} catch(e) {
+    console.error("Erro geral na inicialização do Bootstrap:", e);
+}
 
         // ===================================================================
     // FUNÇÃO HELPER: Verifica se estamos na página principal do curso
@@ -349,3 +503,4 @@ document.querySelectorAll('.course-progress-container[data-module-section]').for
 // ===================================================================
 
 });
+</script>
