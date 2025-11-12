@@ -47,7 +47,7 @@ DATA: 25/04/2025 */
 
 /* Border dos vídeos*/
 .activity-item .activity-altcontent img {
-  border-radius: 0rem;
+  border-radius: 5px;
 }
 
 /* START - h5 destaque classe especial*/
@@ -267,11 +267,14 @@ DATA: 25/04/2025 */
 }
 .badge-link a {
   color: inherit;
+  font-family: 'Montserrat';
   text-decoration: none !important;
 }
 
 .badge-text-blue {
   color: #0092C8;
+  font-family: 'Montserrat';
+
 }
 
 .badge-text-lilac {
@@ -280,6 +283,7 @@ DATA: 25/04/2025 */
 
 .badge-text-gray {
   color: #777879;
+  font-family: 'Montserrat';
 }
 
 .badge-text-red {
@@ -508,6 +512,7 @@ DATA: 25/04/2025 */
   width: 400px;
   height: auto;
   margin: 1.5rem 2rem 2rem 2rem;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
   cursor: zoom-in;
 }
 
@@ -753,10 +758,12 @@ body {
 
 .hero-actions {
   display: flex;
-  justify-content: right; /* Centraliza os botões */
-  align-items: center; /* Alinha verticalmente */
-  flex-wrap: wrap; /* Permite que os botões quebrem a linha em telas pequenas */
-  gap: 15px; /* Espaçamento entre os botões */
+  justify-content: right; 
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 15px; 
+  text-align: right;
+  background: white;
 }
 
 /* --- Grade de Informações (Cards) --- */
@@ -830,6 +837,7 @@ body {
   padding: 25px;
   border-radius: 8px;
   margin-top: 40px;
+  margin-bottom: 10px;
 }
 .support-section h3 {
   margin-top: 0;
@@ -1055,9 +1063,7 @@ body {
 .module-intro-block {
   background-color: #ffffff;
   border-radius: 12px;
-  padding: 30px;
-  margin-top: 40px;
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.07);
+  padding-left: 30px;
 }
 .module-intro-block p, .module-intro-block li {
   text-align: justify;
@@ -1193,6 +1199,8 @@ body {
 /* --- O Wrapper que Centraliza o Conteúdo --- */
 .content-wrapper {
   background-color: #ffffff;
+  padding-bottom: 8px;
+
   padding: 40px 30px;
   text-align: left;
   border-bottom: 1px solid #e0e0e0;
@@ -1224,6 +1232,7 @@ body {
 .footer-action {
   flex-grow: 1.5; /* Permite que esta coluna cresça */
   text-align: right; /* Centraliza o botão dentro desta coluna */
+  padding-bottom: 8px;
 }
 
 
@@ -1361,3 +1370,170 @@ body {
 /* =================================================================== */
 /*             COMPONENTE: BARRA DE PROGRESSO DO MÓDULO                */
 /* =================================================================== */
+
+/* =================================================================== */
+/*             COMPONENTE: LAYOUT DE CONTEÚDO (TEXTO + MÍDIA)          */
+/* =================================================================== */
+
+.content-layout-cols {
+  display: flex;
+  flex-wrap: wrap; /* Permite que as colunas quebrem em telas menores */
+  gap: 3rem;      /* Espaço entre o texto e a imagem */
+  align-items: flex-start; /* Alinha os itens no topo */
+  margin-bottom: 1.5rem;
+}
+
+.content-col-text {
+  flex: 2; /* Faz a coluna de texto ocupar o dobro do espaço da mídia */
+  min-width: 300px; /* Largura mínima antes de quebrar a linha */
+}
+
+.content-col-media {
+  flex: 1; /* A coluna de mídia ocupa uma parte */
+  min-width: 250px;
+}
+
+/* Ajusta a imagem decorativa para não flutuar e centralizar dentro da coluna */
+.content-col-media .img-decoration {
+  float: none;
+  margin: 0 auto; /* Centraliza a imagem na sua coluna */
+  width: 100%;
+  max-width: 400px;
+}
+
+/* =================================================================== */
+/*             COMPONENTE: CAIXA DE TERMINOLOGIA                     */
+/* =================================================================== */
+
+.terminology-box {
+  background-color: #f8f9fa;
+  border: 1px solid #dee2e6;
+  border-radius: 8px;
+  padding: 25px;
+  margin: 0 auto;
+}
+
+.terminology-title {
+  font-family: 'Axiforma', 'Montserrat', sans-serif;
+  font-size: 1.3em;
+  font-weight: 700;
+  color: #343a40;
+  margin-top: 0;
+  margin-bottom: 1.5rem;
+}
+
+.terminology-box ul {
+  padding-left: 20px;
+  margin: 0;
+}
+
+.terminology-box ul:last-child {
+  margin-bottom: 0;
+}
+
+.concepts-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1.5fr));
+  gap: 1rem 2rem;
+}
+
+.concepts-grid li {
+  margin-bottom: 8px;
+}
+
+/* Título para cada grupo dentro do card */
+.definition-group-title {
+  font-family: 'Axiforma', 'Montserrat', sans-serif;
+  font-size: 1.1em;
+  display: block;
+  font-weight: 600;
+  color: #000;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid #e9ecef; /* Linha sutil para separar o título */
+}
+
+/* --- Estilo para a Nuvem de Tags --- */
+.tag-cloud {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 9px; /* Espaço entre os badges */
+  align-content: flex-start;
+}
+
+/* O termo a ser definido */
+.definition-term {
+  font-weight: 700;
+  padding-left: 10px;
+  border-left: 3px solid #ced4da;
+  color: #212529;
+  display: flex;
+  gap: .5rem;
+}
+
+/* A descrição do termo */
+.definition-desc {
+  font-size: 0.95em;
+  color: #495057;
+  margin-left: 0; /* Reseta a margem padrão do <dd> */
+  padding-left: 12px;
+  margin-top: 4px;
+}
+
+/* =================================================================== */
+/*             COMPONENTE: Avisos (Evolução do action/attention-box)   */
+/* =================================================================== */
+/* ---  --- */
+.notice-block {
+  display: flex;
+  align-items: flex-start;
+  gap: 15px;
+  padding: 20px;
+  border-radius: 8px;
+  margin: 20px 0;
+  border: 1px solid transparent;
+}
+.notice-icon {
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+.notice-icon svg {
+  width: 22px;
+  height: 22px;
+}
+.notice-content p {
+  margin: 0;
+  line-height: 1.6;
+}
+.notice-content a {
+  font-weight: 600;
+  text-decoration: underline;
+}
+
+/* Modificador de Informação (Azul) */
+.notice-block.notice-info {
+  background-color: #f0f7ff;
+  border-color: #d9eaff;
+  border-left: 5px solid #007bff;
+  color: #004085;
+}
+.notice-block.notice-info .notice-icon {
+  color: #007bff;
+}
+.notice-block.notice-info a {
+  color: #0056b3;
+}
+
+/* Modificador de Atenção (Amarelo) */
+.notice-block.notice-warning {
+  background-color: #fffaf0;
+  border-color: #ffeed9;
+  border-left: 5px solid #fabd5a;
+  color: #856404;
+}
+.notice-block.notice-warning .notice-icon {
+  color: #fabd5a;
+  
+}
+
