@@ -51,7 +51,7 @@ DATA: 25/04/2025 */
 }
 
 /* START - h5 destaque classe especial*/
-.destaque-h5 {
+/* .destaque-h5 {
   text-align: justify;
   font-family: "sans-serif", axiforma;
   background: #f5f4f4;
@@ -62,7 +62,7 @@ DATA: 25/04/2025 */
 }
 .destaque-h5 strong {
   font-weight: 700 !important;
-}
+} */
 
 /* END- h5 destaque classe especial*/
 /* START - Bagde-color (fundo colorido)*/
@@ -1530,6 +1530,8 @@ body {
 }
 .notice-icon {
   flex-shrink: 0;
+  display: flex;
+  justify-content: center;
   margin-top: 2px;
 }
 .notice-icon svg {
@@ -1551,6 +1553,8 @@ body {
   border-color: #d9eaff;
   border-left: 5px solid #007bff;
   color: #004085;
+  display: flex;
+  justify-content: center;
   text-decoration: none;
 }
 .notice-block.notice-info .notice-icon {
@@ -1612,6 +1616,55 @@ body {
 }
 
 .info-badge-icon svg {
+  width: 13px;
+  height: 13px;
+}
+/* =================================================================== */
+/*             COMPONENTE: BLOCO DE AÇÃO (EVOLUÇÃO DO NOTICE)          */
+/* =================================================================== */
+
+/* Adicione esta classe ao .notice-block quando ele tiver um botão */
+.notice-block-action .notice-content {
+  display: grid;
+  justify-content: space-between; /* Empurra o texto e o botão para as extremidades */
+  align-items: center;
+  flex-wrap: wrap; /* Permite que quebre a linha em telas pequenas */
+  gap: 15px; /* Espaço entre o texto e o botão */
+}
+
+.notice-content-btn{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* O botão de ação em si */
+.notice-action-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px; /* Espaço entre o texto e o ícone do botão */
+  font-weight: 200;
+  text-decoration: none !important;
+  color: white !important;
+  background-color: #0056b3; 
+  padding: 2px 5px;
+  font-size: 16px;
+  border-radius: 8px;
+  transition: opacity 0.2s;
+}
+.notice-action-button:hover {
+  opacity: 0.85;
+}
+
+.notice-action-button svg {
   width: 20px;
   height: 20px;
+}
+
+/* Responsividade para telas menores */
+@media (max-width: 768px) {
+  .notice-block-action .notice-content {
+    justify-content: center; /* Centraliza em telas pequenas */
+    text-align: center;
+  }
 }

@@ -45,180 +45,97 @@
         </style>        
 </head>
 <body>
-
-
 <!-- =================================================================== -->
-<!--             INÍCIO: BLOCO DE CONTEÚDO DO MÓDULO                   -->
+<!--             INÍCIO: BLOCO DE CONTEÚDO (FORMATOS DE ARQUIVO)         -->
 <!-- =================================================================== -->
-
-<!-- O contêiner principal que cria o card com padding e sombra -->
 <div class="module-intro-block">
-
-    <!-- Wrapper para aplicar os estilos de texto (justificado, etc.) -->
     <div class="guide-container">
 
-        <!-- ================= TÓPICO 1: DADOS GEOESPACIAIS ================= -->
-
-        <h2 class="guide-container-title">Dados Geoespaciais</h2>
+        <h2 class="guide-container-title">Formatos de Arquivos Geoespaciais</h2>
 
         <div class="content-layout-cols">
             <div class="content-col-text">
-                <p>São informações que têm uma referência a uma localização na superfície da Terra. Em outras palavras, são dados que indicam <em>onde</em> algo está, além de descrever <em>o que</em> é e, às vezes, <em>quando</em> aconteceu.</p>
-                <p>Eles são a base de qualquer sistema de informação geográfica (GIS) e permitem analisar padrões, relações e tendências a partir de uma perspectiva espacial.</p>
+                <p>A escolha do formato de arquivo correto é crucial para garantir a integridade, o desempenho e a compatibilidade dos seus dados. Os dados geoespaciais são divididos em duas categorias principais: <strong>vetoriais</strong> (pontos, linhas e polígonos) e <strong>matriciais</strong> ou <strong>raster</strong> (grades de pixels, como imagens).</p>
+                <p>Abaixo, apresentamos os formatos mais comuns e as recomendações oficiais da CDHU para o armazenamento e compartilhamento de dados.</p>
             </div>
             <div class="content-col-media">
                 <div class="image-modal-wrapper">
-                    <img class="modal-trigger-img img-decoration" title="Clique para expandir" src="https://stor.cdhu.sp.gov.br/treina/publico/img-1-1.png" alt="Diagrama mostrando os tipos de dados espaciais: pontos, linhas, polígonos e raster">
-                    <div class="image-modal-popup">
-                        <span class="custom-close">×</span>
-                        <img class="modal-display-img">
-                        <div class="modal-caption-text">Diagrama dos tipos de dados vetoriais e raster.</div>
-                    </div>
+                    <img class="modal-trigger-img img-decoration" title="Clique para expandir" src="https://stor.cdhu.sp.gov.br/treina/publico/img-1-3.png" alt="Ilustração dos diferentes formatos de dados geoespaciais, como Shapefile, GeoJSON e KML">
+                    <div class="image-modal-popup"><span class="custom-close">×</span><img class="modal-display-img"><div class="modal-caption-text">Diferentes formatos de arquivo são usados para dados vetoriais e matriciais.</div></div>
                 </div>
             </div>
         </div>
 
-        <div class="terminology-box">
-            <h3 class="terminology-title-exemple">Exemplos e Tipos Fundamentais</h3>
-        
-            <!-- Grid de duas colunas para separar os conceitos -->
-    <div class="definition-group">
-        <h4 class="definition-group-title">Exemplos Práticos:</h4>
-        <!-- Usamos uma lista normal aqui para melhor estrutura -->
-        <div class="tag-cloud">
-                <span class="info-badge" title="GNSS, popularmente GPS, obtem localização precisa na Terra usando latitude e longitude ou metros" data-toggle="tooltip">
-                    <span class="info-badge-text">Coordenadas GNSS</span>
-                    <span class="info-badge-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path><line x1="12" y1="17" x2="12.01" y2="17"></line></svg></span>
-                </span>
-                <span class="info-badge" title="Um endereço de rua convertido para coordenadas geográficas" data-toggle="tooltip">
-                    <span class="info-badge-text">Endereços Georreferenciados</span>
-                    <span class="info-badge-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path><line x1="12" y1="17" x2="12.01" y2="17"></line></svg></span>
-                </span>
-                <span class="info-badge" title="Mapas que mostram como a terra é utilizada (agricultura, área urbana, etc.)" data-toggle="tooltip">
-                    <span class="info-badge-text">Mapas de Uso do Solo</span>
-                    <span class="info-badge-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path><line x1="12" y1="17" x2="12.01" y2="17"></line></svg></span>
-                </span>
-
-                <span class="info-badge" title="Fotografias da Terra tiradas por satélites" data-toggle="tooltip">
-                    <span class="info-badge-text">Imagens de Satélite</span>
-                    <span class="info-badge-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path><line x1="12" y1="17" x2="12.01" y2="17"></line></svg></span>
-                </span>
-                <span class="info-badge" title="Localização de redes físicas como cabos ou tubulações" data-toggle="tooltip">
-                    <span class="info-badge-text">Redes de Infraestrutura</span>
-                    <span class="info-badge-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path><line x1="12" y1="17" x2="12.01" y2="17"></line></svg></span>
-                </span>                
-
-        </div>
-    </div>
-        
-                <!-- Coluna 2: Tipos de Dados (com o novo componente de definição) -->
-                <div>
-                    <h4 class="definition-group-title">Tipos de Dados Fundamentais:</h4>
-                    <dl class="definition-list">
-                        
-                        <div class="definition-item">
-                            <dt class="definition-term">
-                                <!-- Ícone para Ponto -->
-                                <div class="definition-icon">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
-                                </div>
-                                <span>Pontos</span>
-                            </dt>
-                            <dd class="definition-desc">Representam uma única coordenada (ex: a localização de uma loja).</dd>
-                        </div>
-                
-                        <div class="definition-item">
-                            <dt class="definition-term">
-                                <!-- Ícone para Linha -->
-                                <div class="definition-icon">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
-                                        <path d="M3 21L9 9l6 6L21 3"></path>
-                                    </svg>
-                                </div>
-                                <span>Linhas</span>
-                            </dt>
-                            <dd class="definition-desc">Representam uma sequência de pontos conectados (ex: ruas, rios).</dd>
-                        </div>
-                
-                        <div class="definition-item">
-                            <dt class="definition-term">
-                                <!-- Ícone para Polígono -->
-                                <div class="definition-icon">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect></svg>
-                                </div>
-                                <span>Polígonos</span>
-                            </dt>
-                            <dd class="definition-desc">Representam uma área fechada (ex: bairros, florestas, lotes).</dd>
-                        </div>
-                
-                        <div class="definition-item">
-                            <dt class="definition-term">
-                                <!-- Ícone para Raster -->
-                                <div class="definition-icon">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
-                                </div>
-                                <span>Raster</span>
-                            </dt>
-                            <dd class="definition-desc">Representam uma grade de pixels, como uma fotografia (ex: imagens de satélite).</dd>
-                        </div>
-                
-                    </dl>
+        <!-- Seção de Formatos Vetoriais -->
+        <div class="definition-group">
+            <h4 class="definition-group-title">Formatos Vetoriais (Pontos, Linhas, Polígonos)</h4>
+            <dl class="definition-list">
+                <div class="definition-item">
+                    <dt class="definition-term">
+                        <div class="definition-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="4.93" y1="4.93" x2="19.07" y2="19.07"></line></svg></div>
+                        <span>Shapefile (.shp)</span>
+                    </dt>
+                    <dd class="definition-desc"><strong>Status: Obsoleto.</strong> Embora muito popular, é um formato antigo composto por múltiplos arquivos (.shp, .shx, .dbf, etc.), propenso a erros e com limitações (ex: nomes de colunas com 10 caracteres). <strong>Seu uso deve ser evitado.</strong></dd>
                 </div>
-        
-            </div>
-        </div>
-
-        <!-- ================= TÓPICO 2: METADADOS ================= -->
-
-        <h2 class="guide-container-title" style="margin-top: 2.5em;">O que são Metadados?</h2>
-
-        <div class="content-layout-cols">
-            <div class="content-col-text">
-                <p>Metadados são, basicamente, "dados sobre os dados". Eles são o contexto que nos ajuda a entender de onde os dados vieram, como foram coletados, com que precisão e quando. Sem essa "história", fica difícil confiar ou utilizar os dados da maneira correta.</p>
-                <p>Imagine um mapa com a localização de árvores. O <strong>dado</strong> são as coordenadas. O <strong>metadado</strong> informa se essas coordenadas foram coletadas por um especialista com um GNSS de alta precisão ou por um aplicativo de celular, e, crucialmente, em que ano isso foi feito. Será que as árvores ainda estão lá?</p>
-                <p>Esses detalhes são cruciais para a tomada de decisões. A ferramenta <span class="badge-link badge-text-salmon" title="Ferramenta para gerenciar e catalogar metadados no Geohab" data-toggle="tooltip">Catálogo (GeoNetwork)</span> é a responsável por gerenciar os metadados no Geohab.</p>
-            </div>
-            <div class="content-col-media">
-                <div class="image-modal-wrapper">
-                    <img class="modal-trigger-img img-decoration" title="Clique para expandir" src="https://stor.cdhu.sp.gov.br/treina/publico/img-1-2.png" alt="Diagrama ilustrando que metadados são 'dados sobre os dados'">
-                    <div class="image-modal-popup">
-                        <span class="custom-close">×</span>
-                        <img class="modal-display-img">
-                        <div class="modal-caption-text">Metadados fornecem o contexto essencial para os dados.</div>
-                    </div>
+                <div class="definition-item">
+                    <dt class="definition-term">
+                        <div class="definition-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg></div>
+                        <span>GeoPackage (.gpkg)</span>
+                    </dt>
+                    <dd class="definition-desc"><strong>Status: Recomendado.</strong> É o sucessor moderno do Shapefile. Consiste em um único arquivo (.gpkg) baseado em SQLite, robusto, flexível e sem as limitações do formato antigo. É o padrão aberto para troca de dados geoespaciais.</dd>
                 </div>
-            </div>
+                <div class="definition-item">
+                    <dt class="definition-term">
+                        <div class="definition-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg></div>
+                        <span>GeoJSON / KML</span>
+                    </dt>
+                    <dd class="definition-desc"><strong>Status: Uso Específico.</strong> Formatos baseados em texto, ideais para aplicações web (GeoJSON) e visualização em plataformas como o Google Earth (KML). São ótimos para compartilhamento e visualização, mas menos robustos para análise complexa.</dd>
+                </div>
+            </dl>
         </div>
 
-        <!-- Bloco de Nota Essencial -->
+        <!-- Seção de Formatos Matriciais -->
+        <div class="definition-group">
+            <h4 class="definition-group-title">Formatos Matriciais (Raster)</h4>
+            <dl class="definition-list">
+                <div class="definition-item">
+                    <dt class="definition-term">
+                        <div class="definition-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg></div>
+                        <span>GeoTIFF (.tif / .tiff)</span>
+                    </dt>
+                    <dd class="definition-desc"><strong>Status: Padrão da Indústria.</strong> É o formato mais comum para imagens georreferenciadas, como ortofotos e modelos de elevação. É um arquivo de imagem padrão (TIFF) que contém metadados geográficos adicionais (geotags).</dd>
+                </div>
+            </dl>
+        </div>
+        
+        <!-- A Abordagem Moderna -->
+        <h2 class="guide-container-title" style="margin-top: 2.5em;">A Abordagem Moderna: Bancos de Dados</h2>
+        <p>Embora arquivos como o GeoPackage sejam excelentes para troca e armazenamento local, a forma mais robusta e escalável de gerenciar dados geoespaciais é através de um <strong>banco de dados espacial</strong> (como o PostGIS). Isso centraliza a informação, garante segurança, permite acesso multiusuário e otimiza consultas complexas, sendo a base de plataformas como o Geohab.</p>
+
+        <!-- Bloco de Recomendação Oficial -->
         <div class="notice-block notice-warning">
             <div class="notice-icon">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
-                    <line x1="12" y1="9" x2="12" y2="13"></line>
-                    <line x1="12" y1="17" x2="12.01" y2="17"></line>
-                </svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"></path></svg>
             </div>
             <div class="notice-content">
-                <p><strong>Nota Essencial:</strong> Metadados são o que trazem <strong>confiança, clareza e utilidade</strong> aos dados geoespaciais. Sem eles, os dados perdem seu contexto e, muitas vezes, seu valor.</p>
+                <p><strong>Padrão CDHU:</strong> Ao salvar ou exportar dados geoespaciais para arquivos locais, o formato recomendado e padrão a ser utilizado é o <strong>GeoPackage (.gpkg)</strong>.</p>
             </div>
         </div>
 
-    <!-- Bloco de Ação / Próximo Passo -->
-    <div class="notice-block notice-info">
-        <div class="notice-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 25 25" fill="currentColor" stroke="currentColor" stroke-width="1" stroke-linecap="" stroke-linejoin="round">
-                <path d="M 6,8.007 H 0 v 6 h 6 z m -1,5 H 1 v -4 h 4 z m 1,9 v -6 H 0 v 6 z m -5,-5 h 4 v 4 H 1 Z m 5,-17 H 0 v 6 h 6 z m -1,5 H 1 v -4 h 4 z m 6.716,11.649 -2.351,2.351 H 15 c 4.411,0 8,-3.589 8,-8 0,-4.411 -3.589,-8 -8,-8 H 8 v -1 h 7 c 4.962,0 9,4.037 9,9 0,4.963 -4.038,9 -9,9 H 9.43 L 11.716,22.293 11.009,23 8.366,20.356 C 8.13,20.121 8,19.807 8,19.474 8,19.141 8.13,18.827 8.366,18.591 l 2.643,-2.643 0.707,0.707 z"></path>
-            </svg>
+        <!-- Bloco "Final da Lição" (usando o SVG correto) -->
+        <div class="notice-block notice-info">
+            <div class="notice-icon">
+                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h5v5"></path><path d="M10 14L21 3"></path><path d="M14 10L3 21"></path><path d="M3 15v5h5"></path></svg>
+            </div>
+            <div class="notice-content">
+                <p>Agora que você conhece os principais formatos, continue para a próxima lição para entender sobre a Interoperabilidade.</p>
+            </div>
         </div>
-        <div class="notice-content">
-            <p>Para seguir para a próxima seção do módulo, faça a lição: <button type="button" class="btn btn-info" style="padding: 2px; display: inline; font-size: 14px;">O que são dados Geoespaciais?</button></p>
-        </div>
-    </div>
 
+    </div>
 </div>
 <!-- =================================================================== -->
-<!--             FIM: BLOCO DE CONTEÚDO DO MÓDULO                        -->
+<!--             FIM: BLOCO DE CONTEÚDO (FORMATOS DE ARQUIVO)          -->
 <!-- =================================================================== -->
 
 </body>
