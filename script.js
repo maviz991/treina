@@ -1,5 +1,4 @@
 
-<script>
 // ===================================================================
 // SCRIPT FINAL E COMPLETO PARA O CURSO GEOHAB
 // ===================================================================
@@ -349,4 +348,3 @@ document.querySelectorAll('.course-progress-container[data-module-section]').for
 // ===================================================================
 
 });
-</script>

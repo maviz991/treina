@@ -635,6 +635,7 @@ body {
   background-color: #ffffff;
   color: #333;
   padding: 0px;
+  padding-top: .5rem;
   border-radius: 8px;
   line-height: 1.6;
 }
@@ -646,7 +647,6 @@ body {
   font-size: 1.8em;
   border-left: 4px solid #ff1100;
   padding-left: 15px;
-  margin-top: 2em;
   margin-bottom: 1em;
 }
 
@@ -1112,35 +1112,43 @@ body {
   font-size: 0.95em;
   color: #555;
 }
-
+/* ========================================================== */
 /* --- Lista de Objetivos de Aprendizagem Estilizada --- */
 .learning-objectives {
   text-align: justify;
   font-family: 'Montserrat', sans-serif;
   list-style: none; /* Remove os números padrão */
   padding-left: 0;
-  counter-reset: objective-counter; /* Inicia nosso contador customizado */
+  counter-reset: objective-counter;
+
 }
 .learning-objectives li {
   counter-increment: objective-counter; /* Aumenta o contador a cada item */
   text-align: justify;
   font-family: 'Montserrat', sans-serif;
   display: flex;
+  gap: 5px;
   align-items: flex-start;
-  gap: 15px;
-  margin-bottom: 15px;
+  margin: 10px 0 10px 0;
   font-size: 1.05em;
 }
-/* --- Nova Classe para a Seção com Fundo --- */
-.highlighted-section .welcome-section-title{
-  background-color: #f9f9f9; /* O mesmo cinza claro do welcome-block-creative */
-  border: 1px solid #e0e0e0;
-  text-align: justify;
-  border-radius: 12px;
-  padding: 30px;
-  margin-top: 0px; /* Espaço para separar da seção anterior */
+
+.learning-definition-term {
+  font-weight: 700;
+  padding-left: 5px;
+  color: #212529;
+  align-items: center;
 }
-/* O círculo numerado customizado */
+
+.learning-definition-desc {
+  font-size: 0.95em;
+  color: #495057;
+  padding: 0 0 0 5px;
+  display: flex;
+  align-items: center;
+
+}
+
 .learning-objectives li::before {
   content: counter(objective-counter);
   flex-shrink: 0;
@@ -1156,6 +1164,19 @@ body {
   font-size: 14px;
   margin-top: 2px;
 }
+/* ========================================================== */
+
+/* --- Nova Classe para a Seção com Fundo --- */
+.highlighted-section .welcome-section-title{
+  background-color: #f9f9f9; /* O mesmo cinza claro do welcome-block-creative */
+  border: 1px solid #e0e0e0;
+  text-align: justify;
+  border-radius: 12px;
+  padding: 30px;
+  margin-top: 0px; /* Espaço para separar da seção anterior */
+}
+/* O círculo numerado customizado */
+
 
 /* --- O header interno do módulo (ícone + título) --- */
 
@@ -1353,9 +1374,9 @@ body {
 
 .course-progress-bar-fill {
   height: 100%;
-  background-color: #ff1100; /* Verde */
+  background-color: #e01a00; 
   width: 0%;
-  border-radius: 0; /* CANTOS QUADRADOS */
+  border-radius: 0;
   transition: width 1.5s ease-in-out;
 }
 
@@ -1422,6 +1443,17 @@ body {
   margin-bottom: 1.5rem;
 }
 
+.terminology-title-exemple {
+  border-left: 3px solid #212121;
+  padding: 5px 0 0 5px;
+  font-family: 'Axiforma', 'Montserrat', sans-serif;
+  font-size: 1.3em;
+  font-weight: 700;
+  color: #000;
+  margin-top: 0;
+  margin-bottom: 1.5rem;
+}
+
 .terminology-box ul {
   padding-left: 20px;
   margin: 0;
@@ -1444,10 +1476,10 @@ body {
 /* Título para cada grupo dentro do card */
 .definition-group-title {
   font-family: 'Axiforma', 'Montserrat', sans-serif;
+  color: #000;
   font-size: 1.1em;
   display: block;
   font-weight: 600;
-  color: #000;
   margin-top: 2rem;
   margin-bottom: 1rem;
   padding-bottom: 0.5rem;
@@ -1458,8 +1490,10 @@ body {
 .tag-cloud {
   display: flex;
   flex-wrap: wrap;
-  gap: 9px; /* Espaço entre os badges */
+  gap: 30px; /* Espaço entre os badges */
   align-content: flex-start;
+  padding-top: 1.1rem;
+  justify-content: center;
 }
 
 /* O termo a ser definido */
@@ -1477,7 +1511,7 @@ body {
   font-size: 0.95em;
   color: #495057;
   margin-left: 0; /* Reseta a margem padrão do <dd> */
-  padding-left: 12px;
+  padding: 0 0 15px 12px;
   margin-top: 4px;
 }
 
@@ -1517,6 +1551,7 @@ body {
   border-color: #d9eaff;
   border-left: 5px solid #007bff;
   color: #004085;
+  text-decoration: none;
 }
 .notice-block.notice-info .notice-icon {
   color: #007bff;
@@ -1531,9 +1566,52 @@ body {
   border-color: #ffeed9;
   border-left: 5px solid #fabd5a;
   color: #856404;
+  text-decoration: none;
 }
 .notice-block.notice-warning .notice-icon {
   color: #fabd5a;
   
 }
 
+/* =================================================================== */
+/*             COMPONENTE: BADGE INFORMATIVO (EVOLUÇÃO)              */
+/* =================================================================== */
+
+.info-badge {
+  display: inline-flex;
+  align-items: flex-start;  
+  gap: 3px;             
+  cursor: help;         
+  background-color: #f8f9fa;
+  border: 1px solid #dee2e6;
+  border-radius: 12px;
+  padding: 0.2em 0.6em;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.9em;
+  font-weight: 550;
+  color: #495057;
+  white-space: nowrap;
+  transition: transform 0.2s ease-in-out, box-shadow 0.5s ease-in-out;
+}
+
+.info-badge:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.123);
+}
+
+.info-badge-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  border: .4px solid #6c757d;
+  /* background-color: #6c757d; */
+  color: #6c757d;
+}
+
+.info-badge-icon svg {
+  width: 20px;
+  height: 20px;
+}
