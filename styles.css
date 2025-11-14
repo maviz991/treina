@@ -1055,6 +1055,7 @@ body {
   padding: 30px;
 }
 
+
 /* =================================================================== */
 /*             COMPONENTE: INTRODUÇÃO DO MÓDULO                      */
 /* =================================================================== */
@@ -1072,7 +1073,167 @@ body {
   color: #444;
 }
 
+/* O corpo principal do conteúdo */
+.module-content-main {
+  padding: 30px; /* O padding que antes estava no .module-intro-block */
+}
+
+/* O NOVO FOOTER DE AÇÃO */
+.module-content-footer {
+  padding: 20px 20px 20px 20px;
+  background-color: #fff; /* Fundo sutilmente diferente para segregar */
+  border-top: 1px solid #dbdee0; /* A linha divisória crucial */
+  border-bottom-left-radius: 12px; /* Arredonda os cantos inferiores */
+  border-bottom-right-radius: 12px;
+}
+
+/* Remove a margem do notice-block quando ele está no footer */
+.module-content-footer .notice-block {
+  margin: 0;
+}
+
+
+
+/* ================================================================================= */
+/*             COMPONENTE: BLOCO DE CONCLUSÃO SEÇÃO DE TAREFA SANFONA (COLLAPSIBLE)  */
+/* ================================================================================= */
+.collapsible-task-section {
+  margin-top: 2.5rem;
+  border: 1px solid #d9eaff;
+  background-color: #f7faff;
+  border-radius: 8px;
+  overflow: hidden; /* Garante que os cantos arredondados sejam respeitados */
+}
+
+/* O cabeçalho clicável */
+.task-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+  padding: 20px 25px;
+  cursor: pointer;
+  text-decoration: none !important;
+  color: inherit;
+  transition: background-color 0.2s;
+}
+.task-header:hover {
+  background-color: #eff6ff;
+}
+
+/* Agrupa o ícone principal e o título */
+.task-header-title-group {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+/* Ícone principal (alvo) */
+.task-header-icon svg {
+  width: 28px;
+  height: 28px;
+  color: #007bff;
+}
+
+/* O título dentro do cabeçalho */
+.task-header-title {
+  font-family: 'Axiforma', 'Montserrat', sans-serif;
+  font-size: 1.2em;
+  font-weight: 700;
+  color: #004085;
+  margin: 0;
+}
+
+/* O ícone de seta (chevron) que indica a ação de abrir/fechar */
+.task-chevron {
+  color: #007bff;
+  transition: transform 0.3s ease-in-out;
+  background-color: #d8ebff;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 30px;
+  height: 30px;
+}
+
+.task-chevron svg {
+  width: 20px;
+  height: 20px;
+}
+
+/* Gira a seta quando a seção está aberta */
+.task-header[aria-expanded="true"] .task-chevron {
+  transform: rotate(90deg);
+}
+
+/* O corpo que será revelado */
+.task-body {
+  padding: 0px 25px 25px 68px; /* O padding esquerdo alinha com o texto do título */
+  border-top: 1px solid #d9eaff;
+  display: block;
+}
+
+.task-description {
+  margin: 15px 0 15px 0;
+  color: #343a40;
+  line-height: 1.6;
+  display: flex;
+  justify-content: center;
+}
+
+.task-content-btn{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.collapsible-task-section .task-header:focus {
+  outline: 0;
+  /* Usamos a cor azul principal do componente com 50% de opacidade */
+  box-shadow: 0 0 0 .2rem rgba(0, 123, 255, 0.5); 
+}
+
+/* O corpo que será revelado */
+.task-body {
+  padding: 0px 25px 25px 68px; /* O padding esquerdo alinha com o texto do título */
+  border-top: 1px solid #d9eaff;
+  display: block;
+}
+
+.task-description {
+  margin: 15px 0 15px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.task-content-btn{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.task-content p {
+  margin: 0;
+  line-height: 1.6;
+}
+.task-content a {
+  font-weight: 600;
+  text-decoration: underline;
+}
+
+.collapsible-task-section .task-header:focus {
+  outline: 0;
+  /* Usamos a cor azul principal do componente com 50% de opacidade */
+  box-shadow: 0 0 0 .2rem rgba(0, 123, 255, 0.5); 
+}
+
+
+/* =================================================================== */
 /* --- Grade de Informações-Chave (Público, Pré-reqs) --- */
+/* =================================================================== */
+
 .key-info-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
