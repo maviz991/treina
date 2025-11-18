@@ -530,8 +530,8 @@ DATA: 25/04/2025 */
 /* --- CORREÇÃO DA IMAGEM DE CONTÚDO DE CURSO --- */
 .img-content {
   display: block;
-  width: 700px;
-  height: 350px;
+  width: 600px;
+  height: auto;
   margin-left: auto; 
   margin-right: auto;
   box-shadow: 0 10px 30px rgba(0,0,0,0.1);
@@ -1587,7 +1587,7 @@ body {
   border: 1px solid #dee2e6;
   border-radius: 8px;
   padding: 25px;
-  margin: 0 auto;
+  margin: 10px auto;
 }
 
 .terminology-title {
@@ -1830,11 +1830,33 @@ body {
 /*             COMPONENTE: BLOCO DE PASSO A PASSO                      */
 /* =================================================================== */
 
-.step-by-step-block {
+.step-content-layout-cols {
   display: flex;
-  align-items: flex-start;
-  gap: 20px;
+  flex-wrap: wrap; /* Permite que as colunas quebrem em telas menores */
+  gap: 1rem;      /* Espaço entre o texto e a imagem */
+  align-items: flex-start; /* Alinha os itens no topo */
+  margin-bottom: 1.5rem;
   margin-top: 2.5rem;
+
+}
+
+.step-content-col-text {
+  flex: 1; /* Faz a coluna de texto ocupar o dobro do espaço da mídia */
+  min-width: 300px; /* Largura mínima antes de quebrar a linha */
+}
+
+.step-content-col-media {
+  flex: 1; /* A coluna de mídia ocupa uma parte */
+  min-width: 250px;
+  padding-bottom: 2em;
+}
+
+/* Ajusta a imagem decorativa para não flutuar e centralizar dentro da coluna */
+.step-content-col-media .img-decoration {
+  float: none;
+  margin: 0 auto; /* Centraliza a imagem na sua coluna */
+  width: 100%;
+  max-width: 400px;
 }
 
 .step-number {
@@ -1853,10 +1875,6 @@ body {
   font-family: 'Axiforma', 'Montserrat', sans-serif;
 }
 
-.step-content {
-  flex-grow: 1;
-}
-
 .step-title {
   font-family: 'Axiforma', 'Montserrat', sans-serif;
   font-size: 1.4em;
@@ -1866,14 +1884,230 @@ body {
   margin-bottom: 0.5rem;
 }
 
-.step-description p {
-  margin-bottom: 1.5rem;
-}
+    /* =================================================================== */
+    /* MATERIAIS DE APOIO */
+    /* =================================================================== */
+    :root {
+      --font-primary: 'Axiforma', 'Montserrat', sans-serif;
+      --font-secondary: 'Montserrat', sans-serif;
+      --color-primary: #ff1100;
+      --color-secondary: #000000;
+      --color-text: #333;
+      --color-border: #e0e0e0;
+    }
 
-.step-image {
-  margin-top: 1rem;
-}
 
+    .materials-hero {
+      background-color: #ffffff;
+      padding: 10px;
+      text-align: center;
+    }
+
+    .materials-hero h1 {
+      font-family: 'Axiforma', 'Montserrat', sans-serif;
+      font-size: 2.8em;
+      color: #000000;
+      margin: 0 0 0 0;
+    }
+    .materials-hero p {
+      font-size: 1em;
+      color: #555;
+      text-align: center;
+      max-width: 700px;
+      margin: 10px auto;
+      line-height: 1.7;
+      
+    }
+
+    /* Estilos para os cards de materiais */
+    .materials-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+      gap: 15px;
+      margin-top: 10px;
+    }
+
+    .material-card {
+      background-color: #ffffff;
+      border: 1px solid #e8e8e8;
+      border-radius: 12px;
+      overflow: hidden;
+      transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+      display: flex; /* Adicionado para garantir alinhamento interno */
+      flex-direction: column; /* Adicionado para garantir alinhamento interno */
+    }
+
+    .material-card:hover {
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+    }
+
+    .material-header {
+      background-color: #f9f9f9;
+      padding: 10px;
+      border-bottom: 1px solid #e8e8e8;
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .material-icon {
+      width: 48px;
+      height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: red;
+      border-radius: 12px;
+      flex-shrink: 0;
+    }
+
+    .material-icon svg {
+      width: 28px;
+      height: 28px;
+    }
+
+    .material-title {
+      font-family: var(--font-primary);
+      font-size: 1.2em;
+      font-weight: 700;
+      color: #000;
+      margin: 0;
+    }
+
+    .material-content {
+      display: flex;
+      flex-direction: column; 
+      flex-grow: 1; 
+      white-space: normal;
+      padding: 20px;
+    }
+
+    .material-description {
+      display: inline-flex;
+      align-items: center;
+      font-size: 0.95em;
+      color: #555;
+      margin-bottom: 20px;
+      text-align: justify;
+      flex-grow: 1; 
+    }
+
+    .material-files {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .material-files:hover {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.15);
+      transition: background-color 0.2s, color 0.4s;
+
+    }
+
+    .file-item {
+      display: flex;
+      align-items: center; /* Alinha o file-info e o ícone de download */
+      justify-content: space-between;
+      padding: 12px;
+      background-color: #f8f9fa;
+      border: 1px solid #e9ecef;
+      border-radius: 8px;
+      transition: background-color 0.2s ease, border-color 0.2s ease;
+    }
+    
+    .material-card:hover .file-item {
+        background-color: #f1f3f5;
+        border-color: #dee2e6;
+    }
+    
+    .material-files:hover .file-item {
+      background-color: #f0f0f0;
+      color: var(--color-primary);
+      text-decoration: none;
+    }
+
+    
+    /* Bloco da Esquerda (Nome + Formatos) */
+    .file-info {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      align-items: flex-start;
+    }
+  
+      /* Linha Superior: Ícone + Nome */
+    .file-info-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    /* Linha Inferior: Botões de Formato */
+    .file-info-icons {
+      display: inline-flex;
+      flex-wrap: wrap; 
+      gap: 8px;
+    }
+    .file-icon {
+      width: 24px;
+      height: 24px;
+      padding-left: 6px;
+      color: #666;
+      transition: color 0.2s;
+    }
+
+    .material-files:hover .file-icon {
+      color: #495057;
+    }
+
+    .file-name {
+      font-weight: 500;
+      color: #495057;
+    }
+
+    .file-type {
+      display: inline-block;
+      font-size: 0.8em;
+      font-weight: 650;
+      color: var(--color-primary);
+      background-color: #ffebe9;
+      padding: 4px 10px;
+      border-radius: 6px;
+      text-decoration: none;
+      transition: all 0.2s ease;
+    }
+    .material-card:hover .file-type:hover {
+      background-color: var(--color-primary);
+      color: #fff;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      text-decoration: none;
+    }
+    .material-card:hover .file-type.slider:hover {
+        background-color: #eb5e00;
+        text-decoration: none;
+
+    }
+    .download-icon {
+      color: var(--color-text);
+      transition: color 0.2s;
+    }
+    
+    .download-icon:hover {
+      color: var(--color-primary);
+      transition: background-color 0.2s, color 0.2s, translateY 2s;
+      transform: translateY(2px);
+
+    }
+
+    .section-divider {
+      height: 2px;
+      background-color: #e8e8e8;
+      margin: 40px 0;
+      position: relative;
+    }
 
 /* =================================================================== */
 /*             SISTEMA DE ÍCONES GLOBAIS (VIA CSS MASK)                */
@@ -1914,3 +2148,147 @@ body {
   -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='10'%3E%3C/circle%3E%3Cpath d='M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3'%3E%3C/path%3E%3Cline x1='12' y1='17' x2='12.01' y2='17'%3E%3C/line%3E%3C/svg%3E");
   mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='10'%3E%3C/circle%3E%3Cpath d='M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3'%3E%3C/path%3E%3Cline x1='12' y1='17' x2='12.01' y2='17'%3E%3C/line%3E%3C/svg%3E");
 }
+
+/* =================================================================== */
+/* CARD DE CONQUISTA DO MÓDULO */
+/* =================================================================== */
+.completion-card {
+  background-color: #ffffff;
+  border: 1px solid #e8e8e8;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  text-align: center;
+  padding: 30px 30px;
+  margin: 30px auto 30px auto;
+  max-width: 700px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.completion-icon-wrapper svg {
+  width: 56px;
+  height: 56px;
+  color: var(--color-primary, #ff1100);
+  margin-bottom: 20px;
+}
+
+.completion-card h3 {
+  font-size: 1.8em;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin: 0 0 15px 0;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.completion-card h3 img {
+  width: 32px;
+  height: 32px;
+}
+
+.completion-card p {
+  font-size: 1.05em;
+  color: #555;
+  line-height: 1.7;
+  max-width: 550px; /* Melhora a legibilidade do parágrafo */
+  margin-bottom: 30px;
+}
+
+.btn-next-module {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background-color: var(--color-primary, #ff1100);
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 1em;
+  padding: 12px 24px;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(255, 17, 0, 0.2);
+}
+
+.btn-next-module:hover {
+  background-color: #d90f00; /* Um tom de vermelho um pouco mais escuro */
+  color: #ffffff;
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(255, 17, 0, 0.3);
+  text-decoration: none;
+}
+
+.btn-next-module svg {
+  width: 20px;
+  height: 20px;
+  transition: transform 0.2s ease;
+}
+
+.btn-next-module:hover svg {
+  transform: translateX(4px);
+}
+
+
+/* =================================================================== */
+/* CSS REFEITO PARA POLIMENTO DOS CARDS (COM ESTRUTURA DE 2 LINHAS) */
+/* =================================================================== */
+:root {
+  --font-primary: 'Axiforma', 'Montserrat', sans-serif;
+  --font-secondary: 'Montserrat', sans-serif;
+  --color-primary: #ff1100;
+  --color-primary-dark: #d90f00;
+  --color-secondary: #000000;
+  --color-text: #333;
+  --color-border: #e0e0e0;
+}
+
+/* Cabeçalho do Card */
+.material-header {
+  background-color: #fcfcfc;
+  padding: 20px;
+  border-bottom: 1px solid #e8e8e8;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+.material-icon {
+  width: 48px; height: 48px;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--color-primary);
+  border-radius: 12px;
+  flex-shrink: 0;
+}
+.material-icon svg { width: 28px; height: 28px; }
+.material-title {
+  font-family: var(--font-primary);
+  font-size: 1.2em;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin: 0;
+}
+
+/* Conteúdo do Card */
+.material-content {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  padding: 20px;
+}
+.material-description {
+  color: #555;
+  font-size: 0.95em;
+  margin-bottom: 20px;
+  flex-grow: 1;
+}
+
+/* ======================================================= */
+/* ÁREA DE ARQUIVOS (CSS REFEITO PARA A ESTRUTURA CORRETA) */
+/* ======================================================= */
+
+
+
+
+
+
+

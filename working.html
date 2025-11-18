@@ -46,77 +46,188 @@
 </head>
 <body>
 <!-- =================================================================== -->
-<!--             INÍCIO: BLOCO DE CONTEÚDO (INTEROPERABILIDADE)          -->
+<!--          INÍCIO: BLOCO DE CONTEÚDO DO MÓDULO PERFIS DE ACESSO       -->
 <!-- =================================================================== -->
+
+<!-- O contêiner principal que cria o card com padding e sombra -->
 <div class="module-intro-block">
+
+    <!-- Wrapper para aplicar os estilos de texto (justificado, etc.) -->
     <div class="guide-container">
 
-        <h2 class="guide-container-title">Interoperabilidade</h2>
+        <!-- ================= TÓPICO: PERFIS DE ACESSO ================= -->
+
+        <h2 class="guide-container-title">Perfis de Acesso</h2>
 
         <div class="content-layout-cols">
             <div class="content-col-text">
-                <p>Interoperabilidade é a capacidade de diferentes sistemas e organizações trabalharem em conjunto. No contexto do Geohab, isso significa que diversas ferramentas, programas e formatos de dados podem "falar a mesma língua", permitindo a troca de informações de forma fluida e eficiente.</p>
-                <p>O objetivo é eliminar barreiras técnicas, como <span class="info-badge" title="" data-toggle="tooltip" data-original-title="Arquivos que não podem ser lidos ou utilizados por um determinado software">
-                        <span class="info-badge-text">formatos incompatíveis</span><span class="icon-custon icon-question"></span></span>, garantindo que todos na CDHU tenham acesso aos dados mais atualizados, economizando tempo e evitando erros.</p>
+                <p>Os perfis de acesso no Geohab são a chave para garantir a segurança e a organização dos dados geoespaciais da CDHU. Através de um sistema de permissões personalizadas, o Geohab controla o acesso às informações, definindo quem pode visualizar, editar ou gerenciar os dados.</p>
+                <p>Cada perfil (<strong>Leitor, Editor, Revisor, Administrador Local e Super Usuário</strong>) possui responsabilidades e permissões específicas, assegurando que as informações estejam sempre <strong>protegidas e disponíveis para quem realmente precisa.</strong> Com os perfis de acesso, o Geohab promove a colaboração entre os setores, evita o acesso não autorizado e garante a integridade e a confiabilidade dos dados geoespaciais da Companhia.</p>
+            </div>
+            <div class="content-col-media">
+                <div class="image-modal-wrapper">
+                    <img class="modal-trigger-img img-decoration" title="Clique para expandir" src="https://raw.githubusercontent.com/maviz991/icons/main/icons_pasta/security.svg" alt="Ícone de segurança e acesso">
+                    <div class="image-modal-popup">
+                        <span class="custom-close">×</span>
+                        <img class="modal-display-img">
+                        <div class="modal-caption-text">Ícone representando segurança e controle de acesso</div>
+                    </div>
+                </div>
             </div>
         </div>
+
         <div class="content-col-media">
             <div id="video-apresentacao">
                 <video class="video-js" controls="controls">
-                    <source src="https://youtu.be/UYcRnADHm_c">
+                    <source src="https://youtu.be/iw_WqYXuqq4">
                     Seu navegador não suporta este formato de vídeo.
                 </video>
             </div>
         </div>
 
-        <h2 class="guide-container-title" style="margin-top: 2.5em;">Interoperabilidade na Prática: Um Exemplo no Geohab</h2>
-        <p>A plataforma Geohab foi construída com base nesse princípio. Veja um exemplo prático de como uma única camada de dados pode ser acessada e utilizada de múltiplas formas para atender às suas necessidades.</p>
+        <div class="terminology-box">
+            <h3 class="terminology-title-exemple">Níveis de Permissão</h3>
 
-        <!-- NOVO COMPONENTE DE PASSO A PASSO -->
-        <div class="step-by-step-block">
-            <div class="step-number">1</div>
-            <div class="step-content">
-                <h3 class="step-title">Visualização e Análise Rápida</h3>
-                <div class="step-description">
-                    <p>Ao acessar uma camada, a interface já oferece uma pré-visualização interativa do mapa e acesso a todos os
-                        <span class="info-badge" title="Dados sobre os dados: Informações descritivas como fonte, data de criação e sistema de coordenadas." data-toggle="tooltip">
-                            <span class="info-badge-text">metadados</span>
-                            <span class="icon-custon icon-question"></span>
-                        </span>. Isso permite uma análise inicial imediata, sem a necessidade de baixar o arquivo.
-                    </p>
+            <!-- Grid de duas colunas para separar os conceitos -->
+            <div class="definition-group">
+                <h4 class="definition-group-title">Perfis de Acesso Disponíveis:</h4>
+                <!-- Usamos uma lista normal aqui para melhor estrutura -->
+                <div class="tag-cloud">
+                    <span class="info-badge" title="Acesso apenas para visualização de dados e mapas" data-toggle="tooltip">
+                        <span class="info-badge-text">Leitor</span>
+                        <span class="info-badge-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
+                                <line x1="12" y1="17" x2="12.01" y2="17"></line>
+                            </svg></span>
+                    </span>
+                    <span class="info-badge" title="Permite visualizar e editar informações" data-toggle="tooltip">
+                        <span class="info-badge-text">Editor</span>
+                        <span class="info-badge-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
+                                <line x1="12" y1="17" x2="12.01" y2="17"></line>
+                            </svg></span>
+                    </span>
+                    <span class="info-badge" title="Além de editar, pode revisar e aprovar alterações" data-toggle="tooltip">
+                        <span class="info-badge-text">Revisor</span>
+                        <span class="info-badge-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
+                                <line x1="12" y1="17" x2="12.01" y2="17"></line>
+                            </svg></span>
+                    </span>
+
+                    <span class="info-badge" title="Gerencia usuários e permissões localmente" data-toggle="tooltip">
+                        <span class="info-badge-text">Administrador Local</span>
+                        <span class="info-badge-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
+                                <line x1="12" y1="17" x2="12.01" y2="17"></line>
+                            </svg></span>
+                    </span>
+                    <span class="info-badge" title="Acesso completo ao sistema" data-toggle="tooltip">
+                        <span class="info-badge-text">Super Usuário</span>
+                        <span class="info-badge-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
+                                <line x1="12" y1="17" x2="12.01" y2="17"></line>
+                            </svg></span>
+                    </span>
                 </div>
-                <div class="step-image">
-                    <div class="image-modal-wrapper">
-                        <img class="modal-trigger-img img-content" title="Clique para expandir" src="https://stor.cdhu.sp.gov.br/treina/publico/img-1-5.png" alt="Interface de pré-visualização de uma camada com mapa, metadados e opções de download">
-                        <div class="image-modal-popup"><span class="custom-close">×</span><img class="modal-display-img">
-                            <div class="modal-caption-text">Interface de pré-visualização de uma camada com mapa, metadados e opções de download.</div>
-                        </div>
+            </div>
+
+            <!-- Coluna 2: Descrição dos Perfis -->
+            <div>
+                <h4 class="definition-group-title">Descrição Detalhada:</h4>
+                <dl class="definition-list">
+
+                    <div class="definition-item">
+                        <dt class="definition-term">
+                            <!-- Ícone para Leitor -->
+                            <div class="definition-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
+                                    <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
+                                </svg>
+                            </div>
+                            <span>Leitor</span>
+                        </dt>
+                        <dd class="definition-desc">Acesso apenas para visualização de dados e mapas, sem permissão para alterações.</dd>
                     </div>
-                </div>
+
+                    <div class="definition-item">
+                        <dt class="definition-term">
+                            <!-- Ícone para Editor -->
+                            <div class="definition-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                                    <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                                </svg>
+                            </div>
+                            <span>Editor</span>
+                        </dt>
+                        <dd class="definition-desc">Permite visualizar e editar informações geoespaciais, mas não publicar alterações.</dd>
+                    </div>
+
+                    <div class="definition-item">
+                        <dt class="definition-term">
+                            <!-- Ícone para Revisor -->
+                            <div class="definition-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="9 11 12 14 22 4"></polyline>
+                                    <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path>
+                                </svg>
+                            </div>
+                            <span>Revisor</span>
+                        </dt>
+                        <dd class="definition-desc">Além de editar, pode revisar e aprovar alterações feitas por outros usuários.</dd>
+                    </div>
+
+                    <div class="definition-item">
+                        <dt class="definition-term">
+                            <!-- Ícone para Administrador Local -->
+                            <div class="definition-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+                                    <circle cx="12" cy="12" r="3"></circle>
+                                    <path d="M12 1v6m0 6v6m4.22-10.22l4.24-4.24m-4.24 4.24l-4.24 4.24m-4.24-4.24l-4.24-4.24m4.24 4.24l4.24 4.24"></path>
+                                </svg>
+                            </div>
+                            <span>Administrador Local</span>
+                        </dt>
+                        <dd class="definition-desc">Gerencia usuários e permissões dentro de sua unidade ou departamento.</dd>
+                    </div>
+
+                    <div class="definition-item">
+                        <dt class="definition-term">
+                            <!-- Ícone para Super Usuário -->
+                            <div class="definition-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path>
+                                </svg>
+                            </div>
+                            <span>Super Usuário</span>
+                        </dt>
+                        <dd class="definition-desc">Acesso completo ao sistema, com permissões para gerenciar todos os aspectos do Geohab.</dd>
+                    </div>
+
+                </dl>
+            </div>
+
+        </div>
+
+        <!-- Bloco de Nota Essencial -->
+        <div class="notice-block notice-warning">
+            <div class="notice-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
+                    <line x1="12" y1="9" x2="12" y2="13"></line>
+                    <line x1="12" y1="17" x2="12.01" y2="17"></line>
+                </svg>
+            </div>
+            <div class="notice-content">
+                <p><strong>Nota Essencial:</strong> O correto gerenciamento de perfis de acesso é fundamental para garantir a <strong>segurança, integridade e confiabilidade</strong> dos dados geoespaciais da CDHU.</p>
             </div>
         </div>
 
-        <div class="step-by-step-block">
-            <div class="step-number">2</div>
-            <div class="step-content">
-                <h3 class="step-title">Conversão e Download Sob Demanda</h3>
-                <div class="step-description">
-                    <p>A plataforma atua como um "tradutor" universal de dados. Com um clique, o Geohab oferece a conversão automática da camada para os formatos mais utilizados, tanto geoespaciais quanto tabulares (CSV, Excel, etc.).</p>
-                </div>
-                <div class="step-image">
-                    <div class="image-modal-wrapper">
-                        <img class="modal-trigger-img img-content" title="Clique para expandir" src="https://stor.cdhu.sp.gov.br/treina/publico/img-1-6.png" alt="Menu de opções de download para uma camada, mostrando diversos formatos">
-                        <div class="image-modal-popup"><span class="custom-close">×</span><img class="modal-display-img">
-                            <div class="modal-caption-text">Menu de opções de download para uma camada, mostrando diversos formatos.</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Seção de Lição -->
         <div class="collapsible-task-section">
             <!-- CABEÇALHO CLICÁVEL -->
-            <a href="#task-content-1" class="task-header" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="task-content-1">
+            <a href="#task-content-perfis" class="task-header" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="task-content-perfis">
                 <div class="task-header-title-group">
                     <div class="task-chevron">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
@@ -124,7 +235,7 @@
                         </svg>
                     </div>
                     <div class="task-header-icon">
-                        <svg xmlns="http://www.w.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <circle cx="12" cy="12" r="10"></circle>
                             <circle cx="12" cy="12" r="6"></circle>
                             <circle cx="12" cy="12" r="2"></circle>
@@ -135,23 +246,23 @@
             </a>
 
             <!-- CONTEÚDO OCULTO -->
-            <div class="collapse" id="task-content-1">
+            <div class="collapse" id="task-content-perfis">
                 <div class="task-body">
                     <div class="task-description">
                         <p>
-                            Para liberar a próxima seção do curso, você precisa concluir a lição sobre <b>Interoperabilidade de Dados</b>.
+                            Para se aprofundar nestes papéis, acesse os material de apoio abaixo onde estes papéis estão descritos em profundidade.
                         </p>
                     </div>
                     <div class="task-content">
                         <!-- Parte 1: O Texto da Instrução -->
                         <div class="task-content-btn">
-                            <a href="/mod/lesson/view.php?id=858" class="notice-action-button">
-                                <span>Acessar Lição</span>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <line x1="5" y1="12" x2="19" y2="12"></line>
-                                    <polyline points="12 5 19 12 12 19"></polyline>
-                                </svg>
-                            </a>
+                            <div><a href="#" class="notice-action-button">
+                                    <span>Acessar Material de Apoio</span>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                                        <polyline points="12 5 19 12 12 19"></polyline>
+                                    </svg>
+                                </a></div>
                         </div>
                     </div>
                 </div>
@@ -160,7 +271,7 @@
     </div>
 </div>
 <!-- =================================================================== -->
-<!--                        FIM: BLOCO DE CONTEÚDO                       -->
+<!--             FIM: BLOCO DE CONTEÚDO DO MÓDULO                        -->
 <!-- =================================================================== -->
 </body>
 </html>
