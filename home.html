@@ -49,13 +49,13 @@
 <!-- ==================================================================== -->
 <!--                        Início do Bloco Welcome                       -->
 <!-- ==================================================================== -->
-<div class="welcome-block-creative"><!-- CABEÇALHO DE BOAS-VINDAS -->
+<div class="block-module-home"><!-- CABEÇALHO DE BOAS-VINDAS -->
     <div classe="hero-actions" style="text-align: right; background-color: white;">
         <a href="#" class="btn btn-secondary" id="resume-course-button" style="display: none; border-radius: 0 10px 0 8px !important; padding: 4px !important;">
             Continuar de onde parei
         </a>
     </div>
-    <header class="welcome-hero">
+    <header class="header-welcome-hero">
         <h1>Bem-vindos(as) ao Curso Geohab - Introdução!</h1>
         <p>Sua jornada de aprendizado sobre a plataforma Geohab e o mundo dos dados geoespaciais começa agora.</p>
         <button class="btn btn-danger btn-geohab-popover" title="Escolha o ambiente de acesso" type="button" data-toggle="popover" data-html="true" data-content="
@@ -74,103 +74,102 @@
         </div>
         <div class="course-progress-text" id="course-progress-text">Carregando progresso...</div>
     </div>
-    <main class="welcome-content">
+    <main class="main-welcome-content">
 
         <!-- SEÇÃO DE INFORMAÇÕES IMPORTANTES EM CARDS -->
-        <h2 class="welcome-section-title">Seus Primeiros Passos:</h2>
-        <ul class="info-grid">
-            <li class="info-card">
-                <div class="info-card-icon"><!-- Ícone: Play (CÓDIGO COMPLETO) --><svg>
-                        <polygon points="5 3 19 12 5 21 5 3"></polygon>
-                    </svg></div>
-                <div>
-                    <h4 class="info-card-title"><a class="stretched-link js-scroll-link" href="#coursecontentsection1" data-section-target="1">Módulo Inicial</a></h4>
-                    <p class="info-card-text">Comece assistindo ao vídeo de apresentação do projeto de Georreferenciamento da CDHU.</p>
-                </div>
-            </li>
-            <li class="info-card">
-                <div class="info-card-icon"><!-- Ícone: Checklist --><svg>
-                        <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path>
-                        <rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect>
-                    </svg></div>
-                <div>
-                    <h4 class="info-card-title"><a class="stretched-link" href="/mod/quiz/view.php?id=965&amp;forceview=1">Questionário Inicial</a></h4>
-                    <p class="info-card-text">Ajude-nos a entender seu nível de conhecimento para direcionarmos melhor o conteúdo.</p>
-                </div>
-            </li>
-            <li class="info-card">
-                <div class="info-card-icon"><!-- Ícone: Livro/Documento --><svg>
-                        <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
-                        <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
-                    </svg></div>
-                <div>
-                    <h4 class="info-card-title"><a class="stretched-link" href="/mod/page/view.php?id=966&amp;forceview=1">Materiais de Apoio</a></h4>
-                    <p class="info-card-text">Todos os módulos possuem uma seção de materiais de apoio. Recomendamos a leitura!</p>
-                </div>
-            </li>
-            <li class="info-card">
-                <div class="info-card-icon"><!-- Ícone: Alvo/Foco (CÓDIGO COMPLETO) --><svg>
-                        <circle cx="12" cy="12" r="10"></circle>
-                        <circle cx="12" cy="12" r="6"></circle>
-                        <circle cx="12" cy="12" r="2"></circle>
-                    </svg></div>
-                <div>
-                    <h4 class="info-card-title">Lições "Fixe o Conhecimento"</h4>
-                    <p class="info-card-text">Ao final de cada tópico, realize as lições para reforçar o aprendizado.</p>
-                </div>
-            </li>
-        </ul>
+        <h2 class="main-welcome-content-title">Seus Primeiros Passos:</h2>
+            <ul class="welcome-info-grid">
+                <li class="welcome-info-card">
+                    <div class="welcome-info-card-icon"><!-- Ícone: Play (CÓDIGO COMPLETO) --><svg>
+                            <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                        </svg></div>
+                    <div>
+                        <h4 class="welcome-info-card-title"><a class="stretched-link js-scroll-link" href="#coursecontentsection1" data-section-target="1">Módulo Inicial</a></h4>
+                        <p class="welcome-info-card-text">Comece assistindo ao vídeo de apresentação do projeto de Georreferenciamento da CDHU.</p>
+                    </div>
+                </li>
+                <li class="welcome-info-card">
+                    <div class="welcome-info-card-icon"><!-- Ícone: Checklist --><svg>
+                            <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path>
+                            <rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect>
+                        </svg></div>
+                    <div>
+                        <h4 class="welcome-info-card-title"><a class="stretched-link" href="/mod/quiz/view.php?id=965&amp;forceview=1">Questionário Inicial</a></h4>
+                        <p class="welcome-info-card-text">Ajude-nos a entender seu nível de conhecimento para direcionarmos melhor o conteúdo.</p>
+                    </div>
+                </li>
+                <li class="welcome-info-card">
+                    <div class="welcome-info-card-icon"><!-- Ícone: Livro/Documento --><svg>
+                            <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
+                            <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
+                        </svg></div>
+                    <div>
+                        <h4 class="welcome-info-card-title"><a class="stretched-link" href="/mod/page/view.php?id=966&amp;forceview=1">Materiais de Apoio</a></h4>
+                        <p class="welcome-info-card-text">Todos os módulos possuem uma seção de materiais de apoio. Recomendamos a leitura!</p>
+                    </div>
+                </li>
+                <li class="welcome-info-card">
+                    <div class="welcome-info-card-icon"><!-- Ícone: Alvo/Foco (CÓDIGO COMPLETO) --><svg>
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <circle cx="12" cy="12" r="6"></circle>
+                            <circle cx="12" cy="12" r="2"></circle>
+                        </svg></div>
+                    <div>
+                        <h4 class="welcome-info-card-title">Lições "Fixe o Conhecimento"</h4>
+                        <p class="welcome-info-card-text">Ao final de cada tópico, realize as lições para reforçar o aprendizado.</p>
+                    </div>
+                </li>
+            </ul>
 
-        <h2 class="welcome-section-title"><br>Navegue pelos Módulos:</h2>
-        <div class="module-shortcut-grid">
-
+        <h2 class="main-welcome-content-title"><br>Navegue pelos Módulos:</h2>
+            <div class="welcome-module-shortcut-grid">
             <!-- Atalho para o Módulo 1 -->
-            <a href="#coursecontentsection2" class="module-shortcut-card js-scroll-link" data-section-target="2">
-                <div class="shortcut-icon">
+            <a href="#coursecontentsection2" class="welcome-shortcut-card js-scroll-link" data-section-target="2">
+                <div class="welcome-shortcut-icon-card">
                     <!-- Ícone: Apresentação (Bandeira) -->
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
                         <path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"></path>
                         <line x1="4" y1="22" x2="4" y2="15"></line>
                     </svg>
                 </div>
-                <h5 class="shortcut-title ">1. Conceitos Fundamentais</h5>
+                <h5 class="welcome-shortcut-title-card ">1. Conceitos Fundamentais</h5>
             </a>
 
             <!-- Atalho para o Módulo 2 -->
-            <a href="#coursecontentsection11" class="module-shortcut-card js-scroll-link" data-section-target="11">
-                <div class="shortcut-icon">
+            <a href="#coursecontentsection11" class="welcome-shortcut-card js-scroll-link" data-section-target="11">
+                <div class="welcome-shortcut-icon-card">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
                         <polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"></polygon>
                         <line x1="8" y1="2" x2="8" y2="18"></line>
                         <line x1="16" y1="6" x2="16" y2="22"></line>
                     </svg>
                 </div>
-                <h5 class="shortcut-title">2. Primeiro Contato com o Geohab</h5>
+                <h5 class="welcome-shortcut-title-card">2. Primeiro Contato com o Geohab</h5>
             </a>
 
             <!-- Atalho para o Módulo 3 -->
-            <a href="#coursecontentsection17" class="module-shortcut-card js-scroll-link" data-section-target="17">
-                <div class="shortcut-icon">
+            <a href="#coursecontentsection17" class="welcome-shortcut-card js-scroll-link" data-section-target="17">
+                <div class="welcome-shortcut-icon-card">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
                         <path d="M3 3l7.07 16.97 2.52-7.39 7.39-2.52L3 3z"></path>
                         <path d="M13 13l6 6"></path>
                     </svg>
                 </div>
-                <h5 class="shortcut-title ">3. Utilização Prática da Plataforma</h5>
+                <h5 class="welcome-shortcut-title-card ">3. Utilização Prática da Plataforma</h5>
             </a>
             <!-- Atalho para o Módulo 4 -->
-            <a href="#coursecontentsection23" class="module-shortcut-card js-scroll-link" data-section-target="23">
-                <div class="shortcut-icon">
+            <a href="#coursecontentsection23" class="welcome-shortcut-card js-scroll-link" data-section-target="23">
+                <div class="welcome-shortcut-icon-card">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
                         <path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path>
                     </svg>
                 </div>
-                <h5 class="shortcut-title ">4. Visualização e Estilização de Dados</h5>
+                <h5 class="welcome-shortcut-title-card ">4. Visualização e Estilização de Dados</h5>
             </a>
         </div>
 
         <!-- SEÇÃO DE SUPORTE -->
-        <div class="support-section">
+        <div class="welcome-support-section">
             <h3>Precisa de Ajuda?</h3>
             <p>Para dúvidas referentes <strong>ao conteúdo do curso</strong>, utilize o <span class="badge-link badge-text-purple"><a title="Clique aqui para dúvidas do curso" href="https://edu-homolog/mod/forum/view.php?id=624" rel="noopener">Fórum de Dúvidas</a></span>.</p>
             <p>Para <strong>suporte técnico na plataforma Geohab</strong>, abra um chamado via <strong><span class="badge-link badge-text-red"><a title="Abra um chamado clicando aqui" href="https://cda.cdhu.sp.gov.br/front/ticket.php" target="_blank" rel="noopener">CDA</a></span></strong>.</p>
@@ -179,24 +178,24 @@
     <!-- RODAPÉ -->
     <footer class="welcome-footer">Desejamos a todos um excelente aprendizado!<br><strong>Equipe Geohab</strong></footer>
 </div>
-<!-- ====================================== -->
-<!--                FIM do Bloco Welcome             -->
-<!-- ====================================== -->
- <br>
+<!-- =================================================================== -->
+<!--                          FIM do Bloco Welcome                       -->
+<!-- =================================================================== -->
+
+<br>
+
 <!-- ==================================================================== -->
 <!--                Início do Bloco de Vídeo de apresentação              -->
 <!-- ==================================================================== -->
-<div class="welcome-block-creative">
-
-    <!-- SEÇÃO HEADER (FUNDO BRANCO) -->
-    <header class="content-wrapper">
-        <div class="footer-back-to-top js-context-button-container footer-action" style="display: none;">
+<div class="block-module-home">
+    <header class="btn-back-wrapper">
+        <div class="js-context-button-container back-action" style="display: none;">
             <a class="btn btn-secondary" data-toplevel-text="Voltar ao topo" data-section-text="Voltar para o Início do Curso" data-toplevel-href="#section-0" data-section-href="/course/view.php?id=29&amp;section=0#section-1">
                 Voltar para o Início
             </a>
         </div>
         <!-- Bloco do Título -->
-        <div class="module-header-simple">
+        <div class="module-header">
             <div class="module-header-icon">
                 <!-- Ícone: Blocos/Fundamentos -->
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -220,28 +219,24 @@
         <br>
     </main>
 </div>
-<!-- ====================================== -->
-<!--                FIM do Bloco de Vídeo de apresentação              -->
-<!-- ====================================== -->
+<!-- =================================================================== -->
+<!--                FIM do Bloco de Vídeo de apresentação                -->
+<!-- =================================================================== -->
+
 <br>
-<!-- =================================================================== -->
-<!-- Início do Bloco card Módulo 1  -->
-<!-- =================================================================== -->
-<!-- =================================================================== -->
-<!-- Início do Bloco de Introdução do Módulo 1 "Conceitos Fundamentais"  -->
-<!-- =================================================================== -->
 
-<div class="welcome-block-creative" id="coursecontentsection2">
-
-    <!-- SEÇÃO HEADER (FUNDO BRANCO) -->
-    <header class="content-wrapper">
-        <div class="footer-back-to-top js-context-button-container footer-action" style="display: none;">
+<!-- =================================================================== -->
+<!--                     INÍCIO do Bloco card Módulo 1                   -->
+<!-- =================================================================== -->
+<div class="block-module-home" id="coursecontentsection2">
+    <header class="btn-back-wrapper">
+        <div class="footer-back-to-top js-context-button-container back-action" style="display: none;">
             <a class="btn btn-secondary" data-toplevel-text="Voltar ao topo" data-section-text="Voltar para o Início do Curso" data-toplevel-href="#section-0" data-section-href="/course/view.php?id=29&amp;section=0#section-2">
                 Voltar para o Início
             </a>
         </div>
         <!-- Bloco do Título -->
-        <div class="module-header-simple">
+        <div class="module-header">
             <div class="module-header-icon">
                 <!-- Ícone: Blocos/Fundamentos -->
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -293,8 +288,8 @@
 
     </header>
     <!-- CONTEÚDO PRINCIPAL (FUNDO CINZA) -->
-    <main class="welcome-content">
-        <h3 class="welcome-section-title">Objetivos de Aprendizagem:</h3>
+    <main class="main-welcome-content">
+        <h3 class="main-welcome-content-title">Objetivos de Aprendizagem:</h3>
         <ol class="learning-objectives">
             <li>
                 <div>
@@ -344,29 +339,26 @@
 
 </div><span style="display:none;">&nbsp;</span>
 <!-- ====================================== -->
-<!--                FIM do Bloco            -->
-<!-- ====================================== -->
-<!-- ====================================== -->
 <!--                FIM do Bloco card Módulo 1            -->
 <!-- ====================================== -->
+
 <br>
+
 <!-- =================================================================== -->
 <!--      Início do Bloco card Módulo 2   -->
 <!-- =================================================================== -->
-<!-- =================================================================== -->
-<!--      Início do Bloco de Introdução do Módulo 2 "Primeiro Contato"   -->
-<!-- =================================================================== -->
-<div class="welcome-block-creative">
+
+<div class="block-module-home">
 
     <!-- SEÇÃO HEADER (FUNDO BRANCO) -->
-    <header class="content-wrapper">
-        <div class="footer-back-to-top js-context-button-container footer-action" style="display: none;">
+    <header class="btn-back-wrapper">
+        <div class="footer-back-to-top js-context-button-container back-action" style="display: none;">
             <a class="btn btn-secondary" data-toplevel-text="Voltar ao topo" data-section-text="Voltar para o Início do Curso" data-toplevel-href="#section-0" data-section-href="/course/view.php?id=29&amp;section=0#section-11">
                 Voltar para o Início
             </a>
         </div>
         <!-- Bloco do Título -->
-        <div class="module-header-simple">
+        <div class="module-header">
             <div class="module-header-icon">
                 <!-- Ícone: Mapa / Exploração -->
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -420,8 +412,8 @@
     </header>
     <br>
     <!-- CONTEÚDO PRINCIPAL (FUNDO CINZA) -->
-    <main class="welcome-content">
-        <h3 class="welcome-section-title">Objetivos de Aprendizagem:</h3>
+    <main class="main-welcome-content">
+        <h3 class="main-welcome-content-title">Objetivos de Aprendizagem:</h3>
         <ol class="learning-objectives">
             <li>
                 <div>
@@ -465,24 +457,21 @@
 <!-- ====================================== -->
 <!--                FIM do Bloco card Módulo 2            -->
 <!-- ====================================== -->
+
 <br>
+
 <!-- =================================================================== -->
 <!--   Início do Bloco Card Módulo 3    -->
 <!-- =================================================================== -->
-<!-- =================================================================== -->
-<!--   Início do Bloco de Introdução do Módulo 3 "Utilização Prática"    -->
-<!-- =================================================================== -->
-<div class="welcome-block-creative">
-
-    <!-- SEÇÃO HEADER (FUNDO BRANCO) -->
-    <header class="content-wrapper">
-        <div class="footer-back-to-top js-context-button-container footer-action" style="display: none;">
+<div class="block-module-home">
+    <header class="btn-back-wrapper">
+        <div class="footer-back-to-top js-context-button-container back-action" style="display: none;">
             <a class="btn btn-secondary" data-toplevel-text="Voltar ao topo" data-section-text="Voltar para o Início do Curso" data-toplevel-href="#page-wrapper" data-section-href="/course/view.php?id=29&amp;section=0#section-17">
                 Voltar para o Início
             </a>
         </div>
         <!-- Bloco do Título -->
-        <div class="module-header-simple">
+        <div class="module-header">
             <div class="module-header-icon">
                 <!-- Ícone: Ponteiro / Interação -->
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -535,8 +524,8 @@
     </header>
 
     <!-- CONTEÚDO PRINCIPAL (FUNDO CINZA) -->
-    <main class="welcome-content">
-        <h3 class="welcome-section-title">Objetivos de Aprendizagem:</h3>
+    <main class="main-welcome-content">
+        <h3 class="main-welcome-content-title">Objetivos de Aprendizagem:</h3>
         <ol class="learning-objectives">
             <li>
                 <div>
@@ -587,17 +576,17 @@
 <!-- ====================================================================== -->
 <!-- Início do Bloco de Introdução do Módulo 4 "Visualização e Estilização" -->
 <!-- ====================================================================== -->
-<div class="welcome-block-creative">
+<div class="block-module-home">
 
     <!-- SEÇÃO HEADER (FUNDO BRANCO) -->
-    <header class="content-wrapper">
-        <div class="footer-back-to-top js-context-button-container footer-action" style="display: none;">
+    <header class="btn-back-wrapper">
+        <div class="footer-back-to-top js-context-button-container back-action" style="display: none;">
             <a class="btn btn-secondary" data-toplevel-text="Voltar ao topo" data-section-text="Voltar para o Início do Curso" data-toplevel-href="#section-0" data-section-href="/course/view.php?id=29&amp;section=0#section-23">
                 Voltar para o Início
             </a>
         </div>
         <!-- Bloco do Título -->
-        <div class="module-header-simple">
+        <div class="module-header">
             <div class="module-header-icon">
                 <!-- Ícone: Pincel / Estilização -->
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -648,8 +637,8 @@
 
     </header>
 
-    <main class="welcome-content">
-        <h3 class="welcome-section-title">Objetivos de Aprendizagem:</h3>
+    <main class="main-welcome-content">
+        <h3 class="main-welcome-content-title">Objetivos de Aprendizagem:</h3>
         <ol class="learning-objectives">
             <li>
                 <div>
