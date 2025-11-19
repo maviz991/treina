@@ -1,21 +1,90 @@
 @charset "UTF-8";
-/* ADEQUAÇÃO VISUAL DO MOODLE UNICDHU - SCSS
+/* ADEQUAÇÃO VISUAL DO MOODLE TREINA.CDHU - CSS
 VERSÃO 1.1 - Boost Union
-DATA: 25/04/2025 */
+AUTORES: DANIEL ANDRÉ E MATHEUS AVIZ
+DATA CRIAÇÃO: 25/04/2025 
+DATA ATUALIZAÇÃO: 19/11/2025
+
+Obs.: Use bootstrap 4.0*/
+
+/* =================================================================== */
+/*          INICIO - SISTEMA DE ÍCONES GLOBAIS (VIA CSS MASK)          */
+/* =================================================================== */
+/* ------------------------------ root ------------------------------- */
+:root {
+  --font-primary: 'Axiforma', 'Montserrat', sans-serif;
+  --font-secondary: 'Montserrat', sans-serif;
+  --color-primary: #ff1100;
+  --color-primary-dark: #d90f00;
+  --color-secondary: #000000;
+  --color-text: #333;
+  --color-border: #e0e0e0;
+}
+
+/* ------------------- Classe ícones reutilizáveis ------------------- */
+.icon-custon {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  background-color: currentColor;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-position: center;
+}
+
+/* ---                   Definição de cada ícone                   --- */
+/*    use https://yoksel.github.io/url-encoder/ para converter o svg   */
+.icon-target {
+  -webkit-mask-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='10'%3E%3C/circle%3E%3Ccircle cx='12' cy='12' r='6'%3E%3C/circle%3E%3Ccircle cx='12' cy='12' r='2'%3E%3C/circle%3E%3C/svg%3E");
+  mask-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='10'%3E%3C/circle%3E%3Ccircle cx='12' cy='12' r='6'%3E%3C/circle%3E%3Ccircle cx='12' cy='12' r='2'%3E%3C/circle%3E%3C/svg%3E");
+}
+.icon-chevron-right {
+  -webkit-mask-image: 
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='9 18 15 12 9 6'%3E%3C/polyline%3E%3C/svg%3E");
+  mask-image: 
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='9 18 15 12 9 6'%3E%3C/polyline%3E%3C/svg%3E");
+}
+
+.icon-arrow-right {
+  -webkit-mask-image: 
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cline x1='5' y1='12' x2='19' y2='12'%3E%3C/line%3E%3Cpolyline points='12 5 19 12 12 19'%3E%3C/polyline%3E%3C/svg%3E");
+  mask-image: 
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cline x1='5' y1='12' x2='19' y2='12'%3E%3C/line%3E%3Cpolyline points='12 5 19 12 12 19'%3E%3C/polyline%3E%3C/svg%3E");
+}
+
+.icon-question {
+  -webkit-mask-image: 
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='10'%3E%3C/circle%3E%3Cpath d='M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3'%3E%3C/path%3E%3Cline x1='12' y1='17' x2='12.01' y2='17'%3E%3C/line%3E%3C/svg%3E");
+  mask-image: 
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='10'%3E%3C/circle%3E%3Cpath d='M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3'%3E%3C/path%3E%3Cline x1='12' y1='17' x2='12.01' y2='17'%3E%3C/line%3E%3C/svg%3E");
+}
+/* =================================================================== */
+/*          FIM - SISTEMA DE ÍCONES GLOBAIS (VIA CSS MASK)             */
+/* =================================================================== */
+
+
+/* =================================================================== */
+/*                          INICIO - CSS ANTIGO                        */
+/* =================================================================== */
 .bg-primary {
   background-color: black !important;
 }
 
 .navbar.navbar-dark.bg-primary .nav-link.active {
-  border-bottom-color: red;
+  border-bottom-color: var(--color-primary);
 }
 
 .navbar.navbar-dark.bg-dark .custom-switch .custom-control-input:checked ~ .custom-control-label::after, .navbar.navbar-dark.bg-primary .custom-switch .custom-control-input:checked ~ .custom-control-label::after {
-  background-color: red;
+  background-color: var(--color-primary);
 }
 
 .course-content-item a {
-  color: #e41a1f !important;
+  color: var(--color-primary) !important;
 }
 
 .flexsections .course-section {
@@ -33,11 +102,6 @@ DATA: 25/04/2025 */
   border-radius: 5px;
 }
 
-/*Extra - nao esta no prod*/
-/*
-  Centraliza verticalmente o radio button com a sua label
-  em questões de múltipla escolha para um alinhamento perfeito.
-*/
 .form-check-inline .form-check-input {
   position: static;
   margin-top: -9px;
@@ -49,26 +113,18 @@ DATA: 25/04/2025 */
 .activity-item .activity-altcontent img {
   border-radius: 5px;
 }
+/* =================================================================== */
+/*                          FIM - CSS ANTIGO                           */
+/* =================================================================== */
 
-/* START - h5 destaque classe especial*/
-/* .destaque-h5 {
-  text-align: justify;
-  font-family: "sans-serif", axiforma;
-  background: #f5f4f4;
-  padding: 10px;
-  border-radius: 10px;
-  font-weight: 700 !important;
-  margin-top: 1.5rem;
-}
-.destaque-h5 strong {
-  font-weight: 700 !important;
-} */
 
-/* END- h5 destaque classe especial*/
-/* START - Bagde-color (fundo colorido)*/
+/* =================================================================== */
+/*                            INÍCIO - BADGE                           */
+/* =================================================================== */
+/* --------------------------- Bagde-color --------------------------- */
 .badge-color-red {
   display: inline-block;
-  background-color: #e91a1a;
+  background-color: var(--color-primary);
   color: white;
   border: solid 0px #000;
   border-radius: 3px;
@@ -187,15 +243,14 @@ DATA: 25/04/2025 */
   font-weight: 500;
 }
 
-/* END - Badges*/
-/* START - bagde circular numeros*/
+/* ---------------------- Bagde circular números --------------------- */
 .badge-circular-red {
   display: inline-flex;
   justify-content: center;
   align-items: center;
   width: 24px;
   height: 24px;
-  background-color: #e91a1a;
+  background-color: var(--color-primary);
   color: white;
   border-radius: 50%;
   font-weight: bold;
@@ -249,8 +304,7 @@ DATA: 25/04/2025 */
   vertical-align: middle;
 }
 
-/* END - Bagde circular numeros*/
-/* START - Bagde de links*/
+/* -------------------------- Bagde de links ------------------------- */
 .badge-link {
   display: inline-block;
   background-color: #f9fafa;
@@ -287,7 +341,7 @@ DATA: 25/04/2025 */
 }
 
 .badge-text-red {
-  color: #ef0009;
+  color: var(--color-primary);
 }
 
 .badge-text-salmon {
@@ -305,105 +359,14 @@ DATA: 25/04/2025 */
 .badge-text-black {
   color: #000000;
 }
+/* =================================================================== */
+/*                              FIM - BADGE                            */
+/* =================================================================== */
 
-/*Start - links dentro do Popover*/
-.popover-link-button {
-  display: block;
-  width: 100%;
-  background-color: #000000;
-  color: #ffffff !important;
-  border-radius: 3px;
-  padding: 0.5em 0.8em;
-  font-size: 0.85rem;
-  font-weight: 500;
-  text-align: center;
-  text-decoration: none !important;
-  margin-bottom: 5px;
-  transition: opacity 0.2s;
-}
-
-.popover-link-button:hover {
-  color: #ebebeb;
-  opacity: 0.8;
-}
-
-/*END*/
-/*Start - mensagem alerta icone padrao*/
-.alert-custom {
-  position: relative;
-  padding-left: 3rem;
-}
-.alert-custom::before {
-  content: "";
-  position: absolute;
-  top: 50%;
-  left: 1rem;
-  transform: translateY(-50%);
-  width: 24px;
-  height: 24px;
-  background-image: url("https://raw.githubusercontent.com/maviz991/icons/bef91ae7d3ee22011c81e51c09951305c71deaae/icons_pasta/info-sign.svg");
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
-  filter: invert(25%) sepia(63%) saturate(1152%) hue-rotate(344deg) brightness(94%) contrast(91%);
-}
-
-/*END*/
-/* The flip card container */
-.flip-card-container {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1.5rem;
-  justify-content: center;
-  margin: 2rem auto;
-}
-
-.flip-card {
-  background-color: transparent;
-  width: 200px;
-  height: 300px;
-  perspective: 1500px;
-  flex: 0 0 auto;
-}
-
-.flip-card-inner {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  text-align: center;
-  transition: transform 0.6s;
-  transform-style: preserve-3d;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-}
-
-.flip-card:hover .flip-card-inner {
-  transform: rotateY(180deg);
-}
-
-.flip-card-front,
-.flip-card-back {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  backface-visibility: hidden;
-  border-radius: 10px;
-  padding: 1rem;
-  box-sizing: border-box;
-}
-
-.flip-card-front {
-  background-color: black;
-  color: white;
-}
-
-.flip-card-back {
-  background-color: #e41a1f;
-  color: white;
-  transform: rotateY(180deg);
-}
-
-/*Modal image*/
-/* Estilo para as imagens que disparam o modal */
+/* =================================================================== */
+/*                        INÍCIO - MODAL IMAGEM                        */
+/* =================================================================== */
+/*                            Gatilho modal                            */
 .modal-trigger-img {
   border-radius: 5px;
   cursor: zoom-in;
@@ -424,7 +387,8 @@ DATA: 25/04/2025 */
     height: auto;
   }
 }
-/* O Modal (background) */
+
+/*                     Background do modal imagem                      */
 .image-modal-popup {
   display: none;
   position: fixed;
@@ -438,7 +402,7 @@ DATA: 25/04/2025 */
   background-color: rgba(0, 0, 0, 0.616);
 }
 
-/* Conteúdo do Modal (a imagem grande dentro) */
+/*                          Conteúdo do Modal                          */
 .modal-display-img {
   max-width: -moz-fit-content;
   max-width: fit-content;
@@ -449,7 +413,7 @@ DATA: 25/04/2025 */
   box-sizing: border-box;
 }
 
-/* Legenda do Modal */
+/*                           Legenda do Modal                          */
 .modal-caption-text {
   margin: auto;
   display: block;
@@ -461,7 +425,7 @@ DATA: 25/04/2025 */
   height: 150px;
 }
 
-/* Animação de Zoom */
+/*                          Animação de Zoom                           */
 .modal-display-img, .modal-caption-text {
   animation-name: zoom;
   animation-duration: 1s;
@@ -475,7 +439,8 @@ DATA: 25/04/2025 */
     transform: scale(1);
   }
 }
-/* O BOTÃO DE FECHAR */
+
+/*                         Botão close do modal                        */
 .custom-close {
   position: absolute;
   top: 70px;
@@ -489,12 +454,12 @@ DATA: 25/04/2025 */
 
 .custom-close:hover,
 .custom-close:focus {
-  color: #ff0000;
+  color: var(--color-primary-dark);
   text-decoration: none;
   cursor: pointer;
 }
 
-/* Responsividade do Modal */
+/*                       Responsividade do Modal                       */
 @media only screen and (max-width: 700px) {
   .modal-display-img {
     width: 100%;
@@ -506,7 +471,16 @@ DATA: 25/04/2025 */
     right: 35px;
   }
 }
-/* --- CORREÇÃO DA IMAGEM DECORATIVA --- */
+/* =================================================================== */
+/*                          FIM - MODAL IMAGEM                         */
+/* =================================================================== */
+
+
+/* =================================================================== */
+/*                  INÍCIO - IMAGENS CONTEÚDO DE CURSO                 */
+/* =================================================================== */
+/* ------------------------- Imagem Decorativa ------------------------*/
+
 .img-decoration {
   display: block;
   width: 400px;
@@ -516,40 +490,66 @@ DATA: 25/04/2025 */
   cursor: zoom-in;
 }
 
-/* Regra de responsividade da imagem decorativa */
+/*                            Responsividade                           */
 @media (max-width: 768px) {
   .img-decoration {
     float: none;
     display: block;
     width: 100%;
     height: auto;
-    margin: 1rem auto 2rem auto; /* centraliza no mobile */
+    margin: 1rem auto 2rem auto;
   }
 }
 
-/* --- CORREÇÃO DA IMAGEM DE CONTÚDO DE CURSO --- */
-.img-content {
+/* ---------------------- Imagem Decorativa FULL ----------------------*/
+.img-decoration-full {
   display: block;
-  width: 600px;
-  height: auto;
-  margin-left: auto; 
-  margin-right: auto;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-  cursor: zoom-in;
+  max-width: 100%; 
+  height: auto; 
+  margin: 1.5rem auto; 
 }
 
-/* Regra de responsividade da IMAGEM DE CONTÚDO DE CURSO  */
+/*                            Responsividade                           */
 @media (max-width: 768px) {
+  .img-decoration-full {
+    width: 100%;
+    margin: 1rem auto 2rem auto;
+  }
+}
+/* -------------------------- Imagem Conteúdo -------------------------*/
+.img-content {
+  display: block;
+  width: 100%;
+  max-width: 600px;
+  height: auto;
+  margin: 0 auto; 
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  cursor: zoom-in;
+  transition: transform 0.3s ease;
+
+}
+
+/*                            Responsividade                           */
+@media (max-width: 768px) {
+  .step-content-layout-cols {
+    flex-direction: column;
+  }
   .img-content {
     float: none;
     display: block;
     width: 100%;
     height: auto;
-    margin: 1rem auto 2rem auto; /* centraliza no mobile */
+    margin: 1rem auto 2rem auto;
   }
 }
-/* Loopa Zoom*/
-/* Reset básico e boa prática */
+/* =================================================================== */
+/*                    FIM - IMAGENS CONTEÚDO DE CURSO                  */
+/* =================================================================== */
+
+/* =================================================================== */
+/*                          INÍCIO - LOOPA ZOOM                        */
+/* =================================================================== */
+/* ------------------------------- Reset ----------------------------- */
 * {
   box-sizing: border-box;
 }
@@ -558,27 +558,26 @@ body {
   font-family: sans-serif;
 }
 
-/* O container que ancora a lupa */
+/* --------------------- O container ancora lupa --------------------- */
 .img-magnifier-container {
   position: relative;
-  display: inline-block; /* Garante que o container tenha o tamanho da imagem */
+  display: inline-block;
 }
 
-/* A lupa em si */
+/* ------------------------------ A lupa ----------------------------- */
 .img-magnifier-glass {
   position: absolute;
   border: 2px solid #fff;
-  border-radius: 0%; /* Torna a lupa redonda */
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4); /* Adiciona uma sombra para profundidade */
-  cursor: none; /* Esconde o cursor do mouse quando sobre a lupa */
-  /* Defina o tamanho da lupa aqui */
+  border-radius: 50%;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+  cursor: none; 
   width: 200px;
   height: 150px;
 }
 
-/* --------------------------------------------*/
-/*               DIGITO - START                 /
-/* --------------------------------------------*/
+/* =================================================================== */
+/*                         INÍCIO - ANIMAÇÃO TEXTO                     */
+/* =================================================================== */
 .txt-animado {
   font-size: 12px;
   font-weight: 300;
@@ -635,23 +634,15 @@ body {
     content: "CDHU ";
   }
 }
-.img-decoration-full {
-  display: block;
-  max-width: 100%; /* nunca passa da largura do container */
-  height: auto; /* mantém a proporção */
-  margin: 1.5rem auto; /* centraliza */
-}
-
-/* Responsividade extra (opcional) */
-@media (max-width: 768px) {
-  .img-decoration-full {
-    width: 100%;
-    margin: 1rem auto 2rem auto;
-  }
-}/*# sourceMappingURL=styles.css.map */
+/* =================================================================== */
+/*                           FIM - ANIMAÇÃO TEXTO                      */
+/* =================================================================== */
 
 
-/* --- ESTILOS GERAIS (dos seus guias) --- */
+/* =================================================================== */
+/*                            INÍCIO - GERAL                           */
+/* =================================================================== */
+/* ----------------------------- Container --------------------------- */
 .guide-container { 
   font-family: 'Montserrat', sans-serif;
   background-color: #ffffff;
@@ -667,7 +658,7 @@ body {
   color: #000000;
   font-weight: 700;
   font-size: 1.8em;
-  border-left: 4px solid #ff1100;
+  border-left: 4px solid var(--color-primary);
   padding-left: 15px;
   margin-bottom: 1em;
 }
@@ -682,10 +673,20 @@ body {
 }
 
 .guide-container li {
-  margin-bottom: 10px; /* Adiciona mais respiro entre os itens da lista */
+  margin-bottom: 10px;
 }
 
-/* --- Estilos específicos para este conteúdo --- */
+.guide-container-title {
+  font-family: 'Axiforma', 'Montserrat', sans-serif;
+  color: #000000;
+  font-weight: 700;
+  font-size: 1.8em;
+  border-left: 4px solid var(--color-primary);
+  padding-left: 15px;
+  margin-top: 0;
+  margin-bottom: 25px; /* Aumenta o espaço depois do título */
+}
+/* --------------------- Btn Popover Geohab - home ------------------- */
 .btn-geohab-popover {
   font-weight: bold;
 }
@@ -704,7 +705,29 @@ body {
   color: white;
   text-decoration: none;
 }
-/* Caixa de atenção (amarela) */
+
+/* --------------------- Links dentro do Popover --------------------- */
+.popover-link-button {
+  display: block;
+  width: 100%;
+  background-color: #000000;
+  color: #ffffff !important;
+  border-radius: 3px;
+  padding: 0.5em 0.8em;
+  font-size: 0.85rem;
+  font-weight: 500;
+  text-align: center;
+  text-decoration: none !important;
+  margin-bottom: 5px;
+  transition: opacity 0.2s;
+}
+
+.popover-link-button:hover {
+  color: #ebebeb;
+  opacity: 0.8;
+}
+
+/* -------------------- Caixa de atenção (amarela) ------------------- */
 .attention-box {
   background-color: #fffbe6;
   border: 1px solid #ffe58f;
@@ -714,6 +737,7 @@ body {
   margin: 20px 0;
 }
 
+/* --------------------- Estilos fonts (amarela) --------------------- */
 .guide-header {
   text-align: left;
   color: #000;
@@ -725,7 +749,7 @@ body {
   font-size: 2.5em;
   font-weight: 700;
   color: #000000;
-  border-left: 4px solid #ff1100;
+  border-left: 4px solid var(--color-primary);
   padding-left: 10px;
 }
 
@@ -735,23 +759,15 @@ body {
   margin: 0;
   text-align: justify;
 }
+/* =================================================================== */
+/*                              FIM - GERAL                            */
+/* =================================================================== */
 
 
 /* =================================================================== */
-/*             VERSÃO CRIATIVA: BLOCO DE BOAS-VINDAS 2.0               */
+/*                      INÍCIO: BLOCO DE BOAS-VINDAS                   */
 /* =================================================================== */
-
-/* --- O Contêiner Principal ---
-.welcome-block-creative {
-  font-family: 'Montserrat', sans-serif;
-  background-color: #f9f9f9;
-  border: 0px transparent #e0e0e0;
-  border-radius: 12px;
-  overflow: hidden; /* Garante que os filhos respeitem o border-radius 
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.07);
-}
-*/
-/* --- O Cabeçalho "Herói" --- */
+/* ---------------------------- Boas vindas -------------------------- */
 .welcome-hero {
   background-color: #ffffff;
   padding: 40px 30px;
@@ -788,10 +804,10 @@ body {
   background: white;
 }
 
-/* --- Grade de Informações (Cards) --- */
+/* ---------------- Grade de Informações Iniciais (Cards) -------------- */
 .info-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Grid responsivo */
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 25px;
   margin-top: 20px;
   padding: 0;
@@ -806,9 +822,8 @@ body {
   margin-bottom: 40px;
 }
 
-
 .info-card {
-  position: relative; /* ESSENCIAL */
+  position: relative;
   background-color: #ffffff;
   border: 1px solid #e8e8e8;
   border-radius: 8px;
@@ -825,7 +840,7 @@ body {
 
 .info-card-icon {
   flex-shrink: 0;
-  color: #ff1100; /* Cor primária da marca */
+  color: var(--color-primary);
 }
 .info-card-icon svg {
   width: 32px;
@@ -833,8 +848,8 @@ body {
 }
 
 .info-card-icon svg {
-  fill: none !important; /* FORÇA o preenchimento a ser transparente */
-  stroke: currentColor !important; /* FORÇA o contorno a usar a cor herdada */
+  fill: none !important; 
+  stroke: currentColor !important;
 }
 
 .info-card-title {
@@ -851,42 +866,15 @@ body {
   color: #444;
 }
 
-/* --- Seção de Suporte (baseada na sua .attention-box) --- */
-.support-section {
-  background-color: #fffbe6;
-  border: 1px solid #ffe58f;
-  border-left: 5px solid #faad14;
-  padding: 25px;
-  border-radius: 8px;
-  margin-top: 40px;
-  margin-bottom: 10px;
-}
-.support-section h3 {
-  margin-top: 0;
-  font-family: 'Axiforma', 'Montserrat', sans-serif;
-  color: #000;
-}
-
-/* --- Rodapé --- */
-.welcome-footer {
-  text-align: right;
-  padding: 20px 30px;
-  background-color: #ffffff;
-  border-top: 1px solid #e0e0e0;
-  font-style: italic;
-  color: #666;
-}
-
-/* Ajuste para quando um card inteiro vira um link */
+/* -- */
 .card-link-wrapper {
-  text-decoration: none; /* Remove o sublinhado */
-  color: inherit; /* Faz o texto herdar a cor do card, em vez de ficar azul */
+  text-decoration: none;
+  color: inherit;
 }
 .card-link-wrapper:hover {
-  text-decoration: none; /* Garante que não apareça sublinhado no hover */
+  text-decoration: none;
 }
 
-/* O link esticado que preencherá o card */
 .info-card .stretched-link::after {
   position: absolute;
   top: 0;
@@ -897,7 +885,6 @@ body {
   content: "";
 }
 
-/* Garante que o texto do link não fique sublinhado */
 .info-card .stretched-link {
   text-decoration: none;
   color: inherit;
@@ -906,17 +893,13 @@ body {
   text-decoration: none;
 }
 
-/* Garante que os SVGs incompletos não quebrem o layout */
 .info-card-icon svg {
   width: 32px;
   height: 32px;
 }
 
-/* =================================================================== */
-/*             COMPONENTE: GRADE DE ATALHOS PARA MÓDULOS               */
-/* =================================================================== */
-
-/* --- O Contêiner da Grade de Atalhos --- */
+/* -------------- Grade de atalhos para Módulos (Cards) -------------- */
+/* ---                Contêiner da Grade de Atalhos                --- */
 .module-shortcut-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -925,7 +908,7 @@ body {
   margin-bottom: 40px;
 }
 
-/* --- O Card de Atalho Individual --- */
+/* ---                 O Card de Atalho Individual                 --- */
 .module-shortcut-card {
   position: relative;
   display: flex;
@@ -941,15 +924,14 @@ body {
   transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out, border-color 0.2s ease-in-out;
 }
 .module-shortcut-card:hover {
-  transform: translateY(-7px);
+  transform: translateY(-3px);
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
-  border-color: #ff1100; /* Cor primária no hover */
   color: #333;
   text-decoration: none;
 }
 
 .shortcut-icon {
-  color: #ff1100;
+  color: var(--color-primary);
 }
 .shortcut-icon svg {
   width: 28px;
@@ -964,11 +946,40 @@ body {
   margin: 0;
 }
 
+/* ------------------------- Seção de Suporte ------------------------- */
+.support-section {
+  background-color: #fffbe6;
+  border: 1px solid #ffe58f;
+  border-left: 5px solid #faad14;
+  padding: 25px;
+  border-radius: 8px;
+  margin-top: 40px;
+  margin-bottom: 10px;
+}
+.support-section h3 {
+  margin-top: 0;
+  font-family: 'Axiforma', 'Montserrat', sans-serif;
+  color: #000;
+}
+
+/* ------------------------------ Rodapé ----------------------------- */
+.welcome-footer {
+  text-align: right;
+  padding: 20px 30px;
+  background-color: #ffffff;
+  border-top: 1px solid #e0e0e0;
+  font-style: italic;
+  color: #666;
+}
 /* =================================================================== */
-/*             COMPONENTE: SEÇÃO DE CONTEÚDO (VÍDEO)                 */
+/*                       FIM: BLOCO DE BOAS-VINDAS                     */
 /* =================================================================== */
 
-/* --- O Contêiner Principal da Seção --- */
+
+/* =================================================================== */
+/*                      INÍCIO - COMPONENTE: VÍDEOS                    */
+/* =================================================================== */
+/* ---------------------------- Contêiner ---------------------------- */
 .content-section {
   background-color: #ffffff; 
   border-radius: 12px;
@@ -977,7 +988,7 @@ body {
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.07);
 }
 
-/* --- Estilo para o vídeo dentro da âncora --- */
+/*                            Estilo Âncora                            */
 #video-apresentacao {
   margin-top: 20px;
   max-width: 800px;
@@ -985,58 +996,36 @@ body {
   margin-right: auto;
 }
 
-/* --- Estilizando o player que o Moodle injeta --- */
+/*                     Player que o Moodle injeta                      */
 #video-apresentacao .video-js {
-  width: 100% !important; /* Força a ocupar todo o espaço do contêiner #video-apresentacao */
+  width: 100% !important;
   height: auto !important;
-  border-radius: 15px; /* Cantos arredondados consistentes com os cards */
-  overflow: hidden; /* Essencial para que o iframe respeite as bordas */
+  border-radius: 15px;
+  overflow: hidden;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
   background-color: transparent;
 }
+/* =================================================================== */
+/*                        FIM - COMPONENTE: VÍDEOS                     */
+/* =================================================================== */
 
 
 /* =================================================================== */
-/*             TÍTULOS PADRÃO                                          */
+/*                   INÍCIO: HEADER DE MÓDULO - HOME                   */
 /* =================================================================== */
-
-.guide-container-title {
-  font-family: 'Axiforma', 'Montserrat', sans-serif;
-  color: #000000;
-  font-weight: 700;
-  font-size: 1.8em;
-  border-left: 4px solid #ff1100;
-  padding-left: 15px;
-  margin-top: 0;
-  margin-bottom: 25px; /* Aumenta o espaço depois do título */
-}
-
-/* Ajustei o subtítulo para H3 para melhor hierarquia */
-.welcome-section-title {
-  font-family: 'Axiforma', 'Montserrat', sans-serif;
-  font-size: 1.5em;
-  font-weight: 700;
-  color: #333;
-  margin-top: 0;
-  margin-bottom: 20px;
-}
-
-/* =================================================================== */
-/*             COMPONENTE: HEADER DO MÓDULO                          */
-/* =================================================================== */
-
+/* ------------------------ Header de módulos ------------------------ */
 .module-header {
   display: flex !important;
-  align-items: center; /* Alinha o ícone e o texto verticalmente */
+  align-items: center;
   gap: 20px;
-  padding: 0px 20px 10px 0; /* Mais padding para um header destacado */
-  background-color: #fdfdfd; /* Um branco levemente diferente para sutileza */
-  border-bottom: 1px solid #e0e0e0; /* Divisor visual */
+  padding: 0px 20px 10px 0;
+  background-color: #fdfdfd;
+  border-bottom: 1px solid #e0e0e0;
 }
 
 .module-header-simple {
   display: flex !important;
-  padding: 0px 20px 10px 0; /* Mais padding para um header destacado */
+  padding: 0px 20px 10px 0; 
   align-items: center;
   gap: 30px;
 }
@@ -1046,20 +1035,22 @@ body {
 
 .module-header-icon {
   flex-shrink: 0;
-  color: #ff1100; /* Cor primária da marca */
+  color: var(--color-primary);
   
 }
 .module-header-icon svg {
-  width: 40px; /* Ícone um pouco maior para destaque */
+  width: 40px;
   height: 40px;
 }
 .module-header-icon svg {
-  fill: none !important; /* FORÇA o preenchimento a ser transparente */
-  stroke: currentColor !important; /* FORÇA o contorno a usar a cor herdada */
+  fill: none !important; 
+  stroke: currentColor !important;
 }
+
+/* ------------------------ Títulos de módulos ----------------------- */
 .module-title {
   font-family: 'Axiforma', 'Montserrat', sans-serif;
-  font-size: 2em; /* Tamanho intermediário entre h1 e h2 */
+  font-size: 2em;
   font-weight: 700;
   color: #000000;
   margin: 0;
@@ -1072,10 +1063,12 @@ body {
   margin: 5px 0 0 0;
 }
 
-/* O conteúdo principal do módulo agora terá seu próprio padding */
 .module-content {
   padding: 30px;
 }
+/* =================================================================== */
+/*                     FIM: HEADER DE MÓDULO - HOME                    */
+/* =================================================================== */
 
 
 /* =================================================================== */
@@ -1224,7 +1217,145 @@ body {
   box-shadow: 0 0 0 .2rem rgba(0, 123, 255, 0.5); 
 }
 
+/* ================================================================================= */
+/*             COMPONENTE: BLOCO DE CONCLUSÃO SEÇÃO DE MATERIAL SANFONA (COLLAPSIBLE)  */
+/* ================================================================================= */
+.collapsible-material-section {
+  margin-top: 1.3rem;
+  border: 1px solid #e2e2e2;
+  background-color: #fafafa;
+  border-radius: 8px;
+  overflow: hidden; /* Garante que os cantos arredondados sejam respeitados */
+}
 
+/* O cabeçalho clicável */
+.material-sct-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+  padding: 20px 25px;
+  cursor: pointer;
+  text-decoration: none !important;
+  color: inherit;
+  transition: background-color 0.2s;
+}
+.material-sct-header:hover {
+  background-color: #f1f1f1;
+}
+
+/* Agrupa o ícone principal e o título */
+.material-sct-header-title-group {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+/* Ícone principal (alvo) */
+.material-sct-header-icon svg {
+  width: 28px;
+  height: 28px;
+  color: #6b6b6b;
+}
+
+/* O título dentro do cabeçalho */
+.material-sct-header-title {
+  font-family: 'Axiforma', 'Montserrat', sans-serif;
+  font-size: 1.2em;
+  font-weight: 700;
+  color: #6b6b6b;
+  margin: 0;
+}
+
+/* O ícone de seta (chevron) que indica a ação de abrir/fechar */
+.material-sct-chevron {
+  color: #6b6b6b;
+  transition: transform 0.3s ease-in-out;
+  background-color: #d6d6d6;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 30px;
+  height: 30px;
+}
+
+.material-sct-chevron svg {
+  width: 20px;
+  height: 20px;
+}
+
+/* Gira a seta quando a seção está aberta */
+.material-sct-header[aria-expanded="true"] .material-sct-chevron {
+  transform: rotate(90deg);
+}
+
+/* O corpo que será revelado */
+.material-sct-body {
+  padding: 0px 25px 25px 68px; /* O padding esquerdo alinha com o texto do título */
+  border-top: 1px solid #c5c5c5;
+  display: block;
+}
+
+.material-sct-description {
+  margin: 15px 0 15px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.material-sct-content-btn{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  justify-content: center;
+}
+
+.material-sct-content p {
+  margin: 0;
+  line-height: 1.6;
+}
+.material-sct-content a {
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.collapsible-material-section .material-sct-header:focus {
+  outline: 0;
+  box-shadow: 0 0 0 .2rem rgba(190, 190, 190, 0.5); 
+}
+
+/* O botão de ação */
+.material-sct-action-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  font-weight: 200;
+  text-decoration: none;
+  color: #6b6b6b;
+  background-color: #f1f1f1; 
+  border: 1px solid #cecece73;
+  padding: 4px 10px;
+  font-size: 1em;
+  border-radius: 6px;
+  transition: opacity 0.2s;
+}
+.material-sct-content-btn:hover .material-sct-action-button:hover {
+  background-color: var(--color-primary);
+  color: #fff;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  text-decoration: none;
+}
+
+.material-sct-action-button svg {
+  width: 20px;
+  height: 20px;
+}
+
+.material-sct-content-btn:hover .material-sct-action-button.slider:hover {
+    background-color: #eb5e00;
+    text-decoration: none;
+}
 /* =================================================================== */
 /* --- Grade de Informações-Chave (Público, Pré-reqs) --- */
 /* =================================================================== */
@@ -1243,7 +1374,7 @@ body {
 }
 .key-info-icon {
   flex-shrink: 0;
-  color: #ff1100; /* Cor primária */
+  color: var(--color-primary);
   margin-top: 5px;
 }
 .key-info-icon svg {
@@ -1251,8 +1382,8 @@ body {
   height: 24px;
 }
 .key-info-icon svg {
-  fill: none !important; /* FORÇA o preenchimento a ser transparente */
-  stroke: currentColor !important; /* FORÇA o contorno a usar a cor herdada */
+  fill: none !important; 
+  stroke: currentColor !important;
 }
 .key-info-title {
   font-family: 'Axiforma', 'Montserrat', sans-serif;
@@ -1313,7 +1444,7 @@ body {
   align-items: center;
   width: 28px;
   height: 28px;
-  background-color: #ff1100;
+  background-color: var(--color-primary);
   color: white;
   border-radius: 50%;
   font-weight: bold;
@@ -1321,41 +1452,47 @@ body {
   margin-top: 2px;
 }
 /* ========================================================== */
-
-/* --- Nova Classe para a Seção com Fundo --- */
-.highlighted-section .welcome-section-title{
-  background-color: #f9f9f9; /* O mesmo cinza claro do welcome-block-creative */
-  border: 1px solid #e0e0e0;
-  text-align: justify;
-  border-radius: 12px;
-  padding: 30px;
-  margin-top: 0px; /* Espaço para separar da seção anterior */
-}
-/* O círculo numerado customizado */
-
-
-/* --- O header interno do módulo (ícone + título) --- */
-
-
 /* --- A descrição e metadados --- */
-.welcome-hero p.module-description { /* Classe específica para o parágrafo de descrição */
+.welcome-hero p.module-description {
   margin-top: 25px;
   text-align: justify;
   line-height: 1.7;
   color: #444;
 }
+
 .welcome-hero .key-info-grid {
   margin-top: 30px;
-  margin-bottom: 0; /* Remove a margem extra no final do header */
+  margin-bottom: 0;
 }
-/* ... (estilos do key-info-grid que já temos) ... */
 
-/* --- Conteúdo Principal (agora só contém os objetivos) --- */
-
+/* Subtítulo H3 */
+.welcome-section-title {
+  font-family: 'Axiforma', 'Montserrat', sans-serif;
+  font-size: 1.5em;
+  font-weight: 700;
+  color: #333;
+  margin-top: 0;
+  margin-bottom: 20px;
+}
 /* Título e lista de objetivos */
 .welcome-content .welcome-section-title {
   margin-top: 15px;
 }
+
+/* --- Nova Classe para a Seção com Fundo --- */
+.highlighted-section .welcome-section-title{
+  background-color: #f9f9f9; 
+  border: 1px solid #e0e0e0;
+  text-align: justify;
+  border-radius: 12px;
+  padding: 30px;
+  margin-top: 0px;
+}
+
+
+
+
+
 
 /* =================================================================== */
 /*             USO NOS Welcome dos módulos                    */
@@ -1457,7 +1594,7 @@ body {
 .completion-header .module-header-icon svg {
   width: 48px; /* Ícone maior para mais impacto */
   height: 48px;
-  color: #ff1100;
+  color: var(--color-primary);
   margin-bottom: 15px;
 }
 .completion-header .module-title {
@@ -1530,7 +1667,7 @@ body {
 
 .course-progress-bar-fill {
   height: 100%;
-  background-color: #e01a00; 
+  background-color: var(--color-primary-dark); 
   width: 0%;
   border-radius: 0;
   transition: width 1.5s ease-in-out;
@@ -1655,8 +1792,6 @@ body {
 /* O termo a ser definido */
 .definition-term {
   font-weight: 700;
-  padding-left: 10px;
-  border-left: 3px solid #ced4da;
   color: #212529;
   display: flex;
   gap: .5rem;
@@ -1667,7 +1802,7 @@ body {
   font-size: 0.95em;
   color: #495057;
   margin-left: 0; /* Reseta a margem padrão do <dd> */
-  padding: 0 0 15px 12px;
+  padding: 0 0 15px 0;
   margin-top: 4px;
 }
 
@@ -1779,10 +1914,9 @@ body {
 /*             COMPONENTE: BLOCO DE AÇÃO (EVOLUÇÃO DO NOTICE)          */
 /* =================================================================== */
 
-/* Adicione esta classe ao .notice-block quando ele tiver um botão */
 .notice-block-action .notice-content {
   display: grid;
-  justify-content: space-between; /* Empurra o texto e o botão para as extremidades */
+  justify-content: space-between; 
   align-items: center;
   flex-wrap: wrap; /* Permite que quebre a linha em telas pequenas */
   gap: 15px; /* Espaço entre o texto e o botão */
@@ -1833,16 +1967,15 @@ body {
 .step-content-layout-cols {
   display: flex;
   flex-wrap: wrap; /* Permite que as colunas quebrem em telas menores */
-  gap: 1rem;      /* Espaço entre o texto e a imagem */
+  gap: 1rem;      
   align-items: flex-start; /* Alinha os itens no topo */
   margin-bottom: 1.5rem;
   margin-top: 2.5rem;
-
 }
 
 .step-content-col-text {
-  flex: 1; /* Faz a coluna de texto ocupar o dobro do espaço da mídia */
-  min-width: 300px; /* Largura mínima antes de quebrar a linha */
+  flex: 1; 
+  min-width: 300px; 
 }
 
 .step-content-col-media {
@@ -1866,7 +1999,7 @@ body {
   align-items: center;
   width: 25px;
   height: 25px;
-  background-color: #e41a1f;
+  background-color: var(--color-primary);
   padding-top: 4px;
   color: white;
   border-radius: 50%;
@@ -1887,14 +2020,6 @@ body {
     /* =================================================================== */
     /* MATERIAIS DE APOIO */
     /* =================================================================== */
-    :root {
-      --font-primary: 'Axiforma', 'Montserrat', sans-serif;
-      --font-secondary: 'Montserrat', sans-serif;
-      --color-primary: #ff1100;
-      --color-secondary: #000000;
-      --color-text: #333;
-      --color-border: #e0e0e0;
-    }
 
 
     .materials-hero {
@@ -1957,7 +2082,7 @@ body {
       display: flex;
       align-items: center;
       justify-content: center;
-      color: red;
+      color: var(--color-primary);
       border-radius: 12px;
       flex-shrink: 0;
     }
@@ -2088,7 +2213,6 @@ body {
     .material-card:hover .file-type.slider:hover {
         background-color: #eb5e00;
         text-decoration: none;
-
     }
     .download-icon {
       color: var(--color-text);
@@ -2098,8 +2222,16 @@ body {
     .download-icon:hover {
       color: var(--color-primary);
       transition: background-color 0.2s, color 0.2s, translateY 2s;
-      transform: translateY(2px);
+    }
 
+    /* Estado padrão da polilinha: prepara para a animação */
+    .download-icon polyline {
+      transition: transform 0.25s ease-out;
+    }
+
+    /* Quando o link pai estiver em hover, mova APENAS a polilinha */
+    .file-item > a:hover .download-icon polyline {
+      transform: translateY(3px); /* Usei 3px para ficar mais visível */
     }
 
     .section-divider {
@@ -2108,46 +2240,6 @@ body {
       margin: 40px 0;
       position: relative;
     }
-
-/* =================================================================== */
-/*             SISTEMA DE ÍCONES GLOBAIS (VIA CSS MASK)                */
-/* =================================================================== */
-
-/* Classe base para todos os ícones */
-.icon-custon {
-  display: inline-block;
-  width: 1em; /* Tamanho relativo à fonte do elemento pai */
-  height: 1em;
-  background-color: currentColor; /* Pega a cor do texto ao redor */
-  -webkit-mask-size: contain;
-  mask-size: contain;
-  -webkit-mask-repeat: no-repeat;
-  mask-repeat: no-repeat;
-  -webkit-mask-position: center;
-  mask-position: center;
-}
-
-/* --- Definição de cada ícone --- */
-
-.icon-target {
-  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='10'%3E%3C/circle%3E%3Ccircle cx='12' cy='12' r='6'%3E%3C/circle%3E%3Ccircle cx='12' cy='12' r='2'%3E%3C/circle%3E%3C/svg%3E");
-  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='10'%3E%3C/circle%3E%3Ccircle cx='12' cy='12' r='6'%3E%3C/circle%3E%3Ccircle cx='12' cy='12' r='2'%3E%3C/circle%3E%3C/svg%3E");
-}
-
-.icon-chevron-right {
-  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='9 18 15 12 9 6'%3E%3C/polyline%3E%3C/svg%3E");
-  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='9 18 15 12 9 6'%3E%3C/polyline%3E%3C/svg%3E");
-}
-
-.icon-arrow-right {
-  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cline x1='5' y1='12' x2='19' y2='12'%3E%3C/line%3E%3Cpolyline points='12 5 19 12 12 19'%3E%3C/polyline%3E%3C/svg%3E");
-  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cline x1='5' y1='12' x2='19' y2='12'%3E%3C/line%3E%3Cpolyline points='12 5 19 12 12 19'%3E%3C/polyline%3E%3C/svg%3E");
-}
-
-.icon-question {
-  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='10'%3E%3C/circle%3E%3Cpath d='M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3'%3E%3C/path%3E%3Cline x1='12' y1='17' x2='12.01' y2='17'%3E%3C/line%3E%3C/svg%3E");
-  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='10'%3E%3C/circle%3E%3Cpath d='M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3'%3E%3C/path%3E%3Cline x1='12' y1='17' x2='12.01' y2='17'%3E%3C/line%3E%3C/svg%3E");
-}
 
 /* =================================================================== */
 /* CARD DE CONQUISTA DO MÓDULO */
@@ -2169,7 +2261,7 @@ body {
 .completion-icon-wrapper svg {
   width: 56px;
   height: 56px;
-  color: var(--color-primary, #ff1100);
+  color: var(--color-primary);
   margin-bottom: 20px;
 }
 
@@ -2200,7 +2292,7 @@ body {
   display: inline-flex;
   align-items: center;
   gap: 10px;
-  background-color: var(--color-primary, #ff1100);
+  background-color: var(--color-primary);
   color: #ffffff;
   font-weight: 700;
   font-size: 1em;
@@ -2212,9 +2304,8 @@ body {
 }
 
 .btn-next-module:hover {
-  background-color: #d90f00; /* Um tom de vermelho um pouco mais escuro */
+  background-color: var(--color-primary-dark);
   color: #ffffff;
-  transform: translateY(-3px);
   box-shadow: 0 6px 20px rgba(255, 17, 0, 0.3);
   text-decoration: none;
 }
@@ -2225,23 +2316,28 @@ body {
   transition: transform 0.2s ease;
 }
 
-.btn-next-module:hover svg {
-  transform: translateX(4px);
-}
+  /* Estado padrão da polilinha: prepara para a animação */
+  .btn-next-module svg .dash {
+    transition: transform 0.25s ease-out;
+  }
 
+  /* Quando o link pai estiver em hover, mova APENAS a polilinha */
+  .btn-next-module:hover svg .dash {
+    transform: translateX(-.5px); /* Usei 3px para ficar mais visível */
+  }
+
+  .btn-next-module svg .arrow-p {
+    transition: transform 0.25s ease-out;
+  }
+
+  /* Quando o link pai estiver em hover, mova APENAS a polilinha */
+  .btn-next-module:hover svg .arrow-p {
+    transform: translateX(2px); /* Usei 3px para ficar mais visível */
+  }
 
 /* =================================================================== */
 /* CSS REFEITO PARA POLIMENTO DOS CARDS (COM ESTRUTURA DE 2 LINHAS) */
 /* =================================================================== */
-:root {
-  --font-primary: 'Axiforma', 'Montserrat', sans-serif;
-  --font-secondary: 'Montserrat', sans-serif;
-  --color-primary: #ff1100;
-  --color-primary-dark: #d90f00;
-  --color-secondary: #000000;
-  --color-text: #333;
-  --color-border: #e0e0e0;
-}
 
 /* Cabeçalho do Card */
 .material-header {
@@ -2275,20 +2371,11 @@ body {
   flex-grow: 1;
   padding: 20px;
 }
+
 .material-description {
   color: #555;
   font-size: 0.95em;
   margin-bottom: 20px;
   flex-grow: 1;
 }
-
-/* ======================================================= */
-/* ÁREA DE ARQUIVOS (CSS REFEITO PARA A ESTRUTURA CORRETA) */
-/* ======================================================= */
-
-
-
-
-
-
 

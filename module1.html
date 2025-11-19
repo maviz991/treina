@@ -856,11 +856,12 @@
 <!--                        FIM: BLOCO DE CONTEÚDO                       -->
 <!-- =================================================================== -->
  <br>
- <!-- =================================================================== -->
+<!-- =================================================================== -->
 <!--          INÍCIO: BLOCO DE CONTEÚDO DO MÓDULO PERFIS DE ACESSO       -->
 <!-- =================================================================== -->
 
-<div class="module-intro-block" id="pefil-de-acesso">
+<!-- O contêiner principal que cria o card com padding e sombra -->
+<div class="module-intro-block">
 
     <!-- Wrapper para aplicar os estilos de texto (justificado, etc.) -->
     <div class="guide-container">
@@ -886,8 +887,7 @@
             </div>
         </div>
 
-        <div class="content-section">
-            <h2 class="guide-container-title">Vídeo: Perfis de Acesso</h2>
+        <div class="content-col-media">
             <div id="video-apresentacao">
                 <video class="video-js" controls="controls">
                     <source src="https://youtu.be/iw_WqYXuqq4">
@@ -1036,9 +1036,10 @@
             </div>
         </div>
 
+        <!-- ACCORDION LIÇÃO DA SEÇÃO-->
         <div class="collapsible-task-section">
             <!-- CABEÇALHO CLICÁVEL -->
-            <a href="#task-content-perfis" class="task-header" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="task-content-perfis">
+            <a href="#task-content-1" class="task-header" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="task-content-1">
                 <div class="task-header-title-group">
                     <div class="task-chevron">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
@@ -1057,23 +1058,84 @@
             </a>
 
             <!-- CONTEÚDO OCULTO -->
-            <div class="collapse" id="task-content-perfis">
+            <div class="collapse" id="task-content-1">
                 <div class="task-body">
                     <div class="task-description">
                         <p>
-                            Para se aprofundar nestes papéis, acesse os material de apoio abaixo onde estes papéis estão descritos em profundidade.
+                            Para consolidar seu conhecimento sobre permissionamento, complete a lição sobre <b>Perfis de Acesso</b>.
                         </p>
                     </div>
                     <div class="task-content">
                         <!-- Parte 1: O Texto da Instrução -->
                         <div class="task-content-btn">
-                            <div><a href="#" class="notice-action-button">
-                                    <span>Acessar Material de Apoio</span>
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                        <line x1="5" y1="12" x2="19" y2="12"></line>
-                                        <polyline points="12 5 19 12 12 19"></polyline>
-                                    </svg>
-                                </a></div>
+                            <a href="/mod/lesson/view.php?id=869" class="notice-action-button">
+                                <span>Acessar Lição</span>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                                    <polyline points="12 5 19 12 12 19"></polyline>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>         
+
+        <!-- ACCORDION METERIAIS DA SEÇÃO-->
+        <div class="collapsible-material-section">
+            <!-- CABEÇALHO CLICÁVEL -->
+            <a href="#material-sct-content-2" class="material-sct-header" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="task-content-1">
+                <div class="material-sct-header-title-group">
+                    <div class="material-sct-chevron">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="9 18 15 12 9 6"></polyline>
+                        </svg>
+                    </div>
+                    <div class="material-sct-header-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
+                            <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="material-sct-header-title">Materiais de Apoio</h3>
+                </div>
+            </a>
+
+            <!-- CONTEÚDO OCULTO -->
+            <div class="collapse" id="material-sct-content-2">
+                <div class="material-sct-body">
+                    <div class="material-sct-description">
+                        <p>
+                            Para expandir seu conhecimento sobre permissionamento, leia o material abaixo.
+                        </p>
+                    </div>
+                    <div class="material-sct-content">
+                        <!-- Parte 1: O Texto da Instrução -->
+                        <div class="material-sct-content-btn">
+                            <a href="/mod/resource/view.php?id=637" target="_blank" class="material-sct-action-button" title="Acesse o PDF" data-toggle="tooltip" data-placement="bottom"><span>PDF - Perfis de Acesso</span> 
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                                    <polyline points="12 5 19 12 12 19"></polyline>
+                                </svg>
+                            </a>
+                            <a href="/mod/resource/view.php?id=642" target="_blank" class="material-sct-action-button" title="Acesse o PDF" data-toggle="tooltip" data-placement="bottom"><span>PDF - Perfis de Acesso</span> 
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                                    <polyline points="12 5 19 12 12 19"></polyline>
+                                </svg>
+                            </a>
+                            <a href="/mod/resource/view.php?id=636" target="_blank" class="material-sct-action-button" title="Acesse o PDF" data-toggle="tooltip" data-placement="bottom"><span>PDF - Papeís do Geohab</span> 
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                                    <polyline points="12 5 19 12 12 19"></polyline>
+                                </svg>
+                            </a>
+                            <a href="/mod/resource/view.php?id=635" target="_blank" class="material-sct-action-button" title="Acesse o PDF" data-toggle="tooltip" data-placement="bottom"><span>PDF - Responsabilidades</span> 
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                                    <polyline points="12 5 19 12 12 19"></polyline>
+                                </svg>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -1410,28 +1472,32 @@
 <!--                        FIM: BLOCO DE CONTEÚDO                       -->
 <!-- =================================================================== -->
  <br>
- <!-- =================================================================== -->
+<!-- =================================================================== -->
 <!--                    INÍCIO: BLOCO DE CONCLUSÃO                       -->
 <!-- =================================================================== -->
-<div class="completion-card">
+<div class="footer-action">
+    <a class="btn btn-secondary" href="/course/view.php?id=29#section-0">
+        Voltar para o Início do Curso
+    </a>
+</div>
+<div class="completion-block">
     <div class="completion-icon-wrapper">
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
             <polyline points="22 4 12 14.01 9 11.01"></polyline>
         </svg>
     </div>
-    <h3>
-        <img src="https://i.ibb.co/WNz6YSwQ/party.gif" alt="Ícone de comemoração">
-        Parabéns! Módulo Concluído!
-    </h3>
-    <p>
+    <h2 class="module-title">Parabéns <span class="placeholder-firstname"></span>, Módulo Concluído!
+    </h2>
+
+    <p class="completion-text">
         Você dominou os conceitos fundamentais de dados geoespaciais, interoperabilidade, redes, geoserviços e perfis de acesso. Ótimo trabalho!
     </p>
-    <a href="/course/view.php?id=29&section=11" class="btn-next-module">
+    <a href="/course/view.php?id=29&amp;section=11" class="btn-next-module">
         Ir para o Próximo Módulo
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <line x1="5" y1="12" x2="19" y2="12"></line>
-            <polyline points="12 5 19 12 12 19"></polyline>
+            <line class="dash" x1="5" y1="12" x2="19" y2="12"></line>
+            <polyline class="arrow-p" points="12 5 19 12 12 19"></polyline>
         </svg>
     </a>
 </div>
