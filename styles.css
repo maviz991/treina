@@ -871,7 +871,7 @@ body {
   color: #444;
 }
 
-.welcome-info-card .stretched-link::after {
+.welcome-info-card .welcome-stretched-link::after {
   position: absolute;
   top: 0;
   right: 0;
@@ -881,11 +881,11 @@ body {
   content: "";
 }
 
-.welcome-info-card .stretched-link {
+.welcome-info-card .welcome-stretched-link {
   text-decoration: none;
   color: inherit;
 }
-.welcome-info-card .stretched-link:hover {
+.welcome-info-card .welcome-stretched-link:hover {
   text-decoration: none;
 }
 
@@ -939,7 +939,7 @@ body {
 
 /* ------------------------------- Main ------------------------------ */
 .main-welcome-content {
-  padding: 10px 10px 10px 30px;
+  padding: 10px 10px 10px 30px;;
 }
 
 .main-welcome-content-title {
