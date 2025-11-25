@@ -1782,7 +1782,6 @@ body {
   border-left: 5px solid #007bff;
   color: #004085;
   display: flex;
-  justify-content: center;
   text-decoration: none;
 }
 .notice-block.notice-info .notice-icon {

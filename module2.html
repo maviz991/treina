@@ -1,28 +1,23 @@
 <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="pt-br">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Curso Geohab - Home</title>
+    <title>Curso Geohab - Teste Local</title>
+    
+    <!-- FONTES -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="styles.css">
-    <script src="/script.js"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
-        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-        crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
-        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-        crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
-        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-        crossorigin="anonymous"></script>
-    <style>
+    <!-- CSS DO BOOTSTRAP 4 (Apenas um é necessário) -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+    
+    <!-- SEU ARQUIVO DE ESTILOS -->
+    <link rel="stylesheet" href="styles.css"> 
+</head>  <style>
         /* --- ESTILOS GERAIS --- */
         body {
             font-family: 'Montserrat', sans-serif;
@@ -54,35 +49,84 @@
 </head>
 
 <body>
+    <script src="/js.js"></script>
+        <!-- 3. jQuery (necessário para o Bootstrap 4) -->
+        <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+        <!-- 4. Popper.js (necessário para tooltips e popovers) -->
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+        <!-- 5. JavaScript do Bootstrap 4 -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js"></script>
     <!-- =================================================================== -->
     <!--                       INÍCIO: BLOCO SEÇÃO 1                         -->
     <!-- =================================================================== -->
-    <h5 class="destaque-h5">Acesso e Permissões de Usuários</h5>
-    <p style="text-align: justify;">Todos os funcionários, colaboradores,
-        estagiários e aprendizes <strong>possuem acesso ao Geohab</strong>. Para se
-        logar, utilize o seu <code class="badge-link badge-text-gray"
-            title="Seu nome de usuário utilizado para acessar os sistemas da CDHU ou seu computador"
-            data-toggle="tooltip" data-placement="top">login
-    de rede</code> e a sua senha de rede — a mesma que você usa para se logar no
-        seu computador. Mas isto não significa que você terá acesso a todos os
-        conteúdos armazenados na plataforma. Cada setor define o que pode ser acessado
-        por todos e o que é restrito.</p>
-    <p style="text-align: justify;">Normalmente, o <code class="badge-link badge-text-gray"
-            title="Responsável por gerenciar as permissões de acesso aos dados do seu setor" data-toggle="tooltip"
-            data-placement="top">administrador
-    local</code> do seu setor é quem vai definir o seu nível de acesso. No
-        Geohab, existe a lista dos administradores locais e como contatá-los. Clique
-        aqui para acessar esta lista.</p>
-    <p style="text-align: justify;">E usuários fora da rede da CDHU? Eles podem
-        acessar a plataforma? Sim, mas é preciso cadastrá-los com a aprovação do
-        administrador local e da gerência que supervisiona o setor que deve ser
-        acessado por este usuário.</p>
-    <div class="alert alert-warning" role="alert"><strong>Lembre-se:</strong> sua
-        conta e senha são apenas suas. Você nunca deve fornecê-las a ninguém, sob
-        nenhuma hipótese.</div>
-    <div class="alert alert-info" role="alert">Para ter mais informações sobre
-        cadastramento de usuários externos e perfis de uso, <strong>leia o material
-            complementar abaixo</strong>.</div>
+<!-- =================================================================== -->
+<!--         INÍCIO: BLOCO SEÇÃO 1 (COM INFO-BADGES ATUALIZADOS)         -->
+<!-- =================================================================== -->
+<div class="module-intro-block" id="module1-section-access">
+    <div class="guide-container">
+        <h2 class="guide-container-title">Acesso e Permissões de Usuários</h2>
+
+        <div class="content-layout-cols">
+            <!-- Coluna de Texto Principal -->
+            <div class="content-col-text">
+                <p>Todos os funcionários, colaboradores, estagiários e aprendizes <strong>possuem acesso ao Geohab</strong>. Para entrar, utilize seu 
+                    <span class="info-badge" title="Seu nome de usuário para acessar os sistemas da CDHU ou seu computador" data-toggle="tooltip">
+                        <span class="info-badge-text">login de rede</span>
+                        <span class="icon-custon icon-question"></span>
+                    </span> e a mesma senha que você usa no seu computador.
+                </p>
+                <p>No entanto, o seu nível de acesso é definido pelo 
+                    <span class="info-badge" title="Responsável por gerenciar as permissões de acesso aos dados do seu setor" data-toggle="tooltip">
+                        <span class="info-badge-text">administrador local</span>
+                        <span class="icon-custon icon-question"></span>
+                    </span> do seu setor. Ele é quem determina quais conteúdos são públicos e quais são restritos.
+                </p>
+                <p>Usuários externos (fora da rede CDHU) também podem ter acesso, mediante cadastro e aprovação do administrador local e da gerência responsável.</p>
+            </div>
+            
+            <!-- Coluna de Mídia -->
+            <div class="content-col-media">
+                <div class="image-modal-wrapper">
+                    <img class="modal-trigger-img img-decoration" title="Clique para expandir"
+                        src="https://via.placeholder.com/500x300/ff1100/ffffff?text=Acesso+Centralizado"
+                        alt="Diagrama mostrando múltiplos usuários acessando um servidor centralizado">
+                    <div class="image-modal-popup">
+                        <span class="custom-close">×</span>
+                        <img class="modal-display-img">
+                        <div class="modal-caption-text">Múltiplos usuários acessando dados geográficos de forma centralizada.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bloco de Aviso -->
+        <div class="notice-block notice-warning">
+            <div class="notice-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                </svg>
+            </div>
+            <div class="notice-content">
+                <p><strong>Lembrete de Segurança:</strong> Sua conta e senha são de uso pessoal e intransferível. Nunca as compartilhe com ninguém, sob nenhuma hipótese.</p>
+            </div>
+        </div>
+        
+        <!-- Bloco de Informação -->
+        <div class="notice-block notice-info">
+            <div class="notice-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
+                </svg>
+            </div>
+            <div class="notice-content">
+                <p>Para mais informações sobre cadastramento de usuários externos e perfis de uso, <strong>leia o material complementar disponível nesta seção</strong>.</p>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- =================================================================== -->
+<!--                         FIM: BLOCO SEÇÃO 1                          -->
+<!-- =================================================================== --> 
     <!-- =================================================================== -->
     <!--                       FIM: BLOCO SEÇÃO 1                            -->
     <!-- =================================================================== -->
@@ -1116,6 +1160,17 @@
     <!-- =================================================================== -->
     <!--                      FIM: BLOCO DE CONCLUSÃO                        -->
     <!-- =================================================================== -->
+
+
+    <!-- ======================================================= -->
+    <!--     SCRIPTS ESSENCIAIS (jQuery, Popper, Bootstrap)      -->
+    <!-- ======================================================= -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js"></script>
+    
+    <!-- SEU ARQUIVO JAVASCRIPT (MODIFICADO) -->
+    <script src="script.js"></script>
 </body>
 
 </html>
