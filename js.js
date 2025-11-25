@@ -1,14 +1,13 @@
 
 <script>
 // ===================================================================
-// SCRIPT FINAL E COMPLETO PARA O CURSO GEOHAB
+// SCRIPT PARA O CURSO GEOHAB
 // ===================================================================
 
 document.addEventListener('DOMContentLoaded', function() {
 
     // ===============================================================
     // PARTE 1: RASTREADOR DE NAVEGAÇÃO (BOTÃO "CONTINUAR")
-    // Esta parte DEVE rodar em TODAS as páginas do curso.
     // ===============================================================
     try {
         const courseIdMatch = document.body.className.match(/course-(\d+)/);
@@ -59,7 +58,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // ===============================================================
     // PARTE 2: EXIBIDOR DO BOTÃO "CONTINUAR"
-    // Esta parte só precisa rodar na página onde o botão existe.
     // ===============================================================
     try {
         const resumeButton = document.getElementById('resume-course-button');
@@ -80,31 +78,29 @@ document.addEventListener('DOMContentLoaded', function() {
         console.error("Erro na lógica do Exibidor:", e);
     }
 
-// ===================================================================
-// INÍCIO: LÓGGICA DE INICIALIZAÇÃO DE COMPONENTES BOOTSTRAP (jQuery + Bootstrap)
-// ===================================================================
+    // ===================================================================
+    // INÍCIO: LÓGGICA DE INICIALIZAÇÃO DE COMPONENTES BOOTSTRAP (jQuery + Bootstrap)
+    // ===================================================================
 
-// Pede ao Moodle para carregar o jQuery E o JavaScript do Bootstrap
-require(['jquery', 'core/popper', 'core/bootstrap'], function($, popper) {
-    // Agora, o '$' está pronto e a função .popover() existe.
-    
-    // Não precisamos de $(document).ready() aqui, pois o 'require' já garante que tudo está carregado.
-    console.log("jQuery e Bootstrap estão prontos. Inicializando popovers...");
-    
-    // Inicializa todos os popovers na página
-    $('[data-toggle="popover"]').popover();
+    // Pede ao Moodle para carregar o jQuery E o JavaScript do Bootstrap
+    require(['jquery', 'core/popper', 'core/bootstrap'], function($, popper) {
+        
+        console.log("jQuery e Bootstrap estão prontos. Inicializando popovers...");
+        
+        // Inicializa todos os popovers na página
+        $('[data-toggle="popover"]').popover();
 
-    // Lógica para fechar o popover ao clicar fora (opcional, mas recomendado)
-    $('body').on('click', function (e) {
-        $('[data-toggle="popover"]').each(function () {
-            if (!$(this).is(e.target) && $(this).has(e.target).length === 0 && $('.popover').has(e.target).length === 0) {
-                $(this).popover('hide');
-            }
+        // Lógica para fechar o popover ao clicar fora
+        $('body').on('click', function (e) {
+            $('[data-toggle="popover"]').each(function () {
+                if (!$(this).is(e.target) && $(this).has(e.target).length === 0 && $('.popover').has(e.target).length === 0) {
+                    $(this).popover('hide');
+                }
+            });
         });
     });
-});
 
-        // ===================================================================
+    // ===================================================================
     // FUNÇÃO HELPER: Verifica se estamos na página principal do curso
     // ===================================================================
     function isCourseHomePage() {
@@ -116,7 +112,6 @@ require(['jquery', 'core/popper', 'core/bootstrap'], function($, popper) {
     // ===================================================================
     // SETUP INICIAL DA PÁGINA (Executa uma vez no carregamento)
     // ===================================================================
-
     // --- 1. Injetar nome do usuário ---
     try {
         const userFullNameElement = document.querySelector('.loggedinas strong');
@@ -248,7 +243,7 @@ require(['jquery', 'core/popper', 'core/bootstrap'], function($, popper) {
             return;
         }
 
-        // Se chegou aqui, é um link de rolagem. Impedimos o pulo padrão.
+        // Se chegou aqui, é um link de rolagem. Impedimos o pulo.
         e.preventDefault();
         
         const anchorTargetId = link.getAttribute('href');
@@ -309,7 +304,7 @@ require(['jquery', 'core/popper', 'core/bootstrap'], function($, popper) {
     }
 
 // ===================================================================
-// INÍCIO: LÓGICA PARA BARRAS DE PROGRESSO DE MÓDULO (VERSÃO FINAL)
+// INÍCIO: LÓGICA PARA BARRAS DE PROGRESSO DE MÓDULO
 // ===================================================================
 
 // [CORREÇÃO] O seletor agora procura pela classe unificada E pelo data-attribute

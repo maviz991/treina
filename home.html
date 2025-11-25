@@ -49,7 +49,7 @@
 <!-- ==================================================================== -->
 <!--                        Início do Bloco Welcome                       -->
 <!-- ==================================================================== -->
-<div class="block-module-home"><!-- CABEÇALHO DE BOAS-VINDAS -->
+<div class="block-module-home" id="welcome-hero">
     <div classe="hero-actions" style="text-align: right; background-color: white;">
         <a href="#" class="btn btn-secondary" id="resume-course-button" style="display: none; border-radius: 0 10px 0 8px !important; padding: 4px !important;">
             Continuar de onde parei
@@ -68,7 +68,7 @@
               &lt;/a&gt;
             ">Acessar Geohab</button>
     </header>
-    <div class="course-progress-container" data-courseid="29"> <!-- [IMPORTANTE] Mude para o ID do seu curso -->
+    <div class="course-progress-container" data-courseid="29">
         <div class="course-progress-bar">
             <div class="course-progress-bar-fill" id="course-progress-fill"></div>
         </div>
@@ -76,11 +76,12 @@
     </div>
     <main class="main-welcome-content">
 
-        <!-- SEÇÃO DE INFORMAÇÕES IMPORTANTES EM CARDS -->
+        <!-- SEÇÃO DE INFORMAÇÕES EM CARDS -->
         <h2 class="main-welcome-content-title">Seus Primeiros Passos:</h2>
             <ul class="welcome-info-grid">
                 <li class="welcome-info-card">
-                    <div class="welcome-info-card-icon"><!-- Ícone: Play (CÓDIGO COMPLETO) --><svg>
+                    <div class="welcome-info-card-icon"><!-- Ícone: Play  -->
+                        <svg>
                             <polygon points="5 3 19 12 5 21 5 3"></polygon>
                         </svg></div>
                     <div>
@@ -89,7 +90,8 @@
                     </div>
                 </li>
                 <li class="welcome-info-card">
-                    <div class="welcome-info-card-icon"><!-- Ícone: Checklist --><svg>
+                    <div class="welcome-info-card-icon"><!-- Ícone: Checklist -->
+                        <svg>
                             <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path>
                             <rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect>
                         </svg></div>
@@ -109,7 +111,7 @@
                     </div>
                 </li>
                 <li class="welcome-info-card">
-                    <div class="welcome-info-card-icon"><!-- Ícone: Alvo/Foco (CÓDIGO COMPLETO) --><svg>
+                    <div class="welcome-info-card-icon"><!-- Ícone: Alvo/Foco --><svg>
                             <circle cx="12" cy="12" r="10"></circle>
                             <circle cx="12" cy="12" r="6"></circle>
                             <circle cx="12" cy="12" r="2"></circle>
@@ -121,12 +123,12 @@
                 </li>
             </ul>
 
+        <!-- SEÇÃO ATALHOS EM CARDS -->
         <h2 class="main-welcome-content-title"><br>Navegue pelos Módulos:</h2>
             <div class="welcome-module-shortcut-grid">
             <!-- Atalho para o Módulo 1 -->
-            <a href="#coursecontentsection2" class="welcome-shortcut-card js-scroll-link" data-section-target="2">
+            <a href="#coursecontentsection2" class="module-shortcut-card welcome-shortcut-card js-scroll-link" data-section-target="2">
                 <div class="welcome-shortcut-icon-card">
-                    <!-- Ícone: Apresentação (Bandeira) -->
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
                         <path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"></path>
                         <line x1="4" y1="22" x2="4" y2="15"></line>
@@ -136,7 +138,7 @@
             </a>
 
             <!-- Atalho para o Módulo 2 -->
-            <a href="#coursecontentsection11" class="welcome-shortcut-card js-scroll-link" data-section-target="11">
+            <a href="#coursecontentsection11" class="module-shortcut-card welcome-shortcut-card js-scroll-link" data-section-target="11">
                 <div class="welcome-shortcut-icon-card">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
                         <polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"></polygon>
@@ -148,7 +150,7 @@
             </a>
 
             <!-- Atalho para o Módulo 3 -->
-            <a href="#coursecontentsection17" class="welcome-shortcut-card js-scroll-link" data-section-target="17">
+            <a href="#coursecontentsection17" class="module-shortcut-card welcome-shortcut-card js-scroll-link" data-section-target="17">
                 <div class="welcome-shortcut-icon-card">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
                         <path d="M3 3l7.07 16.97 2.52-7.39 7.39-2.52L3 3z"></path>
@@ -158,7 +160,7 @@
                 <h5 class="welcome-shortcut-title-card ">3. Utilização Prática da Plataforma</h5>
             </a>
             <!-- Atalho para o Módulo 4 -->
-            <a href="#coursecontentsection23" class="welcome-shortcut-card js-scroll-link" data-section-target="23">
+            <a href="#coursecontentsection23" class="module-shortcut-card welcome-shortcut-card js-scroll-link" data-section-target="23">
                 <div class="welcome-shortcut-icon-card">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
                         <path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path>
@@ -175,20 +177,20 @@
             <p>Para <strong>suporte técnico na plataforma Geohab</strong>, abra um chamado via <strong><span class="badge-link badge-text-red"><a title="Abra um chamado clicando aqui" href="https://cda.cdhu.sp.gov.br/front/ticket.php" target="_blank" rel="noopener">CDA</a></span></strong>.</p>
         </div>
     </main>
-    <!-- RODAPÉ -->
-    <footer class="welcome-footer">Desejamos a todos um excelente aprendizado!<br><strong>Equipe Geohab</strong></footer>
+    <footer class="welcome-footer">Desejamos a todos um excelente aprendizado!<br>
+        <strong>Equipe Geohab</strong>
+    </footer>
 </div>
 <!-- =================================================================== -->
 <!--                          FIM do Bloco Welcome                       -->
 <!-- =================================================================== -->
 
-<br>
 
 <!-- ==================================================================== -->
 <!--                Início do Bloco de Vídeo de apresentação              -->
 <!-- ==================================================================== -->
-<div class="block-module-home">
-    <header class="btn-back-wrapper">
+<div class="block-module-home" id="card-video-presetation">
+    <header class="header-welcome">
         <div class="js-context-button-container back-action" style="display: none;">
             <a class="btn btn-secondary" data-toplevel-text="Voltar ao topo" data-section-text="Voltar para o Início do Curso" data-toplevel-href="#section-0" data-section-href="/course/view.php?id=29&amp;section=0#section-1">
                 Voltar para o Início
@@ -197,7 +199,6 @@
         <!-- Bloco do Título -->
         <div class="module-header">
             <div class="module-header-icon">
-                <!-- Ícone: Blocos/Fundamentos -->
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <polygon points="5 3 19 12 5 21 5 3"></polygon>
                 </svg>
@@ -223,13 +224,12 @@
 <!--                FIM do Bloco de Vídeo de apresentação                -->
 <!-- =================================================================== -->
 
-<br>
 
 <!-- =================================================================== -->
 <!--                     INÍCIO do Bloco card Módulo 1                   -->
 <!-- =================================================================== -->
-<div class="block-module-home" id="coursecontentsection2">
-    <header class="btn-back-wrapper">
+<div class="block-module-home" id="card-module-1">
+    <header class="header-welcome">
         <div class="footer-back-to-top js-context-button-container back-action" style="display: none;">
             <a class="btn btn-secondary" data-toplevel-text="Voltar ao topo" data-section-text="Voltar para o Início do Curso" data-toplevel-href="#section-0" data-section-href="/course/view.php?id=29&amp;section=0#section-2">
                 Voltar para o Início
@@ -337,21 +337,20 @@
         </div>
     </footer>
 
-</div><span style="display:none;">&nbsp;</span>
-<!-- ====================================== -->
-<!--                FIM do Bloco card Módulo 1            -->
-<!-- ====================================== -->
-
-<br>
-
+</div>
 <!-- =================================================================== -->
-<!--      Início do Bloco card Módulo 2   -->
+<!--                       FIM do Bloco card Módulo 1                    -->
 <!-- =================================================================== -->
 
-<div class="block-module-home">
+
+<!-- =================================================================== -->
+<!--                     INÍCIO do Bloco card Módulo 2                   -->
+<!-- =================================================================== -->
+
+<div class="block-module-home" id="card-module-2">
 
     <!-- SEÇÃO HEADER (FUNDO BRANCO) -->
-    <header class="btn-back-wrapper">
+    <header class="header-welcome">
         <div class="footer-back-to-top js-context-button-container back-action" style="display: none;">
             <a class="btn btn-secondary" data-toplevel-text="Voltar ao topo" data-section-text="Voltar para o Início do Curso" data-toplevel-href="#section-0" data-section-href="/course/view.php?id=29&amp;section=0#section-11">
                 Voltar para o Início
@@ -453,20 +452,19 @@
         </div>
     </footer>
 
-</div><span style="display:none;">&nbsp;</span>
-<!-- ====================================== -->
-<!--                FIM do Bloco card Módulo 2            -->
-<!-- ====================================== -->
+</div>
+<!-- =================================================================== -->
+<!--                       FIM do Bloco card Módulo 2                    -->
+<!-- =================================================================== -->
 
-<br>
 
 <!-- =================================================================== -->
-<!--   Início do Bloco Card Módulo 3    -->
+<!--                     INÍCIO do Bloco card Módulo 3                   -->
 <!-- =================================================================== -->
-<div class="block-module-home">
-    <header class="btn-back-wrapper">
+<div class="block-module-home" id="card-module-3">
+    <header class="header-welcome">
         <div class="footer-back-to-top js-context-button-container back-action" style="display: none;">
-            <a class="btn btn-secondary" data-toplevel-text="Voltar ao topo" data-section-text="Voltar para o Início do Curso" data-toplevel-href="#page-wrapper" data-section-href="/course/view.php?id=29&amp;section=0#section-17">
+            <a class="btn btn-secondary" data-toplevel-text="Voltar ao topo" data-section-text="Voltar para o Início do Curso" data-toplevel-href="#section-0" data-section-href="/course/view.php?id=29&amp;section=0#section-17">
                 Voltar para o Início
             </a>
         </div>
@@ -566,20 +564,18 @@
     </footer>
 
 </div>
-<!-- ====================================== -->
-<!--                FIM do Bloco Card Módulo 3            -->
-<!-- ====================================== -->
-<br>
-<!-- ====================================================================== -->
-<!-- Início do Bloco Card Módulo 4 -->
-<!-- ====================================================================== -->
-<!-- ====================================================================== -->
-<!-- Início do Bloco de Introdução do Módulo 4 "Visualização e Estilização" -->
-<!-- ====================================================================== -->
-<div class="block-module-home">
+<!-- =================================================================== -->
+<!--                       FIM do Bloco card Módulo 3                    -->
+<!-- =================================================================== -->
+
+
+<!-- =================================================================== -->
+<!--                     INÍCIO do Bloco card Módulo 4                   -->
+<!-- =================================================================== -->
+<div class="block-module-home" id="card-module-4">
 
     <!-- SEÇÃO HEADER (FUNDO BRANCO) -->
-    <header class="btn-back-wrapper">
+    <header class="header-welcome">
         <div class="footer-back-to-top js-context-button-container back-action" style="display: none;">
             <a class="btn btn-secondary" data-toplevel-text="Voltar ao topo" data-section-text="Voltar para o Início do Curso" data-toplevel-href="#section-0" data-section-href="/course/view.php?id=29&amp;section=0#section-23">
                 Voltar para o Início
@@ -678,16 +674,16 @@
         </div>
     </footer>
 
-</div><span style="display:none;">&nbsp;</span>
-<!-- ====================================== -->
-<!--                FIM do Bloco Card Módulo 4            -->
-<!-- ====================================== -->
- <br>
- <!-- ====================================== -->
-<!--                FIM do Bloco Certificado           -->
-<!-- ====================================== -->
-<!-- Início do Bloco de Conclusão do Curso -->
-<div class="completion-block">
+</div>
+<!-- =================================================================== -->
+<!--                       FIM do Bloco card Módulo 4                    -->
+<!-- =================================================================== -->
+
+
+<!-- =================================================================== -->
+<!--                  INÍCIO do Bloco card Completatiom                  -->
+<!-- =================================================================== -->
+<div class="completion-block" id="card-completation">
 
     <!-- HEADER DE CELEBRAÇÃO -->
     <header class="completion-header">
@@ -715,27 +711,20 @@
 
     <!-- BOTÃO DE AÇÃO -->
     <div class="completion-action">
-        <!-- 
-          [IMPORTANTE] Esta atividade de certificado geralmente tem seu próprio botão.
-          Se você puder esconder o botão padrão do Moodle, use este. 
-          Caso contrário, pode remover este botão e usar apenas o texto acima.
-        -->
         <a href="/mod/coursecertificate/view.php?id=662" class="btn btn-danger">
             Gerar Meu Certificado
         </a>
     </div>
 
 </div>
-<!-- Fim do Bloco de Conclusão do Curso -->
-<!-- ====================================== -->
-<!--                FIM do Bloco Certificado           -->
-<!-- ====================================== -->
- <br>
- <!-- ====================================== -->
-<!--                FIM do Bloco Certificado Conteúdo           -->
-<!-- ====================================== -->
-<!-- Início do Bloco de Conclusão do Curso -->
-<div class="completion-block">
+<!-- =================================================================== -->
+<!--                    FIM do Bloco card Completatiom                   -->
+<!-- =================================================================== -->
+
+<!-- =================================================================== -->
+<!--                   INÍCIO do Bloco card Certificado                  -->
+<!-- =================================================================== -->
+<div class="completion-block" id="card-certification">
 
     <!-- HEADER DE CELEBRAÇÃO -->
     <header class="completion-header">
@@ -762,9 +751,8 @@
     <p class="completion-text">Uma cópia será enviada também para o seu e-mail cadastrado na companhia.</p>
 
 </div>
-<!-- Fim do Bloco de Conclusão do Curso -->
-<!-- ====================================== -->
-<!--                FIM do Bloco Certificado Conteúdo          -->
-<!-- ====================================== -->
+<!-- =================================================================== -->
+<!--                     FIM do Bloco card Certificado                   -->
+<!-- =================================================================== -->
 </body>
 </html>
