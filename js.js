@@ -135,6 +135,32 @@ document.addEventListener('DOMContentLoaded', function() {
             card.classList.add('locked');
         }
     });
+    
+    // --- 3. Verificar e controlar botões "Acessar Módulo" ---
+    document.querySelectorAll('.footer-action.js-home-only').forEach(buttonContainer => {
+        const sectionNumber = extractSectionNumberFromButton(buttonContainer);
+        if (!sectionNumber) return;
+        
+        const moodleSection = document.querySelector(`#section-${sectionNumber}`) || document.querySelector(`.course-section-header[data-number='${sectionNumber}']`);
+        
+        // Se o módulo estiver desbloqueado (não tem cadeado), adiciona classe para exibir o botão
+        if (moodleSection && !moodleSection.querySelector('.icon.fa-lock')) {
+            buttonContainer.classList.add('module-unlocked');
+        }
+    });
+    
+    // Função auxiliar para extrair o número da seção do botão
+    function extractSectionNumberFromButton(buttonContainer) {
+        const link = buttonContainer.querySelector('a');
+        if (!link) return null;
+        
+        const href = link.getAttribute('href');
+        if (!href) return null;
+        
+        // Extrai o número da seção do href: /course/view.php?id=29&section=2#sectionid-363
+        const sectionMatch = href.match(/section=(\d+)/);
+        return sectionMatch ? sectionMatch[1] : null;
+    }
 
     // --- 3. Configurar o botão contextual (Voltar ao topo / Início) ---
     document.querySelectorAll('.js-context-button-container').forEach(container => {
@@ -155,7 +181,14 @@ document.addEventListener('DOMContentLoaded', function() {
     // --- 4. Exibir elementos que só aparecem na página principal ---
     if (isCourseHomePage()) {
         document.querySelectorAll('.js-home-only').forEach(element => {
-            element.style.display = ''; // Remove o 'display: none', deixando o CSS controlar
+            // Se o elemento é um botão de módulo e está desbloqueado, exibe normalmente
+            if (element.classList.contains('footer-action') && element.classList.contains('module-unlocked')) {
+                element.style.display = 'block';
+            }
+            // Para outros elementos js-home-only, mantém a lógica original
+            else if (!element.classList.contains('footer-action')) {
+                element.style.display = ''; // Remove o 'display: none', deixando o CSS controlar
+            }
         });
     }
 
