@@ -363,188 +363,6 @@ Obs.: Use bootstrap 4.0*/
 /*                              FIM - BADGE                            */
 /* =================================================================== */
 
-/* =================================================================== */
-/*                        INÍCIO - MODAL IMAGEM                        */
-/* =================================================================== */
-/*                            Gatilho modal                            */
-.modal-trigger-img {
-  border-radius: 5px;
-  cursor: zoom-in;
-  transition: 0.3s;
-  width: auto;
-  display: block;
-  margin: 1rem auto 2rem auto;
-}
-
-.modal-trigger-img:hover {
-  opacity: 0.7;
-}
-
-@media (max-width: 768px) {
-  .modal-trigger-img {
-    width: 100%;
-    float: none;
-    height: auto;
-  }
-}
-
-/*                     Background do modal imagem                      */
-.image-modal-popup {
-  display: none;
-  position: fixed;
-  z-index: 1000;
-  padding-top: 100px;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  overflow: auto;
-  background-color: rgba(0, 0, 0, 0.616);
-}
-
-/*                          Conteúdo do Modal                          */
-.modal-display-img {
-  max-width: -moz-fit-content;
-  max-width: fit-content;
-  max-height: -webkit-fill-available;
-  height: 70%;
-  display: block;
-  margin: 1rem auto 2rem auto;
-  box-sizing: border-box;
-}
-
-/*                           Legenda do Modal                          */
-.modal-caption-text {
-  margin: auto;
-  display: block;
-  width: 60%;
-  max-width: 700px;
-  text-align: center;
-  color: #ccc;
-  padding: 10px 0;
-  height: 150px;
-}
-
-/*                          Animação de Zoom                           */
-.modal-display-img, .modal-caption-text {
-  animation-name: zoom;
-  animation-duration: 1s;
-}
-
-@keyframes zoom {
-  from {
-    transform: scale(0);
-  }
-  to {
-    transform: scale(1);
-  }
-}
-
-/*                         Botão close do modal                        */
-.custom-close {
-  position: absolute;
-  top: 70px;
-  right: 75px;
-  color: #ffffff;
-  font-size: 50px;
-  font-weight: bold;
-  transition: 0.3s;
-  z-index: 1001;
-}
-
-.custom-close:hover,
-.custom-close:focus {
-  color: var(--color-primary-dark);
-  text-decoration: none;
-  cursor: pointer;
-}
-
-/*                       Responsividade do Modal                       */
-@media only screen and (max-width: 700px) {
-  .modal-display-img {
-    width: 100%;
-    padding-top: inherit;
-    height: auto;
-  }
-  .custom-close {
-    top: 45px;
-    right: 35px;
-  }
-}
-/* =================================================================== */
-/*                          FIM - MODAL IMAGEM                         */
-/* =================================================================== */
-
-
-/* =================================================================== */
-/*                  INÍCIO - IMAGENS CONTEÚDO DE CURSO                 */
-/* =================================================================== */
-/* ------------------------- Imagem Decorativa ------------------------*/
-
-.img-decoration {
-  display: block;
-  width: 400px;
-  height: auto;
-  margin: 1.5rem 2rem 2rem 2rem;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-  cursor: zoom-in;
-}
-
-/*                            Responsividade                           */
-@media (max-width: 768px) {
-  .img-decoration {
-    float: none;
-    display: block;
-    width: 100%;
-    height: auto;
-    margin: 1rem auto 2rem auto;
-  }
-}
-
-/* ---------------------- Imagem Decorativa FULL ----------------------*/
-.img-decoration-full {
-  display: block;
-  max-width: 100%; 
-  height: auto; 
-  margin: 1.5rem auto; 
-}
-
-/*                            Responsividade                           */
-@media (max-width: 768px) {
-  .img-decoration-full {
-    width: 100%;
-    margin: 1rem auto 2rem auto;
-  }
-}
-/* -------------------------- Imagem Conteúdo -------------------------*/
-.img-content {
-  display: block;
-  width: 100%;
-  max-width: 600px;
-  height: auto;
-  margin: 0 auto; 
-  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-  cursor: zoom-in;
-  transition: transform 0.3s ease;
-
-}
-
-/*                            Responsividade                           */
-@media (max-width: 768px) {
-  .step-content-layout-cols {
-    flex-direction: column;
-  }
-  .img-content {
-    float: none;
-    display: block;
-    width: 100%;
-    height: auto;
-    margin: 1rem auto 2rem auto;
-  }
-}
-/* =================================================================== */
-/*                    FIM - IMAGENS CONTEÚDO DE CURSO                  */
-/* =================================================================== */
 
 /* =================================================================== */
 /*                          INÍCIO - LOOPA ZOOM                        */
@@ -937,6 +755,21 @@ body {
   margin: 0;
 }
 
+/* ---                   Ícone de Cadeado ::after                   --- */
+.module-shortcut-card.locked::after {
+  content: '';
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  width: 18px;
+  height: 18px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%236c757d' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='3' y='11' width='18' height='11' rx='2' ry='2'%3E%3C/rect%3E%3Cpath d='M7 11V7a5 5 0 0 1 10 0v4'%3E%3C/path%3E%3C/svg%3E");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  z-index: 2;
+}
+
 /* ------------------------------- Main ------------------------------ */
 .main-welcome-content {
   padding: 10px 10px 10px 30px;;
@@ -1205,6 +1038,144 @@ body {
 
 
 /* =================================================================== */
+/*                   INÍCIO -  BOTÃO VOLTAR - WRAPPER                  */
+/* =================================================================== */
+.header-welcome {
+  background-color: #ffffff;
+  padding-bottom: 8px;
+  padding: 40px 30px;
+  text-align: left;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+/* ---                       Botão de voltar                        --- */
+.back-action {
+  flex-grow: 1.5;
+  text-align: right; /* Centraliza o botão dentro desta coluna */
+  padding-bottom: 8px;
+}
+
+/* ---                       Responsividade                         --- */
+@media (max-width: 600px) {
+  .welcome-footer {   
+    flex-direction: column; 
+    justify-content: center;
+  }
+  .back-action {
+    text-align: center;
+    width: 100%;
+  }
+}/* =================================================================== */
+/*                     FIM -  BOTÃO VOLTAR - WRAPPER                   */
+/* =================================================================== */
+
+
+/* =================================================================== */
+/*                     INÍCIO -  FOOTER MÓDULOS CARDS                  */
+/* =================================================================== */
+.welcome-footer-modulo {
+  display: flex; 
+  justify-content: space-between; 
+  align-items: center; 
+  flex-wrap: wrap;
+  gap: 20px; 
+  padding: 25px 30px;
+  background-color: #ffffff;
+  border-top: 1px solid #e0e0e0;
+}
+
+/* ---                        Botão de Ação                         --- */
+.footer-action {
+  flex-grow: 1.5;
+  text-align: right; 
+  padding-bottom: 8px;
+}
+
+
+/* ---                            Texto                             --- */
+.footer-text {
+  flex-grow: 1;
+  text-align: right;
+  font-style: italic;
+  color: #666;
+  font-size: 0.9em;
+}
+
+/* ---                       Responsividade                         --- */
+@media (max-width: 600px) {
+  .welcome-footer {
+    flex-direction: column; 
+    justify-content: center; 
+  }
+  .footer-action,
+  .footer-text {
+    text-align: center; 
+    width: 100%;
+  }
+}
+/* =================================================================== */
+/*                       FIM -  FOOTER MÓDULOS CARDS                   */
+/* =================================================================== */
+
+
+/* =================================================================== */
+/*                      INÍCIO - BLOCO DE CONCLUSÃO                    */
+/* =================================================================== */
+.completion-block {
+  background-color: #ffffff;
+  border: 1px solid #e0e0e0;
+  border-radius: 12px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.07);
+  margin-top: 40px;
+  text-align: center; 
+  padding: 40px 30px;
+}
+
+.completion-header {
+  margin-bottom: 25px;
+}
+
+.completion-header .module-header-icon svg {
+  width: 48px;
+  height: 48px;
+  color: var(--color-primary);
+  margin-bottom: 15px;
+}
+
+.completion-header .module-title {
+  font-size: 2.2em;
+}
+
+.completion-header .module-subtitle {
+  font-size: 1.2em;
+  color: #555;
+  max-width: 600px;
+  margin: 10px auto 0 auto;
+}
+
+/* ---                      O Texto de Instrução                    --- */
+.completion-text {
+  font-family: 'Montserrat', sans-serif;
+  color: #444;
+  line-height: 1.7;
+  max-width: 650px;
+  margin: 0 auto 30px auto;
+}
+
+/* ---                    Botão de Ação Final                       --- */
+.completion-action .btn {
+  font-size: 1.2em;
+  font-weight: 700;
+  padding: 15px 40px;
+  border-radius: 8px;
+}
+/* =================================================================== */
+/*                        FIM - BLOCO DE CONCLUSÃO                     */
+/* =================================================================== */
+
+/* ========================= FIM - HOME =============================== */
+
+/* =================================================================== */
 /*                     INICIO - CONTEÚDO DOS CURSOS                    */
 /* =================================================================== */
 /* ------------------ O Contêiner Principal do Bloco ----------------- */
@@ -1225,444 +1196,224 @@ body {
 
 
 /* =================================================================== */
-/*                           INICIO - ACCORDIONS                       */
+/*                        INÍCIO - MODAL IMAGEM                        */
 /* =================================================================== */
-.collapsible-header-title-group {
-  display: flex;
-  align-items: center;
-  gap: 15px;
-}
-
-.collapsible-description {
-  margin: 15px 0 15px 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.collapsible-content-btn {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  justify-content: center;
-}
-
-.collapsible-content p {
-  margin: 0;
-  line-height: 1.6;
-}
-.collapsible-content a {
-  font-weight: 600;
-  text-decoration: none;
-}
-
-/* ---------------------- Accordion Lição da Seção  ------------------ */
-.collapsible-task-section {
-  margin-top: 1.3rem;
-  border: 1px solid #d9eaff;
-  background-color: #f7faff;
-  border-radius: 8px;
-  overflow: hidden;
-}
-
-/*                           Lição - Header                            */
-.task-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 15px;
-  padding: 20px 25px;
-  cursor: pointer;
-  text-decoration: none !important;
-  color: inherit;
-  transition: background-color 0.2s;
-}
-.task-header:hover {
-  background-color: #eff6ff;
-}
-
-/*                        Lição - SVG + Header                         */
-.task-header-title {
-  font-family: 'Axiforma', 'Montserrat', sans-serif;
-  font-size: 1.2em;
-  font-weight: 700;
-  color: #004085;
-  margin: 0;
-}
-
-.task-header-icon svg {
-  width: 28px;
-  height: 28px;
-  color: #007bff;
-}
-
-.task-chevron {
-  color: #007bff;
-  transition: transform 0.3s ease-in-out;
-  background-color: #d8ebff;
-  border-radius: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 30px;
-  height: 30px;
-}
-
-.task-chevron svg {
-  width: 20px;
-  height: 20px;
-}
-
-.task-header[aria-expanded="true"] .task-chevron {
-  transform: rotate(90deg);
-}
-
-/*                           Lição - body                              */
-.task-body {
-  padding: 0px 25px 25px 68px;
-  border-top: 1px solid #d9eaff;
+/*                            Gatilho modal                            */
+.modal-trigger-img {
+  border-radius: 5px;
+  cursor: zoom-in;
+  transition: 0.3s;
+  width: auto;
   display: block;
+  margin: 1rem auto 2rem auto;
 }
 
-.collapsible-task-section .task-header:focus {
-  outline: 0;
-  box-shadow: 0 0 0 .2rem rgba(0, 123, 255, 0.5); 
+.modal-trigger-img:hover {
+  opacity: 0.7;
 }
 
-/*                           Lição - btn                               */
-.task-action-button {
-  display: inline-flex;
-  align-items: center;
-  gap: 3px;
-  font-weight: 200;
-  text-decoration: none;
-  color: #004085;
-  background-color: #d7ddec; 
-  border: 1px solid #829cb860;
-  padding: 4px 10px;
-  font-size: 1em;
-  border-radius: 6px;
-  transition: opacity 0.2s;
-}
-.collapsible-content-btn:hover .task-action-button:hover {
-  background-color: #004085;
-  color: #fff;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-  text-decoration: none;
+@media (max-width: 768px) {
+  .modal-trigger-img {
+    width: 100%;
+    float: none;
+    height: auto;
+  }
 }
 
-.task-action-button svg {
-  width: 20px;
-  height: 20px;
+/*                     Background do modal imagem                      */
+.image-modal-popup {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  padding-top: 100px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.616);
 }
 
-.collapsible-content-btn:hover .task-action-button.slider:hover {
-    background-color: #eb5e00;
-    text-decoration: none;
-}
-/* -------------------- Accordion Materiais da Seção  ---------------- */
-.collapsible-material-section {
-  margin-top: 1.3rem;
-  border: 1px solid #e2e2e2;
-  background-color: #fafafa;
-  border-radius: 8px;
-  overflow: hidden; 
-}
-
-/*                         Material - Header                           */
-.material-sct-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 15px;
-  padding: 20px 25px;
-  cursor: pointer;
-  text-decoration: none !important;
-  color: inherit;
-  transition: background-color 0.2s;
-}
-.material-sct-header:hover {
-  background-color: #f1f1f1;
-}
-
-/*                      Material - SVG + Header                        */
-.material-sct-header-title {
-  font-family: 'Axiforma', 'Montserrat', sans-serif;
-  font-size: 1.2em;
-  font-weight: 700;
-  color: #6b6b6b;
-  margin: 0;
-}
-
-.material-sct-header-icon svg {
-  width: 28px;
-  height: 28px;
-  color: #6b6b6b;
-}
-
-.material-sct-chevron {
-  color: #6b6b6b;
-  transition: transform 0.3s ease-in-out;
-  background-color: #d6d6d6;
-  border-radius: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 30px;
-  height: 30px;
-}
-
-.material-sct-chevron svg {
-  width: 20px;
-  height: 20px;
-}
-
-.material-sct-header[aria-expanded="true"] .material-sct-chevron {
-  transform: rotate(90deg);
-}
-
-/*                         Material - body                             */
-.material-sct-body {
-  padding: 0px 25px 25px 68px;
-  border-top: 1px solid #c5c5c5;
+/*                          Conteúdo do Modal                          */
+.modal-display-img {
+  max-width: -moz-fit-content;
+  max-width: fit-content;
+  max-height: -webkit-fill-available;
+  height: 70%;
   display: block;
+  margin: 1rem auto 2rem auto;
+  box-sizing: border-box;
 }
 
-.collapsible-material-section .material-sct-header:focus {
-  outline: 0;
-  box-shadow: 0 0 0 .2rem rgba(190, 190, 190, 0.5); 
+/*                           Legenda do Modal                          */
+.modal-caption-text {
+  margin: auto;
+  display: block;
+  width: 60%;
+  max-width: 700px;
+  text-align: center;
+  color: #ccc;
+  padding: 10px 0;
+  height: 150px;
 }
 
-/*                         Material - btn                              */
-.material-sct-action-button {
-  display: inline-flex;
-  align-items: center;
-  gap: 3px;
-  font-weight: 200;
-  text-decoration: none;
-  color: #6b6b6b;
-  background-color: #f1f1f1; 
-  border: 1px solid #cecece73;
-  padding: 4px 10px;
-  font-size: 1em;
-  border-radius: 6px;
-  transition: opacity 0.2s;
-}
-.collapsible-content-btn:hover .material-sct-action-button:hover {
-  background-color: #6b6b6b;
-  color: #fff;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-  text-decoration: none;
+/*                          Animação de Zoom                           */
+.modal-display-img, .modal-caption-text {
+  animation-name: zoom;
+  animation-duration: 1s;
 }
 
-.material-sct-action-button svg {
-  width: 20px;
-  height: 20px;
-}
-
-.collapsible-content-btn:hover .material-sct-action-button.slider:hover {
-    background-color: #eb5e00;
-    text-decoration: none;
-}
-/* =================================================================== */
-/*                             FIM - ACCORDIONS                        */
-/* =================================================================== */
-
-/* =================================================================== */
-/*                   INÍCIO -  CARDS DE MÓDULO - HOME                  */
-/* =================================================================== */
-
-
-/* =================================================================== */
-/*                   INÍCIO -  BOTÃO VOLTAR - WRAPPER                  */
-/* =================================================================== */
-.header-welcome {
-  background-color: #ffffff;
-  padding-bottom: 8px;
-  padding: 40px 30px;
-  text-align: left;
-  border-bottom: 1px solid #e0e0e0;
-}
-
-/* --- A Coluna do Botão (Esquerda) --- */
-.back-action {
-  flex-grow: 1.5;
-  text-align: right; /* Centraliza o botão dentro desta coluna */
-  padding-bottom: 8px;
-}
-
-/* --- Responsividade para telas pequenas --- */
-@media (max-width: 600px) {
-  .welcome-footer {
-    flex-direction: column; 
-    justify-content: center;
+@keyframes zoom {
+  from {
+    transform: scale(0);
   }
-  .back-action {
-    text-align: center;
-    width: 100%;
-  }
-}/* =================================================================== */
-/*                     FIM -  BOTÃO VOLTAR - WRAPPER                   */
-/* =================================================================== */
-
-
-/* =================================================================== */
-/*             FOOTER DO BLOCO (Layout de 2 Colunas)          */
-/* =================================================================== */
-
-.welcome-footer-modulo {
-  display: flex; /* Ativa o Flexbox */
-  justify-content: space-between; /* Empurra os itens para as extremidades */
-  align-items: center; /* Alinha verticalmente no centro */
-  flex-wrap: wrap; /* Permite que quebre a linha em telas pequenas */
-  gap: 20px; /* Espaço entre os itens se eles quebrarem a linha */
-  
-  padding: 25px 30px;
-  background-color: #ffffff;
-  border-top: 1px solid #e0e0e0;
-}
-
-/* --- A Coluna do Botão (Esquerda) --- */
-.footer-action {
-  flex-grow: 1.5;
-  text-align: right; /* Centraliza o botão dentro desta coluna */
-  padding-bottom: 8px;
-}
-
-
-/* --- A Coluna do Texto (Direita) --- */
-.footer-text {
-  flex-grow: 1; /* Permite que esta coluna cresça */
-  text-align: right; /* Alinha o texto à direita */
-  font-style: italic;
-  color: #666;
-  font-size: 0.9em;
-}
-
-/* --- Responsividade para telas pequenas --- */
-@media (max-width: 600px) {
-  .welcome-footer {
-    flex-direction: column; /* Empilha as colunas verticalmente */
-    justify-content: center; /* Centraliza tudo */
-  }
-  .footer-action,
-  .footer-text {
-    text-align: center; /* Centraliza todo o conteúdo em telas pequenas */
-    width: 100%;
+  to {
+    transform: scale(1);
   }
 }
 
-/* =================================================================== */
-/*             COMPONENTE: BLOCO DE CONCLUSÃO / CERTIFICADO            */
-/* =================================================================== */
-
-/* --- O Contêiner Principal --- */
-.completion-block {
-  background-color: #ffffff;
-  border: 1px solid #e0e0e0;
-  border-radius: 12px;
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.07);
-  margin-top: 40px;
-  text-align: center; /* Centraliza todo o conteúdo */
-  padding: 40px 30px;
-}
-
-/* --- O Header de Celebração --- */
-.completion-header {
-  margin-bottom: 25px;
-}
-.completion-header .module-header-icon svg {
-  width: 48px; /* Ícone maior para mais impacto */
-  height: 48px;
-  color: var(--color-primary);
-  margin-bottom: 15px;
-}
-.completion-header .module-title {
-  font-size: 2.2em;
-}
-.completion-header .module-subtitle {
-  font-size: 1.2em;
-  color: #555;
-  max-width: 600px; /* Limita a largura do subtítulo */
-  margin: 10px auto 0 auto; /* Centraliza o subtítulo */
-}
-
-/* --- O Texto de Instrução --- */
-.completion-text {
-  font-family: 'Montserrat', sans-serif;
-  color: #444;
-  line-height: 1.7;
-  max-width: 650px;
-  margin: 0 auto 30px auto;
-}
-
-/* --- O Botão de Ação Final --- */
-.completion-action .btn {
-  font-size: 1.2em;
-  font-weight: 700;
-  padding: 15px 40px;
-  border-radius: 8px;
-}
-
-/* =================================================================== */
-/*             ESTILO PARA ATALHOS DE MÓDULOS BLOQUEADOS               */
-/* =================================================================== */
-
-/* O ícone de cadeado continua o mesmo */
-.module-shortcut-card.locked::after {
-  content: '';
+/*                         Botão close do modal                        */
+.custom-close {
   position: absolute;
-  top: 15px;
-  right: 15px;
-  width: 18px;
-  height: 18px;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%236c757d' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='3' y='11' width='18' height='11' rx='2' ry='2'%3E%3C/rect%3E%3Cpath d='M7 11V7a5 5 0 0 1 10 0v4'%3E%3C/path%3E%3C/svg%3E");
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
-  z-index: 2; /* Garante que o cadeado fique visível */
+  top: 70px;
+  right: 75px;
+  color: #ffffff;
+  font-size: 50px;
+  font-weight: bold;
+  transition: 0.3s;
+  z-index: 1001;
 }
 
+.custom-close:hover,
+.custom-close:focus {
+  color: var(--color-primary-dark);
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/*                       Responsividade do Modal                       */
+@media only screen and (max-width: 700px) {
+  .modal-display-img {
+    width: 100%;
+    padding-top: inherit;
+    height: auto;
+  }
+  .custom-close {
+    top: 45px;
+    right: 35px;
+  }
+}
 /* =================================================================== */
-/*             COMPONENTE: BARRA DE PROGRESSO DO MÓDULO                */
+/*                          FIM - MODAL IMAGEM                         */
 /* =================================================================== */
 
 
+/* =================================================================== */
+/*                  INÍCIO - IMAGENS CONTEÚDO DE CURSO                 */
+/* =================================================================== */
+/* ------------------------- Imagem Decorativa ------------------------*/
+
+.img-decoration {
+  display: block;
+  width: 400px;
+  height: auto;
+  margin: 1.5rem 2rem 2rem 2rem;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  cursor: zoom-in;
+}
+
+/*                            Responsividade                           */
+@media (max-width: 768px) {
+  .img-decoration {
+    float: none;
+    display: block;
+    width: 100%;
+    height: auto;
+    margin: 1rem auto 2rem auto;
+  }
+}
+
+/* ---------------------- Imagem Decorativa FULL ----------------------*/
+.img-decoration-full {
+  display: block;
+  max-width: 100%; 
+  height: auto; 
+  margin: 1.5rem auto; 
+}
+
+/*                            Responsividade                           */
+@media (max-width: 768px) {
+  .img-decoration-full {
+    width: 100%;
+    margin: 1rem auto 2rem auto;
+  }
+}
+/* -------------------------- Imagem Conteúdo -------------------------*/
+.img-content {
+  display: block;
+  width: 100%;
+  max-width: 600px;
+  height: auto;
+  margin: 0 auto; 
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  cursor: zoom-in;
+  transition: transform 0.3s ease;
+
+}
+
+/*                            Responsividade                           */
+@media (max-width: 768px) {
+  .step-content-layout-cols {
+    flex-direction: column;
+  }
+  .img-content {
+    float: none;
+    display: block;
+    width: 100%;
+    height: auto;
+    margin: 1rem auto 2rem auto;
+  }
+}
+/* =================================================================== */
+/*                    FIM - IMAGENS CONTEÚDO DE CURSO                  */
+/* =================================================================== */
 
 /* =================================================================== */
-/*             COMPONENTE: LAYOUT DE CONTEÚDO (TEXTO + MÍDIA)          */
+/*          INÍCIO - LAYOUT DE CONTEÚDO COLUNA (TEXTO + MÍDIA)         */
 /* =================================================================== */
-
 .content-layout-cols {
   display: flex;
-  flex-wrap: wrap; /* Permite que as colunas quebrem em telas menores */
-  gap: 3rem;      /* Espaço entre o texto e a imagem */
-  align-items: flex-start; /* Alinha os itens no topo */
+  flex-wrap: wrap; 
+  gap: 3rem;      
+  align-items: flex-start; 
   margin-bottom: 1.5rem;
 }
 
 .content-col-text {
-  flex: 2; /* Faz a coluna de texto ocupar o dobro do espaço da mídia */
-  min-width: 300px; /* Largura mínima antes de quebrar a linha */
+  flex: 2; 
+  min-width: 300px; 
 }
 
 .content-col-media {
-  flex: 1; /* A coluna de mídia ocupa uma parte */
+  flex: 1; 
   min-width: 250px;
 }
 
-/* Ajusta a imagem decorativa para não flutuar e centralizar dentro da coluna */
+/* ---                        Imagem decorativa                     --- */
 .content-col-media .img-decoration {
   float: none;
-  margin: 0 auto; /* Centraliza a imagem na sua coluna */
+  margin: 0 auto; 
   width: 100%;
   max-width: 400px;
 }
+/* =================================================================== */
+/*            FIM - LAYOUT DE CONTEÚDO COLUNA (TEXTO + MÍDIA)          */
+/* =================================================================== */
+
 
 /* =================================================================== */
-/*             COMPONENTE: CAIXA DE TERMINOLOGIA                     */
+/*             INÍCIO - CAIXA DE TERMINOLOGIA (EXPLICAÇÃO)             */
 /* =================================================================== */
-
 .terminology-box {
   background-color: #f8f9fa;
   border: 1px solid #dee2e6;
@@ -1749,11 +1500,244 @@ body {
   padding: 0 0 15px 0;
   margin-top: 4px;
 }
+/* =================================================================== */
+/*               FIM - CAIXA DE TERMINOLOGIA (EXPLICAÇÃO)              */
+/* =================================================================== */
+
 
 /* =================================================================== */
-/*             COMPONENTE: Avisos (Evolução do action/attention-box)   */
+/*                           INICIO - ACCORDIONS                       */
 /* =================================================================== */
-/* ---  --- */
+.collapsible-header-title-group {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+.collapsible-description {
+  margin: 15px 0 15px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.collapsible-content-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  justify-content: center;
+}
+.collapsible-content p {
+  margin: 0;
+  line-height: 1.6;
+}
+.collapsible-content a {
+  font-weight: 600;
+  text-decoration: none;
+}
+
+/* ---------------------- Accordion Lição da Seção  ------------------ */
+.collapsible-task-section {
+  margin-top: 1.3rem;
+  border: 1px solid #d9eaff;
+  background-color: #f7faff;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+/*                           Lição - Header                            */
+.task-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+  padding: 20px 25px;
+  cursor: pointer;
+  text-decoration: none !important;
+  color: inherit;
+  transition: background-color 0.2s;
+}
+.task-header:hover {
+  background-color: #eff6ff;
+}
+
+/*                        Lição - SVG + Header                         */
+.task-header-title {
+  font-family: 'Axiforma', 'Montserrat', sans-serif;
+  font-size: 1.2em;
+  font-weight: 700;
+  color: #004085;
+  margin: 0;
+}
+.task-header-icon svg {
+  width: 28px;
+  height: 28px;
+  color: #007bff;
+}
+.task-chevron {
+  color: #007bff;
+  transition: transform 0.3s ease-in-out;
+  background-color: #d8ebff;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 30px;
+  height: 30px;
+}
+.task-chevron svg {
+  width: 20px;
+  height: 20px;
+}
+.task-header[aria-expanded="true"] .task-chevron {
+  transform: rotate(90deg);
+}
+
+/*                           Lição - body                              */
+.task-body {
+  padding: 0px 25px 25px 68px;
+  border-top: 1px solid #d9eaff;
+  display: block;
+}
+.collapsible-task-section .task-header:focus {
+  outline: 0;
+  box-shadow: 0 0 0 .2rem rgba(0, 123, 255, 0.5); 
+}
+
+/*                           Lição - btn                               */
+.task-action-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  font-weight: 200;
+  text-decoration: none;
+  color: #004085;
+  background-color: #d7ddec; 
+  border: 1px solid #829cb860;
+  padding: 4px 10px;
+  font-size: 1em;
+  border-radius: 6px;
+  transition: opacity 0.2s;
+}
+.collapsible-content-btn:hover .task-action-button:hover {
+  background-color: #004085;
+  color: #fff;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  text-decoration: none;
+}
+.task-action-button svg {
+  width: 20px;
+  height: 20px;
+}
+
+.collapsible-content-btn:hover .task-action-button.slider:hover {
+    background-color: #eb5e00;
+    text-decoration: none;
+}
+/* -------------------- Accordion Materiais da Seção  ---------------- */
+.collapsible-material-section {
+  margin-top: 1.3rem;
+  border: 1px solid #e2e2e2;
+  background-color: #fafafa;
+  border-radius: 8px;
+  overflow: hidden; 
+}
+
+/*                         Material - Header                           */
+.material-sct-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+  padding: 20px 25px;
+  cursor: pointer;
+  text-decoration: none !important;
+  color: inherit;
+  transition: background-color 0.2s;
+}
+.material-sct-header:hover {
+  background-color: #f1f1f1;
+}
+
+/*                      Material - SVG + Header                        */
+.material-sct-header-title {
+  font-family: 'Axiforma', 'Montserrat', sans-serif;
+  font-size: 1.2em;
+  font-weight: 700;
+  color: #6b6b6b;
+  margin: 0;
+}
+.material-sct-header-icon svg {
+  width: 28px;
+  height: 28px;
+  color: #6b6b6b;
+}
+
+.material-sct-chevron {
+  color: #6b6b6b;
+  transition: transform 0.3s ease-in-out;
+  background-color: #d6d6d6;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 30px;
+  height: 30px;
+}
+.material-sct-chevron svg {
+  width: 20px;
+  height: 20px;
+}
+.material-sct-header[aria-expanded="true"] .material-sct-chevron {
+  transform: rotate(90deg);
+}
+
+/*                         Material - body                             */
+.material-sct-body {
+  padding: 0px 25px 25px 68px;
+  border-top: 1px solid #c5c5c5;
+  display: block;
+}
+.collapsible-material-section .material-sct-header:focus {
+  outline: 0;
+  box-shadow: 0 0 0 .2rem rgba(190, 190, 190, 0.5); 
+}
+
+/*                         Material - btn                              */
+.material-sct-action-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  font-weight: 200;
+  text-decoration: none;
+  color: #6b6b6b;
+  background-color: #f1f1f1; 
+  border: 1px solid #cecece73;
+  padding: 4px 10px;
+  font-size: 1em;
+  border-radius: 6px;
+  transition: opacity 0.2s;
+}
+.collapsible-content-btn:hover .material-sct-action-button:hover {
+  background-color: #6b6b6b;
+  color: #fff;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  text-decoration: none;
+}
+.material-sct-action-button svg {
+  width: 20px;
+  height: 20px;
+}
+.collapsible-content-btn:hover .material-sct-action-button.slider:hover {
+    background-color: #eb5e00;
+    text-decoration: none;
+}
+/* =================================================================== */
+/*                             FIM - ACCORDIONS                        */
+/* =================================================================== */
+
+
+/* =================================================================== */
+/*                   INÍCIO - Avisos (Info/attention-box)              */
+/* =================================================================== */
 .notice-block {
   display: flex;
   align-items: flex-start;
@@ -1782,7 +1766,7 @@ body {
   text-decoration: underline;
 }
 
-/* Modificador de Informação (Azul) */
+/* ---            Modificador de Box de Informação (Azul)           --- */
 .notice-block.notice-info {
   background-color: #f0f7ff;
   border-color: #d9eaff;
@@ -1799,7 +1783,7 @@ body {
   color: #0056b3;
 }
 
-/* Modificador de Atenção (Amarelo) */
+/* ---            Modificador de Box de Atenção (Amarelo)           --- */
 .notice-block.notice-warning {
   background-color: #fffaf0;
   border-color: #ffeed9;
@@ -1809,13 +1793,15 @@ body {
 }
 .notice-block.notice-warning .notice-icon {
   color: #fabd5a;
-  
 }
+/* =================================================================== */
+/*                     FIM - Avisos (Info/attention-box)               */
+/* =================================================================== */
+
 
 /* =================================================================== */
-/*             COMPONENTE: BADGE INFORMATIVO (EVOLUÇÃO)              */
+/*                     INÍCIO - BADGE INFORMATIVO (?)                  */
 /* =================================================================== */
-
 .info-badge {
   display: inline-flex;
   align-items: flex-start;  
@@ -1832,7 +1818,6 @@ body {
   white-space: nowrap;
   transition: transform 0.2s ease-in-out, box-shadow 0.5s ease-in-out;
 }
-
 .info-badge:hover {
   transform: translateY(-1px);
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.123);
@@ -1846,47 +1831,20 @@ body {
   height: 13px;
   border-radius: 50%;
   border: .4px solid #6c757d;
-  /* background-color: #6c757d; */
   color: #6c757d;
 }
-
 .info-badge-icon svg {
   width: 13px;
   height: 13px;
 }
 /* =================================================================== */
-/*             COMPONENTE: BLOCO DE AÇÃO (EVOLUÇÃO DO NOTICE)          */
+/*                       FIM - BADGE INFORMATIVO (?)                   */
 /* =================================================================== */
-
-.notice-block-action .notice-content {
-  display: grid;
-  justify-content: space-between; 
-  align-items: center;
-  flex-wrap: wrap; /* Permite que quebre a linha em telas pequenas */
-  gap: 15px; /* Espaço entre o texto e o botão */
-}
-
-.notice-content-btn{
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-
-
-/* Responsividade para telas menores */
-@media (max-width: 768px) {
-  .notice-block-action .notice-content {
-    justify-content: center; /* Centraliza em telas pequenas */
-    text-align: center;
-  }
-}
 
 
 /* =================================================================== */
-/*             COMPONENTE: BLOCO DE PASSO A PASSO                      */
+/*            INÍCIO - BLOCO DE PASSO A PASSO (li Números)             */
 /* =================================================================== */
-
 .step-content-layout-cols {
   display: flex;
   flex-wrap: wrap; /* Permite que as colunas quebrem em telas menores */
@@ -1902,15 +1860,14 @@ body {
 }
 
 .step-content-col-media {
-  flex: 1; /* A coluna de mídia ocupa uma parte */
+  flex: 1;
   min-width: 250px;
   padding-bottom: 2em;
 }
 
-/* Ajusta a imagem decorativa para não flutuar e centralizar dentro da coluna */
 .step-content-col-media .img-decoration {
   float: none;
-  margin: 0 auto; /* Centraliza a imagem na sua coluna */
+  margin: 0 auto; 
   width: 100%;
   max-width: 400px;
 }
@@ -1939,233 +1896,230 @@ body {
   margin-top: 0;
   margin-bottom: 0.5rem;
 }
+/* =================================================================== */
+/*              FIM - BLOCO DE PASSO A PASSO (li Números)              */
+/* =================================================================== */
 
-    /* =================================================================== */
-    /* MATERIAIS DE APOIO */
-    /* =================================================================== */
-
-
-    .materials-hero {
-      background-color: #ffffff;
-      padding: 10px;
-      text-align: center;
-    }
-
-    .materials-hero h1 {
-      font-family: 'Axiforma', 'Montserrat', sans-serif;
-      font-size: 2.8em;
-      color: #000000;
-      margin: 0 0 0 0;
-    }
-    .materials-hero p {
-      font-size: 1em;
-      color: #555;
-      text-align: center;
-      max-width: 700px;
-      margin: 10px auto;
-      line-height: 1.7;
-      
-    }
-
-    /* Estilos para os cards de materiais */
-    .materials-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
-      gap: 15px;
-      margin-top: 10px;
-    }
-
-    .material-card {
-      background-color: #ffffff;
-      border: 1px solid #e8e8e8;
-      border-radius: 12px;
-      overflow: hidden;
-      transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-      display: flex; /* Adicionado para garantir alinhamento interno */
-      flex-direction: column; /* Adicionado para garantir alinhamento interno */
-    }
-
-    .material-card:hover {
-      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
-    }
-
-    .material-header {
-      background-color: #f9f9f9;
-      padding: 10px;
-      border-bottom: 1px solid #e8e8e8;
-      display: flex;
-      align-items: center;
-      gap: 15px;
-    }
-
-    .material-icon {
-      width: 48px;
-      height: 48px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--color-primary);
-      border-radius: 12px;
-      flex-shrink: 0;
-    }
-
-    .material-icon svg {
-      width: 28px;
-      height: 28px;
-    }
-
-    .material-title {
-      font-family: var(--font-primary);
-      font-size: 1.2em;
-      font-weight: 700;
-      color: #000;
-      margin: 0;
-    }
-
-    .material-content {
-      display: flex;
-      flex-direction: column; 
-      flex-grow: 1; 
-      white-space: normal;
-      padding: 20px;
-    }
-
-    .material-description {
-      display: inline-flex;
-      align-items: center;
-      font-size: 0.95em;
-      color: #555;
-      margin-bottom: 20px;
-      text-align: justify;
-      flex-grow: 1; 
-    }
-
-    .material-files {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-
-    .material-files:hover {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.15);
-      transition: background-color 0.2s, color 0.4s;
-
-    }
-
-    .file-item {
-      display: flex;
-      align-items: center; /* Alinha o file-info e o ícone de download */
-      justify-content: space-between;
-      padding: 12px;
-      background-color: #f8f9fa;
-      border: 1px solid #e9ecef;
-      border-radius: 8px;
-      transition: background-color 0.2s ease, border-color 0.2s ease;
-    }
-    
-    .material-card:hover .file-item {
-        background-color: #f1f3f5;
-        border-color: #dee2e6;
-    }
-    
-    .material-files:hover .file-item {
-      background-color: #f0f0f0;
-      color: var(--color-primary);
-      text-decoration: none;
-    }
-
-    
-    /* Bloco da Esquerda (Nome + Formatos) */
-    .file-info {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-      align-items: flex-start;
-    }
-  
-      /* Linha Superior: Ícone + Nome */
-    .file-info-header {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-    /* Linha Inferior: Botões de Formato */
-    .file-info-icons {
-      display: inline-flex;
-      flex-wrap: wrap; 
-      gap: 8px;
-    }
-    .file-icon {
-      width: 24px;
-      height: 24px;
-      padding-left: 6px;
-      color: #666;
-      transition: color 0.2s;
-    }
-
-    .material-files:hover .file-icon {
-      color: #495057;
-    }
-
-    .file-name {
-      font-weight: 500;
-      color: #495057;
-    }
-
-    .file-type {
-      display: inline-block;
-      font-size: 0.8em;
-      font-weight: 650;
-      color: var(--color-primary);
-      background-color: #ffebe9;
-      padding: 4px 10px;
-      border-radius: 6px;
-      text-decoration: none;
-      transition: all 0.2s ease;
-    }
-    .material-card:hover .file-type:hover {
-      background-color: var(--color-primary);
-      color: #fff;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-      text-decoration: none;
-    }
-    .material-card:hover .file-type.slider:hover {
-        background-color: #eb5e00;
-        text-decoration: none;
-    }
-    .download-icon {
-      color: var(--color-text);
-      transition: color 0.2s;
-    }
-    
-    .download-icon:hover {
-      color: var(--color-primary);
-      transition: background-color 0.2s, color 0.2s, translateY 2s;
-    }
-
-    /* Estado padrão da polilinha: prepara para a animação */
-    .download-icon polyline {
-      transition: transform 0.25s ease-out;
-    }
-
-    /* Quando o link pai estiver em hover, mova APENAS a polilinha */
-    .file-item > a:hover .download-icon polyline {
-      transform: translateY(3px); /* Usei 3px para ficar mais visível */
-    }
-
-    .section-divider {
-      height: 2px;
-      background-color: #e8e8e8;
-      margin: 40px 0;
-      position: relative;
-    }
 
 /* =================================================================== */
-/* CARD DE CONQUISTA DO MÓDULO */
+/*                INÍCIO - BLOCO DE MATERIAIS DE APOIO                 */
+/* =================================================================== */
+/* ---                     Header do bloco                          ---*/
+.materials-hero {
+  background-color: #ffffff;
+  padding: 10px;
+  text-align: center;
+}
+.materials-hero h1 {
+  font-family: 'Axiforma', 'Montserrat', sans-serif;
+  font-size: 2.8em;
+  color: #000000;
+  margin: 0 0 0 0;
+}
+.materials-hero p {
+  font-size: 1em;
+  color: #555;
+  text-align: center;
+  max-width: 700px;
+  margin: 10px auto;
+  line-height: 1.7;
+  
+}
+
+/* ---                   Cards dos materiais                        ---*/
+.materials-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+  gap: 15px;
+  margin-top: 10px;
+}
+
+.material-card {
+  background-color: #ffffff;
+  border: 1px solid #e8e8e8;
+  border-radius: 12px;
+  overflow: hidden;
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  display: flex; 
+  flex-direction: column;
+}
+.material-card:hover {
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+}
+
+/* ---                     Header dos Cards                         ---*/
+.material-header {
+  background-color: #f9f9f9;
+  padding: 10px;
+  border-bottom: 1px solid #e8e8e8;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.material-icon {
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-primary);
+  border-radius: 12px;
+  flex-shrink: 0;
+}
+.material-icon svg {
+  width: 28px;
+  height: 28px;
+}
+
+.material-title {
+  font-family: var(--font-primary);
+  font-size: 1.2em;
+  font-weight: 700;
+  color: #000;
+  margin: 0;
+}
+
+/* ---                       Main dos cards                         ---*/
+.material-content {
+  display: flex;
+  flex-direction: column; 
+  flex-grow: 1; 
+  white-space: normal;
+  padding: 20px;
+}
+.material-description {
+  display: inline-flex;
+  align-items: center;
+  font-size: 0.95em;
+  color: #555;
+  margin-bottom: 20px;
+  text-align: justify;
+  flex-grow: 1; 
+}
+
+.material-files {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.material-files:hover {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.15);
+  transition: background-color 0.2s, color 0.4s;
+
+}
+
+/* ---                 Card interno .material-files                 ---*/
+.file-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px;
+  background-color: #f8f9fa;
+  border: 1px solid #e9ecef;
+  border-radius: 8px;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+.material-card:hover .file-item {
+    background-color: #f1f3f5;
+    border-color: #dee2e6;
+}
+.material-files:hover .file-item {
+  background-color: #f0f0f0;
+  color: var(--color-primary);
+  text-decoration: none;
+}
+.material-files:hover .file-icon {
+  color: #495057;
+}
+
+/* ---                 Nome + Formatos disponíveis                 --- */
+.file-info {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: flex-start;
+}
+.file-info-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.file-icon {
+  width: 24px;
+  height: 24px;
+  padding-left: 6px;
+  color: #666;
+  transition: color 0.2s;
+}
+.file-name {
+  font-weight: 500;
+  color: #495057;
+}
+
+/* ---                      Botões de Formato                      --- */
+.file-info-icons {
+  display: inline-flex;
+  flex-wrap: wrap; 
+  gap: 8px;
+}
+.file-type {
+  display: inline-block;
+  font-size: 0.8em;
+  font-weight: 650;
+  color: var(--color-primary);
+  background-color: #ffebe9;
+  padding: 4px 10px;
+  border-radius: 6px;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+.material-card:hover .file-type:hover {
+  background-color: var(--color-primary);
+  color: #fff;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  text-decoration: none;
+}
+.material-card:hover .file-type.slider:hover {
+    background-color: #eb5e00;
+    text-decoration: none;
+}
+
+/* ---                      Botão de Download                      --- */
+.download-icon {
+  color: var(--color-text);
+  transition: color 0.2s;
+}
+.download-icon:hover {
+  color: var(--color-primary);
+  transition: background-color 0.2s, color 0.2s, translateY 2s;
+}
+
+/* Animação */
+.download-icon polyline {
+  transition: transform 0.25s ease-out;
+}
+.file-item > a:hover .download-icon polyline {
+  transform: translateY(3px); 
+}
+.section-divider {
+  height: 2px;
+  background-color: #e8e8e8;
+  margin: 40px 0;
+  position: relative;
+}
+/* =================================================================== */
+/*                  FIM - BLOCO DE MATERIAIS DE APOIO                  */
+/* =================================================================== */
+
+
+/* =================================================================== */
+/*                INÍCIO - BLOCO FINALIZAÇÃO DE MÓDULO                 */
 /* =================================================================== */
 .completion-card {
   background-color: #ffffff;
@@ -2207,7 +2161,7 @@ body {
   font-size: 1.05em;
   color: #555;
   line-height: 1.7;
-  max-width: 550px; /* Melhora a legibilidade do parágrafo */
+  max-width: 550px;
   margin-bottom: 30px;
 }
 
@@ -2239,88 +2193,43 @@ body {
   transition: transform 0.2s ease;
 }
 
-  /* Estado padrão da polilinha: prepara para a animação */
-  .btn-next-module svg .dash {
-    transition: transform 0.25s ease-out;
-  }
-
-  /* Quando o link pai estiver em hover, mova APENAS a polilinha */
-  .btn-next-module:hover svg .dash {
-    transform: translateX(-.5px); /* Usei 3px para ficar mais visível */
-  }
-
-  .btn-next-module svg .arrow-p {
-    transition: transform 0.25s ease-out;
-  }
-
-  /* Quando o link pai estiver em hover, mova APENAS a polilinha */
-  .btn-next-module:hover svg .arrow-p {
-    transform: translateX(2px); /* Usei 3px para ficar mais visível */
-  }
-
-/* =================================================================== */
-/* CSS REFEITO PARA POLIMENTO DOS CARDS (COM ESTRUTURA DE 2 LINHAS) */
-/* =================================================================== */
-
-/* Cabeçalho do Card */
-.material-header {
-  background-color: #fcfcfc;
-  padding: 20px;
-  border-bottom: 1px solid #e8e8e8;
-  display: flex;
-  align-items: center;
-  gap: 15px;
-}
-.material-icon {
-  width: 48px; height: 48px;
-  display: flex; align-items: center; justify-content: center;
-  color: var(--color-primary);
-  border-radius: 12px;
-  flex-shrink: 0;
-}
-.material-icon svg { width: 28px; height: 28px; }
-.material-title {
-  font-family: var(--font-primary);
-  font-size: 1.2em;
-  font-weight: 700;
-  color: #1a1a1a;
-  margin: 0;
+/* animação */
+.btn-next-module svg .dash {
+  transition: transform 0.25s ease-out;
 }
 
-/* Conteúdo do Card */
-.material-content {
-  display: flex;
-  flex-direction: column;
-  flex-grow: 1;
-  padding: 20px;
+.btn-next-module:hover svg .dash {
+  transform: translateX(-.5px); 
 }
 
-.material-description {
-  color: #555;
-  font-size: 0.95em;
-  margin-bottom: 20px;
-  flex-grow: 1;
+.btn-next-module svg .arrow-p {
+  transition: transform 0.25s ease-out;
+}
+
+.btn-next-module:hover svg .arrow-p {
+  transform: translateX(2px);
 }
 
 /* =================================================================== */
-/* SUBSTITUI O ÍCONE FA-LOCK PELO SEU SVG DE CADEADO ESPECÍFICO */
+/*                  FIM - BLOCO FINALIZAÇÃO DE MÓDULO                  */
 /* =================================================================== */
 
+
+/* ==================================================================== */
+/*                 INÍCIO - TROCA DO ÍCONE DE CADEADO                   */
+/* ==================================================================== */
 .fa-lock::before {
-  /* 1. Apaga o ícone de fonte original */
+  /* Apaga o ícone de fonte original */
   content: '';
-  
-  /* 2. Cria o espaço para o nosso ícone SVG */
   display: inline-block;
   width: 1.2em;
   height: 1.2em;
   vertical-align: -0.125em;
-  
-  /* 3. APLICA SEU SVG como imagem de fundo */
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='26' height='26' viewBox='0 0 24 24' fill='none' stroke='%236c757d' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='3' y='11' width='18' height='11' rx='2' ry='2'%3E%3C/rect%3E%3Cpath d='M7 11V7a5 5 0 0 1 10 0v4'%3E%3C/path%3E%3C/svg%3E");
-  
-  /* 4. Garante que o SVG preencha o espaço */
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
 }
+/* ==================================================================== */
+/*                   FIM - TROCA DO ÍCONE DE CADEADO                    */
+/* ==================================================================== */
