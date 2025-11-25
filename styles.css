@@ -2241,3 +2241,101 @@ body {
 /* ==================================================================== */
 /*                   FIM - TROCA DO ÍCONE DE CADEADO                    */
 /* ==================================================================== */
+
+
+/* =================================================================== */
+/*            INÍCIO: LAYOUT DE FEATURES (IMAGEM FIXA + TEXTO)         */
+/* =================================================================== */
+.feature-layout {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  margin-top: 1.5rem;
+}
+
+/* --- Coluna da Imagem --- */
+.feature-media-col {
+  flex-basis: 40%;
+  position: -webkit-sticky; 
+  position: sticky;
+  top: 2rem; 
+  align-self: flex-start;
+}
+
+/* --- Coluna do Conteúdo de Texto --- */
+.feature-content-col {
+  flex-basis: 60%;
+}
+
+/* --- Card de cada Feature --- */
+.feature-item {
+  margin-bottom: 2.5rem;
+}
+.feature-item:last-child {
+  margin-bottom: 0;
+}
+.feature-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-primary);
+  font-size: 1.5em;
+  font-weight: 700;
+  color: var(--color-secondary);
+  margin-bottom: 0.75rem;
+}
+.feature-text {
+  padding-left: 44px;
+  line-height: 1.7;
+  color: #555;
+}
+
+/* Estilo para links externos dentro das explicações */
+.external-link {
+  font-weight: 600;
+  text-decoration: none;
+  color: var(--color-primary);
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+.external-link:hover {
+  text-decoration: underline;
+  color: var(--color-primary-dark);
+}
+.external-link .icon-custon {
+  width: 0.8em;
+  height: 0.8em;
+}
+
+/* Lista de Subitens */
+.sub-item-list {
+  list-style: none;
+  padding-left: 0;
+  margin-top: 1rem;
+}
+.sub-item-list li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 0.5rem;
+  color: #495057;
+}
+.sub-item-list .icon-custon {
+  color: var(--color-primary);
+}
+
+/* Responsividade */
+@media (max-width: 992px) {
+  .feature-layout {
+    display: block; 
+  }
+  .feature-media-col {
+    position: static;
+    margin-bottom: 2rem;
+  }
+}
+
+/* =================================================================== */
+/*              FIM: LAYOUT DE FEATURES (IMAGEM FIXA + TEXTO)          */
+/* =================================================================== */

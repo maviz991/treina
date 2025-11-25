@@ -194,136 +194,117 @@
 <!-- =================================================================== -->
 
 
-    <!-- =================================================================== -->
-    <!--                       INÍCIO: BLOCO SEÇÃO 3                         -->
-    <!-- =================================================================== -->
-    <p style="text-align: justify;">O Geohab é a plataforma centralizada da CDHU
-        para o compartilhamento, armazenamento, visualização e gerenciamento de dados
-        geoespaciais. Sua tela inicial serve como portal de entrada para todos os seus
-        recursos e ferramentas.</p>
-    <hr>
-    <h5 class="destaque-h5">Apresentação da Página Inicial:</h5>
-    <!-- **MODAL IMAGEM** -->
-    <div class="image-modal-wrapper"><img class="modal-trigger-img"
-            style="display: block; margin-left: auto; margin-right: auto;"
-            src="https://stor.cdhu.sp.gov.br/treina/publico/img-2-4.png"
-            alt="Tela inicial do Geohab com os principais componentes numerados" width="700" height="350"
-            data-toggle="tooltip" data-placement="top">
-        <div class="image-modal-popup"><span class="custom-close">×</span> <img class="modal-display-img">
-            <div class="modal-caption-text"> </div>
+<!-- =================================================================== -->
+<!--                       INÍCIO: BLOCO SEÇÃO 3                         -->
+<!-- =================================================================== -->
+<!-- =================================================================== -->
+<!--     INÍCIO: BLOCO DA PÁGINA INICIAL (REFATORADO COM FEATURE LAYOUT) -->
+<!-- =================================================================== -->
+<div class="module-intro-block" id="module1-section-homepage">
+    <div class="guide-container">
+        <h2 class="guide-container-title">Apresentação da Página Inicial</h2>
+        <p>A tela inicial do Geohab é o seu portal de entrada para todos os recursos da plataforma. Abaixo, detalhamos os principais componentes que você encontrará.</p>
+        
+        <div class="feature-layout">
+
+            <!-- COLUNA DA IMAGEM (FIXA EM DESKTOP) -->
+            <div class="feature-media-col">
+                <div class="image-modal-wrapper">
+                    <img class="modal-trigger-img img-content" title="Clique para expandir" src="https://stor.cdhu.sp.gov.br/treina/publico/img-2-4.png" alt="Tela inicial do Geohab com os principais componentes numerados">
+                    <div class="image-modal-popup"><span class="custom-close">×</span><img class="modal-display-img">
+                        <div class="modal-caption-text">Tela inicial do Geohab com os principais componentes numerados.</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- COLUNA DO CONTEÚDO (ROLA EM DESKTOP) -->
+            <div class="feature-content-col">
+                <!-- Item 1 -->
+                <div class="feature-item">
+                    <h4 class="feature-title">
+                        <span class="badge-circular-red">1</span> Catálogo
+                    </h4>
+                    <p class="feature-text">Ponto de partida para explorar os dados. O 
+                        <a href="https://geonetwork-opensource.org/" target="_blank" rel="noopener" class="external-link" title="Clique para saber mais sobre o GeoNetwork">
+                            Catálogo (GeoNetwork) <span class="icon-custon icon-arrow-right"></span>
+                        </a> permite buscar e descobrir os 
+                        <span class="info-badge" title="Dados sobre os dados: Informações descritivas de uma camada, como fonte, data e atributos." data-toggle="tooltip"><span class="info-badge-text">metadados</span><span class="icon-custon icon-question"></span></span> de todos os recursos disponíveis na plataforma.
+                    </p>
+                </div>
+
+                <!-- Item 2 -->
+                <div class="feature-item">
+                    <h4 class="feature-title">
+                        <span class="badge-circular-red">2</span> Visualizador
+                    </h4>
+                    <p class="feature-text">Abre a principal ferramenta para análise visual, o 
+                        <a href="https://docs.mapstore.geosolutionsgroup.com/en/v2024.02.00/" target="_blank" rel="noopener" class="external-link" title="Clique para saber mais sobre o MapStore">
+                            Visualizador (MapStore) <span class="icon-custon icon-arrow-right"></span>
+                        </a>. Aqui você pode sobrepor <span class="info-badge" title="Conjuntos de dados geográficos que podem ser sobrepostos, como rios, ruas ou bairros." data-toggle="tooltip"><span class="info-badge-text">camadas de mapa</span><span class="icon-custon icon-question"></span></span>, realizar consultas e explorar os dados de forma interativa.
+                    </p>
+                </div>
+
+                <!-- Item 3 -->
+                <div class="feature-item">
+                    <h4 class="feature-title">
+                        <span class="badge-circular-red">3</span> Apps
+                    </h4>
+                    <p class="feature-text">Agrupa aplicações complementares, como 
+                        <span class="info-badge" title="Painéis interativos que resumem informações com mapas e gráficos." data-toggle="tooltip"><span class="info-badge-text">Dashboards</span><span class="icon-custon icon-question"></span></span> e 
+                        <span class="info-badge" title="Apresentações narrativas que usam mapas para contar uma história." data-toggle="tooltip"><span class="info-badge-text">GeoStories</span><span class="icon-custon icon-question"></span></span>, que estendem as funcionalidades da plataforma.
+                    </p>
+                </div>
+                
+                <!-- Item 4 -->
+                <div class="feature-item">
+                    <h4 class="feature-title">
+                        <span class="badge-circular-red">4</span> Serviços
+                    </h4>
+                    <p class="feature-text">Dá acesso ao 
+                        <a href="https://geoserver.org/about/" target="_blank" rel="noopener" class="external-link" title="Clique para saber mais sobre o GeoServer">
+                            Serviços (GeoServer) <span class="icon-custon icon-arrow-right"></span>
+                        </a>, que permite gerenciar a publicação de camadas e obter links de <span class="info-badge" title="Serviços web que entregam dados de mapa pela internet (ex: WMS, WFS)." data-toggle="tooltip"><span class="info-badge-text">GeoServiços</span><span class="icon-custon icon-question"></span></span> para usar em softwares GIS.
+                    </p>
+                </div>
+                
+                <!-- Item 5 -->
+                <div class="feature-item">
+                     <h4 class="feature-title">
+                        <span class="badge-circular-red">5</span> Importar
+                    </h4>
+                    <p class="feature-text">Ferramenta para administradores locais carregarem novos dados para a plataforma a partir de formatos como <span class="info-badge" title="Formato vetorial antigo, composto por múltiplos arquivos." data-toggle="tooltip"><span class="info-badge-text">Shapefile</span><span class="icon-custon icon-question"></span></span> ou <span class="info-badge" title="Comma-Separated Values: Arquivo de texto com valores separados por vírgula." data-toggle="tooltip"><span class="info-badge-text">CSV</span><span class="icon-custon icon-question"></span></span>.
+                    </p>
+                </div>
+                
+                <!-- Item 6 -->
+                <div class="feature-item">
+                    <h4 class="feature-title">
+                        <span class="badge-circular-red">6</span> Administração
+                    </h4>
+                    <p class="feature-text">Painel de controle central, destinado a usuários com <span class="info-badge" title="Níveis de permissão que definem o que um usuário pode fazer na plataforma." data-toggle="tooltip"><span class="info-badge-text">papéis administrativos</span><span class="icon-custon icon-question"></span></span>, para gerenciar os diferentes componentes da plataforma. Suas subseções incluem:</p>
+                    <ul class="sub-item-list feature-text">
+                        <li><span class="icon-custon icon-chevron-right"></span> Console de Administração do Catálogo</li>
+                        <li><span class="icon-custon icon-chevron-right"></span> Console de Administração do Visualizador</li>
+                        <li><span class="icon-custon icon-chevron-right"></span> Console de Administração de Usuários</li>
+                    </ul>
+                </div>
+                
+                 <!-- Item 7, 8 e 9 -->
+                 <div class="feature-item">
+                    <h4 class="feature-title">
+                        <span class="badge-circular-red">7, 8, 9</span> Perfil, Sair e Idioma
+                    </h4>
+                    <p class="feature-text">
+                        No canto superior direito, você encontra seu <strong>Perfil</strong> (confirmando o usuário logado), o botão de <strong>Sair</strong> (<span class="info-badge" title="Ação de encerrar a sessão de um usuário no sistema." data-toggle="tooltip"><span class="info-badge-text">logoff</span><span class="icon-custon icon-question"></span></span>) e a opção para alterar o <strong>Idioma</strong> da interface.
+                    </p>
+                </div>
+            </div>
         </div>
     </div>
-    <p style="text-align: justify;">Ao acessar o Geohab, você será apresentado à sua
-        página inicial, que normalmente contém os seguintes elementos principais no
-        menu de navegação superior ou em destaque:</p>
-    <h5 class="destaque-h5"><span class="badge-circular-red">1</span> Catálogo</h5>
-    <p style="text-align: justify;">Geralmente, este é o ponto de partida ou a
-        própria página inicial. Este item do menu dá acesso direto ao componente <span
-            class="badge-link badge-text-salmon"><a title="Clique aqui e saiba mais sobre o GeoNetwork"
-                href="https://geonetwork-opensource.org/" target="_blank" rel="noopener" data-toggle="tooltip"
-                data-placement="top">Catálogo
-                (GeoNetwork)</a></span> da plataforma. Permite buscar, descobrir e
-        explorar os <code class="badge-link badge-text-gray"
-            title="Dados sobre os dados: Informações descritivas de uma camada, como fonte, data e atributos"
-            data-toggle="tooltip" data-placement="top">metadados</code> dos dados,
-        serviços e mapas disponíveis no Geohab. É onde você encontra a documentação
-        sobre os <code class="badge-link badge-text-gray"
-            title="Qualquer dado ou serviço que tenha uma localização geográfica associada" data-toggle="tooltip"
-            data-placement="top">recursos geoespaciais</code>.</p>
-    <h5 class="destaque-h5"><span class="badge-circular-red">2</span> Visualizador
-    </h5>
-    <p style="text-align: justify;">Um botão que abre o componente <span class="badge-link badge-text-lilac"><a
-                title="Clique aqui e saiba mais sobre o MapStore"
-                href="https://docs.mapstore.geosolutionsgroup.com/en/v2024.02.00/" target="_blank" rel="noopener"
-                data-toggle="tooltip" data-placement="top">Visualizador (MapStore)</a></span>. É a principal
-        ferramenta para visualizar <code class="badge-link badge-text-gray"
-            title="Conjuntos de dados geográficos que podem ser sobrepostos, como rios, ruas ou bairros"
-            data-toggle="tooltip" data-placement="top">camadas de mapa</code>, combinar
-        diferentes informações geográficas, realizar <code class="badge-link badge-text-gray"
-            title="Perguntas feitas ao mapa para encontrar feições baseadas na sua localização ou atributos"
-            data-toggle="tooltip" data-placement="top">consultas espaciais</code>
-        básicas, imprimir mapas e explorar os dados de forma interativa.</p>
-    <h5 class="destaque-h5"><span class="badge-circular-red">3</span> Apps
-        (Aplicações)</h5>
-    <p style="text-align: justify;">Esta seção agrupa aplicações ou ferramentas
-        complementares integradas ao Geohab. Pode incluir acesso a <code class="badge-link badge-text-gray"
-            title="Painéis interativos que resumem informações com mapas e gráficos" data-toggle="tooltip"
-            data-placement="top">Dashboards</code>, <code class="badge-link badge-text-gray"
-            title="Apresentações narrativas que usam mapas para contar uma história" data-toggle="tooltip"
-            data-placement="top">GeoStories</code>, ferramentas de
-        análise específicas, galerias de mapas temáticos, ou outros recursos e
-        aplicações desenvolvidas para estender as funcionalidades da plataforma.</p>
-    <h5 class="destaque-h5"><span class="badge-circular-red">4</span> Serviços</h5>
-    <p style="text-align: justify;">Fornece acesso à interface de administração do
-        componente <span class="badge-link badge-text-blue"><a title="Clique aqui e saiba mais sobre o GeoServer"
-                href="https://geoserver.org/about/" target="_blank" rel="noopener" data-toggle="tooltip"
-                data-placement="top">Serviços
-                (GeoServer)</a></span>. Permite a recuperação de links de <code class="badge-link badge-text-gray"
-            title="Serviços web que entregam dados de mapa pela internet (ex: WMS, WFS)" data-toggle="tooltip"
-            data-placement="top">GeoServiços</code> para conexão
-        em <code class="badge-link badge-text-gray"
-            title="Software para trabalhar com dados geoespaciais, como o QGIS ou ArcGIS" data-toggle="tooltip"
-            data-placement="top">aplicações GIS</code> (como o
-        QGIS), gerenciar a publicação de camadas, configurar estilos (<code class="badge-link badge-text-gray"
-            title="Styled Layer Descriptor: Um padrão para definir como as camadas devem ser desenhadas"
-            data-toggle="tooltip" data-placement="top">SLD</code>), e administrar os
-        GeoServiços (<code class="badge-link badge-text-gray" title="Web Map Service: Fornece imagens de mapas"
-            data-toggle="tooltip" data-placement="top">WMS</code>, <code class="badge-link badge-text-gray"
-            title="Web Feature Service: Fornece os dados vetoriais brutos" data-toggle="tooltip"
-            data-placement="top">WFS</code>, etc.) que
-        disponibilizam os dados.</p>
-    <h5 class="destaque-h5"><span class="badge-circular-red">5</span> Importar</h5>
-    <p style="text-align: justify;">Abre um componente dedicado à importação rápida
-        de dados para a plataforma. Permite que usuários autorizados (Administrador
-        local) carreguem dados diretamente para o Geohab, tipicamente a partir de
-        formatos comuns como <code class="badge-link badge-text-gray"
-            title="Formato vetorial antigo, composto por múltiplos arquivos" data-toggle="tooltip"
-            data-placement="top">Shapefile (.shp)</code> ou <code class="badge-link badge-text-gray"
-            title="Comma-Separated Values: Arquivo de texto com valores separados por vírgula" data-toggle="tooltip"
-            data-placement="top">CSV</code>. Este processo pode
-        envolver etapas de validação e configuração para a correta integração dos
-        dados.</p>
-    <h5 class="destaque-h5"><span class="badge-circular-red">6</span> Administração
-    </h5>
-    <p style="text-align: justify;">O componente central de administração da
-        plataforma Geohab, onde encontramos o <code class="badge-link badge-text-gray"
-            title="Painel de controle para configurações avançadas" data-toggle="tooltip"
-            data-placement="top">Console de Administração</code>
-        dos componentes mencionados anteriormente. Destinado exclusivamente a usuários
-        com <code class="badge-link badge-text-gray"
-            title="Níveis de permissão que definem o que um usuário pode fazer na plataforma" data-toggle="tooltip"
-            data-placement="top">Papéis administrativos</code>
-        (Administrador local, Super Usuário e Usuários delegados). Ao clicar aqui, são
-        apresentados submenus para gerenciar diferentes aspectos da plataforma. Talvez
-        o seu perfil não permita visualizar este menu.</p>
-    <p><strong>Subseções do componente Administração:</strong></p>
-    <ul style="list-style-type: disc; margin-left: 20px;">
-        <li>Console de Administração do Catálogo (GeoNetwork)</li>
-        <li>Console de Administração do Visualizador (MapStore 2)</li>
-        <li>Console de Administração de Usuários (Console do Geohab)</li>
-        <li>Análises de requisições de usos de GeoServiços do Geohab</li>
-    </ul>
-    <h5 class="destaque-h5"><span class="badge-circular-red">7</span> Perfil Logado
-        (Nome do Usuário)</h5>
-    <p style="text-align: justify;">Confirma a identidade do usuário ativo e, em
-        alguns casos, pode dar acesso a opções de perfil pessoal. Geralmente
-        localizado no canto superior da tela, exibe o nome do usuário que está
-        atualmente logado na plataforma.</p>
-    <h5 class="destaque-h5"><span class="badge-circular-red">8</span> Botão de Sair
-        (Logoff)</h5>
-    <p style="text-align: justify;">Realiza o <code class="badge-link badge-text-gray"
-            title="Ação de encerrar a sessão de um usuário no sistema" data-toggle="tooltip"
-            data-placement="top">logoff</code> (desconecta o
-        usuário) da plataforma Geohab, garantindo a segurança da conta, especialmente
-        em computadores compartilhados.</p>
-    <h5 class="destaque-h5"><span class="badge-circular-red">9</span> Definição de
-        Linguagem (Idioma)</h5>
-    <p style="text-align: justify;">Uma opção (um <code class="badge-link badge-text-gray"
-            title="Um menu que se expande para baixo ao ser clicado" data-toggle="tooltip"
-            data-placement="top">menu dropdown</code> ou ícones de
-        bandeiras) que permite ao usuário alterar o idioma de exibição da interface do
-        Geohab, tornando a plataforma mais acessível para diferentes usuários (ex:
-        Português, Inglês).</p>
+</div>
+<!-- =================================================================== -->
+<!--       FIM: BLOCO DA PÁGINA INICIAL (REFATORADO COM FEATURE LAYOUT)  -->
+<!-- =================================================================== -->
 
     <!-- =================================================================== -->
     <!--                       FIM: BLOCO SEÇÃO 3                            -->
