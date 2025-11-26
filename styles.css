@@ -255,7 +255,19 @@ Obs.: Use bootstrap 4.0*/
   border-radius: 50%;
   font-weight: bold;
   font-size: 14px;
-  margin-right: 6px;
+  vertical-align: middle;
+}
+
+.badge-circular-ret-red {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.25em 0.6em;
+  background-color: var(--color-primary);
+  color: white;
+  border-radius: 10px;
+  font-weight: bold;
+  font-size: 14px;
   vertical-align: middle;
 }
 
@@ -306,29 +318,33 @@ Obs.: Use bootstrap 4.0*/
 
 /* -------------------------- Bagde de links ------------------------- */
 .badge-link {
-  display: inline-block;
-  background-color: #f9fafa;
-  color: #666;
-  border: 1px solid rgba(120, 119, 119, 0.1019607843);
-  border-style: solid;
-  border-radius: 10px;
-  border-width: thin;
-  padding: 0.25em 0.6em;
-  font-size: 0.675rem;
-  font-weight: 700 !important;
-  vertical-align: middle;
-  cursor: help;
+  display: inline-flex;
+  align-items: flex-start;  
+  gap: 3px;             
+  cursor: help;         
+  background-color: #f8f9fa;
+  border: 1px solid #dee2e6;
+  border-radius: 12px;
+  padding: 0.2em 0.6em;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.7em;
+  font-weight: 550;
+  color: #495057;
+  white-space: nowrap;
+  transition: transform 0.2s ease-in-out, box-shadow 0.5s ease-in-out;
+}
+.badge-link:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.123);
 }
 .badge-link a {
-  color: inherit;
+  color: currentColor;
   font-family: 'Montserrat';
   text-decoration: none !important;
 }
-
 .badge-text-blue {
   color: #0092C8;
   font-family: 'Montserrat';
-
 }
 
 .badge-text-lilac {
@@ -1373,7 +1389,7 @@ body {
 /*                            Responsividade                           */
 @media (max-width: 768px) {
   .step-content-layout-cols {
-    flex-direction: column;
+    flex-direction: flex;
   }
   .img-content {
     float: none;
@@ -1415,6 +1431,8 @@ body {
   width: 100%;
   max-width: 400px;
 }
+
+
 /* =================================================================== */
 /*            FIM - LAYOUT DE CONTEÚDO COLUNA (TEXTO + MÍDIA)          */
 /* =================================================================== */
@@ -1820,7 +1838,7 @@ body {
   border-radius: 12px;
   padding: 0.2em 0.6em;
   font-family: 'Montserrat', sans-serif;
-  font-size: 0.9em;
+  font-size: 0.8em;
   font-weight: 550;
   color: #495057;
   white-space: nowrap;
@@ -1870,6 +1888,12 @@ body {
 .step-content-col-media {
   flex: 1;
   min-width: 250px;
+  padding-bottom: 2em;
+}
+
+.step-content-media-hotspot {
+  flex: 1;
+  min-width: 100%;
   padding-bottom: 2em;
 }
 
@@ -2248,17 +2272,17 @@ body {
 /* =================================================================== */
 .feature-layout {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   gap: 2rem;
   margin-top: 1.5rem;
 }
 
 /* --- Coluna da Imagem --- */
 .feature-media-col {
-  flex-basis: 40%;
+  flex-basis: 55%;
   position: -webkit-sticky; 
   position: sticky;
-  top: 2rem; 
+  top: 1.5rem; 
   align-self: flex-start;
 }
 
@@ -2288,6 +2312,9 @@ body {
   padding-left: 44px;
   line-height: 1.7;
   color: #555;
+}
+.feature-text li{
+  padding-left: 45px;
 }
 
 /* Estilo para links externos dentro das explicações */
@@ -2339,3 +2366,82 @@ body {
 /* =================================================================== */
 /*              FIM: LAYOUT DE FEATURES (IMAGEM FIXA + TEXTO)          */
 /* =================================================================== */
+
+
+/* =================================================================== */
+/*               COMPONENTE DE IMAGEM INTERATIVA (HOTSPOTS)            */
+/* =================================================================== */
+
+.interactive-image-wrapper {
+  position: relative; /* Essencial para posicionar os hotspots dentro dele */
+  max-width: 957px; /* Largura exata da sua imagem */
+  margin: 2rem auto; /* Centraliza o contêiner */
+  border: 1px solid #ddd;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.interactive-image-wrapper img {
+  display: block; /* Remove espaço extra abaixo da imagem */
+  width: 100%;
+  height: auto;
+}
+
+.hotspot {
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  background-color: #ff1100;
+  color: white;
+  border-radius: 50%;
+  
+  /* Centraliza o número dentro do círculo */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  font-size: 14px;
+  font-weight: bold;
+  text-decoration: none;
+  
+  /* Centraliza o hotspot em seu ponto de âncora */
+  transform: translate(-50%, -50%);
+  
+  box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.5);
+  transition: all 0.3s ease;
+  animation: pulse 2s infinite;
+}
+
+.hotspot:hover {
+  transform: translate(-50%, -50%) scale(1.2);
+  animation: none;
+  background-color: #d90f00;
+  cursor: pointer;
+}
+
+/* Animação de pulso para chamar a atenção */
+@keyframes pulse {
+  0% { box-shadow: 0 0 0 0px rgba(255, 17, 0, 0.7); }
+  70% { box-shadow: 0 0 0 10px rgba(255, 17, 0, 0); }
+  100% { box-shadow: 0 0 0 0px rgba(255, 17, 0, 0); }
+}
+
+/* Fallback para telas pequenas (Mobile) */
+.hotspot-fallback-list {
+  display: none; /* Escondido por padrão em telas grandes */
+  margin-top: 2rem;
+}
+
+
+/* Media Query para Responsividade */
+@media (max-width: 768px) {
+  .hotspot {
+    display: none; /* Esconde os hotspots interativos */
+  }
+  .hotspot-fallback-list {
+    display: block; /* Mostra a lista simples como alternativa */
+  }
+  .interactive-image-wrapper {
+    border: none; /* Remove a borda da imagem no mobile */
+    box-shadow: none;
+  }
+}
