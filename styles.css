@@ -2369,7 +2369,7 @@ body {
 
 
 /* =================================================================== */
-/*               COMPONENTE DE IMAGEM INTERATIVA (HOTSPOTS)            */
+/*                  INÍCIO - IMAGEM INTERATIVA (HOTSPOTS)              */
 /* =================================================================== */
 
 .interactive-image-wrapper {
@@ -2398,14 +2398,12 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  
   font-size: 14px;
   font-weight: bold;
   text-decoration: none;
   
   /* Centraliza o hotspot em seu ponto de âncora */
   transform: translate(-50%, -50%);
-  
   box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.5);
   transition: all 0.3s ease;
   animation: pulse 2s infinite;
@@ -2421,6 +2419,7 @@ body {
 /* Animação de pulso para chamar a atenção */
 @keyframes pulse {
   0% { box-shadow: 0 0 0 0px rgba(255, 17, 0, 0.7); }
+  30% { box-shadow: 0 0 0 6px rgba(255, 17, 0, 0.5); }
   70% { box-shadow: 0 0 0 10px rgba(255, 17, 0, 0); }
   100% { box-shadow: 0 0 0 0px rgba(255, 17, 0, 0); }
 }
@@ -2445,3 +2444,7 @@ body {
     box-shadow: none;
   }
 }
+
+/* =================================================================== */
+/*                    FIM - IMAGEM INTERATIVA (HOTSPOTS)               */
+/* =================================================================== */
