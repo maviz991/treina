@@ -1,0 +1,480 @@
+/* ADEQUAÇÃO VISUAL DO MOODLE UNICDHU - SCSS
+VERSÃO 1.1 - Boost Union
+DATA: 25/04/2025 */
+.bg-primary {
+  background-color: black !important;
+}
+
+.navbar.navbar-dark.bg-primary .nav-link.active {
+  border-bottom-color: red;
+}
+
+
+.navbar.navbar-dark.bg-dark .custom-switch .custom-control-input:checked ~ .custom-control-label::after, .navbar.navbar-dark.bg-primary .custom-switch .custom-control-input:checked ~ .custom-control-label::after {
+  background-color: red;
+}
+
+
+.course-content-item a {
+  color: #e41a1f !important;
+}
+
+.flexsections .course-section {
+  border-radius: 1rem;
+  border: 1px dotted gray;
+  padding: 5px 15px 5px 15px;
+}
+.course-card .card-img-top, .theme-card .card-img-top {
+background-position: right top;
+height: 11rem;
+}
+
+.course-section .availabilityinfo {
+  border-radius: 5px;
+}
+
+/*Extra - nao esta no prod*/
+/*
+  Centraliza verticalmente o radio button com a sua label
+  em questões de múltipla escolha para um alinhamento perfeito.
+*/
+.form-check-inline .form-check-input {
+    position: static;
+    margin-top: -9px;
+    margin-right: 0.3125rem
+5px
+;
+    margin-left: 0;
+}
+
+/* Border dos vídeos*/
+.activity-item .activity-altcontent img {
+    border-radius: 0rem;
+}
+/* START - h5 destaque classe especial*/
+.destaque-h5 {
+  text-align: justify;
+  font-family: 'sans-serif', 'Axiforma';
+  background: #f5f4f4;
+  padding: 10px;
+  border-radius: 10px;
+  font-weight: 700 !important;
+  margin-top: 1.5rem;
+
+  strong {
+    font-weight: 700 !important;
+  }
+}
+/* END- h5 destaque classe especial*/
+
+/* START - Bagde-color (fundo colorido)*/
+@mixin badge-color($bgcolor, $name) {
+  .badge-color-#{$name} {
+    display: inline-block;
+    background-color: #{$bgcolor};
+    color: white;
+    border: solid 0px #000;
+    border-radius: 3px;
+    padding: 0.25em 0.6em;
+    font-size: 0.705rem;
+    font-weight: 500;
+  }
+}
+@include badge-color(#e91a1a, red);
+@include badge-color(#5d0067, purple);
+@include badge-color(#7d5d9f, purple2);
+@include badge-color(#000000, black);
+@include badge-color(#fddd11, yellow);
+@include badge-color(#b8c1ca, gray);
+@include badge-color(#cc8f04, gold);
+@include badge-color(#f5a924, ouro);
+@include badge-color(#84d0f0, azul-claro);
+@include badge-color(#009036, green);
+@include badge-color(currentColor, auto);  
+
+
+/* END - Badges*/
+
+/* START - bagde circular numeros*/
+@mixin badge-circular($color, $name) {
+  .badge-circular-#{$name} {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 24px;
+    height: 24px;
+    background-color: $color;
+    color: white;
+    border-radius: 50%;
+    font-weight: bold;
+    font-size: 14px;
+    margin-right: 6px;
+    vertical-align: middle;
+  }
+}
+
+@include badge-circular(#e91a1a, red);
+@include badge-circular(#1ae96b, green);
+@include badge-circular(#321ae9, blue);
+@include badge-circular(#f9a825, yellow);
+
+/* END - Bagde circular numeros*/
+
+/* START - Bagde de links*/
+.badge-link {
+  display: inline-block;
+  background-color: #f9fafa;
+  color: #666;
+  border: 1px solid #7877771a;
+  border-style: solid;
+  border-radius: 10px;
+  border-width: thin;
+  padding: 0.25em 0.6em;
+  font-size: 0.675rem;
+  font-weight: 700 !important;
+  vertical-align: middle;
+  cursor: help;
+
+  a {
+    color: inherit;
+    text-decoration: none !important; 
+  }
+}
+
+/* // Modificadores de cor */
+.badge-text-blue   { color: #0092C8; }
+.badge-text-lilac  { color: #B96AD9; }
+.badge-text-gray   { color: #777879; }
+.badge-text-red  { color: #ef0009; }
+.badge-text-salmon { color: #d67c5c; }
+.badge-text-purple{ color: #5d0067; }
+.badge-text-gold{ color: #cc8f04; }
+.badge-text-black{ color: #000000; }
+
+/*Start - links dentro do Popover*/
+.popover-link-button {
+  display: block;        
+  width: 100%;          
+  background-color: #000000; 
+  color: #ffffff !important;   
+  border-radius: 3px;
+  padding: 0.5em 0.8em;    
+  font-size: 0.85rem;      
+  font-weight: 500;
+  text-align: center;
+  text-decoration: none !important; 
+  margin-bottom: 5px;
+  transition: opacity 0.2s;
+}
+
+
+.popover-link-button:hover {
+  color: #ebebeb;
+  opacity: 0.8;
+}
+/*END*/
+
+/*Start - mensagem alerta icone padrao*/
+.alert-custom {
+  position: relative;
+  padding-left: 3rem;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 1rem;
+    transform: translateY(-50%);
+    width: 24px;
+    height: 24px;
+    background-image: url('https://raw.githubusercontent.com/maviz991/icons/bef91ae7d3ee22011c81e51c09951305c71deaae/icons_pasta/info-sign.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    filter: invert(25%) sepia(63%) saturate(1152%) hue-rotate(344deg) brightness(94%) contrast(91%);
+  }
+}
+/*END*/
+
+/* The flip card container */
+.flip-card-container {
+  display: flex;
+  flex-wrap: wrap;              
+  gap: 1.5rem;                  
+  justify-content: center;     
+  margin: 2rem auto;           
+  
+}
+
+.flip-card {
+  background-color: transparent;
+  width: 200px;
+  height: 300px;
+  perspective: 1500px;
+  flex: 0 0 auto;              
+}
+
+.flip-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+}
+
+.flip-card:hover .flip-card-inner {
+  transform: rotateY(180deg);
+}
+
+.flip-card-front,
+.flip-card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  border-radius: 10px;
+  padding: 1rem;
+  box-sizing: border-box;
+}
+
+.flip-card-front {
+  background-color: black;
+  color: white;
+}
+
+.flip-card-back {
+  background-color: #e41a1f;
+  color: white;
+  transform: rotateY(180deg);
+}
+
+/*Modal image*/
+/* Estilo para as imagens que disparam o modal */
+.modal-trigger-img {
+  border-radius: 5px;
+  cursor: zoom-in;
+  transition: 0.3s;
+  width: auto;
+  display: block;
+  margin: 1rem auto 2rem auto;
+}
+.modal-trigger-img:hover {
+  opacity: 0.7;
+}
+
+@media (max-width: 768px) {
+  .modal-trigger-img {
+    width: 100%;
+    float: none;
+   height: auto;
+  }
+}
+
+/* O Modal (background) */
+.image-modal-popup {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  padding-top: 100px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.616);
+}
+
+/* Conteúdo do Modal (a imagem grande dentro) */
+.modal-display-img {
+  max-width: fit-content;
+  max-height: -webkit-fill-available;
+  height: 70%;
+  display: block;
+  margin: 1rem auto 2rem auto;
+  box-sizing: border-box;
+}
+
+/* Legenda do Modal */
+.modal-caption-text {
+  margin: auto;
+  display: block;
+  width: 60%;
+  max-width: 700px;
+  text-align: center;
+  color: #ccc;
+  padding: 10px 0;
+  height: 150px;
+}
+
+/* Animação de Zoom */
+.modal-display-img, .modal-caption-text {
+  animation-name: zoom;
+  animation-duration: 1s;
+}
+@keyframes zoom {
+  from {transform: scale(0)}
+  to {transform: scale(1)}
+}
+
+/* O BOTÃO DE FECHAR */
+.custom-close {
+  position: absolute;
+  top: 70px;
+  right: 75px;
+  color: #ffffff;
+  font-size: 50px;
+  font-weight: bold;
+  transition: 0.3s;
+  z-index: 1001;
+}
+.custom-close:hover,
+.custom-close:focus {
+  color: #ff0000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* Responsividade do Modal */
+@media only screen and (max-width: 700px){
+  .modal-display-img {
+    width: 100%;
+    padding-top: inherit ; 
+    height: auto;
+  }
+  .custom-close {
+    top: 45px;
+    right: 35px;
+  }
+}
+
+/* --- CORREÇÃO DA IMAGEM DECORATIVA --- */
+.img-decoration {
+  display: block;
+  width: 400px;
+  height: auto;
+  margin: 1.5rem 2rem 2rem 2rem;
+  cursor: zoom-in;
+}
+
+/* Regra de responsividade da imagem decorativa */
+@media (max-width: 768px) {
+  .img-decoration {
+    float: none;
+    display: block;
+    width: 100%;
+    height: auto;
+    margin: 1rem auto 2rem auto; /* centraliza no mobile */
+  }
+}
+
+/* Loopa Zoom*/
+/* Reset básico e boa prática */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: sans-serif;
+}
+
+/* O container que ancora a lupa */
+.img-magnifier-container {
+  position: relative;
+  display: inline-block; /* Garante que o container tenha o tamanho da imagem */
+}
+
+/* A lupa em si */
+.img-magnifier-glass {
+  position: absolute;
+  border: 2px solid #fff;
+  border-radius: 0%; /* Torna a lupa redonda */
+  box-shadow: 0 4px 10px rgba(0,0,0,0.4); /* Adiciona uma sombra para profundidade */
+  cursor: none; /* Esconde o cursor do mouse quando sobre a lupa */
+
+  /* Defina o tamanho da lupa aqui */
+  width: 200px;
+  height: 150px;
+}
+
+/* --------------------------------------------*/
+/*               DIGITO - START                 /
+/* --------------------------------------------*/
+
+.txt-animado{
+    font-size: 12px;
+    font-weight:300;
+    
+  }
+  
+.txt-animado span{
+      position: relative;
+  
+  }
+  
+.txt-animado span::before{
+    content: "";
+    color: #414141;
+    animation: palavras 10s infinite;
+  }
+  
+.txt-animado span::after{
+    content: "";
+    position: absolute;
+    height: 100%;
+    border-left: 1.5px solid #414141;
+    right: -6px;
+    animation: cursor .8s infinite, digita 10s steps(8) infinite;
+    width: calc(100% + 15px);
+    background-color: #ffffff;
+  }
+  
+  @keyframes digita {
+    10%, 15%, 30%, 35%, 50%, 55%, 70%, 75%, 90%, 95%{
+      width: 0;
+    }
+    5%, 20%, 25%, 40%, 45%, 60%, 65%, 80%, 85%{
+      width: calc(100% + 15px);
+    }
+  }
+  
+  @keyframes cursor {
+    0%{
+    border-left: 1.5px solid #212121;
+    }
+  }
+  
+  @keyframes palavras {
+    0%,20%{
+      content: "SSARU";
+    }
+    21%,40%{
+      content: "Terras";
+    }
+    41%,60%{
+      content: "SPHU ";
+    }
+    61%,80%{
+      content: "DPDU ";
+    }
+    81%,100%{
+      content: "CDHU ";
+    }
+  }
+
+.img-decoration-full {
+  display: block;
+  max-width: 100%;   /* nunca passa da largura do container */
+  height: auto;      /* mantém a proporção */
+  margin: 1.5rem auto; /* centraliza */
+}
+
+/* Responsividade extra (opcional) */
+@media (max-width: 768px) {
+  .img-decoration-full {
+    width: 100%;
+    margin: 1rem auto 2rem auto;
+  }
+}

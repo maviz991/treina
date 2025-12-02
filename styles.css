@@ -1790,7 +1790,7 @@ body {
 }
 .notice-content a {
   font-weight: 600;
-  text-decoration: underline;
+  text-decoration: none;
 }
 
 /* ---            Modificador de Box de Informação (Azul)           --- */
