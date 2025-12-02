@@ -336,6 +336,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
+    
 // ===================================================================
 // INÍCIO: LÓGICA PARA BARRAS DE PROGRESSO DE MÓDULO
 // ===================================================================
@@ -375,6 +376,41 @@ document.querySelectorAll('.course-progress-container[data-module-section]').for
 // ===================================================================
 // FIM: LÓGICA PARA BARRAS DE PROGRESSO DE MÓDULO
 // ===================================================================
+
+const animatedTextElement = $('#animated-search-text');
+if (animatedTextElement.length) {
+    const searchTerms = ["São Paulo", "PDHU", "zoneamento", "limite municipal"];
+    let termIndex = 0;
+    let charIndex = 0;
+    let isDeleting = false;
+
+    function typeAnimation() {
+        const currentTerm = searchTerms[termIndex];
+        const typeDelay = isDeleting ? 75 : 150;
+
+        if (isDeleting) {
+            animatedTextElement.text(currentTerm.substring(0, charIndex - 1));
+            charIndex--;
+        } else {
+            animatedTextElement.text(currentTerm.substring(0, charIndex + 1));
+            charIndex++;
+        }
+
+        if (!isDeleting && charIndex === currentTerm.length) {
+            setTimeout(() => { isDeleting = true; }, 2000);
+        } else if (isDeleting && charIndex === 0) {
+            isDeleting = false;
+            termIndex = (termIndex + 1) % searchTerms.length;
+        }
+        
+        setTimeout(typeAnimation, typeDelay);
+    }
+    
+    // Inicia a animação
+    typeAnimation();
+    console.log("(ANIMADOR) Animação de texto iniciada.");
+}
+});
 
 });
 </script>

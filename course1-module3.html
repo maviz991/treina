@@ -53,97 +53,122 @@
 <!-- =================================================================== -->
 <!--                       INÍCIO: BLOCO SEÇÃO 1                         -->
 <!-- =================================================================== -->
-<div class="module-intro-block" id="module1-section-1-access">
+<div class="module-intro-block" id="module3-section-1-catalog">
     <div class="guide-container">
-        <h2 class="guide-container-title">Acesso e Permissões de Usuários</h2>
+        <h2 class="guide-container-title">Como Encontrar Dados no Catálogo</h2>
+        <p>O Catálogo (GeoNetwork) é a porta de entrada para encontrar e entender os dados geoespaciais disponíveis.
+            Siga os passos abaixo para localizar as camadas que você precisa.</p>
 
-        <div class="content-layout-cols">
-            <!-- Coluna de Texto Principal -->
-            <div class="content-col-text">
-                <p>Todos os funcionários, colaboradores, estagiários e aprendizes <strong>possuem acesso ao Geohab</strong>. Para entrar, utilize seu 
-                    <span class="info-badge" title="Seu nome de usuário para acessar os sistemas da CDHU ou seu computador" data-toggle="tooltip">
-                        <span class="info-badge-text">login de rede</span>
-                        <span class="icon-custon icon-question"></span>
-                    </span> e a mesma senha que você usa no seu computador.
-                </p>
-                <p>No entanto, o seu nível de acesso é definido pelo 
-                    <span class="info-badge" title="Responsável por gerenciar as permissões de acesso aos dados do seu setor" data-toggle="tooltip">
-                        <span class="info-badge-text">administrador local</span>
-                        <span class="icon-custon icon-question"></span>
-                    </span> do seu setor. Ele é quem determina quais conteúdos são públicos e quais são restritos.
-                </p>
-                <p>Usuários externos (fora da rede CDHU) também podem ter acesso, mediante cadastro e aprovação do administrador local e da gerência responsável. Mas sempre deve ser associado a um registro no CDA</p>
+        <!-- PASSO 1: ACESSO -->
+        <div class="step-content-layout-cols">
+            <div class="step-number">1</div>
+            <div class="step-content-col-text">
+                <h3 class="step-title">Acesse o Catálogo</h3>
+                <p>Na página inicial do Geohab, a interface do <span
+                        class="badge-link badge-text-salmon">Catálogo</span> já é apresentada. Se estiver em outra
+                    seção, clique no menu superior para retornar à interface de busca de <span class="info-badge"
+                        title="Dados sobre os dados: Informações descritivas de uma camada." data-toggle="tooltip"><span
+                            class="info-badge-text">metadados</span><span
+                            class="icon-custon icon-question"></span></span>.</p>
             </div>
-            
-            <!-- Coluna de Mídia -->
-            <div class="content-col-media">
+            <div class="step-content-col-media">
                 <div class="image-modal-wrapper">
-                    <img class="modal-trigger-img img-decoration" title="Clique para expandir"
-                        src="https://via.placeholder.com/500x300/ff1100/ffffff?text=Acesso+Centralizado"
-                        alt="Diagrama mostrando múltiplos usuários acessando um servidor centralizado">
-                    <div class="image-modal-popup">
-                        <span class="custom-close">×</span>
-                        <img class="modal-display-img">
-                        <div class="modal-caption-text">Múltiplos usuários acessando dados geográficos de forma centralizada.</div>
+                    <img class="modal-trigger-img img-content" title="Clique para expandir"
+                        src="https://stor.cdhu.sp.gov.br/treina/publico/img-3-1.png"
+                        alt="Página inicial do Geohab com destaque para o acesso ao Catálogo">
+                    <div class="image-modal-popup"><span class="custom-close">×</span><img class="modal-display-img">
+                        <div class="modal-caption-text">Acesso principal ao Catálogo.</div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- Bloco de Aviso -->
-        <div class="notice-block notice-warning">
+        <!-- PASSO 2: BUSCA -->
+        <div class="step-content-layout-cols">
+            <div class="step-number">2</div>
+            <div class="step-content-col-text">
+                <h3 class="step-title">Realize a Busca</h3>
+                <p>Use a caixa de busca principal <span class="badge-circular-red" style="cursor: help;"
+                        title="Item 1 na imagem" data-toggle="tooltip">1</span> para encontrar camadas por nome ou
+                    palavras-chave. Por exemplo:</p>
+                <div class="animated-text-example">
+                    <span>Ex:</span>
+                    <span id="animated-search-text"></span>
+                </div>
+                <p class="mt-3">Clique na lupa <span class="badge-circular-red" style="cursor: help;"
+                        title="Item 2 na imagem" data-toggle="tooltip">2</span> ou pressione <kbd>Enter ↵</kbd> no
+                    teclado para ver os resultados. Você também pode encontrar camadas em destaque rolando a página.</p>
+                <p>Em News feed <span class="badge-circular-red" style="cursor: help;" title="Item 3 na imagem"
+                        data-toggle="tooltip">3</span> temos os mertadados publicados mais recentes.</p>
+            </div>
+            <div class="step-content-col-media">
+                <div class="image-modal-wrapper">
+                    <img class="modal-trigger-img img-content" title="Clique para expandir"
+                        src="https://stor.cdhu.sp.gov.br/treina/publico/img-3-2.png"
+                        alt="Tela de busca do Catálogo com a caixa de busca e o botão de lupa destacados">
+                    <div class="image-modal-popup"><span class="custom-close">×</span><img class="modal-display-img">
+                        <div class="modal-caption-text">Interface de busca do Catálogo.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- PASSO 3: ANÁLISE (COM HOTSPOTS) -->
+        <div class="step-content-layout-cols">
+            <div class="step-number">3</div>
+            <div class="step-content-col-text">
+                <h3 class="step-title">Analise e Selecione o Resultado</h3>
+                <p>A plataforma exibirá uma lista de metadados. Passe o mouse ou clique nos números na imagem ao lado
+                    para entender cada parte do resultado. Para ver todos os detalhes, clique no título do metadado
+                    desejado.</p>
+                <div class="hotspot-fallback-list">
+                    <h4>Legenda do Card de Resultado:</h4>
+                    <ol>
+                        <li>Resumo descritivo da camada.</li>
+                        <li>Miniatura da camada (Prévia).</li>
+                        <li>Nome da camada.</li>
+                        <li>Resumo descritivo da camada.</li>
+                        <li>Botão para favoritar a camada.</li>
+                    </ol>
+                </div>
+            </div>
+            <div class="step-content-col-media">
+                <div class="interactive-image-wrapper">
+                    <img src="https://stor.cdhu.sp.gov.br/treina/publico/img-3-4.png"
+                        alt="Lista de resultados de metadados com os elementos numerados">
+                    <!-- Hotspots -->
+                    <span class="hotspot" style="top: 20%; left: 23%;" data-toggle="tooltip" data-placement="top"
+                        title="Resumo descritivo da camada.">1</span>
+                    <span class="hotspot" style="top: 36%; left: 23%;" data-toggle="tooltip" data-placement="bottom"
+                        title="Miniatura da camada (Prévia).">2</span>
+                    <span class="hotspot" style="top: 33%; left: 52%;" data-toggle="tooltip" data-placement="top"
+                        title="Nome da camada.">3</span>
+                    <span class="hotspot" style="top: 40%; left: 72%;" data-toggle="tooltip" data-placement="top"
+                        title="Resumo descritivo da camada.">4</span>
+                    <span class="hotspot" style="top: 80%; left: 78.5%;" data-toggle="tooltip" data-placement="top"
+                        title="Botão para favoritar a camada.">5</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bloco de Alerta Final -->
+        <div class="notice-block notice-info mt-4">
             <div class="notice-icon">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <line x1="12" y1="16" x2="12" y2="12"></line>
+                    <line x1="12" y1="8" x2="12.01" y2="8"></line>
                 </svg>
             </div>
             <div class="notice-content">
-                <p><strong>Lembrete de Segurança:</strong> Sua conta e senha são de uso pessoal e intransferível. Nunca as compartilhe com ninguém, sob nenhuma hipótese.</p>
+                <p><strong>Importante:</strong> Algumas camadas podem estar ocultas e visíveis apenas para setores ou
+                    usuários específicos, de acordo com as permissões definidas.</p>
             </div>
         </div>
-        
-    </div>
-    <!-- Accordion materials -->
-    <div class="collapsible-material-section">
-        <a href="#material-sct-content-1" class="material-sct-header" data-toggle="collapse" role="button"
-            aria-expanded="false" aria-controls="task-content-1">
-            <div class="collapsible-header-title-group">
-                <div class="material-sct-chevron ">
-                    <svg class="icon-custon icon-chevron">
-                    </svg>
-                </div>
-                <div class="material-sct-header-icon ">
-                    <svg class="icon-custon icon-book">
-                    </svg>
-                </div>
-                <h3 class="material-sct-header-title">Materiais de Apoio</h3>
-            </div>
-        </a>
-        <div class="collapse" id="material-sct-content-1">
-            <div class="material-sct-body">
-                <div class="collapsible-description">
-                    <p>
-                        Para mais informações sobre cadastramento de usuários externos e perfis de uso, leia o material abaixo.
-                    </p>
-                </div>
-                <div class="collapsible-content">
-                    <div class="collapsible-content-btn">
-                        <a href="/mod/resource/view.php?id=644" class="material-sct-action-button" title="Acesse o PDF" data-toggle="tooltip"
-                            data-placement="right"><span>PDF - Registro</span>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
-                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                stroke-linejoin="round">
-                                <line x1="5" y1="12" x2="19" y2="12"></line>
-                                <polyline points="12 5 19 12 12 19"></polyline>
-                            </svg>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>    
-</div>
 
+    </div>
+</div>
 <!-- =================================================================== -->
 <!--                       FIM: BLOCO SEÇÃO 1                            -->
 <!-- =================================================================== -->

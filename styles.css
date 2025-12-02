@@ -2490,3 +2490,31 @@ body {
 /* =================================================================== */
 /*                    FIM - IMAGEM INTERATIVA (HOTSPOTS)               */
 /* =================================================================== */
+
+
+/* =================================================================== */
+/*                INÍCIO: TEXTO ANIMADO PARA EXEMPLOS                  */
+/* =================================================================== */
+.animated-text-example {
+  background-color: #f1f3f5;
+  border-left: 4px solid var(--color-primary, #ff1100);
+  padding: 10px 15px;
+  font-family: monospace;
+  font-size: 1.1em;
+  color: #343a40;
+  border-radius: 4px;
+}
+
+#animated-search-text::after {
+  content: '|';
+  animation: blink 1s step-end infinite;
+}
+
+@keyframes blink {
+  from, to { color: transparent; }
+  50% { color: #343a40; }
+}
+
+/* =================================================================== */
+/*                  FIM: TEXTO ANIMADO PARA EXEMPLOS                   */
+/* =================================================================== */
