@@ -1567,7 +1567,8 @@ body {
 .collapsible-header-title-group {
   display: flex;
   align-items: center;
-  gap: 15px;
+  gap: 5px;
+  flex-wrap: wrap;
 }
 .collapsible-description {
   margin: 15px 0 15px 0;
@@ -1995,6 +1996,16 @@ body {
   margin-top: 10px;
 }
 
+@media (max-width: 992px){
+  .materials-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(247px, 1fr));
+    gap: 15px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+}
+
 .material-card {
   background-color: #ffffff;
   border: 1px solid #e8e8e8;
@@ -2112,8 +2123,8 @@ body {
   gap: 10px;
 }
 .file-icon {
-  width: 24px;
-  height: 24px;
+  width: 20px;
+  height: 20px;
   padding-left: 6px;
   color: #666;
   transition: color 0.2s;
@@ -2371,7 +2382,7 @@ body {
   margin-top: 1rem;
 }
 .sub-item-list li {
-  display: flex;
+  display: flow;
   align-items: center;
   gap: 8px;
   margin-bottom: 0.5rem;
@@ -2391,6 +2402,8 @@ body {
     margin-bottom: 2rem;
   }
 }
+
+
 
 /* =================================================================== */
 /*              FIM: LAYOUT DE FEATURES (IMAGEM FIXA + TEXTO)          */
