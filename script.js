@@ -214,6 +214,102 @@ $('.step-content-layout-cols, .step-component').each(function() {
     // ===================================================================
     // LÓGICA DE PROGRESSO (NEUTRALIZADA, POIS DEPENDE DO MOODLE)
     // ===================================================================
+
+// ===================================================================
+// LÓGICA HÍBRIDA PARA IMAGEM INTERATIVA (COM ZOOM NO MOBILE)
+// ===================================================================
+
+function setupInteractiveImages() {
+    const isDesktop = window.matchMedia('(min-width: 992px)').matches;
+
+    $('.step-component').each(function() {
+        const stepContainer = $(this);
+        const hotspots = stepContainer.find('.hotspot');
+        const legendItems = stepContainer.find('.legend-item');
+        const image = stepContainer.find('.interactive-image-wrapper img'); // Seleciona a imagem
+
+        if (hotspots.length === 0) return;
+
+        // ===================================
+        // LÓGICA PARA DESKTOP
+        // ===================================
+        if (isDesktop) {
+            console.log("Modo Desktop: Ativando tooltips.");
+            hotspots.tooltip({
+                placement: 'left',
+                boundary: 'viewport'
+            });
+        } 
+        // ===================================
+        // LÓGICA PARA MOBILE (COM ZOOM!)
+        // ===================================
+        else {
+            console.log("Modo Mobile: Ativando legenda interativa com zoom.");
+            if (legendItems.length === 0) return;
+
+            function activateMobileItem(hotspotId, zoomData) {
+                // Ativa o hotspot e item da legenda
+                hotspots.removeClass('active');
+                legendItems.removeClass('active');
+                stepContainer.find('.hotspot[data-hotspot="' + hotspotId + '"]').addClass('active');
+                stepContainer.find('.legend-item[data-hotspot="' + hotspotId + '"]').addClass('active');
+
+                // LÓGICA DO ZOOM
+                if (zoomData && image.length > 0) {
+                    const [scale, posX, posY] = zoomData.split(',').map(Number);
+                    
+                    // Converte a posição percentual em um valor de translação
+                    // O cálculo (posX - 50) * -1 move o ponto clicado para o centro da tela
+                    const translateX = (posX - 50) * -1;
+                    const translateY = (posY - 50) * -1;
+
+                    image.css('transform', `scale(${scale}) translate(${translateX}%, ${translateY}%)`);
+                }
+            }
+            
+            function resetMobileView() {
+                hotspots.removeClass('active');
+                legendItems.removeClass('active');
+                if (image.length > 0) {
+                    image.css('transform', 'scale(1) translate(0, 0)');
+                }
+            }
+
+            legendItems.on('click', function() {
+                const hotspotId = $(this).data('hotspot');
+                const zoomData = $(this).data('zoom');
+                activateMobileItem(hotspotId, zoomData);
+
+                // Rola o item clicado para o topo da lista rolavel
+                const legendContainer = $(this).closest('.interactive-legend');
+                if (legendContainer.length > 0) {
+                    legendContainer.animate({
+                        scrollTop: this.offsetTop - legendContainer.offset().top + legendContainer.scrollTop()
+                    }, 300);
+                }
+            });
+
+            // Reseta o zoom ao clicar fora
+            $(document).on('click', function(event) {
+                if (!$(event.target).closest('.step-component').length) {
+                    resetMobileView();
+                }
+            });
+        }
+    });
+}
+
+// Executa a função principal quando a página carrega
+setupInteractiveImages();
+
+// Lógica de redimensionamento da janela
+let resizeTimer;
+$(window).on('resize', function() {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(function() {
+        location.reload(); 
+    }, 250);
+});
     // AVISO: A chamada ao Web Service e a contagem de conclusão do Moodle
     // vão falhar localmente. O código foi deixado aqui, mas comentado
     // ou dentro de 'try...catch' para não quebrar o resto do script.
