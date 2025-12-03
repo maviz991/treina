@@ -177,7 +177,7 @@ const animatedTextElement = $('#animated-search-text');
 // ===================================================================
 // LÓGICA PARA LEGENDA INTERATIVA E HOTSPOTS
 // ===================================================================
-$('.step-content-layout-cols').each(function() {
+$('.step-content-layout-cols, .step-component').each(function() {
     const container = $(this);
     const legendItems = container.find('.legend-item');
     const hotspots = container.find('.hotspot');
@@ -205,7 +205,7 @@ $('.step-content-layout-cols').each(function() {
         });
 
         // Limpa a seleção quando o mouse sai da área de texto ou da mídia
-        container.find('.step-content-col-text, .step-content-col-media').on('mouseleave', function() {
+        container.find('.step-content-col-text, .step-content-col-media, .step-content-media-hotspot').on('mouseleave', function() {
             legendItems.removeClass('active');
             hotspots.removeClass('active');
         });
