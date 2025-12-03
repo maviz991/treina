@@ -174,7 +174,43 @@ const animatedTextElement = $('#animated-search-text');
         // Inicia a animação
         typeAnimation();
     }
+// ===================================================================
+// LÓGICA PARA LEGENDA INTERATIVA E HOTSPOTS
+// ===================================================================
+$('.step-content-layout-cols').each(function() {
+    const container = $(this);
+    const legendItems = container.find('.legend-item');
+    const hotspots = container.find('.hotspot');
 
+    if (legendItems.length > 0 && hotspots.length > 0) {
+        
+        function activateItem(hotspotId) {
+            // Remove a classe 'active' de todos
+            legendItems.removeClass('active');
+            hotspots.removeClass('active');
+
+            // Adiciona a classe 'active' ao item e hotspot correspondentes
+            container.find('.legend-item[data-hotspot="' + hotspotId + '"]').addClass('active');
+            container.find('.hotspot[data-hotspot="' + hotspotId + '"]').addClass('active');
+        }
+
+        legendItems.on('click mouseenter', function() {
+            const hotspotId = $(this).data('hotspot');
+            activateItem(hotspotId);
+        });
+
+        hotspots.on('click mouseenter', function() {
+            const hotspotId = $(this).data('hotspot');
+            activateItem(hotspotId);
+        });
+
+        // Limpa a seleção quando o mouse sai da área de texto ou da mídia
+        container.find('.step-content-col-text, .step-content-col-media').on('mouseleave', function() {
+            legendItems.removeClass('active');
+            hotspots.removeClass('active');
+        });
+    }
+});
     // ===================================================================
     // LÓGICA DE PROGRESSO (NEUTRALIZADA, POIS DEPENDE DO MOODLE)
     // ===================================================================

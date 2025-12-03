@@ -2432,23 +2432,21 @@ body {
   position: absolute;
   width: 24px;
   height: 24px;
-  background-color: #ff1100;
+  background-color: var(--color-primary);
   color: white;
   border-radius: 50%;
-  
-  /* Centraliza o número dentro do círculo */
   display: flex;
   align-items: center;
+  cursor: pointer;
   justify-content: center;
   font-size: 14px;
   font-weight: bold;
   text-decoration: none;
-  
-  /* Centraliza o hotspot em seu ponto de âncora */
   transform: translate(-50%, -50%);
   box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.5);
   transition: all 0.3s ease;
   animation: pulse 2s infinite;
+  z-index: 10;
 }
 
 .hotspot:hover {
@@ -2457,6 +2455,7 @@ body {
   background-color: #d90f00;
   cursor: pointer;
 }
+
 
 /* Animação de pulso para chamar a atenção */
 @keyframes pulse {
@@ -2472,23 +2471,68 @@ body {
   margin-top: 2rem;
 }
 
-
-/* Media Query para Responsividade */
-@media (max-width: 768px) {
+/* Responsividade (Apenas para o hotspot ativo no mobile) */
+@media (max-width: 991.98px) {
   .hotspot {
-    display: none; /* Esconde os hotspots interativos */
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+    animation: none; /* Desliga o pulso inicial no mobile */
   }
-  .hotspot-fallback-list {
-    display: block; /* Mostra a lista simples como alternativa */
-  }
-  .interactive-image-wrapper {
-    border: none; /* Remove a borda da imagem no mobile */
-    box-shadow: none;
+  .hotspot.active {
+    opacity: 1;
+    pointer-events: auto;
+    animation: pulse 1.5s infinite; /* Liga o pulso apenas no hotspot ativo */
   }
 }
 
 /* =================================================================== */
 /*                    FIM - IMAGEM INTERATIVA (HOTSPOTS)               */
+/* =================================================================== */
+
+
+/* =================================================================== */
+/*          INÍCIO - LEGENDA DE HOTSPOT - IMAGEM INTERATIVA            */
+/* =================================================================== */
+
+.interactive-image-wrapper {
+  position: relative;
+  max-width: 957px;
+  margin: 0 auto;
+}
+
+.interactive-image-wrapper img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+/* LEGENDA INTERATIVA (PARA MOBILE) */
+.interactive-legend {
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.legend-item {
+  padding: 12px 15px;
+  font-size: 0.9em;
+  border-bottom: 1px solid #e0e0e0;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.legend-item:last-child {
+  border-bottom: none;
+}
+
+.legend-item.active {
+  background-color: #faccc8; /* Cor de destaque suave */
+}
+/* =================================================================== */
+/*            FIM - LEGENDA DE HOTSPOT - IMAGEM INTERATIVA             */
 /* =================================================================== */
 
 
@@ -2518,3 +2562,5 @@ body {
 /* =================================================================== */
 /*                  FIM: TEXTO ANIMADO PARA EXEMPLOS                   */
 /* =================================================================== */
+
+
