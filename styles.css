@@ -2457,7 +2457,7 @@ body {
   overflow: hidden;
 }
 .interactive-image-inner-container {
-  position: relative; /* Contexto de posicionamento para hotspots */
+  position: relative;
   width: 100%;
   /* transform-origin: center center; Não é necessário se o js aplicar */
 }
@@ -2498,6 +2498,11 @@ body {
   animation: none;
   background-color: #d90f00;
   cursor: zoom-in;
+}
+
+/* Quando o hotspot está ativo e em hover, mantém o cursor zoom-out */
+.hotspot.active:hover {
+  cursor: zoom-out;
 }
 
 /* Animação de pulso para chamar a atenção */
@@ -2545,6 +2550,7 @@ body {
     pointer-events: auto;
     animation: pulse 1.5s infinite;
     z-index: 10;
+    cursor: zoom-out;
   }
 }
 
@@ -2595,6 +2601,7 @@ body {
 
 .legend-item.active {
   background-color: #faccc8;
+  cursor: zoom-out;
 }
 
 /* =================================================================== */
