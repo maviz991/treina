@@ -510,20 +510,21 @@ function setupInteractiveImages() {
                 if (isZoomed && isActive) {
                     console.log("DEBUG: Zoom ativo, resetando visualização (zoom-out)");
                     resetView();
-                    // Volta todos os ícones para o estado inicial (search)
-                    legendItems.each(function() {
-                        const $icon = $(this).find('.icon-custon');
-                        $icon.removeClass('icon-zoom-in icon-zoom-out').addClass('icon-search');
-                    });
                     return;
                 }
 
                 // 2. Se já está ativo mas sem zoom, aplica o zoom (segundo clique) e muda para zoom-out
                 if (isActive && !isZoomed) {
                     console.log("DEBUG: Item de legenda já está ativo, aplicando zoom");
-                    activateZoom(hotspotId, zoomData);
-                    // Muda o ícone do item atual para zoom-out
+                    
+                    // Muda o ícone para zoom-out ANTES de aplicar o zoom
                     $this.find('.icon-custon').removeClass('icon-search icon-zoom-in').addClass('icon-zoom-out');
+                    
+                    // Remove temporariamente os eventos de clique fora para evitar conflitos
+                    $(document).off('click.resetZoomMobile');
+                    
+                    // Aplica o zoom
+                    activateZoom(hotspotId, zoomData);
                     return;
                 }
 
