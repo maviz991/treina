@@ -430,10 +430,11 @@ function setupInteractiveImages() {
 
     $('.step-component').each(function() {
         const stepContainer = $(this);
-        const hotspots = stepContainer.find('.hotspot');
-        const legendItems = stepContainer.find('.legend-item');
         const imageWrapper = stepContainer.find('.interactive-image-wrapper');
-        const image = imageWrapper.find('img');
+        const innerContainer = imageWrapper.find('.interactive-image-inner-container');
+        const image = innerContainer.find('img');
+        const hotspots = innerContainer.find('.hotspot');
+        const legendItems = stepContainer.find('.interactive-legend .legend-item');
 
         if (hotspots.length === 0) return;
 
@@ -501,13 +502,18 @@ function setupInteractiveImages() {
                     console.log("🔍 Aplicando transform:", transformValue);
                     
                     // Aplica transform na imagem
-                    image[0].style.transform = transformValue;
-                    image[0].style.transition = 'transform 0.3s ease';
-                    
+                    // imageWrapper[0].style.transform = transformValue;
+                    // imageWrapper[0].style.transition = 'transform 0.3s ease';
+                    innerContainer[0].style.transform = transformValue;
+                    innerContainer[0].style.transition = 'transform 0.3s ease';
+
                     // Aplica o MESMO transform em TODOS os hotspots para mantê-los sincronizados
+                    image[0].style.transform = 'none';
+                    image[0].style.transition = 'none';
+
                     hotspots.each(function() {
                         // Mantém o translate(-50%, -50%) original + adiciona o transform da imagem
-                        this.style.transform = 'translate(-50%, -50%) ' + transformValue;
+                        this.style.transform = 'translate(-50%, -50%) '; //+ transformValue;
                         this.style.transition = 'all 0.3s ease';
                     });
                 }
@@ -517,9 +523,16 @@ function setupInteractiveImages() {
                 console.log("🔄 Resetando view");
                 hotspots.removeClass('active');
                 legendItems.removeClass('active');
+
+                if (innerContainer.length > 0){
+                    innerContainer[0].style.transform = 'scale(1) translate(0, 0)'; 
+                    innerContainer[0].style.transition = 'transform 0.3s ease';
+                }
                 
                 if (image.length > 0) {
-                    image[0].style.transform = 'scale(1) translate(0, 0)';
+                    image[0].style.transform = 'none'; //'scale(1) translate(0, 0)';
+                    image[0].style.transition = 'none'; //'scale(1) translate(0, 0)';
+
                 }
                 
                 // Reseta os hotspots também
