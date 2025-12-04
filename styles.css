@@ -35,6 +35,10 @@ Obs.: Use bootstrap 4.0*/
   mask-position: center;
 }
 
+.icon-mobile{
+  color: var(--color-primary);
+}
+
 /* ---                   Definição de cada ícone                   --- */
 /*    use https://yoksel.github.io/url-encoder/ para converter o svg   */
 .icon-target {
@@ -2601,13 +2605,24 @@ body {
 }
 
 .legend-item {
+  display: flex;
+  gap: 15px;
   padding: 12px 15px;
   font-size: 0.9em;
   border-bottom: 1px solid #e0e0e0;
   background-color: #f3f3f3;
   cursor: zoom-in;
   transition: background-color 0.2s ease;
+  align-items: center;
 }
+
+/* Garante que o ícone dentro do legend-item mantenha tamanho fixo */
+.legend-item .icon-custon {
+  flex-shrink: 0; 
+  width: 20px; 
+  height: 20px;
+}
+
 
 .legend-item:last-child {
   border-bottom: none;
