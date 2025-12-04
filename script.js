@@ -178,14 +178,7 @@ const animatedTextElement = $('#animated-search-text');
 // LÓGICA PARA LEGENDA INTERATIVA E HOTSPOTS (MODIFICADA PARA NÃO CONFLITAR COM ZOOM)
 // ===================================================================
 $('.step-content-layout-cols').each(function() {
-    // Apenas para componentes que não são de imagem interativa com zoom
     const container = $(this);
-    if (container.find('.interactive-image-wrapper').length > 0) {
-        // Se for um componente de imagem interativa, não aplica esta lógica
-        // pois ela será tratada pela função setupInteractiveImages()
-        return;
-    }
-    
     const legendItems = container.find('.legend-item');
     const hotspots = container.find('.hotspot');
 
@@ -200,22 +193,93 @@ $('.step-content-layout-cols').each(function() {
             container.find('.legend-item[data-hotspot="' + hotspotId + '"]').addClass('active');
             container.find('.hotspot[data-hotspot="' + hotspotId + '"]').addClass('active');
         }
+        
+        // Função para gerenciar o comportamento de dois cliques no mobile
+        function activateMobileItem(hotspotId, zoomData) {
+            const $legendItem = legendItems.filter('[data-hotspot="' + hotspotId + '"]');
+            const $hotspot = hotspots.filter('[data-hotspot="' + hotspotId + '"]');
+            const isActive = $legendItem.hasClass('active');
+            
+            if (isActive) {
+                // Segundo clique: aplica o zoom
+                if (zoomData) {
+                    const stepContainer = container.closest('.step-component');
+                    const imageWrapper = stepContainer.find('.interactive-image-wrapper');
+                    const innerContainer = imageWrapper.find('.interactive-image-inner-container');
+                    const image = innerContainer.find('img');
+                    
+                    if (image.length > 0) {
+                        const parts = zoomData.split(',');
+                        const scale = parseFloat(parts[0]);
+                        const posX = parseFloat(parts[1]);
+                        const posY = parseFloat(parts[2]);
+                        
+                        const translateX = (posX - 50) * -1;
+                        const translateY = (posY - 50) * -1;
+                        
+                        const transformValue = 'scale(' + scale + ') translate(' + translateX + '%, ' + translateY + '%)';
+                        
+                        innerContainer[0].style.transform = transformValue;
+                        innerContainer[0].style.transition = 'transform 0.5s ease';
+                        
+                        image[0].style.transform = 'none';
+                        image[0].style.transition = 'none';
 
-        legendItems.on('click mouseenter', function() {
-            const hotspotId = $(this).data('hotspot');
-            activateItem(hotspotId);
-        });
+                        hotspots.each(function() {
+                            this.style.transform = 'translate(-50%, -50%)';
+                            this.style.transition = 'all 0.5s ease';
+                        });
 
-        hotspots.on('click mouseenter', function() {
-            const hotspotId = $(this).data('hotspot');
-            activateItem(hotspotId);
-        });
+                        // Scroll suave
+                        $('html, body').animate({
+                            scrollTop: imageWrapper.offset().top - 50
+                        }, 300);
+                    }
+                }
+            } else {
+                // Primeiro clique: apenas ativa o hotspot
+                activateItem(hotspotId);
+            }
+        }
 
-        // Limpa a seleção quando o mouse sai da área de texto ou da mídia
-        container.find('.step-content-col-text, .step-content-col-media, .step-content-media-hotspot').on('mouseleave', function() {
-            legendItems.removeClass('active');
-            hotspots.removeClass('active');
-        });
+        // Para componentes de imagem interativa, comportamento especial
+        if (container.find('.interactive-image-wrapper').length > 0) {
+            // Apenas hover para feedback visual em componentes de imagem interativa
+            legendItems.on('mouseenter', function() {
+                const hotspotId = $(this).data('hotspot');
+                activateItem(hotspotId);
+            });
+            
+            // Comportamento de clique para mobile usando activateMobileItem
+            legendItems.on('click', function() {
+                const hotspotId = $(this).data('hotspot');
+                const zoomData = $(this).data('zoom');
+                activateMobileItem(hotspotId, zoomData);
+            });
+            
+            // Limpa ao sair da área da legenda
+            container.find('.interactive-legend').on('mouseleave', function() {
+                legendItems.removeClass('active');
+                hotspots.removeClass('active');
+            });
+        } else {
+            // Para componentes não interativos, mantém o comportamento completo
+            legendItems.on('click mouseenter', function() {
+                const hotspotId = $(this).data('hotspot');
+                activateItem(hotspotId);
+            });
+
+            hotspots.on('click mouseenter', function() {
+                const hotspotId = $(this).data('hotspot');
+                activateItem(hotspotId);
+            });
+
+            // Limpa a seleção quando o mouse sai da área de texto ou da mídia
+            container.find('.step-content-col-text, .step-content-col-media, .step-content-media-hotspot').on('mouseleave', function() {
+                legendItems.removeClass('active');
+                hotspots.removeClass('active');
+            });
+        }
     }
 });
     // ===================================================================
@@ -413,6 +477,10 @@ function setupInteractiveImages() {
                 return;
             }
 
+            // Limpa eventos anteriores para evitar múltiplos listeners
+            hotspots.off('click.interactive mouseenter.interactive mouseleave.interactive');
+            legendItems.off('click.interactive mouseenter.interactive');
+            
             // FUNÇÃO PARA MOBILE (Usa a função global activateZoom)
             legendItems.on('click.interactive', function(e) {
                 console.log("DEBUG: Clique no item de legenda em mobile detectado");
@@ -423,25 +491,37 @@ function setupInteractiveImages() {
                 const hotspotId = $this.data('hotspot');
                 const zoomData = $this.data('zoom');
                 const isActive = $this.hasClass('active');
+                
+                // Verifica se o zoom está ativo (verificando se o transform do innerContainer tem scale diferente de 1)
+                const isZoomed = innerContainer.length > 0 &&
+                                innerContainer[0].style.transform &&
+                                innerContainer[0].style.transform.includes('scale(') &&
+                                !innerContainer[0].style.transform.includes('scale(1)');
 
-                console.log("DEBUG: hotspotId:", hotspotId, "isActive:", isActive, "zoomData:", zoomData);
+                console.log("DEBUG: hotspotId:", hotspotId, "isActive:", isActive, "isZoomed:", isZoomed, "zoomData:", zoomData);
 
-                // 1. Se já estiver ativo, reseta e sai.
-                if (isActive) {
-                    console.log("DEBUG: Item de legenda já está ativo, resetando visualização");
+                // 1. Se está com zoom ativo, reseta (zoom-out)
+                if (isZoomed && isActive) {
+                    console.log("DEBUG: Zoom ativo, resetando visualização (zoom-out)");
                     resetView();
-                    // REMOVIDO: Scroll para o topo para evitar salto indesejado
-                    // const legendContainer = this.closest('.interactive-legend');
-                    // if (legendContainer) {
-                    //     legendContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                    // }
                     return;
                 }
 
-                // 2. Se não estiver ativo, aplica o zoom
-                activateZoom(hotspotId, zoomData);
+                // 2. Se já está ativo mas sem zoom, aplica o zoom (segundo clique)
+                if (isActive && !isZoomed) {
+                    console.log("DEBUG: Item de legenda já está ativo, aplicando zoom");
+                    activateZoom(hotspotId, zoomData);
+                    return;
+                }
 
-                // Scroll suave
+                // 3. Se não estiver ativo, apenas ativa o hotspot (primeiro clique)
+                console.log("DEBUG: Ativando hotspot sem zoom (primeiro clique)");
+                hotspots.removeClass('active');
+                legendItems.removeClass('active');
+                stepContainer.find('.hotspot[data-hotspot="' + hotspotId + '"]').addClass('active');
+                $this.addClass('active');
+
+                // Scroll suave para o item
                 const legendContainer = this.closest('.interactive-legend');
                 if (legendContainer) {
                     this.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
