@@ -416,129 +416,165 @@
         console.log("(INTERATIVO) Legenda interativa inicializada");
     }
     
-    // ===================================================================
-    // LÓGICA PARA IMAGEM INTERATIVA COM ZOOM (MOBILE E DESKTOP)
-    // ===================================================================
-    function setupInteractiveImages() {
-        if (typeof jQuery === 'undefined') return;
-        
-        const $ = jQuery;
-        const isDesktop = window.matchMedia('(min-width: 992px)').matches;
+// ===================================================================
+// LÓGICA PARA IMAGEM INTERATIVA COM ZOOM (MOBILE E DESKTOP)
+// ===================================================================
+function setupInteractiveImages() {
+    if (typeof jQuery === 'undefined') {
+        console.log("jQuery não disponível ainda para imagens");
+        return;
+    }
     
-        $('.step-component').each(function() {
-            const stepContainer = $(this);
-            const hotspots = stepContainer.find('.hotspot');
-            const legendItems = stepContainer.find('.legend-item');
-            const image = stepContainer.find('.interactive-image-wrapper img');
-    
-            if (hotspots.length === 0) return;
-    
-            // Limpa eventos anteriores
-            if (hotspots.tooltip) {
-                hotspots.tooltip('dispose');
+    const $ = jQuery;
+    const isDesktop = window.matchMedia('(min-width: 992px)').matches;
+
+    $('.step-component').each(function() {
+        const stepContainer = $(this);
+        const hotspots = stepContainer.find('.hotspot');
+        const legendItems = stepContainer.find('.legend-item');
+        const imageWrapper = stepContainer.find('.interactive-image-wrapper');
+        const image = imageWrapper.find('img');
+
+        if (hotspots.length === 0) return;
+
+        console.log("Configurando step-component:", {
+            hotspots: hotspots.length,
+            legendItems: legendItems.length,
+            image: image.length,
+            isDesktop: isDesktop
+        });
+
+        // Limpa eventos anteriores
+        if ($.fn.tooltip) {
+            hotspots.tooltip('dispose');
+        }
+        hotspots.off('.interactive');
+        legendItems.off('.interactive');
+
+        // ===================================
+        // LÓGICA PARA DESKTOP
+        // ===================================
+        if (isDesktop) {
+            console.log("→ Modo Desktop: Ativando tooltips");
+            
+            if ($.fn.tooltip) {
+                hotspots.each(function() {
+                    $(this).tooltip({
+                        placement: 'left',
+                        boundary: 'viewport',
+                        trigger: 'hover'
+                    });
+                });
             }
-            hotspots.off('click.interactive mouseenter.interactive mouseleave.interactive');
-            legendItems.off('click.interactive mouseenter.interactive');
-    
-            // ===================================
-            // LÓGICA PARA DESKTOP
-            // ===================================
-            if (isDesktop) {
-                console.log("Modo Desktop: Ativando tooltips");
+        } 
+        // ===================================
+        // LÓGICA PARA MOBILE (COM ZOOM!)
+        // ===================================
+        else {
+            console.log("→ Modo Mobile: Ativando legenda com zoom");
+            
+            if (legendItems.length === 0) {
+                console.warn("⚠️ Nenhum item de legenda encontrado");
+                return;
+            }
+
+            function activateMobileItem(hotspotId, zoomData) {
+                console.log("📍 Ativando:", hotspotId, "Zoom:", zoomData);
                 
-                // Inicializa tooltips apenas se o Bootstrap estiver disponível
-                if (typeof $.fn.tooltip !== 'undefined') {
+                // Ativa visualmente
+                hotspots.removeClass('active');
+                legendItems.removeClass('active');
+                stepContainer.find('.hotspot[data-hotspot="' + hotspotId + '"]').addClass('active');
+                stepContainer.find('.legend-item[data-hotspot="' + hotspotId + '"]').addClass('active');
+
+                // Aplica ZOOM na imagem E nos hotspots
+                if (zoomData && image.length > 0) {
+                    const parts = zoomData.split(',');
+                    const scale = parseFloat(parts[0]);
+                    const posX = parseFloat(parts[1]);
+                    const posY = parseFloat(parts[2]);
+                    
+                    const translateX = (posX - 50) * -1;
+                    const translateY = (posY - 50) * -1;
+                    
+                    const transformValue = 'scale(' + scale + ') translate(' + translateX + '%, ' + translateY + '%)';
+                    console.log("🔍 Aplicando transform:", transformValue);
+                    
+                    // Aplica transform na imagem
+                    image[0].style.transform = transformValue;
+                    image[0].style.transition = 'transform 0.3s ease';
+                    
+                    // Aplica o MESMO transform em TODOS os hotspots para mantê-los sincronizados
                     hotspots.each(function() {
-                        $(this).tooltip({
-                            placement: 'left',
-                            boundary: 'viewport',
-                            trigger: 'hover'
-                        });
+                        // Mantém o translate(-50%, -50%) original + adiciona o transform da imagem
+                        this.style.transform = 'translate(-50%, -50%) ' + transformValue;
+                        this.style.transition = 'all 0.3s ease';
                     });
                 }
-            } 
-            // ===================================
-            // LÓGICA PARA MOBILE (COM ZOOM!)
-            // ===================================
-            else {
-                console.log("Modo Mobile: Ativando legenda interativa com zoom");
-                
-                if (legendItems.length === 0) {
-                    console.warn("Nenhum item de legenda encontrado no mobile");
-                    return;
-                }
-    
-                function activateMobileItem(hotspotId, zoomData) {
-                    console.log("Ativando item mobile:", hotspotId, zoomData);
-                    
-                    // Ativa o hotspot e item da legenda
-                    hotspots.removeClass('active');
-                    legendItems.removeClass('active');
-                    stepContainer.find('.hotspot[data-hotspot="' + hotspotId + '"]').addClass('active');
-                    stepContainer.find('.legend-item[data-hotspot="' + hotspotId + '"]').addClass('active');
-    
-                    // LÓGICA DO ZOOM
-                    if (zoomData && image.length > 0) {
-                        const [scale, posX, posY] = zoomData.split(',').map(Number);
-                        const translateX = (posX - 50) * -1;
-                        const translateY = (posY - 50) * -1;
-                        image.css('transform', 'scale(' + scale + ') translate(' + translateX + '%, ' + translateY + '%)');
-                        console.log("Zoom aplicado:", scale, translateX, translateY);
-                    } else if (image.length > 0) {
-                        // Se não tem dados de zoom, apenas ativa visualmente
-                        console.log("Sem dados de zoom, apenas ativando visualmente");
-                    }
-                }
-                
-                function resetMobileView() {
-                    console.log("Resetando view mobile");
-                    hotspots.removeClass('active');
-                    legendItems.removeClass('active');
-                    if (image.length > 0) {
-                        image.css('transform', 'scale(1) translate(0, 0)');
-                    }
-                }
-    
-                // CLICK nos itens da legenda
-                legendItems.on('click.interactive', function(e) {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    const hotspotId = $(this).data('hotspot');
-                    const zoomData = $(this).data('zoom');
-                    console.log("Click no item da legenda:", hotspotId);
-                    activateMobileItem(hotspotId, zoomData);
-    
-                    // Rola o item clicado para o topo da lista
-                    const legendContainer = $(this).closest('.interactive-legend');
-                    if (legendContainer.length > 0) {
-                        legendContainer.animate({
-                            scrollTop: this.offsetTop - legendContainer.offset().top + legendContainer.scrollTop()
-                        }, 300);
-                    }
-                });
-    
-                // HOVER nos itens da legenda (para melhorar UX)
-                legendItems.on('mouseenter.interactive', function() {
-                    const hotspotId = $(this).data('hotspot');
-                    stepContainer.find('.hotspot[data-hotspot="' + hotspotId + '"]').addClass('hover');
-                });
-    
-                legendItems.on('mouseleave.interactive', function() {
-                    hotspots.removeClass('hover');
-                });
-    
-                // Reseta o zoom ao clicar fora
-                $(document).off('click.resetZoom').on('click.resetZoom', function(event) {
-                    if (!$(event.target).closest('.step-component').length && 
-                        !$(event.target).closest('.interactive-legend').length) {
-                        resetMobileView();
-                    }
-                });
-                
-                console.log(`Mobile interativo configurado: ${legendItems.length} itens de legenda, ${hotspots.length} hotspots`);
             }
-        });
-    }
+            
+            function resetMobileView() {
+                console.log("🔄 Resetando view");
+                hotspots.removeClass('active');
+                legendItems.removeClass('active');
+                
+                if (image.length > 0) {
+                    image[0].style.transform = 'scale(1) translate(0, 0)';
+                }
+                
+                // Reseta os hotspots também
+                hotspots.each(function() {
+                    this.style.transform = 'translate(-50%, -50%)';
+                });
+            }
+
+            // CLICK nos itens da legenda
+            legendItems.on('click.interactive', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                
+                const $this = $(this);
+                const hotspotId = $this.data('hotspot');
+                const zoomData = $this.data('zoom');
+                
+                console.log("👆 Click na legenda:", {
+                    hotspotId: hotspotId,
+                    zoomData: zoomData,
+                    element: this
+                });
+                
+                activateMobileItem(hotspotId, zoomData);
+
+                // Scroll suave
+                const legendContainer = this.closest('.interactive-legend');
+                if (legendContainer) {
+                    this.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                }
+            });
+
+            // HOVER nos itens (feedback visual)
+            legendItems.on('mouseenter.interactive', function() {
+                const hotspotId = $(this).data('hotspot');
+                stepContainer.find('.hotspot[data-hotspot="' + hotspotId + '"]').addClass('hover');
+            });
+
+            legendItems.on('mouseleave.interactive', function() {
+                hotspots.removeClass('hover');
+            });
+
+            // Reset ao clicar fora
+            $(document).off('click.resetZoom').on('click.resetZoom', function(event) {
+                const $target = $(event.target);
+                if (!$target.closest('.step-component').length && 
+                    !$target.closest('.interactive-legend').length) {
+                    resetMobileView();
+                }
+            });
+            
+            console.log("✅ Mobile configurado:", legendItems.length, "itens");
+        }
+    });
+}
     
     // ===================================================================
     // INICIALIZAÇÃO COMPATÍVEL COM MOODLE

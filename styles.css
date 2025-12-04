@@ -2441,17 +2441,20 @@ body {
 /* =================================================================== */
 
 .interactive-image-wrapper {
-  position: relative; /* Essencial para posicionar os hotspots dentro dele */
-  max-width: 957px; /* Largura exata da sua imagem */
-  margin: 2rem auto; /* Centraliza o contêiner */
+  position: relative;
+  max-width: 957px;
+  margin: 2rem auto;
   border: 1px solid #ddd;
   box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  overflow: hidden; /* IMPORTANTE: esconde os hotspots que saem da área visível */
 }
 
 .interactive-image-wrapper img {
-  display: block; /* Remove espaço extra abaixo da imagem */
+  display: block;
   width: 100%;
   height: auto;
+  transform-origin: center center; /* Garante que o zoom seja do centro */
+  transition: transform 0.3s ease;
 }
 
 .hotspot {
@@ -2482,7 +2485,6 @@ body {
   cursor: pointer;
 }
 
-
 /* Animação de pulso para chamar a atenção */
 @keyframes pulse {
   0% { box-shadow: 0 0 0 0px rgba(255, 17, 0, 0.7); }
@@ -2493,18 +2495,33 @@ body {
 
 /* Fallback para telas pequenas (Mobile) */
 .hotspot-fallback-list {
-  display: none; /* Escondido por padrão em telas grandes */
+  display: none;
   margin-top: 2rem;
 }
 
-/* Responsividade (Apenas para o hotspot ativo no mobile) */
+/* Responsividade (Mobile) */
 @media (max-width: 991.98px) {
+  .interactive-image-wrapper {
+    overflow: visible; /* Permite ver a imagem com zoom */
+    border: none;
+    box-shadow: none;
+    margin: 1rem 0;
+  }
+  
+  /* Container interno para manter imagem e hotspots juntos */
+  .interactive-image-wrapper::before {
+    content: none;
+    display: block;
+    padding-top: 0; /* Proporção 16:9, ajuste conforme sua imagem */
+  }
+  
   .hotspot {
     opacity: 0;
     pointer-events: none;
-    transition: opacity 0.3s ease;
+    transition: opacity 0.3s ease, transform 0.3s ease;
     animation: none;
   }
+  
   .hotspot.active {
     opacity: 1;
     width: 30px;
@@ -2543,6 +2560,8 @@ body {
   border: 1px solid #e0e0e0;
   border-radius: 8px;
   overflow: hidden;
+  max-height: 300px;
+  overflow-y: auto;
 }
 
 .legend-item {
@@ -2560,6 +2579,7 @@ body {
 .legend-item.active {
   background-color: #faccc8;
 }
+
 /* =================================================================== */
 /*            FIM - LEGENDA DE HOTSPOT - IMAGEM INTERATIVA             */
 /* =================================================================== */

@@ -1,319 +1,645 @@
-// ===================================================================
-// SCRIPT PARA O CURSO GEOHAB (VERSÃO PARA TESTE LOCAL)
-// ===================================================================
-
-// $(function() { ... }) é a forma padrão do jQuery de executar o código
-// assim que a página estiver totalmente carregada. Substitui o 'require' do Moodle.
-$(function() {
-
-    console.log("Página e jQuery prontos. Inicializando componentes...");
-
     // ===================================================================
-    // INICIALIZAÇÃO DE COMPONENTES BOOTSTRAP (MODAL, TOOLTIP, POPOVER)
+    // SCRIPT PARA O CURSO GEOHAB - VERSÃO CONSOLIDADA
     // ===================================================================
-    $('[data-toggle="popover"]').popover();
-    $('[data-toggle="tooltip"]').tooltip();
-    // Modais são inicializados automaticamente via data-attributes, mas isso não prejudica.
-    // $('.modal').modal(); 
-
-    // Lógica para fechar o popover ao clicar fora
-    $('body').on('click', function(e) {
-        $('[data-toggle="popover"]').each(function() {
-            if (!$(this).is(e.target) && $(this).has(e.target).length === 0 && $('.popover').has(e.target).length === 0) {
-                $(this).popover('hide');
+    
+    document.addEventListener('DOMContentLoaded', function() {
+    
+        // ===============================================================
+        // PARTE 1: RASTREADOR DE NAVEGAÇÃO (BOTÃO "CONTINUAR")
+        // ===============================================================
+        try {
+            const courseIdMatch = document.body.className.match(/course-(\d+)/);
+            if (courseIdMatch) {
+                const courseIdForResume = courseIdMatch[1];
+                const storageKey = `moodle-last-activity-${courseIdForResume}`;
+    
+                function saveLastUrl(url) {
+                    if (!url || typeof url !== 'string') return;
+                    const isInvalidLink = ['update=', 'delete=', 'hide=', 'move.php', 'javascript:;'].some(term => url.includes(term));
+                    if (!isInvalidLink) {
+                        console.log(`(RASTREADOR) Salvando a URL: ${url}`);
+                        localStorage.setItem(storageKey, url);
+                    }
+                }
+    
+                document.body.addEventListener('click', function(e) {
+                    const target = e.target;
+                    const collapseButton = target.closest('a[data-toggle="collapse"]');
+                    const playButton = target.closest('.vjs-big-play-button');
+                    const navLink = target.closest('h3.sectionname a:not(.quickeditlink), li.activity a.aalink:not(.quickeditlink), footer .btn-geohab-popover');
+    
+                    if (collapseButton) {
+                        const anchor = collapseButton.getAttribute('href');
+                        if (anchor && anchor.startsWith('#')) {
+                            const urlWithAnchor = `${window.location.pathname}${window.location.search}${anchor}`;
+                            saveLastUrl(urlWithAnchor);
+                        }
+                    } else if (playButton) {
+                        const videoContainer = playButton.closest('[id^="video-"]');
+                        if (videoContainer) {
+                            const urlWithAnchor = `${window.location.pathname}${window.location.search}#${videoContainer.id}`;
+                            saveLastUrl(urlWithAnchor);
+                        } else {
+                            saveLastUrl(window.location.href);
+                        }
+                    } else if (navLink) {
+                        saveLastUrl(navLink.href);
+                    }
+                });
+                console.log("(RASTREADOR) 'Ouvintes' de navegação estão ativos.");
             }
+        } catch (e) {
+            console.error("Erro na lógica do Rastreador:", e);
+        }
+    
+        // ===============================================================
+        // PARTE 2: EXIBIDOR DO BOTÃO "CONTINUAR"
+        // ===============================================================
+        try {
+            const resumeButton = document.getElementById('resume-course-button');
+            if (resumeButton) {
+                const courseIdMatch = document.body.className.match(/course-(\d+)/);
+                if (courseIdMatch) {
+                    const courseIdForResume = courseIdMatch[1];
+                    const storageKey = `moodle-last-activity-${courseIdForResume}`;
+                    const lastVisitedUrl = localStorage.getItem(storageKey);
+                    if (lastVisitedUrl) {
+                        resumeButton.href = lastVisitedUrl;
+                        resumeButton.style.display = 'inline-block';
+                        console.log("(EXIBIDOR) Botão 'Continuar' configurado para:", lastVisitedUrl);
+                    }
+                }
+            }
+        } catch (e) {
+            console.error("Erro na lógica do Exibidor:", e);
+        }
+    
+        // ===================================================================
+        // INICIALIZAÇÃO DE COMPONENTES BOOTSTRAP (jQuery + Bootstrap)
+        // ===================================================================
+        require(['jquery', 'core/popper', 'core/bootstrap'], function($, popper) {
+            console.log("jQuery e Bootstrap estão prontos. Inicializando popovers...");
+            
+            $('[data-toggle="popover"]').popover();
+    
+            $('body').on('click', function (e) {
+                $('[data-toggle="popover"]').each(function () {
+                    if (!$(this).is(e.target) && $(this).has(e.target).length === 0 && $('.popover').has(e.target).length === 0) {
+                        $(this).popover('hide');
+                    }
+                });
+            });
         });
-    });
-
-    // ===============================================================
-    // PARTE 1: RASTREADOR DE NAVEGAÇÃO (NEUTRALIZADO PARA TESTE)
-    // ===============================================================
-    // AVISO: Esta parte depende de classes do Moodle, como 'course-X'.
-    // Ela não vai quebrar o site, mas pode não funcionar como esperado localmente.
-    try {
-        const courseIdForResume = 1; // Simula um ID de curso para teste
-        const storageKey = `moodle-last-activity-${courseIdForResume}`;
-
-        function saveLastUrl(url) {
-            if (!url || typeof url !== 'string') return;
-            const isInvalidLink = ['update=', 'delete=', 'hide=', 'move.php', 'javascript:;'].some(term => url.includes(term));
-            if (!isInvalidLink) {
-                console.log(`(RASTREADOR) Salvando a URL: ${url}`);
-                localStorage.setItem(storageKey, url);
-            }
+    
+        // ===================================================================
+        // FUNÇÃO HELPER: Verifica se estamos na página principal do curso
+        // ===================================================================
+        function isCourseHomePage() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const sectionParam = urlParams.get('section');
+            return !urlParams.has('section') || sectionParam === '0';
         }
-
-        // ... a lógica de ouvinte de clique pode permanecer, ela não quebra se não encontrar os elementos ...
-
-    } catch (e) {
-        console.warn("A lógica do Rastreador de Navegação pode não funcionar totalmente em ambiente local.", e);
-    }
-
-    // ===============================================================
-    // PARTE 2: EXIBIDOR DO BOTÃO "CONTINUAR" (NEUTRALIZADO PARA TESTE)
-    // ===============================================================
-    try {
-        const resumeButton = document.getElementById('resume-course-button');
-        if (resumeButton) {
-            const courseIdForResume = 1;
-            const storageKey = `moodle-last-activity-${courseIdForResume}`;
-            const lastVisitedUrl = localStorage.getItem(storageKey);
-            if (lastVisitedUrl) {
-                resumeButton.href = lastVisitedUrl;
-                resumeButton.style.display = 'inline-block';
-                console.log("(EXIBIDOR) Botão 'Continuar' configurado para:", lastVisitedUrl);
-            }
-        }
-    } catch (e) {
-        console.warn("A lógica do Exibidor do Botão 'Continuar' pode não funcionar totalmente em ambiente local.", e);
-    }
-
-
-    // ===================================================================
-    // INICIALIZAÇÃO DE COMPONENTES INTERATIVOS (Modal, Lupa, etc.)
-    // ===================================================================
-
-    // --- 1. Lógica para Modal de Imagem ---
-    document.querySelectorAll('.image-modal-wrapper').forEach(wrapper => {
-        const triggerImg = wrapper.querySelector('.modal-trigger-img');
-        const modal = wrapper.querySelector('.image-modal-popup');
-        if (triggerImg && modal) {
-            const modalDisplayImg = modal.querySelector('.modal-display-img');
-            const modalCaptionText = modal.querySelector('.modal-caption-text');
-            const closeButton = modal.querySelector('.custom-close');
-
-            triggerImg.addEventListener('click', function() {
-                modal.style.display = "block";
-                if (modalDisplayImg) modalDisplayImg.src = this.src;
-                if (modalCaptionText) modalCaptionText.innerHTML = this.alt;
-            });
-            if (closeButton) {
-                closeButton.addEventListener('click', () => modal.style.display = "none");
-            }
-            modal.addEventListener('click', (event) => {
-                if (event.target === modal) modal.style.display = "none";
-            });
-        }
-    });
-
-    document.addEventListener('keydown', event => {
-        if (event.key === 'Escape') {
-            document.querySelectorAll('.image-modal-popup[style*="display: block"]').forEach(m => m.style.display = "none");
-        }
-    });
-
-    // --- 2. Lógica para Lupa (Magnify) ---
-    // (Sua função magnify e o restante do código JS que não depende do Moodle permanecem aqui)
-    function magnify(imgID, zoom) {
-        // ... sua função magnify completa ...
-    }
-    if (document.getElementById("myimage")) {
-        magnify("myimage", 2);
-    }
-
-
-    // ===================================================================
-    // OUVINTE DE CLIQUE ÚNICO E GLOBAL (ROLAGEM SUAVE)
-    // ===================================================================
-    document.body.addEventListener('click', function(e) {
-        const link = e.target.closest('a');
-        if (!link || !link.classList.contains('js-scroll-link')) {
-            return;
-        }
-        e.preventDefault();
-        const anchorTargetId = link.getAttribute('href');
-        if (anchorTargetId && anchorTargetId.startsWith('#')) {
-            const anchorTarget = document.querySelector(anchorTargetId);
-            if (anchorTarget) {
-                anchorTarget.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'
+    
+        // ===================================================================
+        // SETUP INICIAL DA PÁGINA
+        // ===================================================================
+        
+        // 1. Injetar nome do usuário
+        try {
+            const userFullNameElement = document.querySelector('.loggedinas strong');
+            if (userFullNameElement) {
+                const fullName = userFullNameElement.textContent.trim();
+                const firstName = fullName.split(' ')[0];
+                document.querySelectorAll('.placeholder-firstname').forEach(el => {
+                    el.textContent = firstName;
                 });
             }
+        } catch (e) {
+            console.error('Erro ao buscar nome de usuário:', e);
         }
-    });
-
     
-// ===================================================================
-// LÓGICA PARA ANIMAÇÃO DE TEXTO
-// ===================================================================
-const animatedTextElement = $('#animated-search-text');
-    if (animatedTextElement.length) {
-        const searchTerms = ["São Paulo", "PDHU", "zoneamento", "limite municipal"];
-        let termIndex = 0;
-        let charIndex = 0;
-        let isDeleting = false;
-
-        function typeAnimation() {
-            const currentTerm = searchTerms[termIndex];
-            const typeDelay = isDeleting ? 75 : 150;
-
-            if (isDeleting) {
-                // Apagando...
-                animatedTextElement.text(currentTerm.substring(0, charIndex - 1));
-                charIndex--;
-            } else {
-                // Escrevendo...
-                animatedTextElement.text(currentTerm.substring(0, charIndex + 1));
-                charIndex++;
+        // 2. Marcar cards de atalho com cadeado
+        document.querySelectorAll('.module-shortcut-card').forEach(card => {
+            const sectionNumber = card.getAttribute('data-section-target');
+            if (!sectionNumber) return;
+            const moodleSection = document.querySelector(`#section-${sectionNumber}`) || document.querySelector(`.course-section-header[data-number='${sectionNumber}']`);
+            if (moodleSection && moodleSection.querySelector('.icon.fa-lock')) {
+                card.classList.add('locked');
             }
-
-            // Lógica de transição
-            if (!isDeleting && charIndex === currentTerm.length) {
-                // Terminou de escrever, pausa e começa a apagar
-                setTimeout(() => { isDeleting = true; }, 2000);
-            } else if (isDeleting && charIndex === 0) {
-                // Terminou de apagar, vai para o próximo termo
-                isDeleting = false;
-                termIndex = (termIndex + 1) % searchTerms.length;
+        });
+        
+        // 3. Verificar e controlar botões "Acessar Módulo"
+        function extractSectionNumberFromButton(buttonContainer) {
+            const link = buttonContainer.querySelector('a');
+            if (!link) return null;
+            const href = link.getAttribute('href');
+            if (!href) return null;
+            const sectionMatch = href.match(/section=(\d+)/);
+            return sectionMatch ? sectionMatch[1] : null;
+        }
+    
+        document.querySelectorAll('.footer-action.js-home-only').forEach(buttonContainer => {
+            const sectionNumber = extractSectionNumberFromButton(buttonContainer);
+            if (!sectionNumber) return;
+            const moodleSection = document.querySelector(`#section-${sectionNumber}`) || document.querySelector(`.course-section-header[data-number='${sectionNumber}']`);
+            if (moodleSection && !moodleSection.querySelector('.icon.fa-lock')) {
+                buttonContainer.classList.add('module-unlocked');
+            }
+        });
+    
+        // 4. Configurar o botão contextual (Voltar ao topo / Início)
+        document.querySelectorAll('.js-context-button-container').forEach(container => {
+            const button = container.querySelector('a');
+            if (!button) return;
+            if (isCourseHomePage()) {
+                button.textContent = button.dataset.toplevelText || "Voltar ao topo";
+                button.href = button.dataset.toplevelHref || "#page-wrapper";
+                button.classList.add('js-scroll-link');
+            } else {
+                button.textContent = button.dataset.sectionText || "Voltar para o Início do Curso";
+                button.href = button.dataset.sectionHref || `/course/view.php?id=${new URLSearchParams(window.location.search).get('id')}`;
+                button.classList.remove('js-scroll-link');
+            }
+            container.style.display = 'block';
+        });
+    
+        // 5. Exibir elementos que só aparecem na página principal
+        if (isCourseHomePage()) {
+            document.querySelectorAll('.js-home-only').forEach(element => {
+                if (element.classList.contains('footer-action') && element.classList.contains('module-unlocked')) {
+                    element.style.display = 'block';
+                } else if (!element.classList.contains('footer-action')) {
+                    element.style.display = '';
+                }
+            });
+        }
+    
+        // ===================================================================
+        // INICIALIZAÇÃO DE COMPONENTES INTERATIVOS (Modal, Lupa)
+        // ===================================================================
+    
+        // 1. Lógica para Modal de Imagem
+        document.querySelectorAll('.image-modal-wrapper').forEach(wrapper => {
+            const triggerImg = wrapper.querySelector('.modal-trigger-img');
+            const modal = wrapper.querySelector('.image-modal-popup');
+            if (triggerImg && modal) {
+                const modalDisplayImg = modal.querySelector('.modal-display-img');
+                const modalCaptionText = modal.querySelector('.modal-caption-text');
+                const closeButton = modal.querySelector('.custom-close');
+    
+                triggerImg.addEventListener('click', function() {
+                    modal.style.display = "block";
+                    if (modalDisplayImg) modalDisplayImg.src = this.src;
+                    if (modalCaptionText) modalCaptionText.innerHTML = this.alt;
+                });
+                if (closeButton) {
+                    closeButton.addEventListener('click', () => modal.style.display = "none");
+                }
+                modal.addEventListener('click', (event) => {
+                    if (event.target === modal) modal.style.display = "none";
+                });
+            }
+        });
+        
+        document.addEventListener('keydown', event => {
+            if (event.key === 'Escape') {
+                document.querySelectorAll('.image-modal-popup[style*="display: block"]').forEach(m => m.style.display = "none");
+            }
+        });
+        
+        // 2. Lógica para Lupa (Magnify)
+        function magnify(imgID, zoom) {
+            var img = document.getElementById(imgID);
+            if (!img) return;
+            var glass, w, h, bw;
+            glass = document.createElement("DIV");
+            glass.setAttribute("class", "img-magnifier-glass");
+            img.parentElement.insertBefore(glass, img);
+            glass.style.backgroundImage = "url('" + img.src + "')";
+            glass.style.backgroundRepeat = "no-repeat";
+            glass.style.backgroundSize = (img.width * zoom) + "px " + (img.height * zoom) + "px";
+            bw = 3;
+            w = glass.offsetWidth / 2;
+            h = glass.offsetHeight / 2;
+            function moveMagnifier(e) {
+                e.preventDefault();
+                var pos = getCursorPos(e), x = pos.x, y = pos.y;
+                if (x > img.width - (w / zoom)) { x = img.width - (w / zoom); }
+                if (x < w / zoom) { x = w / zoom; }
+                if (y > img.height - (h / zoom)) { y = img.height - (h / zoom); }
+                if (y < h / zoom) { y = h / zoom; }
+                glass.style.left = (x - w) + "px";
+                glass.style.top = (y - h) + "px";
+                glass.style.backgroundPosition = "-" + ((x * zoom) - w + bw) + "px -" + ((y * zoom) - h + bw) + "px";
+            }
+            function getCursorPos(e) {
+                var a = img.getBoundingClientRect(), x = 0, y = 0;
+                e = e || window.event;
+                x = (e.pageX || e.touches[0].pageX) - a.left - window.pageXOffset;
+                y = (e.pageY || e.touches[0].pageY) - a.top - window.pageYOffset;
+                return { x: x, y: y };
+            }
+            glass.addEventListener("mousemove", moveMagnifier);
+            img.addEventListener("mousemove", moveMagnifier);
+            glass.addEventListener("touchmove", moveMagnifier);
+            img.addEventListener("touchmove", moveMagnifier);
+        }
+        if (document.getElementById("myimage")) {
+            magnify("myimage", 2);
+        }
+    
+        // ===================================================================
+        // OUVINTE PARA ROLAGEM SUAVE
+        // ===================================================================
+        document.body.addEventListener('click', function(e) {
+            const link = e.target.closest('a');
+            if (!link || !link.classList.contains('js-scroll-link')) return;
+            
+            e.preventDefault();
+            const anchorTargetId = link.getAttribute('href');
+            if (anchorTargetId && anchorTargetId.startsWith('#')) {
+                const anchorTarget = document.querySelector(anchorTargetId);
+                if (anchorTarget) {
+                    anchorTarget.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            }
+        });
+    
+        // ===================================================================
+        // BARRA DE PROGRESSO DO CURSO (VIA WEB SERVICE EDWISER)
+        // ===================================================================
+        const progressContainer = document.querySelector('.course-progress-container');
+        const courseProgressFill = document.getElementById('course-progress-fill');
+        const courseProgressText = document.getElementById('course-progress-text');
+    
+        if (progressContainer && courseProgressFill && courseProgressText) {
+            const courseId = progressContainer.getAttribute('data-courseid');
+            if (courseId) {
+                require(['core/ajax'], function(ajax) {
+                    ajax.call([{
+                        methodname: 'format_remuiformat_course_progress_data',
+                        args: { courseid: courseId },
+                        done: function(response) {
+                            const percentage = response.percentage || 0;
+                            console.log(`Progresso recebido do Web Service: ${percentage}%`);
+                            courseProgressFill.style.width = percentage + '%';
+                            courseProgressText.textContent = `${percentage}% concluído`;
+                        },
+                        fail: function(ex) {
+                            console.error("Falha ao chamar o Web Service de progresso:", ex);
+                            courseProgressText.textContent = "Erro ao carregar progresso.";
+                        }
+                    }]);
+                });
+            } else {
+                console.error("Não foi possível encontrar o 'data-courseid' no contêiner da barra de progresso.");
+            }
+        }
+    
+        // ===================================================================
+        // BARRAS DE PROGRESSO DE MÓDULO
+        // ===================================================================
+        document.querySelectorAll('.course-progress-container[data-module-section]').forEach(progressContainer => {
+            const sectionNumber = progressContainer.getAttribute('data-module-section');
+            if (!sectionNumber) return;
+    
+            const moodleSection = document.querySelector(`#section-${sectionNumber}`);
+            if (!moodleSection) return;
+    
+            const activitiesInSection = moodleSection.querySelectorAll('.activity .activity-completion');
+            const totalActivities = activitiesInSection.length;
+            const completedInSection = moodleSection.querySelectorAll('.activity .activity-completion .btn-success');
+            const completedCount = completedInSection.length;
+    
+            let progressPercent = 0;
+            if (totalActivities > 0) {
+                progressPercent = Math.round((completedCount / totalActivities) * 100);
             }
             
-            setTimeout(typeAnimation, typeDelay);
-        }
-        
-        // Inicia a animação
-        typeAnimation();
-    }
-// ===================================================================
-// LÓGICA PARA LEGENDA INTERATIVA E HOTSPOTS
-// ===================================================================
-$('.step-content-layout-cols, .step-component').each(function() {
-    const container = $(this);
-    const legendItems = container.find('.legend-item');
-    const hotspots = container.find('.hotspot');
-
-    if (legendItems.length > 0 && hotspots.length > 0) {
-        
-        function activateItem(hotspotId) {
-            // Remove a classe 'active' de todos
-            legendItems.removeClass('active');
-            hotspots.removeClass('active');
-
-            // Adiciona a classe 'active' ao item e hotspot correspondentes
-            container.find('.legend-item[data-hotspot="' + hotspotId + '"]').addClass('active');
-            container.find('.hotspot[data-hotspot="' + hotspotId + '"]').addClass('active');
-        }
-
-        legendItems.on('click mouseenter', function() {
-            const hotspotId = $(this).data('hotspot');
-            activateItem(hotspotId);
+            console.log(`Progresso Módulo ${sectionNumber}: ${completedCount} de ${totalActivities} concluídas = ${progressPercent}%`);
+    
+            const progressBarFill = progressContainer.querySelector('.course-progress-bar-fill');
+            const progressText = progressContainer.querySelector('.progress-text');
+    
+            if (progressBarFill) progressBarFill.style.width = progressPercent + '%';
+            if (progressText) progressText.textContent = `${progressPercent}% concluído`;
         });
-
-        hotspots.on('click mouseenter', function() {
-            const hotspotId = $(this).data('hotspot');
-            activateItem(hotspotId);
+    
+        // ===================================================================
+        // ANIMAÇÃO DE TEXTO (BUSCA)
+        // ===================================================================
+        require(['jquery'], function($) {
+            const animatedTextElement = $('#animated-search-text');
+            if (animatedTextElement.length) {
+                const searchTerms = ["São Paulo", "SSARU", "zoneamento", "PDHU", "limite municipal"];
+                let termIndex = 0;
+                let charIndex = 0;
+                let isDeleting = false;
+    
+                function typeAnimation() {
+                    const currentTerm = searchTerms[termIndex];
+                    const typeDelay = isDeleting ? 75 : 150;
+    
+                    if (isDeleting) {
+                        animatedTextElement.text(currentTerm.substring(0, charIndex - 1));
+                        charIndex--;
+                    } else {
+                        animatedTextElement.text(currentTerm.substring(0, charIndex + 1));
+                        charIndex++;
+                    }
+    
+                    if (!isDeleting && charIndex === currentTerm.length) {
+                        setTimeout(() => { isDeleting = true; }, 2000);
+                    } else if (isDeleting && charIndex === 0) {
+                        isDeleting = false;
+                        termIndex = (termIndex + 1) % searchTerms.length;
+                    }
+                    
+                    setTimeout(typeAnimation, typeDelay);
+                }
+                
+                typeAnimation();
+                console.log("(ANIMADOR) Animação de texto iniciada.");
+            }
         });
-
-        // Limpa a seleção quando o mouse sai da área de texto ou da mídia
-        container.find('.step-content-col-text, .step-content-col-media, .step-content-media-hotspot').on('mouseleave', function() {
-            legendItems.removeClass('active');
-            hotspots.removeClass('active');
-        });
-    }
-});
+    });
+    
     // ===================================================================
-    // LÓGICA DE PROGRESSO (NEUTRALIZADA, POIS DEPENDE DO MOODLE)
+    // LÓGICA PARA LEGENDA INTERATIVA E HOTSPOTS (DESKTOP)
     // ===================================================================
-
+    function initInteractiveLegend() {
+        if (typeof jQuery === 'undefined') return;
+        
+        const $ = jQuery;
+        
+        $('.step-content-layout-cols, .step-component').each(function() {
+            const container = $(this);
+            const legendItems = container.find('.legend-item');
+            const hotspots = container.find('.hotspot');
+    
+            if (legendItems.length > 0 && hotspots.length > 0) {
+                
+                function activateItem(hotspotId) {
+                    legendItems.removeClass('active');
+                    hotspots.removeClass('active');
+                    container.find('.legend-item[data-hotspot="' + hotspotId + '"]').addClass('active');
+                    container.find('.hotspot[data-hotspot="' + hotspotId + '"]').addClass('active');
+                }
+    
+                // Remove listeners anteriores
+                legendItems.off('click.legend mouseenter.legend');
+                hotspots.off('click.hotspot mouseenter.hotspot');
+    
+                // Adiciona novos listeners
+                legendItems.on('click.legend mouseenter.legend', function() {
+                    const hotspotId = $(this).data('hotspot');
+                    activateItem(hotspotId);
+                });
+    
+                hotspots.on('click.hotspot mouseenter.hotspot', function() {
+                    const hotspotId = $(this).data('hotspot');
+                    activateItem(hotspotId);
+                });
+    
+                // Limpa ao sair
+                container.find('.step-content-col-text, .step-content-col-media, .step-content-media-hotspot').off('mouseleave.legend').on('mouseleave.legend', function() {
+                    legendItems.removeClass('active');
+                    hotspots.removeClass('active');
+                });
+            }
+        });
+        
+        console.log("(INTERATIVO) Legenda interativa inicializada");
+    }
+    
 // ===================================================================
-// LÓGICA HÍBRIDA PARA IMAGEM INTERATIVA (COM ZOOM NO MOBILE)
+// LÓGICA PARA IMAGEM INTERATIVA COM ZOOM (MOBILE E DESKTOP)
 // ===================================================================
-
 function setupInteractiveImages() {
+    if (typeof jQuery === 'undefined') {
+        console.log("jQuery não disponível ainda para imagens");
+        return;
+    }
+    
+    const $ = jQuery;
     const isDesktop = window.matchMedia('(min-width: 992px)').matches;
 
     $('.step-component').each(function() {
         const stepContainer = $(this);
         const hotspots = stepContainer.find('.hotspot');
         const legendItems = stepContainer.find('.legend-item');
-        const image = stepContainer.find('.interactive-image-wrapper img'); // Seleciona a imagem
+        const imageWrapper = stepContainer.find('.interactive-image-wrapper');
+        const image = imageWrapper.find('img');
 
         if (hotspots.length === 0) return;
+
+        console.log("Configurando step-component:", {
+            hotspots: hotspots.length,
+            legendItems: legendItems.length,
+            image: image.length,
+            isDesktop: isDesktop
+        });
+
+        // Limpa eventos anteriores
+        if ($.fn.tooltip) {
+            hotspots.tooltip('dispose');
+        }
+        hotspots.off('.interactive');
+        legendItems.off('.interactive');
 
         // ===================================
         // LÓGICA PARA DESKTOP
         // ===================================
         if (isDesktop) {
-            console.log("Modo Desktop: Ativando tooltips.");
-            hotspots.tooltip({
-                placement: 'left',
-                boundary: 'viewport'
-            });
+            console.log("→ Modo Desktop: Ativando tooltips");
+            
+            if ($.fn.tooltip) {
+                hotspots.each(function() {
+                    $(this).tooltip({
+                        placement: 'left',
+                        boundary: 'viewport',
+                        trigger: 'hover'
+                    });
+                });
+            }
         } 
         // ===================================
         // LÓGICA PARA MOBILE (COM ZOOM!)
         // ===================================
         else {
-            console.log("Modo Mobile: Ativando legenda interativa com zoom.");
-            if (legendItems.length === 0) return;
+            console.log("→ Modo Mobile: Ativando legenda com zoom");
+            
+            if (legendItems.length === 0) {
+                console.warn("⚠️ Nenhum item de legenda encontrado");
+                return;
+            }
 
             function activateMobileItem(hotspotId, zoomData) {
-                // Ativa o hotspot e item da legenda
+                console.log("📍 Ativando:", hotspotId, "Zoom:", zoomData);
+                
+                // Ativa visualmente
                 hotspots.removeClass('active');
                 legendItems.removeClass('active');
                 stepContainer.find('.hotspot[data-hotspot="' + hotspotId + '"]').addClass('active');
                 stepContainer.find('.legend-item[data-hotspot="' + hotspotId + '"]').addClass('active');
 
-                // LÓGICA DO ZOOM
+                // Aplica ZOOM na imagem E nos hotspots
                 if (zoomData && image.length > 0) {
-                    const [scale, posX, posY] = zoomData.split(',').map(Number);
+                    const parts = zoomData.split(',');
+                    const scale = parseFloat(parts[0]);
+                    const posX = parseFloat(parts[1]);
+                    const posY = parseFloat(parts[2]);
                     
-                    // Converte a posição percentual em um valor de translação
-                    // O cálculo (posX - 50) * -1 move o ponto clicado para o centro da tela
                     const translateX = (posX - 50) * -1;
                     const translateY = (posY - 50) * -1;
-
-                    image.css('transform', `scale(${scale}) translate(${translateX}%, ${translateY}%)`);
+                    
+                    const transformValue = 'scale(' + scale + ') translate(' + translateX + '%, ' + translateY + '%)';
+                    console.log("🔍 Aplicando transform:", transformValue);
+                    
+                    // Aplica transform na imagem
+                    image[0].style.transform = transformValue;
+                    image[0].style.transition = 'transform 0.3s ease';
+                    
+                    // Aplica o MESMO transform em TODOS os hotspots para mantê-los sincronizados
+                    hotspots.each(function() {
+                        // Mantém o translate(-50%, -50%) original + adiciona o transform da imagem
+                        this.style.transform = 'translate(-50%, -50%) ' + transformValue;
+                        this.style.transition = 'all 0.3s ease';
+                    });
                 }
             }
             
             function resetMobileView() {
+                console.log("🔄 Resetando view");
                 hotspots.removeClass('active');
                 legendItems.removeClass('active');
+                
                 if (image.length > 0) {
-                    image.css('transform', 'scale(1) translate(0, 0)');
+                    image[0].style.transform = 'scale(1) translate(0, 0)';
                 }
+                
+                // Reseta os hotspots também
+                hotspots.each(function() {
+                    this.style.transform = 'translate(-50%, -50%)';
+                });
             }
 
-            legendItems.on('click', function() {
-                const hotspotId = $(this).data('hotspot');
-                const zoomData = $(this).data('zoom');
+            // CLICK nos itens da legenda
+            legendItems.on('click.interactive', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                
+                const $this = $(this);
+                const hotspotId = $this.data('hotspot');
+                const zoomData = $this.data('zoom');
+                
+                console.log("👆 Click na legenda:", {
+                    hotspotId: hotspotId,
+                    zoomData: zoomData,
+                    element: this
+                });
+                
                 activateMobileItem(hotspotId, zoomData);
 
-                // Rola o item clicado para o topo da lista rolavel
-                const legendContainer = $(this).closest('.interactive-legend');
-                if (legendContainer.length > 0) {
-                    legendContainer.animate({
-                        scrollTop: this.offsetTop - legendContainer.offset().top + legendContainer.scrollTop()
-                    }, 300);
+                // Scroll suave
+                const legendContainer = this.closest('.interactive-legend');
+                if (legendContainer) {
+                    this.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
                 }
             });
 
-            // Reseta o zoom ao clicar fora
-            $(document).on('click', function(event) {
-                if (!$(event.target).closest('.step-component').length) {
+            // HOVER nos itens (feedback visual)
+            legendItems.on('mouseenter.interactive', function() {
+                const hotspotId = $(this).data('hotspot');
+                stepContainer.find('.hotspot[data-hotspot="' + hotspotId + '"]').addClass('hover');
+            });
+
+            legendItems.on('mouseleave.interactive', function() {
+                hotspots.removeClass('hover');
+            });
+
+            // Reset ao clicar fora
+            $(document).off('click.resetZoom').on('click.resetZoom', function(event) {
+                const $target = $(event.target);
+                if (!$target.closest('.step-component').length && 
+                    !$target.closest('.interactive-legend').length) {
                     resetMobileView();
                 }
             });
+            
+            console.log("✅ Mobile configurado:", legendItems.length, "itens");
         }
     });
 }
-
-// Executa a função principal quando a página carrega
-setupInteractiveImages();
-
-// Lógica de redimensionamento da janela
-let resizeTimer;
-$(window).on('resize', function() {
-    clearTimeout(resizeTimer);
-    resizeTimer = setTimeout(function() {
-        location.reload(); 
-    }, 250);
-});
-    // AVISO: A chamada ao Web Service e a contagem de conclusão do Moodle
-    // vão falhar localmente. O código foi deixado aqui, mas comentado
-    // ou dentro de 'try...catch' para não quebrar o resto do script.
     
-    console.warn("A lógica de progresso do curso e dos módulos está desativada em ambiente local, pois depende de APIs e da estrutura do Moodle.");
+    // ===================================================================
+    // INICIALIZAÇÃO COMPATÍVEL COM MOODLE
+    // ===================================================================
+    function initMoodleInteractive() {
+        if (typeof jQuery === 'undefined') {
+            console.log("Aguardando jQuery...");
+            setTimeout(initMoodleInteractive, 100);
+            return;
+        }
     
-});
+        console.log("Inicializando componentes interativos...");
+        initInteractiveLegend();
+        setupInteractiveImages();
+    }
+    
+    // Múltiplos pontos de entrada
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initMoodleInteractive);
+    } else {
+        initMoodleInteractive();
+    }
+    
+    // Garante execução após jQuery do Moodle estar pronto
+    require(['jquery'], function($) {
+        window.jQuery = window.$ = $;
+        $(document).ready(function() {
+            initMoodleInteractive();
+        });
+    });
+    
+    // Observa mudanças no DOM
+    if (typeof MutationObserver !== 'undefined') {
+        const observer = new MutationObserver(function(mutations) {
+            let shouldReinit = false;
+            mutations.forEach(function(mutation) {
+                if (mutation.addedNodes.length > 0) {
+                    mutation.addedNodes.forEach(function(node) {
+                        if (node.nodeType === 1 && typeof jQuery !== 'undefined') {
+                            const $node = jQuery(node);
+                            if ($node.hasClass('step-component') || $node.find('.step-component').length > 0) {
+                                shouldReinit = true;
+                            }
+                        }
+                    });
+                }
+            });
+            if (shouldReinit) {
+                console.log("Conteúdo novo detectado, reinicializando...");
+                setTimeout(initMoodleInteractive, 100);
+            }
+        });
+    
+        observer.observe(document.body, {
+            childList: true,
+            subtree: true
+        });
+    }
+    
+    // Reinicializa no resize
+    let resizeTimer;
+    window.addEventListener('resize', function() {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(function() {
+            console.log("Resize detectado, reinicializando...");
+            initMoodleInteractive();
+        }, 250);
+    });
+        
