@@ -417,7 +417,7 @@
     }
     
 // ===================================================================
-// LÓGICA PARA IMAGEM INTERATIVA COM ZOOM (MOBILE E DESKTOP)
+// LÓGICA PARA IMAGEM INTERATIVA COM ZOOM (MOBILE E DESKTOP) - MODIFICADO
 // ===================================================================
 function setupInteractiveImages() {
     if (typeof jQuery === 'undefined') {
@@ -430,43 +430,129 @@ function setupInteractiveImages() {
 
     $('.step-component').each(function() {
         const stepContainer = $(this);
+        // NOVO: Definindo as variáveis no escopo correto (Busca corrigida)
         const imageWrapper = stepContainer.find('.interactive-image-wrapper');
         const innerContainer = imageWrapper.find('.interactive-image-inner-container');
         const image = innerContainer.find('img');
-        const hotspots = innerContainer.find('.hotspot');
+        const hotspots = innerContainer.find('.hotspot'); // Hotspots estão no innerContainer
         const legendItems = stepContainer.find('.interactive-legend .legend-item');
+        // FIM NOVO
 
         if (hotspots.length === 0) return;
-
-        console.log("Configurando step-component:", {
-            hotspots: hotspots.length,
-            legendItems: legendItems.length,
-            image: image.length,
-            isDesktop: isDesktop
-        });
+        
+        // ... (console.log) ...
 
         // Limpa eventos anteriores
         if ($.fn.tooltip) {
-            hotspots.tooltip('dispose');
+            hotspots.tooltip('dispose'); // Mantemos o dispose para limpeza
         }
-        hotspots.off('.interactive');
+        hotspots.off('.interactive .desktop'); // Adiciona um namespace para desktop
         legendItems.off('.interactive');
+
+        // ===================================
+        // FUNÇÕES GLOBAIS DE ZOOM (Reutilizadas)
+        // ===================================
+        function activateZoom(hotspotId, zoomData) {
+            hotspots.removeClass('active');
+            legendItems.removeClass('active');
+            stepContainer.find('.hotspot[data-hotspot="' + hotspotId + '"]').addClass('active');
+            stepContainer.find('.legend-item[data-hotspot="' + hotspotId + '"]').addClass('active');
+
+            if (zoomData && image.length > 0) {
+                const parts = zoomData.split(',');
+                const scale = parseFloat(parts[0]);
+                const posX = parseFloat(parts[1]);
+                const posY = parseFloat(parts[2]);
+                
+                const translateX = (posX - 50) * -1;
+                const translateY = (posY - 50) * -1;
+                
+                const transformValue = 'scale(' + scale + ') translate(' + translateX + '%, ' + translateY + '%)';
+                
+                innerContainer[0].style.transform = transformValue;
+                innerContainer[0].style.transition = 'transform 0.3s ease';
+                
+                image[0].style.transform = 'none';
+                image[0].style.transition = 'none';
+
+                hotspots.each(function() {
+                    this.style.transform = 'translate(-50%, -50%)';
+                    this.style.transition = 'all 0.3s ease';
+                });
+
+                // NOVO: Scroll suave para o wrapper para centralizar a área visível após o zoom
+                $('html, body').animate({
+                    scrollTop: imageWrapper.offset().top - 50 // Ajuste 50px de margem superior
+                }, 300);
+            }
+        }
+        
+        function resetView() {
+            hotspots.removeClass('active');
+            legendItems.removeClass('active');
+
+            if (innerContainer.length > 0){
+                innerContainer[0].style.transform = 'scale(1) translate(0, 0)'; 
+                innerContainer[0].style.transition = 'transform 0.3s ease';
+            }
+            
+            if (image.length > 0) {
+                image[0].style.transform = 'none';
+                image[0].style.transition = 'none';
+            }
+            
+            hotspots.each(function() {
+                this.style.transform = 'translate(-50%, -50%)';
+            });
+        }
+        // ===================================
+        // FIM FUNÇÕES GLOBAIS DE ZOOM
+        // ===================================
+
 
         // ===================================
         // LÓGICA PARA DESKTOP
         // ===================================
         if (isDesktop) {
-            console.log("→ Modo Desktop: Ativando tooltips");
+            console.log("→ Modo Desktop: Ativando Tooltip no Hover e Zoom no Clique");
             
+            // 1. Inicializar Tooltips do Bootstrap (No Hover)
             if ($.fn.tooltip) {
                 hotspots.each(function() {
                     $(this).tooltip({
-                        placement: 'left',
+                        placement: 'auto', // Mudança para 'auto' para melhor posicionamento
                         boundary: 'viewport',
-                        trigger: 'hover'
+                        trigger: 'hover' // Ativa no hover, desativa ao sair
                     });
                 });
             }
+            
+            // 2. Adiciona o listener de clique (Para o Zoom)
+            hotspots.on('click.desktop', function(e) {
+                e.preventDefault();
+                const $this = $(this);
+                const hotspotId = $this.data('hotspot');
+                
+                // Fecha qualquer tooltip aberto no clique
+                if ($.fn.tooltip) {
+                    $this.tooltip('hide');
+                }
+                
+                const zoomData = stepContainer.find('.legend-item[data-hotspot="' + hotspotId + '"]').data('zoom');
+                
+                activateZoom(hotspotId, zoomData);
+            });
+            
+            // 3. Resetar ao clicar fora
+            $(document).off('click.resetZoomDesktop').on('click.resetZoomDesktop', function(event) {
+                const $target = $(event.target);
+                // Reseta a visualização se o clique não for no componente ou no popover/tooltip
+                if (!$target.closest('.step-component').length && 
+                    !$target.closest('.tooltip').length) {
+                    resetView();
+                }
+            });
+            
         } 
         // ===================================
         // LÓGICA PARA MOBILE (COM ZOOM!)
@@ -479,69 +565,7 @@ function setupInteractiveImages() {
                 return;
             }
 
-            function activateMobileItem(hotspotId, zoomData) {
-                console.log("📍 Ativando:", hotspotId, "Zoom:", zoomData);
-                
-                // Ativa visualmente
-                hotspots.removeClass('active');
-                legendItems.removeClass('active');
-                stepContainer.find('.hotspot[data-hotspot="' + hotspotId + '"]').addClass('active');
-                stepContainer.find('.legend-item[data-hotspot="' + hotspotId + '"]').addClass('active');
-
-                // Aplica ZOOM na imagem E nos hotspots
-                if (zoomData && image.length > 0) {
-                    const parts = zoomData.split(',');
-                    const scale = parseFloat(parts[0]);
-                    const posX = parseFloat(parts[1]);
-                    const posY = parseFloat(parts[2]);
-                    
-                    const translateX = (posX - 50) * -1;
-                    const translateY = (posY - 50) * -1;
-                    
-                    const transformValue = 'scale(' + scale + ') translate(' + translateX + '%, ' + translateY + '%)';
-                    console.log("🔍 Aplicando transform:", transformValue);
-                    
-                    // Aplica transform na imagem
-                    // imageWrapper[0].style.transform = transformValue;
-                    // imageWrapper[0].style.transition = 'transform 0.3s ease';
-                    innerContainer[0].style.transform = transformValue;
-                    innerContainer[0].style.transition = 'transform 0.3s ease';
-
-                    // Aplica o MESMO transform em TODOS os hotspots para mantê-los sincronizados
-                    image[0].style.transform = 'none';
-                    image[0].style.transition = 'none';
-
-                    hotspots.each(function() {
-                        // Mantém o translate(-50%, -50%) original + adiciona o transform da imagem
-                        this.style.transform = 'translate(-50%, -50%) '; //+ transformValue;
-                        this.style.transition = 'all 0.3s ease';
-                    });
-                }
-            }
-            
-            function resetMobileView() {
-                console.log("🔄 Resetando view");
-                hotspots.removeClass('active');
-                legendItems.removeClass('active');
-
-                if (innerContainer.length > 0){
-                    innerContainer[0].style.transform = 'scale(1) translate(0, 0)'; 
-                    innerContainer[0].style.transition = 'transform 0.3s ease';
-                }
-                
-                if (image.length > 0) {
-                    image[0].style.transform = 'none'; //'scale(1) translate(0, 0)';
-                    image[0].style.transition = 'none'; //'scale(1) translate(0, 0)';
-
-                }
-                
-                // Reseta os hotspots também
-                hotspots.each(function() {
-                    this.style.transform = 'translate(-50%, -50%)';
-                });
-            }
-
-            // CLICK nos itens da legenda
+            // FUNÇÃO PARA MOBILE (Usa a função global activateZoom)
             legendItems.on('click.interactive', function(e) {
                 e.preventDefault();
                 e.stopPropagation();
@@ -550,13 +574,7 @@ function setupInteractiveImages() {
                 const hotspotId = $this.data('hotspot');
                 const zoomData = $this.data('zoom');
                 
-                console.log("👆 Click na legenda:", {
-                    hotspotId: hotspotId,
-                    zoomData: zoomData,
-                    element: this
-                });
-                
-                activateMobileItem(hotspotId, zoomData);
+                activateZoom(hotspotId, zoomData);
 
                 // Scroll suave
                 const legendContainer = this.closest('.interactive-legend');
@@ -565,7 +583,7 @@ function setupInteractiveImages() {
                 }
             });
 
-            // HOVER nos itens (feedback visual)
+            // HOVER nos itens (feedback visual) - Mantido no mobile
             legendItems.on('mouseenter.interactive', function() {
                 const hotspotId = $(this).data('hotspot');
                 stepContainer.find('.hotspot[data-hotspot="' + hotspotId + '"]').addClass('hover');
@@ -575,20 +593,19 @@ function setupInteractiveImages() {
                 hotspots.removeClass('hover');
             });
 
-            // Reset ao clicar fora
-            $(document).off('click.resetZoom').on('click.resetZoom', function(event) {
+            // Reset ao clicar fora (Usa a função global resetView)
+            $(document).off('click.resetZoomMobile').on('click.resetZoomMobile', function(event) {
                 const $target = $(event.target);
                 if (!$target.closest('.step-component').length && 
                     !$target.closest('.interactive-legend').length) {
-                    resetMobileView();
+                    resetView();
                 }
             });
             
             console.log("✅ Mobile configurado:", legendItems.length, "itens");
         }
     });
-}
-    
+} 
     // ===================================================================
     // INICIALIZAÇÃO COMPATÍVEL COM MOODLE
     // ===================================================================

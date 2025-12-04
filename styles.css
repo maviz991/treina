@@ -2481,7 +2481,7 @@ body {
   border-radius: 50%;
   display: flex;
   align-items: center;
-  cursor: pointer;
+  cursor: zoom-out;
   justify-content: center;
   font-size: 14px;
   font-weight: bold;
@@ -2497,7 +2497,7 @@ body {
   transform: translate(-50%, -50%) scale(1.2);
   animation: none;
   background-color: #d90f00;
-  cursor: pointer;
+  cursor: zoom-in;
 }
 
 /* Animação de pulso para chamar a atenção */
@@ -2534,13 +2534,14 @@ body {
     opacity: 0;
     pointer-events: none;
     transition: opacity 0.3s ease, transform 0.3s ease;
+    cursor: zoom-out;
     animation: none;
   }
   
   .hotspot.active {
     opacity: 1;
-    width: 20px;
-    height: 20px;
+    width: 18px;
+    height: 18px;
     pointer-events: auto;
     animation: pulse 1.5s infinite;
     z-index: 10;
@@ -2583,6 +2584,7 @@ body {
   padding: 12px 15px;
   font-size: 0.9em;
   border-bottom: 1px solid #e0e0e0;
+  background-color: #f3f3f3;
   cursor: pointer;
   transition: background-color 0.2s ease;
 }
