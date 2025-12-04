@@ -412,6 +412,12 @@ function setupInteractiveImages() {
             hotspots.each(function() {
                 this.style.transform = 'translate(-50%, -50%)';
             });
+            
+            // Reseta todos os ícones para o estado inicial (search)
+            legendItems.each(function() {
+                const $icon = $(this).find('.icon-custon');
+                $icon.removeClass('icon-zoom-in icon-zoom-out').addClass('icon-search');
+            });
         }
         // ===================================
         // FIM FUNÇÕES GLOBAIS DE ZOOM
@@ -500,26 +506,40 @@ function setupInteractiveImages() {
 
                 console.log("DEBUG: hotspotId:", hotspotId, "isActive:", isActive, "isZoomed:", isZoomed, "zoomData:", zoomData);
 
-                // 1. Se está com zoom ativo, reseta (zoom-out)
+                // 1. Se está com zoom ativo, reseta (zoom-out) e volta para o ícone de busca
                 if (isZoomed && isActive) {
                     console.log("DEBUG: Zoom ativo, resetando visualização (zoom-out)");
                     resetView();
+                    // Volta todos os ícones para o estado inicial (search)
+                    legendItems.each(function() {
+                        const $icon = $(this).find('.icon-custon');
+                        $icon.removeClass('icon-zoom-in icon-zoom-out').addClass('icon-search');
+                    });
                     return;
                 }
 
-                // 2. Se já está ativo mas sem zoom, aplica o zoom (segundo clique)
+                // 2. Se já está ativo mas sem zoom, aplica o zoom (segundo clique) e muda para zoom-out
                 if (isActive && !isZoomed) {
                     console.log("DEBUG: Item de legenda já está ativo, aplicando zoom");
                     activateZoom(hotspotId, zoomData);
+                    // Muda o ícone do item atual para zoom-out
+                    $this.find('.icon-custon').removeClass('icon-search icon-zoom-in').addClass('icon-zoom-out');
                     return;
                 }
 
-                // 3. Se não estiver ativo, apenas ativa o hotspot (primeiro clique)
+                // 3. Se não estiver ativo, apenas ativa o hotspot (primeiro clique) e muda para zoom-in
                 console.log("DEBUG: Ativando hotspot sem zoom (primeiro clique)");
                 hotspots.removeClass('active');
                 legendItems.removeClass('active');
                 stepContainer.find('.hotspot[data-hotspot="' + hotspotId + '"]').addClass('active');
                 $this.addClass('active');
+                
+                // Reseta todos os ícones para search e depois muda apenas o atual para zoom-in
+                legendItems.each(function() {
+                    const $icon = $(this).find('.icon-custon');
+                    $icon.removeClass('icon-zoom-in icon-zoom-out').addClass('icon-search');
+                });
+                $this.find('.icon-custon').removeClass('icon-search icon-zoom-out').addClass('icon-zoom-in');
 
                 // Scroll suave para o item
                 const legendContainer = this.closest('.interactive-legend');
