@@ -175,10 +175,17 @@ const animatedTextElement = $('#animated-search-text');
         typeAnimation();
     }
 // ===================================================================
-// LÓGICA PARA LEGENDA INTERATIVA E HOTSPOTS
+// LÓGICA PARA LEGENDA INTERATIVA E HOTSPOTS (MODIFICADA PARA NÃO CONFLITAR COM ZOOM)
 // ===================================================================
-$('.step-content-layout-cols, .step-component').each(function() {
+$('.step-content-layout-cols').each(function() {
+    // Apenas para componentes que não são de imagem interativa com zoom
     const container = $(this);
+    if (container.find('.interactive-image-wrapper').length > 0) {
+        // Se for um componente de imagem interativa, não aplica esta lógica
+        // pois ela será tratada pela função setupInteractiveImages()
+        return;
+    }
+    
     const legendItems = container.find('.legend-item');
     const hotspots = container.find('.hotspot');
 
@@ -229,9 +236,9 @@ function setupInteractiveImages() {
 
     $('.step-component').each(function() {
         const stepContainer = $(this);
-        // NOVO: Definindo as variáveis no escopo correto (Busca corrigida)
         const imageWrapper = stepContainer.find('.interactive-image-wrapper');
         const innerContainer = imageWrapper.find('.interactive-image-inner-container');
+
         const image = innerContainer.find('img');
         const hotspots = innerContainer.find('.hotspot'); // Hotspots estão no innerContainer
         const legendItems = stepContainer.find('.interactive-legend .legend-item');
@@ -245,13 +252,20 @@ function setupInteractiveImages() {
         if ($.fn.tooltip) {
             hotspots.tooltip('dispose'); // Mantemos o dispose para limpeza
         }
-        hotspots.off('.interactive .desktop'); // Adiciona um namespace para desktop
+        hotspots.off('.interactive');
+        hotspots.off('.desktop'); // Adiciona um namespace para desktop
         legendItems.off('.interactive');
+        
+        // IMPORTANTE: Limpa também os estados ativos ao reinicializar
+        hotspots.removeClass('active');
+        legendItems.removeClass('active');
 
         // ===================================
         // FUNÇÕES GLOBAIS DE ZOOM (Reutilizadas)
         // ===================================
         function activateZoom(hotspotId, zoomData) {
+            console.log("DEBUG: activateZoom chamado para hotspotId:", hotspotId, "com zoomData:", zoomData);
+            
             hotspots.removeClass('active');
             legendItems.removeClass('active');
             stepContainer.find('.hotspot[data-hotspot="' + hotspotId + '"]').addClass('active');
@@ -268,31 +282,62 @@ function setupInteractiveImages() {
                 
                 const transformValue = 'scale(' + scale + ') translate(' + translateX + '%, ' + translateY + '%)';
                 
+                console.log("DEBUG: Aplicando transform:", transformValue);
+                
+                // Remover temporariamente os eventos de clique fora para evitar conflitos
+                $(document).off('click.resetZoomDesktop');
+                $(document).off('click.resetZoomMobile');
+                
                 innerContainer[0].style.transform = transformValue;
-                innerContainer[0].style.transition = 'transform 0.3s ease';
+                innerContainer[0].style.transition = 'transform 0.5s ease'; // Aumentado para melhor visualização
                 
                 image[0].style.transform = 'none';
                 image[0].style.transition = 'none';
 
                 hotspots.each(function() {
                     this.style.transform = 'translate(-50%, -50%)';
-                    this.style.transition = 'all 0.3s ease';
+                    this.style.transition = 'all 0.5s ease';
                 });
 
                 // NOVO: Scroll suave para o wrapper para centralizar a área visível após o zoom
                 $('html, body').animate({
                     scrollTop: imageWrapper.offset().top - 50 // Ajuste 50px de margem superior
                 }, 300);
+                
+                // Reativar os eventos de clique fora após um pequeno delay
+                setTimeout(function() {
+                    if (isDesktop) {
+                        $(document).on('click.resetZoomDesktop', function(event) {
+                            const $target = $(event.target);
+                            if (!$target.closest('.step-component').length &&
+                                !$target.closest('.tooltip').length) {
+                                console.log("DEBUG: Clique fora detectado em desktop, resetando visualização");
+                                resetView();
+                            }
+                        });
+                    } else {
+                        $(document).on('click.resetZoomMobile', function(event) {
+                            const $target = $(event.target);
+                            if (!$target.closest('.step-component').length &&
+                                !$target.closest('.interactive-legend').length) {
+                                console.log("DEBUG: Clique fora detectado em mobile, resetando visualização");
+                                resetView();
+                            }
+                        });
+                    }
+                }, 600); // Tempo um pouco maior que a transição para garantir que o zoom seja aplicado primeiro
             }
         }
         
         function resetView() {
+            console.log("DEBUG: resetView() chamado");
+            
             hotspots.removeClass('active');
             legendItems.removeClass('active');
 
             if (innerContainer.length > 0){
-                innerContainer[0].style.transform = 'scale(1) translate(0, 0)'; 
-                innerContainer[0].style.transition = 'transform 0.3s ease';
+                innerContainer[0].style.transform = 'scale(1) translate(0, 0)';
+                innerContainer[0].style.transition = 'transform 0.5s ease';
             }
             
             if (image.length > 0) {
@@ -328,29 +373,33 @@ function setupInteractiveImages() {
             
             // 2. Adiciona o listener de clique (Para o Zoom)
             hotspots.on('click.desktop', function(e) {
+                console.log("DEBUG: Clique no hotspot em desktop detectado");
                 e.preventDefault();
+                e.stopPropagation();
+
                 const $this = $(this);
                 const hotspotId = $this.data('hotspot');
-                
+                const isActive = $this.hasClass('active'); // NOVO: Verifica se já está ativo
+
+                console.log("DEBUG: hotspotId:", hotspotId, "isActive:", isActive);
+
+                // 1. Se já estiver ativo, reseta e sai.
+                if (isActive) {
+                    console.log("DEBUG: Hotspot já está ativo, resetando visualização");
+                    resetView();
+                    return;
+                }
+
                 // Fecha qualquer tooltip aberto no clique
                 if ($.fn.tooltip) {
                     $this.tooltip('hide');
                 }
                 
-                const zoomData = stepContainer.find('.legend-item[data-hotspot="' + hotspotId + '"]').data('zoom');
-                
+                // 2. Se não estiver ativo, aplica o zoom
+                const zoomData = stepContainer.find('.interactive-legend .legend-item[data-hotspot="' + hotspotId + '"]').data('zoom');
+                console.log("DEBUG: zoomData encontrado:", zoomData);
                 activateZoom(hotspotId, zoomData);
-            });
-            
-            // 3. Resetar ao clicar fora
-            $(document).off('click.resetZoomDesktop').on('click.resetZoomDesktop', function(event) {
-                const $target = $(event.target);
-                // Reseta a visualização se o clique não for no componente ou no popover/tooltip
-                if (!$target.closest('.step-component').length && 
-                    !$target.closest('.tooltip').length) {
-                    resetView();
-                }
-            });
+                });
             
         } 
         // ===================================
@@ -366,13 +415,30 @@ function setupInteractiveImages() {
 
             // FUNÇÃO PARA MOBILE (Usa a função global activateZoom)
             legendItems.on('click.interactive', function(e) {
+                console.log("DEBUG: Clique no item de legenda em mobile detectado");
                 e.preventDefault();
                 e.stopPropagation();
                 
                 const $this = $(this);
                 const hotspotId = $this.data('hotspot');
                 const zoomData = $this.data('zoom');
-                
+                const isActive = $this.hasClass('active');
+
+                console.log("DEBUG: hotspotId:", hotspotId, "isActive:", isActive, "zoomData:", zoomData);
+
+                // 1. Se já estiver ativo, reseta e sai.
+                if (isActive) {
+                    console.log("DEBUG: Item de legenda já está ativo, resetando visualização");
+                    resetView();
+                    // REMOVIDO: Scroll para o topo para evitar salto indesejado
+                    // const legendContainer = this.closest('.interactive-legend');
+                    // if (legendContainer) {
+                    //     legendContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    // }
+                    return;
+                }
+
+                // 2. Se não estiver ativo, aplica o zoom
                 activateZoom(hotspotId, zoomData);
 
                 // Scroll suave
@@ -405,7 +471,6 @@ function setupInteractiveImages() {
         }
     });
 } 
- 
 
 // Executa a função principal quando a página carrega
 setupInteractiveImages();
