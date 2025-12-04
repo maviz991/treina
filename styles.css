@@ -2585,7 +2585,7 @@ body {
   font-size: 0.9em;
   border-bottom: 1px solid #e0e0e0;
   background-color: #f3f3f3;
-  cursor: pointer;
+  cursor: zoom-in;
   transition: background-color 0.2s ease;
 }
 
