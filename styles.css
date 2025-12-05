@@ -1992,14 +1992,22 @@ body {
 
 .step-content-col-text,
 .step-content-col-media {
-  flex: 1; 
+  flex: 1;
+  text-align: justify;
 }
 
 .step-content-media-hotspot{
   flex: 1;
-  min-width: 100%;
+  min-width: 60%;
   padding-bottom: 2em;
   overflow: hidden;
+}
+
+.step-legend-text{
+  text-align: justify;
+  font-style: italic;
+  font-size: 13px;
+  color: rgb(163, 163, 163);
 }
 
 /* REGRAS PARA TELAS MAIORES (Desktop) */
