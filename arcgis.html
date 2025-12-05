@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
+  <title>Hidrografia IGC - São Paulo</title>
+  
+  <!-- ArcGIS JavaScript API -->
+  <link rel="stylesheet" href="https://js.arcgis.com/4.28/esri/themes/light/main.css">
+  <script src="https://js.arcgis.com/4.28/"></script>
+  
+  <style>
+    html, body, #viewDiv {
+      padding: 0;
+      margin: 0;
+      height: 100%;
+      width: 100%;
+      font-family: 'Avenir Next', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    }
+    
+    /* Painel de Info */
+    .info-panel {
+      position: absolute;
+      top: 15px;
+      left: 15px;
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      max-width: 320px;
+      z-index: 100;
+    }
+    
+    .info-panel h2 {
+      margin: 0 0 10px 0;
+      color: #0079c1;
+      font-size: 20px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    
+    .info-panel .subtitle {
+      color: #666;
+      font-size: 13px;
+      margin-bottom: 15px;
+    }
+    
+    .info-panel .instructions {
+      background: #f5f9ff;
+      padding: 12px;
+      border-radius: 4px;
+      border-left: 3px solid #0079c1;
+    }
+    
+    .info-panel .instructions h4 {
+      margin: 0 0 8px 0;
+      font-size: 14px;
+      color: #0079c1;
+    }
+    
+    .info-panel .instructions ul {
+      margin: 0;
+      padding-left: 20px;
+      font-size: 13px;
+      line-height: 1.6;
+    }
+    
+    .info-panel .close-btn {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: none;
+      border: none;
+      font-size: 20px;
+      color: #999;
+      cursor: pointer;
+      padding: 5px;
+      line-height: 1;
+    }
+    
+    .info-panel .close-btn:hover {
+      color: #333;
+    }
+    
+    /* Loading */
+    .loading-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(255,255,255,0.9);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+      transition: opacity 0.3s;
+    }
+    
+    .loading-overlay.hidden {
+      opacity: 0;
+      pointer-events: none;
+    }
+    
+    .loading-content {
+      text-align: center;
+      padding: 30px;
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+    
+    .spinner {
+      width: 50px;
+      height: 50px;
+      border: 4px solid #f3f3f3;
+      border-top: 4px solid #0079c1;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      margin: 0 auto 15px;
+    }
+    
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    
+    /* Popup customizado */
+    .esri-popup__main-container {
+      max-width: 350px;
+    }
+    
+    .feature-details {
+      padding: 5px;
+    }
+    
+    .feature-details table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    
+    .feature-details tr {
+      border-bottom: 1px solid #f0f0f0;
+    }
+    
+    .feature-details td {
+      padding: 8px 5px;
+      font-size: 13px;
+    }
+    
+    .feature-details td:first-child {
+      font-weight: 600;
+      color: #555;
+      width: 40%;
+    }
+    
+    .feature-badge {
+      display: inline-block;
+      background: #e3f2fd;
+      color: #1976d2;
+      padding: 3px 8px;
+      border-radius: 12px;
+      font-size: 11px;
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body>
+  <div id="viewDiv"></div>
+  
+  <!-- Loading Overlay -->
+  <div class="loading-overlay" id="loadingOverlay">
+    <div class="loading-content">
+      <div class="spinner"></div>
+      <h3 style="margin: 0 0 5px 0; color: #0079c1;">Carregando Mapa</h3>
+      <p style="margin: 0; color: #666; font-size: 14px;">Aguarde enquanto carregamos a hidrografia...</p>
+    </div>
+  </div>
+  
+  <!-- Info Panel -->
+  <div class="info-panel" id="infoPanel">
+    <button class="close-btn" onclick="document.getElementById('infoPanel').style.display='none'">×</button>
+    <h2>🌊 Hidrografia IGC-SP</h2>
+    <div class="subtitle">Base Hidrográfica 1:25.000</div>
+    
+    <div class="instructions">
+      <h4>💡 Como usar:</h4>
+      <ul>
+        <li><strong>Clique</strong> em um rio para ver detalhes</li>
+        <li><strong>Passe o mouse</strong> para destacar</li>
+        <li>Use a <strong>busca</strong> para encontrar locais</li>
+        <li>Ajuste as <strong>camadas</strong> no menu lateral</li>
+      </ul>
+    </div>
+  </div>
+
+  <script>
+    require([
+      "esri/config",
+      "esri/Map",
+      "esri/views/MapView",
+      "esri/layers/MapImageLayer",
+      "esri/layers/FeatureLayer",
+      "esri/widgets/LayerList",
+      "esri/widgets/Legend",
+      "esri/widgets/Expand",
+      "esri/widgets/Search",
+      "esri/widgets/Home",
+      "esri/widgets/ScaleBar",
+      "esri/widgets/Compass",
+      "esri/widgets/BasemapToggle",
+      "esri/widgets/Locate"
+    ], function(
+      esriConfig, Map, MapView, MapImageLayer, FeatureLayer,
+      LayerList, Legend, Expand, Search, Home, ScaleBar, 
+      Compass, BasemapToggle, Locate
+    ) {
+
+      // ==========================================
+      // CONFIGURAÇÃO
+      // ==========================================
+      
+      // Configurar CORS se necessário
+      esriConfig.request.interceptors.push({
+        urls: "http://geoportal.igc.sp.gov.br:6080",
+        before: function(params) {
+          params.requestOptions.query = params.requestOptions.query || {};
+        }
+      });
+
+      // ==========================================
+      // MAPA BASE
+      // ==========================================
+      const map = new Map({
+        basemap: "streets-navigation-vector"
+      });
+
+      const view = new MapView({
+        container: "viewDiv",
+        map: map,
+        center: [-46.6333, -23.5505], // São Paulo
+        zoom: 9,
+        constraints: {
+          minZoom: 7,
+          maxZoom: 18
+        },
+        popup: {
+          dockEnabled: true,
+          dockOptions: {
+            buttonEnabled: false,
+            breakpoint: false
+          }
+        }
+      });
+
+      // ==========================================
+      // CAMADA DE HIDROGRAFIA (MapImageLayer)
+      // ==========================================
+      
+      const hidrografiaMIL = new MapImageLayer({
+        url: "http://geoportal.igc.sp.gov.br:6080/arcgis/rest/services/WFS/IGC_BaseHidrografica_25000_WFS/MapServer",
+        title: "Hidrografia IGC - Base 1:25.000",
+        opacity: 0.8,
+        sublayers: [{
+          id: 0,
+          visible: true,
+          opacity: 0.9,
+          popupTemplate: {
+            title: "🌊 {nome}",
+            content: getHidrografiaContent,
+            actions: [
+              {
+                title: "Zoom para este elemento",
+                id: "zoom-to-feature",
+                className: "esri-icon-zoom-in-magnifying-glass"
+              },
+              {
+                title: "Informações completas",
+                id: "full-info",
+                className: "esri-icon-description"
+              }
+            ]
+          }
+        }]
+      });
+
+      map.add(hidrografiaMIL);
+
+      // Função para o conteúdo do popup
+      function getHidrografiaContent(feature) {
+        const attr = feature.graphic.attributes;
+        
+        // Lista de campos comuns em camadas de hidrografia
+        const nome = attr.nome || attr.NOME || attr.Name || 'Sem identificação';
+        const tipo = attr.tipo || attr.TIPO || attr.Type || 'N/A';
+        const comprimento = attr.comprimento || attr.COMPRIMENTO || attr.Shape_Length || null;
+        const bacia = attr.bacia || attr.BACIA || attr.Basin || 'N/A';
+        const ordem = attr.ordem || attr.ORDEM || attr.Order || 'N/A';
+        
+        return `
+          <div class="feature-details">
+            <table>
+              <tr>
+                <td>Nome:</td>
+                <td><strong>${nome}</strong></td>
+              </tr>
+              ${tipo !== 'N/A' ? `
+              <tr>
+                <td>Tipo:</td>
+                <td><span class="feature-badge">${tipo}</span></td>
+              </tr>
+              ` : ''}
+              ${comprimento ? `
+              <tr>
+                <td>Extensão:</td>
+                <td>${(comprimento / 1000).toFixed(2)} km</td>
+              </tr>
+              ` : ''}
+              ${bacia !== 'N/A' ? `
+              <tr>
+                <td>Bacia:</td>
+                <td>${bacia}</td>
+              </tr>
+              ` : ''}
+              ${ordem !== 'N/A' ? `
+              <tr>
+                <td>Ordem:</td>
+                <td>${ordem}</td>
+              </tr>
+              ` : ''}
+            </table>
+            
+            <div style="margin-top: 12px; padding: 10px; background: #f9f9f9; border-radius: 4px; font-size: 12px; color: #666;">
+              <strong>Fonte:</strong> IGC - Instituto Geográfico e Cartográfico de São Paulo
+            </div>
+          </div>
+        `;
+      }
+
+      // ==========================================
+      // ALTERNATIVA: FEATURE LAYER (mais interativo)
+      // ==========================================
+      
+      // Se a primeira camada não funcionar bem, descomente esta:
+      /*
+      const hidrografiaMIL = new FeatureLayer({
+        url: "http://geoportal.igc.sp.gov.br:6080/arcgis/rest/services/WFS/IGC_BaseHidrografica_25000_WFS/MapServer/0",
+        title: "Hidrografia IGC",
+        outFields: ["*"],
+        opacity: 0.8,
+        renderer: {
+          type: "simple",
+          symbol: {
+            type: "simple-line",
+            color: [0, 112, 255, 0.8],
+            width: 2
+          }
+        },
+        popupTemplate: {
+          title: "🌊 {nome}",
+          content: getHidrografiaContent,
+          actions: [...]
+        }
+      });
+      
+      map.add(hidrografiaMIL);
+      */
+
+      // ==========================================
+      // INTERATIVIDADE - HIGHLIGHT
+      // ==========================================
+      let highlight;
+      
+      view.on("pointer-move", function(event) {
+        view.hitTest(event).then(function(response) {
+          if (highlight) {
+            highlight.remove();
+          }
+          
+          if (response.results.length) {
+            const graphic = response.results[0].graphic;
+            
+            if (graphic.layer === hidrografiaMIL || graphic.layer.parent === hidrografiaMIL) {
+              view.whenLayerView(graphic.layer).then(function(layerView) {
+                if (layerView.highlight) {
+                  highlight = layerView.highlight(graphic);
+                }
+              });
+              
+              view.container.style.cursor = "pointer";
+            }
+          } else {
+            view.container.style.cursor = "default";
+          }
+        });
+      });
+
+      // ==========================================
+      // AÇÕES DO POPUP
+      // ==========================================
+      view.popup.on("trigger-action", function(event) {
+        const graphic = view.popup.selectedFeature;
+        
+        if (event.action.id === "zoom-to-feature") {
+          view.goTo({
+            target: graphic.geometry,
+            zoom: 14
+          }, {
+            duration: 1500,
+            easing: "ease-in-out"
+          });
+        }
+        
+        if (event.action.id === "full-info") {
+          console.log("Atributos completos:", graphic.attributes);
+          
+          // Criar modal ou painel com todas as informações
+          const allAttrs = Object.entries(graphic.attributes)
+            .map(([key, value]) => `${key}: ${value}`)
+            .join('\n');
+          
+          alert('Atributos completos:\n\n' + allAttrs);
+        }
+      });
+
+      // ==========================================
+      // WIDGETS
+      // ==========================================
+      
+      // Home
+      const homeWidget = new Home({
+        view: view
+      });
+      view.ui.add(homeWidget, "top-left");
+
+      // Locate (minha localização)
+      const locateWidget = new Locate({
+        view: view
+      });
+      view.ui.add(locateWidget, "top-left");
+
+      // Compass
+      const compass = new Compass({
+        view: view
+      });
+      view.ui.add(compass, "top-left");
+
+      // Scale Bar
+      const scaleBar = new ScaleBar({
+        view: view,
+        unit: "metric"
+      });
+      view.ui.add(scaleBar, "bottom-left");
+
+      // Search
+      const searchWidget = new Search({
+        view: view,
+        popupEnabled: true,
+        resultGraphicEnabled: true
+      });
+      view.ui.add(searchWidget, "top-right");
+
+      // Basemap Toggle
+      const basemapToggle = new BasemapToggle({
+        view: view,
+        nextBasemap: "satellite"
+      });
+      view.ui.add(basemapToggle, "bottom-right");
+
+      // Layer List
+      const layerList = new LayerList({
+        view: view,
+        listItemCreatedFunction: function(event) {
+          const item = event.item;
+          
+          if (item.layer.type === "map-image") {
+            item.panel = {
+              content: "legend",
+              open: true
+            };
+          }
+        }
+      });
+      
+      const layerListExpand = new Expand({
+        view: view,
+        content: layerList,
+        expanded: false,
+        expandIconClass: "esri-icon-layer-list",
+        expandTooltip: "Lista de Camadas"
+      });
+      view.ui.add(layerListExpand, "top-left");
+
+      // Legend
+      const legend = new Legend({
+        view: view
+      });
+      
+      const legendExpand = new Expand({
+        view: view,
+        content: legend,
+        expanded: false,
+        expandIconClass: "esri-icon-legend",
+        expandTooltip: "Legenda"
+      });
+      view.ui.add(legendExpand, "top-left");
+
+      // ==========================================
+      // INICIALIZAÇÃO
+      // ==========================================
+      view.when(function() {
+        console.log("✅ Mapa carregado!");
+        
+        // Esconder loading
+        setTimeout(function() {
+          document.getElementById('loadingOverlay').classList.add('hidden');
+        }, 1000);
+        
+        // Zoom para a extensão da camada
+        hidrografiaMIL.when(function() {
+          console.log("✅ Camada de hidrografia carregada!");
+          
+          if (hidrografiaMIL.fullExtent) {
+            view.goTo(hidrografiaMIL.fullExtent.expand(1.2));
+          }
+        }).catch(function(error) {
+          console.error("❌ Erro ao carregar camada:", error);
+          alert("Erro ao carregar a camada de hidrografia. Verifique a conexão.");
+        });
+      }).catch(function(error) {
+        console.error("❌ Erro ao carregar mapa:", error);
+        document.getElementById('loadingOverlay').innerHTML = `
+          <div class="loading-content">
+            <h3 style="color: #d32f2f;">❌ Erro ao carregar</h3>
+            <p>${error.message}</p>
+          </div>
+        `;
+      });
+
+      // ==========================================
+      // INFORMAÇÕES DE DEBUG
+      // ==========================================
+      console.log("📍 URL do serviço:", hidrografiaMIL.url);
+      console.log("🗺️ Para ver detalhes da camada, acesse:");
+      console.log("http://geoportal.igc.sp.gov.br:6080/arcgis/rest/services/WFS/IGC_BaseHidrografica_25000_WFS/MapServer");
+
+    });
+  </script>
+</body>
+</html>
