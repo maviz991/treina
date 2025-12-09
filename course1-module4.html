@@ -1,0 +1,885 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Curso Geohab - Teste Local</title>
+
+    <!-- FONTES -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+
+    <!-- CSS DO BOOTSTRAP 4 (Apenas um é necessário) -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+
+    <!-- SEU ARQUIVO DE ESTILOS -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<style>
+    /* --- ESTILOS GERAIS --- */
+    body {
+        font-family: 'Montserrat', sans-serif;
+        background-color: #f4f7f6;
+        color: #333;
+        margin: 0;
+        padding: 20px;
+        line-height: 1.6;
+    }
+
+    .container {
+        max-width: 1100px;
+        margin: 0 auto;
+        background-color: #ffffff;
+        padding: 30px;
+        border-radius: 8px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    }
+
+    :root {
+        --font-primary: 'Axiforma', 'Montserrat', sans-serif;
+        --font-secondary: 'Montserrat', sans-serif;
+        --color-primary: #ff1100;
+        --color-secondary: #000000;
+        --color-text: #333;
+        --color-border: #e0e0e0;
+    }
+</style>
+</head>
+
+<body>
+    <!--                    INÍCIO: BLOCO SEÇÃO 1                         -->
+    <div class="module-intro-block" id="m4-s1-tecologiasMapas">
+        <div class="guide-container">
+            <h2 class="guide-container-title">Tecnologias por Trás dos Mapas</h2>
+            
+            <div class="content-layout-cols">
+                <div class="content-col-text">
+                    <p>Já se perguntou como os mapas interativos na internet funcionam? Vamos descobrir as tecnologias que fazem a mágica acontecer!</p>
+                    
+                    <div class="notice-block notice-info">
+                        <div class="notice-icon">
+                            <svg class="icon-custon icon-info"></svg>
+                        </div>
+                        <div class="notice-content">
+                            <p>Nesta seção, vamos explorar de forma simples e prática as tecnologias que permitem que você visualize e interaja com mapas no Geohab.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="content-col-media">
+                    <div class="image-modal-wrapper">
+                        <img class="modal-trigger-img img-decoration" title="Clique para expandir"
+                            src="https://stor.cdhu.sp.gov.br/treina/publico/img-4-1.png"
+                            alt="Tecnologias por trás dos mapas interativos">
+                        <div class="image-modal-popup">
+                            <span class="custom-close">×</span>
+                            <img class="modal-display-img">
+                            <div class="modal-caption-text">Tecnologias por trás dos mapas interativos.</div>
+                        </div>
+                    </div>
+                    <p class="image-caption"><sub>Fonte: Workshop on national geospatial data policies and standards</sub></p>
+                </div>
+            </div>
+            
+            <!-- COMPONENTE DE PASSO A PASSO -->
+           
+            <div class="step-component">
+                <div class="step-header">
+                    <div class="step-number">1</div>
+                    <h3 class="step-title">Como os Mapas "Ganham Vida" na sua Tela?</h3>
+                </div>
+                <div class="step-body">
+                    <div class="step-content-col-text">
+                        <div class="definition-group">
+                            <dl class="definition-list">
+                                <div class="definition-item">
+                                    <dt class="definition-term">
+                                        <div class="definition-icon"><svg class="icon-custon icon-eye" style="width: 24px; height: 24px;"></svg></div>
+                                        <span>Visualizador (MapStore 2)</span>
+                                    </dt>
+                                    <dd class="definition-desc">Interface que você vê e interage no Geohab, construída com bibliotecas JavaScript avançadas para criar uma experiência de mapa intuitiva.</dd>
+                                </div>
+                                <div class="definition-item">
+                                    <dt class="definition-term">
+                                        <div class="definition-icon"><svg class="icon-custon icon-search" style="width: 24px; height: 24px;"></svg></div>
+                                        <span>Serviços (GeoServer)</span>
+                                    </dt>
+                                    <dd class="definition-desc">Servidor que armazena e fornece os dados geoespaciais para o visualizador, respondendo às requisições e enviando as informações no formato adequado.</dd>
+                                </div>
+                                <div class="definition-item">
+                                    <dt class="definition-term">
+                                        <div class="definition-icon"><svg class="icon-custon icon-js" style="width: 24px; height: 24px;"></svg></div>
+                                        <span>Bibliotecas JavaScript (OpenLayers)</span>
+                                    </dt>
+                                    <dd class="definition-desc">Conjunto de ferramentas de programação que permitem "desenhar" mapas, conectar com servidores e criar interatividade na tela do navegador.</dd>
+                                </div>
+                            </dl>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="step-component">
+                <div class="step-header">
+                    <div class="step-number">2</div>
+                    <h3 class="step-title">KML: A Linguagem dos Lugares</h3>
+                </div>
+                <div class="step-body">
+                    <div class="step-content-col-text">
+                        <div class="definition-group">
+                            <dl class="definition-list">
+                                <div class="definition-item">
+                                    <dt class="definition-term">
+                                        <div class="definition-icon"><svg class="icon-custon icon-code" style="width: 24px; height: 24px;"></svg></div>
+                                        <span>KML (Keyhole Markup Language)</span>
+                                    </dt>
+                                    <dd class="definition-desc">Formato de arquivo baseado em XML que descreve pontos, linhas, polígonos e imagens para serem exibidos em mapas. Popularizado pelo Google Earth.</dd>
+                                </div>
+                                <div class="definition-item">
+                                    <dt class="definition-term">
+                                        <div class="definition-icon"><svg class="icon-custon icon-file" style="width: 24px; height: 24px;"></svg></div>
+                                        <span>GeoJSON</span>
+                                    </dt>
+                                    <dd class="definition-desc">Formato aberto baseado em JSON para codificar estruturas de dados geográficas. Ideal para aplicações web e interoperabilidade entre sistemas.</dd>
+                                </div>
+                                <div class="definition-item">
+                                    <dt class="definition-term">
+                                        <div class="definition-icon"><svg class="icon-custon icon-search" style="width: 24px; height: 24px;"></svg></div>
+                                        <span>Shapefile</span>
+                                    </dt>
+                                    <dd class="definition-desc">Formato vetorial clássico de dados geoespaciais, composto por múltiplos arquivos (.shp, .shx, .dbf). Embora antigo, ainda é amplamente utilizado.</dd>
+                                </div>
+                            </dl>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="step-component">
+                <div class="step-header">
+                    <div class="step-number">3</div>
+                    <h3 class="step-title">Bibliotecas de Mapas: As Ferramentas que "Desenham"</h3>
+                </div>
+                <div class="step-body">
+                    <div class="step-content-col-text">
+                        <div class="definition-group">
+                            <dl class="definition-list">
+                                <div class="definition-item">
+                                    <dt class="definition-term">
+                                        <div class="definition-icon"><svg class="icon-custon icon-search" style="width: 24px; height: 24px;"></svg></div>
+                                        <span>OpenLayers</span>
+                                    </dt>
+                                    <dd class="definition-desc">Biblioteca JavaScript de código aberto para exibir mapas em navegadores. Permite criar camadas, adicionar controles de interação e conectar com diversos serviços de mapas.</dd>
+                                </div>
+                                <div class="definition-item">
+                                    <dt class="definition-term">
+                                        <div class="definition-icon"><svg class="icon-custon icon-code" style="width: 24px; height: 24px;"></svg></div>
+                                        <span>Leaflet</span>
+                                    </dt>
+                                    <dd class="definition-desc">Biblioteca JavaScript leve e simples para mapas interativos. Focada em simplicidade, desempenho e usabilidade em diversos dispositivos.</dd>
+                                </div>
+                                <div class="definition-item">
+                                    <dt class="definition-term">
+                                        <div class="definition-icon"><svg class="icon-custon icon-eye" style="width: 24px; height: 24px;"></svg></div>
+                                        <span>MapStore 2</span>
+                                    </dt>
+                                    <dd class="definition-desc">Plataforma completa de visualização de mapas utilizada no Geohab. Oferece uma interface amigável que permite criar, personalizar e compartilhar mapas interativos sem necessidade de conhecimento técnico avançado.</dd>
+                                </div>
+                            </dl>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="step-component">
+                <div class="step-header">
+                    <div class="step-number">4</div>
+                    <h3 class="step-title">Como isso se Conecta no Ecossistema do Geohab?</h3>
+                </div>
+                <div class="step-body">
+                    <div class="step-content-col-text">
+                        <div class="definition-group">
+                            <dl class="definition-list">
+                                <div class="definition-item">
+                                    <dt class="definition-term">
+                                        <div class="definition-icon"><svg class="icon-custon icon-eye" style="width: 24px; height: 24px;"></svg></div>
+                                        <span>Visualização</span>
+                                    </dt>
+                                    <dd class="definition-desc">O <span class="badge-link badge-text-purple">Visualizador</span> do Geohab renderiza os dados na tela, permitindo que você visualize e interaja com as camadas de informação.</dd>
+                                </div>
+                                <div class="definition-item">
+                                    <dt class="definition-term">
+                                        <div class="definition-icon"><svg class="icon-custon icon-completation" style="width: 24px; height: 24px;"></svg></div>
+                                        <span>Requisições</span>
+                                    </dt>
+                                    <dd class="definition-desc">Quando você navega pelo mapa, o visualizador faz requisições ao <span class="badge-link badge-text-blue">GeoServer</span> para obter os dados necessários para exibir na área visível.</dd>
+                                </div>
+                                <div class="definition-item">
+                                    <dt class="definition-term">
+                                        <div class="definition-icon"><svg class="icon-custon icon-process" style="width: 24px; height: 24px;"></svg></div>
+                                        <span>Processamento</span>
+                                    </dt>
+                                    <dd class="definition-desc">Os dados recebidos (imagens, KML, GeoJSON, etc.) são interpretados e processados pela biblioteca JavaScript antes de serem desenhados na tela do navegador.</dd>
+                                </div>
+                            </dl>
+                        </div>
+                        
+                        <div class="notice-block notice-info">
+                            <div class="notice-icon">
+                                <svg class="icon-custon icon-info"></svg>
+                            </div>
+                            <div class="notice-content">
+                                <h4>O que você precisa saber?</h4>
+                                <p>Como usuário do Geohab, você não precisa saber programar ou criar KML manualmente. O importante é entender que existe um ecossistema de tecnologias trabalhando juntas para que você possa visualizar e interagir com os dados geoespaciais de maneira intuitiva!</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- ACCORDION TASK (LIÇÃO DA SEÇÃO) -->
+            <div class="collapsible-task-section">
+                <a href="#task-content-4" class="task-header" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="task-content-4">
+                    <div class="collapsible-header-title-group">
+                        <div class="task-chevron">
+                            <svg class="icon-custon icon-chevron"></svg>
+                        </div>
+                        <div class="task-header-icon">
+                            <svg class="icon-custon icon-target"></svg>
+                        </div>
+                        <h3 class="task-header-title">Lição da seção</h3>
+                    </div>
+                </a>
+                <div class="collapse" id="task-content-4">
+                    <div class="task-body">
+                        <div class="collapsible-description">
+                            <p>Para liberar a próxima seção do curso, você precisa concluir a lição sobre as <b>Tecnologias por Trás dos Mapas</b>.</p>
+                        </div>
+                        <div class="collapsible-content">
+                            <div class="collapsible-content-btn">
+                                <a href="#" class="task-action-button">
+                                    <span>Acessar Lição</span>
+                                    <svg class="icon-custon icon-arrow-right"></svg>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- ACCORDION MATERIAIS DA SEÇÃO -->
+            <div class="collapsible-material-section">
+                <a href="#material-sct-content-tecologiasMapas" class="material-sct-header" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="material-sct-content-tecologiasMapas">
+                    <div class="collapsible-header-title-group">
+                        <div class="material-sct-chevron">
+                            <svg class="icon-custon icon-chevron"></svg>
+                        </div>
+                        <div class="material-sct-header-icon">
+                            <svg class="icon-custon icon-book"></svg>
+                        </div>
+                        <h3 class="material-sct-header-title">Materiais de Apoio</h3>
+                    </div>
+                </a>
+                <div class="collapse" id="material-sct-content-tecologiasMapas">
+                    <div class="material-sct-body">
+                        <div class="collapsible-description">
+                            <p>Para expandir seu conhecimento sobre as tecnologias por trás dos mapas, acesse os materiais abaixo.</p>
+                        </div>
+                        <div class="collapsible-content">
+                            <div class="collapsible-content-btn">
+                                <a href="#" class="material-sct-action-button" title="Acese o PDF" data-toggle="tooltip" data-placement="right">
+                                    <span>PDF - Tecnologias por Trás dos Mapas</span>
+                                    <svg class="icon-custon icon-arrow-right"></svg>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--                         FIM: BLOCO SEÇÃO 1                          -->
+
+
+    <!--                    INÍCIO: BLOCO SEÇÃO 2           -->
+    <div class="module-intro-block" id="m4-s2-criandoMapas">
+        <div class="guide-container">
+            <h2 class="guide-container-title">Criando Mapas no Geohab</h2>
+            
+            <div class="content-layout-cols">
+                <div class="content-col-text">
+                    <p>A funcionalidade de 'Criar Mapas' do Geohab permite criar mapas interativos a partir de camadas geoespaciais. Você pode configurar estilos, adicionar legendas, ativar pop-ups, controlar a visibilidade das camadas e compartilhar o mapa com outros usuários ou incorporá-lo em websites.</p>
+                </div>
+            </div>
+            
+            <!-- Bloco de Nota Essencial -->
+            <div class="notice-block notice-warning">
+                <div class="notice-icon">
+                    <svg class="icon-custon icon-warning"></svg>
+                </div>
+                <div class="notice-content">
+                    <p><strong>Pré-requisitos:</strong> Ter um usuário autenticado no Geohab com permissão para criar mapas e acesso a camadas públicas ou privadas (WMS, WFS, GeoJSON, etc.).</p>
+                </div>
+            </div>
+            
+            <!-- PASSO 1: CRIANDO UM NOVO MAPA -->
+            <div class="step-component" id="m4-s2-criandoMapa">
+                <div class="step-header">
+                    <div class="step-number">1</div>
+                    <h3 class="step-title">Criando um Novo Mapa</h3>
+                </div>
+                <div class="step-body">
+                    <div class="step-content-col-text">
+                        <p>No menu principal, clique em <span class="badge-link badge-text-lilac">Apps</span> e depois em <span class="badge-link badge-text-lilac">Criar novo mapa</span>. O sistema abrirá o editor de mapas em branco.</p>
+                        <ul class="list-unstyled">
+                            <li class="mb-2"><span class="badge-circular-red mr-2">1</span> <strong>Menu Apps:</strong> Acesso às ferramentas do Geohab.</li>
+                            <li class="mb-2"><span class="badge-circular-red mr-2">2</span> <strong>Criar novo mapa:</strong> Inicia um novo mapa em branco.</li>
+                        </ul>
+                        <p class="d-none d-lg-block">
+                            <br>
+                            <span class="step-legend-text"><strong>Passe o mouse sobre o número</strong> na imagem para ver a função de cada botão. E clique para aplicar zoom-in ou zoom-out.</span>
+                        </p>
+                        <p class="d-lg-none">
+                            <br>
+                            <span class="step-legend-text"><strong>Toque em um item da legenda abaixo</strong> para ver sua localização na imagem. E clique novamente para dar zoom-in ou zoom-out.</span>
+                        </p>
+                    </div>
+
+                    <div class="step-content-media-hotspot">
+                        <div class="interactive-image-wrapper">
+                            <div class="interactive-image-inner-container">
+                                <img src="https://stor.cdhu.sp.gov.br/treina/publico/img-4-2.png"
+                                    alt="Tela para adicionar um novo mapa no Geohab">
+                                <!-- Hotspots -->
+                                <div class="hotspot" data-hotspot="1" style="top: 11.3%; left: 24.5%;"
+                                    data-toggle="tooltip" title="Menu Apps">1</div>
+                                <div class="hotspot" data-hotspot="2" style="top: 16%; left: 4%;"
+                                    data-toggle="tooltip" title="Opção Criar novo mapa">2</div>
+                            </div>
+                        </div>
+                        <!-- Mobile -->
+                        <div class="interactive-legend d-lg-none mt-4">
+                            <div class="legend-item" data-hotspot="1" data-zoom="3,25,11">
+                                <div class="icon-custon icon-search icon-mobile"></div>
+                                <div><b>1. Menu Apps:</b> Acesso às ferramentas do Geohab.</div>
+                            </div>
+                            <div class="legend-item" data-hotspot="2" data-zoom="3,6,16">
+                                <div class="icon-custon icon-search icon-mobile"></div>
+                                <div><strong>2. Criar novo mapa:</strong> Inicia um novo mapa em branco.</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- PASSO 2: ADICIONANDO CAMADAS -->
+            <div class="step-component" id="m4-s2-adicionandoCamadas">
+                <div class="step-header">
+                    <div class="step-number">2</div>
+                    <h3 class="step-title">Adicionando Camadas ao Mapa</h3>
+                </div>
+                <div class="step-body">
+                    <div class="step-content-col-text">
+                        <p>Clique no botão <span class="badge-link badge-text-lilac">Adicionar Camada</span> (ícone de camada no canto superior direito) e escolha a origem:</p>
+                        <ul class="list-unstyled">
+                            <li class="mb-2"><span class="badge-circular-red mr-2">1</span> <strong>Adicionar Camada:</strong> Abre a janela para adicionar novas camadas.</li>
+                            <li class="mb-2"><span class="badge-circular-red mr-2">2</span> <strong>Catálogo de Camadas:</strong> Busca camadas no Geohab.</li>
+                            <li class="mb-2"><span class="badge-circular-red mr-2">3</span> <strong>Pesquisa:</strong> Digite o nome da camada desejada.</li>
+                            <li class="mb-2"><span class="badge-circular-red mr-2">4</span> <strong>Adicionar ao Mapa:</strong> Adiciona a camada selecionada.</li>
+                        </ul>
+                        <p class="d-none d-lg-block">
+                            <br>
+                            <span class="step-legend-text"><strong>Passe o mouse sobre o número</strong> na imagem para ver a função de cada botão. E clique para aplicar zoom-in ou zoom-out.</span>
+                        </p>
+                        <p class="d-lg-none">
+                            <br>
+                            <span class="step-legend-text"><strong>Toque em um item da legenda abaixo</strong> para ver sua localização na imagem. E clique novamente para dar zoom-in ou zoom-out.</span>
+                        </p>
+                    </div>
+
+                    <div class="step-content-media-hotspot">
+                        <div class="interactive-image-wrapper">
+                            <div class="interactive-image-inner-container">
+                                <img src="https://stor.cdhu.sp.gov.br/treina/publico/img-4-3.png"
+                                    alt="Janela para adicionar nova camada ao mapa">
+                                <!-- Hotspots -->
+                                <div class="hotspot" data-hotspot="1" style="top: 25%; left: 96.2%;"
+                                    data-toggle="tooltip" title="Botão Adicionar Camada">1</div>
+                                <div class="hotspot" data-hotspot="2" style="top: 14.3%; left: 93.8%;"
+                                    data-toggle="tooltip" title="Opção Catálogo de Camadas">2</div>
+                                <div class="hotspot" data-hotspot="3" style="top: 23%; left: 80%;"
+                                    data-toggle="tooltip" title="Campo de pesquisa">3</div>
+                                <div class="hotspot" data-hotspot="4" style="top: 58%; left: 93.8%;"
+                                    data-toggle="tooltip" title="Botão Adicionar ao Mapa">4</div>
+                            </div>
+                        </div>
+                        <!-- Mobile -->
+                        <div class="interactive-legend d-lg-none mt-4">
+                            <div class="legend-item" data-hotspot="1" data-zoom="3,96,25">
+                                <div class="icon-custon icon-search icon-mobile"></div>
+                                <div><b>1. Adicionar Camada:</b> Abre a janela para adicionar novas camadas.</div>
+                            </div>
+                            <div class="legend-item" data-hotspot="2" data-zoom="3,93,14">
+                                <div class="icon-custon icon-search icon-mobile"></div>
+                                <div><strong>2. Catálogo de Camadas:</strong> Busca camadas no Geohab.</div>
+                            </div>
+                            <div class="legend-item" data-hotspot="3" data-zoom="3,80,23">
+                                <div class="icon-custon icon-search icon-mobile"></div>
+                                <div><strong>3. Pesquisa:</strong> Digite o nome da camada desejada.</div>
+                            </div>
+                            <div class="legend-item" data-hotspot="4" data-zoom="3,93,58">
+                                <div class="icon-custon icon-search icon-mobile"></div>
+                                <div><strong>4. Adicionar ao Mapa:</strong> Adiciona a camada selecionada.</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- PASSO 3: PERSONALIZANDO O MAPA -->
+            <div class="step-component" id="m4-s2-personalizandoMapa">
+                <div class="step-header">
+                    <div class="step-number">3</div>
+                    <h3 class="step-title">Personalizando o Mapa</h3>
+                </div>
+                <div class="step-body">
+                    <div class="step-content-col-text">
+                        <p>Ative ou desative camadas na lista lateral. Clique em uma camada para abrir o menu de configurações.</p>
+                        <ul class="list-unstyled">
+                            <li class="mb-2"><span class="badge-circular-red mr-2">1</span> <strong>Ativar/Desativar:</strong> Mostra ou oculta a camada no mapa.</li>
+                            <li class="mb-2"><span class="badge-circular-red mr-2">2</span> <strong>Configurações:</strong> Abre o menu de opções da camada.</li>
+                            <li class="mb-2"><span class="badge-circular-red mr-2">3</span> <strong>Estilo:</strong> Personaliza cores, símbolos e legendas.</li>
+                        </ul>
+                        <p class="d-none d-lg-block">
+                            <br>
+                            <span class="step-legend-text"><strong>Passe o mouse sobre o número</strong> na imagem para ver a função de cada botão. E clique para aplicar zoom-in ou zoom-out.</span>
+                        </p>
+                        <p class="d-lg-none">
+                            <br>
+                            <span class="step-legend-text"><strong>Toque em um item da legenda abaixo</strong> para ver sua localização na imagem. E clique novamente para dar zoom-in ou zoom-out.</span>
+                        </p>
+                    </div>
+
+                    <div class="step-content-media-hotspot">
+                        <div class="interactive-image-wrapper">
+                            <div class="interactive-image-inner-container">
+                                <img src="https://stor.cdhu.sp.gov.br/treina/publico/img-4-4.png"
+                                    alt="Lista de camadas na barra lateral para personalização">
+                                <!-- Hotspots -->
+                                <div class="hotspot" data-hotspot="1" style="top: 12%; left: 12.1%;"
+                                    data-toggle="tooltip" title="Ativar/Desativar camada">1</div>
+                                <div class="hotspot" data-hotspot="2" style="top: 15.9%; left: 3%;"
+                                    data-toggle="tooltip" title="Menu de configurações da camada">2</div>
+                                <div class="hotspot" data-hotspot="3" style="top: 24%; left: 13.2%;"
+                                    data-toggle="tooltip" title="Opções de estilo">3</div>
+                            </div>
+                        </div>
+                        <!-- Mobile -->
+                        <div class="interactive-legend d-lg-none mt-4">
+                            <div class="legend-item" data-hotspot="1" data-zoom="3,12,12">
+                                <div class="icon-custon icon-search icon-mobile"></div>
+                                <div><b>1. Ativar/Desativar:</b> Mostra ou oculta a camada no mapa.</div>
+                            </div>
+                            <div class="legend-item" data-hotspot="2" data-zoom="3,10,15">
+                                <div class="icon-custon icon-search icon-mobile"></div>
+                                <div><strong>2. Configurações:</strong> Abre o menu de opções da camada.</div>
+                            </div>
+                            <div class="legend-item" data-hotspot="3" data-zoom="3,12,20">
+                                <div class="icon-custon icon-search icon-mobile"></div>
+                                <div><strong>3. Estilo:</strong> Personaliza cores, símbolos e legendas.</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- PASSO 4: CONFIGURAÇÕES DE ESTILO -->
+            <div class="step-component" id="m4-s2-configuracoesEstilo">
+                <div class="step-header">
+                    <div class="step-number">4</div>
+                    <h3 class="step-title">Configurações de Estilo</h3>
+                </div>
+                <div class="step-body">
+                    <div class="step-content-col-text">
+                        <p>No menu de configurações, você pode personalizar:</p>
+                        <ul class="list-unstyled">
+                            <li class="mb-2"><span class="badge-circular-red mr-2">1</span> <strong>Aba de Estilo:</strong> Configurações gerais de aparência.</li>
+                            <li class="mb-2"><span class="badge-circular-red mr-2">2</span> <strong>Preenchimento:</strong> Estilo para áreas poligonais.</li>
+                            <li class="mb-2"><span class="badge-circular-red mr-2">3</span> <strong>Ícones:</strong> Estilo para pontos e marcadores.</li>
+                            <li class="mb-2"><span class="badge-circular-red mr-2">4</span> <strong>Legendas:</strong> Configuração de textos no mapa.</li>
+                        </ul>
+                        <p class="d-none d-lg-block">
+                            <br>
+                            <span class="step-legend-text"><strong>Passe o mouse sobre o número</strong> na imagem para ver a função de cada botão. E clique para aplicar zoom-in ou zoom-out.</span>
+                        </p>
+                        <p class="d-lg-none">
+                            <br>
+                            <span class="step-legend-text"><strong>Toque em um item da legenda abaixo</strong> para ver sua localização na imagem. E clique novamente para dar zoom-in ou zoom-out.</span>
+                        </p>
+                    </div>
+
+                    <div class="step-content-media-hotspot">
+                        <div class="interactive-image-wrapper">
+                            <div class="interactive-image-inner-container">
+                                <img src="https://stor.cdhu.sp.gov.br/treina/publico/img-4-5.png"
+                                    alt="Opções de configuração de estilo de uma camada">
+                                <!-- Hotspots -->
+                                <div class="hotspot" data-hotspot="1" style="top: 17%; left: 20%;"
+                                    data-toggle="tooltip" title="Aba de Estilo">1</div>
+                                <div class="hotspot" data-hotspot="2" style="top: 34.7%; left: 21%;"
+                                    data-toggle="tooltip" title="Regras de preenchimento">2</div>
+                                <div class="hotspot" data-hotspot="3" style="top: 24.8%; left: 19.3%;"
+                                    data-toggle="tooltip" title="Regras de ícones">3</div>
+                                <div class="hotspot" data-hotspot="4" style="top: 27%; left: 27.4%;"
+                                    data-toggle="tooltip" title="Regras de legendas">4</div>
+                            </div>
+                        </div>
+                        <!-- Mobile -->
+                        <div class="interactive-legend d-lg-none mt-4">
+                            <div class="legend-item" data-hotspot="1" data-zoom="3,20,17">
+                                <div class="icon-custon icon-search icon-mobile"></div>
+                                <div><b>1. Aba de Estilo:</b> Configurações gerais de aparência.</div>
+                            </div>
+                            <div class="legend-item" data-hotspot="2" data-zoom="3,35,21">
+                                <div class="icon-custon icon-search icon-mobile"></div>
+                                <div><strong>2. Preenchimento:</strong> Estilo para áreas poligonais.</div>
+                            </div>
+                            <div class="legend-item" data-hotspot="3" data-zoom="3,20,26">
+                                <div class="icon-custon icon-search icon-mobile"></div>
+                                <div><strong>3. Ícones:</strong> Estilo para pontos e marcadores.</div>
+                            </div>
+                            <div class="legend-item" data-hotspot="4" data-zoom="3,27,28">
+                                <div class="icon-custon icon-search icon-mobile"></div>
+                                <div><strong>4. Legendas:</strong> Configuração de textos no mapa.</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- PASSO 5: EXEMPLO DE PREENCHIMENTO CATEGORIZADO -->
+            <div class="step-component" id="m4-s2-exemploPreenchimento">
+                <div class="step-header">
+                    <div class="step-number">5</div>
+                    <h3 class="step-title">Exemplo de Preenchimento Categorizado</h3>
+                </div>
+                <div class="step-body">
+                    <div class="step-content-col-text">
+                        <p>Clique em regras de preenchimento e selecione o modo <span class="badge-link badge-text-purple">Categorizado</span>. Defina um campo (ex: 'area_km2') para criar categorias de cor a partir dos valores desse campo.</p>
+                        <ul class="list-unstyled">
+                            <li class="mb-2"><span class="badge-circular-red mr-2">1</span> <strong>Regras de preenchimento:</strong> Abre as opções de estilo.</li>
+                            <li class="mb-2"><span class="badge-circular-red mr-2">2</span> <strong>Categorizado:</strong> Cria cores por categorias.</li>
+                            <li class="mb-2"><span class="badge-circular-red mr-2">3</span> <strong>Campo area_km2:</strong> Base para as categorias.</li>
+                            <li class="mb-2"><span class="badge-circular-red mr-2">4</span> <strong>Aplicar:</strong> Salva as configurações.</li>
+                        </ul>
+                        <p class="d-none d-lg-block">
+                            <br>
+                            <span class="step-legend-text"><strong>Passe o mouse sobre o número</strong> na imagem para ver a função de cada botão. E clique para aplicar zoom-in ou zoom-out.</span>
+                        </p>
+                        <p class="d-lg-none">
+                            <br>
+                            <span class="step-legend-text"><strong>Toque em um item da legenda abaixo</strong> para ver sua localização na imagem. E clique novamente para dar zoom-in ou zoom-out.</span>
+                        </p>
+                    </div>
+
+                    <div class="step-content-media-hotspot">
+                        <div class="interactive-image-wrapper">
+                            <div class="interactive-image-inner-container">
+                                <img src="https://stor.cdhu.sp.gov.br/treina/publico/img-4-6.png"
+                                    alt="Exemplo de configuração de preenchimento categorizado">
+                                <!-- Hotspots -->
+                                <div class="hotspot" data-hotspot="1" style="top: 34.1%; left: 20%;"
+                                    data-toggle="tooltip" title="Regras de preenchimento">1</div>
+                                <div class="hotspot" data-hotspot="2" style="top: 39%; left: 21.5%;"
+                                    data-toggle="tooltip" title="Modo Categorizado">2</div>
+                                <div class="hotspot" data-hotspot="3" style="top: 45%; left: 26%;"
+                                    data-toggle="tooltip" title="Campo area_km2">3</div>
+                                <div class="hotspot" data-hotspot="4" style="top: 51%; left: 10.5%;"
+                                    data-toggle="tooltip" title="Aplicar configurações">4</div>
+                            </div>
+                        </div>
+                        <!-- Mobile -->
+                        <div class="interactive-legend d-lg-none mt-4">
+                            <div class="legend-item" data-hotspot="1" data-zoom="3,20,25">
+                                <div class="icon-custon icon-search icon-mobile"></div>
+                                <div><b>1. Regras de preenchimento:</b> Abre as opções de estilo.</div>
+                            </div>
+                            <div class="legend-item" data-hotspot="2" data-zoom="3,21,39">
+                                <div class="icon-custon icon-search icon-mobile"></div>
+                                <div><strong>2. Categorizado:</strong> Cria cores por categorias.</div>
+                            </div>
+                            <div class="legend-item" data-hotspot="3" data-zoom="3,26,45">
+                                <div class="icon-custon icon-search icon-mobile"></div>
+                                <div><strong>3. Campo area_km2:</strong> Base para as categorias.</div>
+                            </div>
+                            <div class="legend-item" data-hotspot="4" data-zoom="3,10,51">
+                                <div class="icon-custon icon-search icon-mobile"></div>
+                                <div><strong>4. Aplicar:</strong> Salva as configurações.</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- PASSO 6: CONFIGURANDO O FUNDO DO MAPA -->
+            <div class="step-component" id="m4-s2-configurandoFundo">
+                <div class="step-header">
+                    <div class="step-number">6</div>
+                    <h3 class="step-title">Configurando o Fundo do Mapa</h3>
+                </div>
+                <div class="step-body">
+                    <div class="step-content-col-text">
+                        <p>Clique em <span class="badge-link badge-text-lilac">Fundo</span> ou <span class="badge-link badge-text-lilac">Base Map</span> na barra lateral. Escolha entre fundo padrão, satélite, OpenStreetMap, ou adicione serviços personalizados (TMS, XYZ).</p>
+                        <ul class="list-unstyled">
+                            <li class="mb-2"><span class="badge-circular-red mr-2">1</span> <strong>Base Map:</strong> Abre as opções de fundo.</li>
+                            <li class="mb-2"><span class="badge-circular-red mr-2">2</span> <strong>Satélite:</strong> Fundo com imagens de satélite.</li>
+                            <li class="mb-2"><span class="badge-circular-red mr-2">3</span> <strong>Serviço personalizado:</strong> Adiciona outros fundos.</li>
+                        </ul>
+                        <p class="d-none d-lg-block">
+                            <br>
+                            <span class="step-legend-text"><strong>Passe o mouse sobre o número</strong> na imagem para ver a função de cada botão. E clique para aplicar zoom-in ou zoom-out.</span>
+                        </p>
+                        <p class="d-lg-none">
+                            <br>
+                            <span class="step-legend-text"><strong>Toque em um item da legenda abaixo</strong> para ver sua localização na imagem. E clique novamente para dar zoom-in ou zoom-out.</span>
+                        </p>
+                    </div>
+
+                    <div class="step-content-media-hotspot">
+                        <div class="interactive-image-wrapper">
+                            <div class="interactive-image-inner-container">
+                                <img src="https://stor.cdhu.sp.gov.br/treina/publico/img-4-8.png"
+                                    alt="Menu para seleção de mapa de fundo (Base Map)">
+                                <!-- Hotspots -->
+                                <div class="hotspot" data-hotspot="1" style="top: 82%; left: 21%;"
+                                    data-toggle="tooltip" title="Menu Base Map">1</div>
+                                <div class="hotspot" data-hotspot="2" style="top: 85%; left: 27%;"
+                                    data-toggle="tooltip" title="Opção Satélite">2</div>
+                                <div class="hotspot" data-hotspot="3" style="top:78.9%; left: 17.2%;"
+                                    data-toggle="tooltip" title="Adicionar serviço personalizado">3</div>
+                            </div>
+                        </div>
+                        <!-- Mobile -->
+                        <div class="interactive-legend d-lg-none mt-4">
+                            <div class="legend-item" data-hotspot="1" data-zoom="3,21,82">
+                                <div class="icon-custon icon-search icon-mobile"></div>
+                                <div><b>1. Base Map:</b> Abre as opções de fundo.</div>
+                            </div>
+                            <div class="legend-item" data-hotspot="2" data-zoom="3,27,85">
+                                <div class="icon-custon icon-search icon-mobile"></div>
+                                <div><strong>2. Satélite:</strong> Fundo com imagens de satélite.</div>
+                            </div>
+                            <div class="legend-item" data-hotspot="3" data-zoom="3,17,80">
+                                <div class="icon-custon icon-search icon-mobile"></div>
+                                <div><strong>3. Serviço personalizado:</strong> Adiciona outros fundos.</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- PASSO 7: SALVANDO O MAPA -->
+            <div class="step-component" id="m4-s2-salvandoMapa">
+                <div class="step-header">
+                    <div class="step-number">7</div>
+                    <h3 class="step-title">Salvando o Mapa</h3>
+                </div>
+                <div class="step-body">
+                    <div class="step-content-col-text">
+                        <p>Clique em <span class="badge-link badge-text-lilac">Salvar</span> na barra lateral e preencha:</p>
+                        <ul class="list-unstyled">
+                            <li class="mb-2"><span class="badge-circular-red mr-2">1</span> <strong>Salvar:</strong> Abre a janela para salvar o mapa.</li>
+                            <li class="mb-2"><span class="badge-circular-red mr-2">2</span> <strong>Título:</strong> Nome do seu mapa.</li>
+                            <li class="mb-2"><span class="badge-circular-red mr-2">3</span> <strong>Descrição/Tags:</strong> Detalhes e palavras-chave.</li>
+                            <li class="mb-2"><span class="badge-circular-red mr-2">4</span> <strong>Detalhes:</strong> Adicionar informações adicionais.</li>
+                            <li class="mb-2"><span class="badge-circular-red mr-2">5</span> <strong>Permissões:</strong> Definir quem pode acessar.</li>
+                            <li class="mb-2"><span class="badge-circular-red mr-2">6</span> <strong>Salvar final:</strong> Confirma e salva o mapa.</li>
+                        </ul>
+                        <p class="d-none d-lg-block">
+                            <br>
+                            <span class="step-legend-text"><strong>Passe o mouse sobre o número</strong> na imagem para ver a função de cada botão. E clique para aplicar zoom-in ou zoom-out.</span>
+                        </p>
+                        <p class="d-lg-none">
+                            <br>
+                            <span class="step-legend-text"><strong>Toque em um item da legenda abaixo</strong> para ver sua localização na imagem. E clique novamente para dar zoom-in ou zoom-out.</span>
+                        </p>
+                    </div>
+
+                    <div class="step-content-media-hotspot">
+                        <div class="interactive-image-wrapper">
+                            <div class="interactive-image-inner-container">
+                                <img src="https://stor.cdhu.sp.gov.br/treina/publico/img-4-9.png"
+                                    alt="Janela de diálogo para salvar o mapa">
+                                <!-- Hotspots -->
+                                <div class="hotspot" data-hotspot="1" style="top: 37.5%; left: 96.3%;"
+                                    data-toggle="tooltip" title="Botão Salvar">1</div>
+                                <div class="hotspot" data-hotspot="2" style="top: 37.5%; left: 48.5%;"
+                                    data-toggle="tooltip" title="Campo Título">2</div>
+                                <div class="hotspot" data-hotspot="3" style="top: 43.5%; left: 48.5%;"
+                                    data-toggle="tooltip" title="Campo descrição 'Setor | CDHU'">3</div>
+                                <div class="hotspot" data-hotspot="4" style="top: 50%; left: 59%;"
+                                    data-toggle="tooltip" title="Adicionar detalhes">4</div>
+                                <div class="hotspot" data-hotspot="5" style="top: 65%; left: 63%;"
+                                    data-toggle="tooltip" title="Botão Adicionar permissões">5</div>
+                                <div class="hotspot" data-hotspot="6" style="top: 77%; left: 62%;"
+                                    data-toggle="tooltip" title="Botão Salvar final">6</div>                                                                        
+                            </div>
+                        </div>
+                        <!-- Mobile -->
+                        <div class="interactive-legend d-lg-none mt-4">
+                            <div class="legend-item" data-hotspot="1" data-zoom="3,96,37">
+                                <div class="icon-custon icon-search icon-mobile"></div>
+                                <div><b>1. Salvar:</b> Abre a janela para salvar o mapa.</div>
+                            </div>
+                            <div class="legend-item" data-hotspot="2" data-zoom="3,48,37">
+                                <div class="icon-custon icon-search icon-mobile"></div>
+                                <div><strong>2. Título:</strong> Nome do seu mapa.</div>
+                            </div>
+                            <div class="legend-item" data-hotspot="3" data-zoom="3,48,43">
+                                <div class="icon-custon icon-search icon-mobile"></div>
+                                <div><strong>3. Tags:</strong> Palavras-chave para facilitar busca.</div>
+                            </div>
+                            <div class="legend-item" data-hotspot="4" data-zoom="3,50,50">
+                                <div class="icon-custon icon-search icon-mobile"></div>
+                                <div><strong>4. Detalhes:</strong> Adicionar detalhes.</div>
+                            </div>
+                            <div class="legend-item" data-hotspot="5" data-zoom="3,53,65">
+                                <div class="icon-custon icon-search icon-mobile"></div>
+                                <div><strong>5. Permissões:</strong> Adicionar permissões.</div>
+                            </div>
+                            <div class="legend-item" data-hotspot="6" data-zoom="3,62,77">
+                                <div class="icon-custon icon-search icon-mobile"></div>
+                                <div><strong>6. Salvar final:</strong> Confirma e salva o mapa.</div>
+                            </div>                                                        
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- PASSO 8: COMPARTILHANDO O MAPA -->
+            <div class="step-component" id="m4-s2-compartilhandoMapa">
+                <div class="step-header">
+                    <div class="step-number">8</div>
+                    <h3 class="step-title">Compartilhando o Mapa</h3>
+                </div>
+                <div class="step-body">
+                    <div class="step-content-col-text">
+                        <p>Após salvar, use o botão <span class="badge-link badge-text-lilac">Compartilhar</span>. Opções disponíveis:</p>
+                        <ul class="list-unstyled">
+                            <li class="mb-2"><span class="badge-circular-red mr-2">1</span> <strong>Compartilhar:</strong> Abre as opções de compartilhamento.</li>
+                            <li class="mb-2"><span class="badge-circular-red mr-2">2</span> <strong>Link direto:</strong> URL para acessar o mapa.</li>
+                            <li class="mb-2"><span class="badge-circular-red mr-2">3</span> <strong>Incorporar iframe:</strong> Código para websites.</li>
+                        </ul>
+                        <p class="d-none d-lg-block">
+                            <br>
+                            <span class="step-legend-text"><strong>Passe o mouse sobre o número</strong> na imagem para ver a função de cada botão. E clique para aplicar zoom-in ou zoom-out.</span>
+                        </p>
+                        <p class="d-lg-none">
+                            <br>
+                            <span class="step-legend-text"><strong>Toque em um item da legenda abaixo</strong> para ver sua localização na imagem. E clique novamente para dar zoom-in ou zoom-out.</span>
+                        </p>
+                    </div>
+
+                    <div class="step-content-media-hotspot">
+                        <div class="interactive-image-wrapper">
+                            <div class="interactive-image-inner-container">
+                                <img src="https://stor.cdhu.sp.gov.br/treina/publico/img-4-10.png"
+                                    alt="Opções para compartilhar o mapa, incluindo link e iframe">
+                                <!-- Hotspots -->
+                                <div class="hotspot" data-hotspot="1" style="top: 55%; left: 96.5%;"
+                                    data-toggle="tooltip" title="Botão Compartilhar">1</div>
+                                <div class="hotspot" data-hotspot="2" style="top: 11%; left: 41%;"
+                                    data-toggle="tooltip" title="Opção Link direto">2</div>
+                                <div class="hotspot" data-hotspot="3" style="top: 11%; left: 58%;"
+                                    data-toggle="tooltip" title="Opção Incorporar iframe">3</div>
+                            </div>
+                        </div>
+                        <!-- Mobile -->
+                        <div class="interactive-legend d-lg-none mt-4">
+                            <div class="legend-item" data-hotspot="1" data-zoom="3,90,55">
+                                <div class="icon-custon icon-search icon-mobile"></div>
+                                <div><b>1. Compartilhar:</b> Abre as opções de compartilhamento.</div>
+                            </div>
+                            <div class="legend-item" data-hotspot="2" data-zoom="3,41,11">
+                                <div class="icon-custon icon-search icon-mobile"></div>
+                                <div><strong>2. Link direto:</strong> URL para acessar o mapa.</div>
+                            </div>
+                            <div class="legend-item" data-hotspot="3" data-zoom="3,58,11">
+                                <div class="icon-custon icon-search icon-mobile"></div>
+                                <div><strong>3. Incorporar iframe:</strong> Código para websites.</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Bloco de Dicas e Boas Práticas -->
+            <div class="notice-block notice-info">
+                <div class="notice-icon">
+                    <svg class="icon-custon icon-info"></svg>
+                </div>
+                <div class="notice-content">
+                    <h4>Dicas e Boas Práticas</h4>
+                    <ul>
+                        <li>Dênomes significativos às camadas.</li>
+                        <li>Agrupe camadas por tema ou função.</li>
+                        <li>Teste o mapa em resoluções diferentes.</li>
+                        <li>Mantenha a interface limpa e compreensível para usuários finais.</li>
+                        <li>Use mapas salvos como base para Dashboards e GeoStories.</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- ACCORDION MATERIAIS DA SEÇÃO -->
+            <div class="collapsible-material-section">
+                <a href="#material-sct-content-criandoMapas" class="material-sct-header" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="material-sct-content-criandoMapas">
+                    <div class="collapsible-header-title-group">
+                        <div class="material-sct-chevron">
+                            <svg class="icon-custon icon-chevron"></svg>
+                        </div>
+                        <div class="material-sct-header-icon">
+                            <svg class="icon-custon icon-book"></svg>
+                        </div>
+                        <h3 class="material-sct-header-title">Materiais de Apoio</h3>
+                    </div>
+                </a>
+                <div class="collapse" id="material-sct-content-criandoMapas">
+                    <div class="material-sct-body">
+                        <div class="collapsible-description">
+                            <p>Para expandir seu conhecimento sobre criação de mapas no Geohab, acesse os materiais abaixo.</p>
+                        </div>
+                        <div class="collapsible-content">
+                            <div class="collapsible-content-btn">
+                                <a href="https://mapstore.geosolutionsgroup.com/mapstore/docs/" target="_blank" class="material-sct-action-button" title="Acesse a documentação oficial" data-toggle="tooltip" data-placement="right">
+                                    <span>Documentação Oficial</span>
+                                    <svg class="icon-custon icon-arrow-right"></svg>
+                                </a>
+                            </div>
+                            <div class="collapsible-content-btn">
+                                <a href="https://mapstore.geo-solutions.it/mapstore/#/viewer" target="_blank" class="material-sct-action-button" title="Veja exemplos prontos" data-toggle="tooltip" data-placement="right">
+                                    <span>Exemplos Prontos</span>
+                                    <svg class="icon-custon icon-arrow-right"></svg>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--                         FIM: BLOCO SEÇÃO 2                          -->
+
+        <!-- ======================================================= -->
+        <!--     SCRIPTS ESSENCIAIS (jQuery, Popper, Bootstrap)      -->
+        <!-- ======================================================= -->
+        <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js"></script>
+
+        <!-- SEU ARQUIVO JAVASCRIPT (MODIFICADO) -->
+        <script src="script.js"></script>
+</body>
+
+</html>    
