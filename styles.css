@@ -2676,6 +2676,11 @@ body {
   cursor: zoom-out;
 }
 
+.list-unstyled {
+  padding-left: 0;
+  list-style: none;
+}
+
 /* =================================================================== */
 /*            FIM - LEGENDA DE HOTSPOT - IMAGEM INTERATIVA             */
 /* =================================================================== */
