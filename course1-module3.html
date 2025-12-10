@@ -50,15 +50,15 @@
 </head>
 
 <body>
-    <!-- ------------------- INÍCIO: BLOCO SEÇÃO 1 ------------------- -->
-    <div class="module-intro-block" id="m3-s0">
+    <!-- ------------------ INÍCIO: BLOCO SEÇÃO 1 ----------------- -->
+    <div class="module-intro-block" id="m3-s1-catalogo">
         <div class="guide-container">
             <h2 class="guide-container-title">Como Encontrar Dados no Catálogo</h2>
             <p>O Catálogo (GeoNetwork) é a porta de entrada para encontrar e entender os dados geoespaciais disponíveis.
                 Siga os passos abaixo para localizar as camadas que você precisa.</p>
 
             <!-- PASSO 1: ACESSO -->
-            <div class="step-component" id="m3-s1-catalog">
+            <div class="step-component" id="m3-s1-catalogo-passo1">
                 <div class="step-header">
                     <div class="step-number">1</div>
                     <h3 class="step-title">Acesse o Catálogo</h3>
@@ -101,7 +101,7 @@
                                     data-toggle="tooltip" title="Acesso a ferramenta Catálogo.">1</div>
                             </div>
                         </div>
-                        <!-- LEGENDA INTERATIVA (APENAS PARA MOBILE) -->
+                        <!-- Mobile -->
                         <div class="interactive-legend d-lg-none mt-4">
                             <div class="legend-item" data-hotspot="1" data-zoom="3,14.5,10">
                                 <div class="icon-custon icon-search icon-mobile"></div>
@@ -114,7 +114,7 @@
 
 
             <!-- PASSO 2: BUSCA -->
-            <div class="step-component" id="m3-s2-busca">
+            <div class="step-component" id="m3-s1-catalogo-passo2">
                 <div class="step-header">
                     <div class="step-number">2</div>
                     <h3 class="step-title">Realize a Busca</h3>
@@ -189,7 +189,7 @@
             </div>
 
             <!-- PASSO 3: BARRA DE NAVEGAÇÃO -->
-            <div class="step-component" id="m3-s3-nav-bar">
+            <div class="step-component" id="m3-s1-catalogo-passo3">
                 <div class="step-header">
                     <div class="step-number" style="background-color: #009036;">
                         <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
@@ -278,107 +278,166 @@
                 </div>
             </div>
         </div>
+    <!-- ACCORDION TASK -->
+    <div class="collapsible-task-section">
+        <a href="#task-content-4" class="task-header" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="task-content-4">
+            <div class="collapsible-header-title-group">
+                <div class="task-chevron"><svg class="icon-custon icon-chevron"></svg></div>
+                <div class="task-header-icon"><svg class="icon-custon icon-target"></svg></div>
+                <h3 class="task-header-title">Lição da seção</h3>
+            </div>
+        </a>
+        <div class="collapse" id="task-content-4">
+            <div class="task-body">
+                <div class="collapsible-description"><p>Para liberar a próxima seção do curso, você precisa concluir a lição sobre a ferramenta <b>Visualizador</b>.</p></div>
+                <div class="collapsible-content">
+                    <div class="collapsible-content-btn">
+                        <a href="/mod/lesson/view.php?id=1031" class="task-action-button"><span>Acessar Lição</span><svg class="icon-custon icon-arrow-right"></svg></a>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-        <!-- ------------------- FIM: BLOCO SEÇÃO 1 ------------------- -->
-
-        <!-- ------------------ INÍCIO: BLOCO SEÇÃO 2 ----------------- -->
-<div class="module-intro-block" id="module3-section2-visualizandoCamadas">
-    <div class="guide-container">
-        <h2 class="guide-container-title">Visualizando Camadas</h2>
-        
-        <div class="content-layout-cols">
-            <div class="content-col-text">
-                <p>O <span class="badge-link badge-text-lilac">Visualizador</span> é um dos componentes principais do Geohab, integrado ao <span class="badge-link badge-text-blue">Serviços (GeoServer)</span> e ao <span class="badge-link badge-text-salmon">Catálogo (GeoNetwork)</span>. Ele é a principal ferramenta para a exploração visual interativa das camadas geoespaciais.</p>
-                
-                <p>Este guia demonstra as formas mais comuns de adicionar e visualizar uma camada, permitindo que você analise se ela atende aos seus requisitos.</p>
+    <!-- Accordion materials -->
+    <div class="collapsible-material-section">
+        <a href="#material-sct-content-4" class="material-sct-header" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="material-sct-content-4">
+            <div class="collapsible-header-title-group">
+                <div class="material-sct-chevron"><svg class="icon-custon icon-chevron"></svg></div>
+                <div class="material-sct-header-icon"><svg class="icon-custon icon-book"></svg></div>
+                <h3 class="material-sct-header-title">Materiais de Apoio</h3>
             </div>
-            <div class="content-col-media">
-                <div id="video-apresentacao">
-                    <video class="video-js" controls="controls" width="800" height="368">
-                        <source src="https://youtu.be/EqSNdbASb_U">
-                        Seu navegador não suporta este formato de vídeo.
-                    </video>
-                </div>
-            </div>
-        </div>
-
-        <!-- Bloco de Nota Essencial -->
-        <div class="notice-block notice-warning">
-            <div class="notice-icon">
-                <svg class="icon-custon icon-warning"></svg>
-            </div>
-            <div class="notice-content">
-                <p><strong>Nota Importante:</strong> Lembre-se que para visualizar efetivamente uma camada, seu perfil de usuário no Geohab deve ter as permissões de acesso necessárias para o serviço (WMS/WFS) correspondente.</p>
-            </div>
-        </div>
-
-        <!-- COMPONENTE DE PASSO A PASSO -->
-        <h3 class="guide-container-title" style="margin-top: 2em;">Métodos para Visualizar Camadas</h3>
-        
-        <div class="step-component">
-            <div class="step-header">
-                <div class="step-number">1</div>
-                <h3 class="step-title">A partir do Catálogo</h3>
-            </div>
-            <div class="step-body">
-                <div class="step-content-col-text">
-                    <p>Utilize o <span class="badge-link badge-text-salmon">Catálogo (GeoNetwork)</span> para encontrar a camada de seu interesse.</p>
-                    <p>Na página de detalhes do metadado da camada desejada, selecione o tipo de GeoServiço (WMS para mapa ou WFS para vetor) e clique em visualizar. A camada será automaticamente carregada no Visualizador.</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="step-component">
-            <div class="step-header">
-                <div class="step-number">2</div>
-                <h3 class="step-title">Diretamente no Visualizador</h3>
-            </div>
-            <div class="step-body">
-                <div class="step-content-col-text">
-                    <p>Se você já conhece a camada que deseja visualizar:</p>
-                    <ol>
-                        <li>Acesse o <span class="badge-link badge-text-lilac">Visualizador</span> na página inicial do Geohab</li>
-                        <li>Clique no botão <span class="badge-color-black">Add data to the map</span></li>
-                        <li>Selecione a fonte de dados: <span class="badge-color-black">Catálogo de dados da plataforma</span></li>
-                        <li>Busque pelo nome da camada</li>
-                        <li>Clique no ícone de adicionar ao mapa ao lado do nome da camada</li>
-                    </ol>
-                </div>
-            </div>
-        </div>
-
-        <!-- ACCORDION MATERIAIS DA SEÇÃO -->
-        <div class="collapsible-material-section">
-            <a href="#material-sct-content-visualizando" class="material-sct-header" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="material-sct-content-visualizando">
-                <div class="collapsible-header-title-group">
-                    <div class="material-sct-chevron">
-                        <svg class="icon-custon icon-chevron"></svg>
+        </a>
+        <div class="collapse" id="material-sct-content-4">
+            <div class="material-sct-body">
+                <div class="collapsible-description"><p>Para mais informações sobre a ferramenta <b>Visualizador</b>, leia o material abaixo.</p></div>
+                <div class="collapsible-content">
+                    <div class="collapsible-content-btn">
+                        <a href="#" class="material-sct-action-button" title="Acesse o PDF" data-toggle="tooltip" data-placement="right"><span>PDF - Visualizador</span><svg class="icon-custon icon-arrow-right"></svg></a>
                     </div>
-                    <div class="material-sct-header-icon">
-                        <svg class="icon-custon icon-book"></svg>
-                    </div>
-                    <h3 class="material-sct-header-title">Materiais de Apoio</h3>
                 </div>
-            </a>
-            <div class="collapse" id="material-sct-content-visualizando">
-                <div class="material-sct-body">
-                    <div class="collapsible-description">
-                        <p>Para expandir seu conhecimento sobre visualização de camadas, leia o material abaixo.</p>
+            </div>
+        </div>
+    </div>        
+    </div>
+    <!-- ------------------- FIM: BLOCO SEÇÃO 1 ------------------- -->
+
+    <!-- ------------------ INÍCIO: BLOCO SEÇÃO 2 ----------------- -->
+    <div class="module-intro-block" id="m3-s2-viewlayers">
+        <div class="guide-container">
+            <h2 class="guide-container-title">Visualizando Camadas</h2>
+            
+            <div class="content-layout-cols">
+                <div class="content-col-text">
+                    <p>O <span class="badge-link badge-text-lilac">Visualizador</span> é um dos componentes principais do Geohab, integrado ao <span class="badge-link badge-text-blue">Serviços (GeoServer)</span> e ao <span class="badge-link badge-text-salmon">Catálogo (GeoNetwork)</span>. Ele é a principal ferramenta para a exploração visual interativa das camadas geoespaciais.</p>
+                    
+                    <p>Este guia demonstra as formas mais comuns de adicionar e visualizar uma camada, permitindo que você analise se ela atende aos seus requisitos.</p>
+                </div>
+                <div class="content-col-media">
+                    <div id="video-apresentacao">
+                        <video class="video-js" controls="controls" width="800" height="368">
+                            <source src="https://youtu.be/EqSNdbASb_U">
+                            Seu navegador não suporta este formato de vídeo.
+                        </video>
                     </div>
-                    <div class="collapsible-content">
-                        <div class="collapsible-content-btn">
-                            <a href="#" class="material-sct-action-button" title="Acesse o PDF" data-toggle="tooltip" data-placement="right">
-                                <span>PDF - Visualizando Camadas</span>
-                                <svg class="icon-custon icon-arrow-right"></svg>
-                            </a>
+                </div>
+            </div>
+
+            <!-- Bloco de Nota Essencial -->
+            <div class="notice-block notice-warning">
+                <div class="notice-icon">
+                    <svg class="icon-custon icon-warning"></svg>
+                </div>
+                <div class="notice-content">
+                    <p><strong>Nota Importante:</strong> Lembre-se que para visualizar efetivamente uma camada, seu perfil de usuário no Geohab deve ter as permissões de acesso necessárias para o serviço (WMS/WFS) correspondente.</p>
+                </div>
+            </div>
+
+            <!-- COMPONENTE DE PASSO A PASSO -->
+            <h3 class="guide-container-title" style="margin-top: 2em;">Métodos para Visualizar Camadas</h3>
+            
+            <div class="step-component" id="m3-s2-viewlayers-passo1">
+                <div class="step-header">
+                    <div class="step-number">1</div>
+                    <h3 class="step-title">A partir do Catálogo</h3>
+                </div>
+                <div class="step-body">
+                    <div class="step-content-col-text">
+                        <p>Utilize o <span class="badge-link badge-text-salmon">Catálogo (GeoNetwork)</span> para encontrar a camada de seu interesse.</p>
+                        <p>Na página de detalhes do metadado da camada desejada, selecione o tipo de GeoServiço (WMS para mapa ou WFS para vetor) e clique em visualizar. A camada será automaticamente carregada no Visualizador.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="step-component" id="m3-s2-viewlayers-passo2">
+                <div class="step-header">
+                    <div class="step-number">2</div>
+                    <h3 class="step-title">Diretamente no Visualizador</h3>
+                </div>
+                <div class="step-body">
+                    <div class="step-content-col-text">
+                        <p>Se você já conhece a camada que deseja visualizar:</p>
+                        <ol>
+                            <li>Acesse o <span class="badge-link badge-text-lilac">Visualizador</span> na página inicial do Geohab</li>
+                            <li>Clique no botão <span class="badge-color-black">Add data to the map</span></li>
+                            <li>Selecione a fonte de dados: <span class="badge-color-black">Catálogo de dados da plataforma</span></li>
+                            <li>Busque pelo nome da camada</li>
+                            <li>Clique no ícone de adicionar ao mapa ao lado do nome da camada</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+            <!-- ACCORDION TASK -->
+            <div class="collapsible-task-section">
+                <a href="#task-content-4" class="task-header" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="task-content-4">
+                    <div class="collapsible-header-title-group">
+                        <div class="task-chevron"><svg class="icon-custon icon-chevron"></svg></div>
+                        <div class="task-header-icon"><svg class="icon-custon icon-target"></svg></div>
+                        <h3 class="task-header-title">Lição da seção</h3>
+                    </div>
+                </a>
+                <div class="collapse" id="task-content-4">
+                    <div class="task-body">
+                        <div class="collapsible-description"><p>Para liberar a próxima seção do curso, você precisa concluir a lição sobre a ferramenta <b>Visualizador</b>.</p></div>
+                        <div class="collapsible-content">
+                            <div class="collapsible-content-btn">
+                                <a href="/mod/lesson/view.php?id=1032" class="task-action-button"><span>Acessar Lição</span><svg class="icon-custon icon-arrow-right"></svg></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- ACCORDION MATERIAIS DA SEÇÃO -->
+            <div class="collapsible-material-section">
+                <a href="#material-sct-content-visualizando" class="material-sct-header" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="material-sct-content-visualizando">
+                    <div class="collapsible-header-title-group">
+                        <div class="material-sct-chevron">
+                            <svg class="icon-custon icon-chevron"></svg>
+                        </div>
+                        <div class="material-sct-header-icon">
+                            <svg class="icon-custon icon-book"></svg>
+                        </div>
+                        <h3 class="material-sct-header-title">Materiais de Apoio</h3>
+                    </div>
+                </a>
+                <div class="collapse" id="material-sct-content-visualizando">
+                    <div class="material-sct-body">
+                        <div class="collapsible-description">
+                            <p>Para expandir seu conhecimento sobre visualização de camadas, leia o material abaixo.</p>
+                        </div>
+                        <div class="collapsible-content">
+                            <div class="collapsible-content-btn">
+                                <a href="/mod/resource/view.php?id=651" class="material-sct-action-button" title="Acesse o PDF" data-toggle="tooltip" data-placement="right">
+                                    <span>PDF - Visualizando Camadas</span>
+                                    <svg class="icon-custon icon-arrow-right"></svg>
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
-        <!-- ------------------- FIM: BLOCO SEÇÃO 2 ------------------- -->
+    <!-- ------------------- FIM: BLOCO SEÇÃO 2 ------------------- -->
 
         <!-- ------------------ INÍCIO: BLOCO SEÇÃO 3 ----------------- -->
 
@@ -415,7 +474,7 @@
                 <!-- COMPONENTE DE PASSO A PASSO -->
                 <h3 class="guide-container-title" style="margin-top: 2em;">Processo de Filtragem no Visualizador</h3>
                 
-                <div class="step-component">
+                <div class="step-component" id="m3-s3-acessarCamada">
                     <div class="step-header">
                         <div class="step-number">1</div>
                         <h3 class="step-title">Acessar a Camada</h3>
@@ -428,7 +487,7 @@
                     </div>
                 </div>
         
-                <div class="step-component">
+                <div class="step-component" id="m3-s3-ferramentaFiltro">
                     <div class="step-header">
                         <div class="step-number">2</div>
                         <h3 class="step-title">Abrir a Ferramenta de Filtro</h3>
@@ -441,7 +500,7 @@
                     </div>
                 </div>
         
-                <div class="step-component">
+                <div class="step-component" id="m3-s3-criteriosFiltragem">
                     <div class="step-header">
                         <div class="step-number">3</div>
                         <h3 class="step-title">Definir Critérios de Filtragem</h3>
@@ -459,7 +518,7 @@
                     </div>
                 </div>
         
-                <div class="step-component">
+                <div class="step-component" id="m3-s3-aplicarResultado">
                     <div class="step-header">
                         <div class="step-number">4</div>
                         <h3 class="step-title">Aplicar e Visualizar o Resultado</h3>
@@ -540,7 +599,7 @@
                 <!-- COMPONENTE DE PASSO A PASSO -->
                 <h3 class="guide-container-title" style="margin-top: 2em;">Processo de Filtro Espacial no Visualizador</h3>
                 
-                <div class="step-component">
+                <div class="step-component" id="m3-s4-acessarFiltroEspacial">
                     <div class="step-header">
                         <div class="step-number">1</div>
                         <h3 class="step-title">Acessar a Ferramenta de Filtro Espacial</h3>
@@ -553,7 +612,7 @@
                     </div>
                 </div>
         
-                <div class="step-component">
+                <div class="step-component" id="m3-s4-geometriaReferencia">
                     <div class="step-header">
                         <div class="step-number">2</div>
                         <h3 class="step-title">Definir a Geometria de Referência</h3>
@@ -570,7 +629,7 @@
                     </div>
                 </div>
         
-                <div class="step-component">
+                <div class="step-component" id="m3-s4-relacaoEspacial">
                     <div class="step-header">
                         <div class="step-number">3</div>
                         <h3 class="step-title">Selecionar o Tipo de Relação Espacial</h3>
@@ -589,7 +648,7 @@
                     </div>
                 </div>
         
-                <div class="step-component">
+                <div class="step-component" id="m3-s4-aplicarAnaliseResultado">
                     <div class="step-header">
                         <div class="step-number">4</div>
                         <h3 class="step-title">Aplicar e Analisar o Resultado</h3>
@@ -638,7 +697,7 @@
         <!-- ------------------- FIM: BLOCO SEÇÃO 4 ------------------- -->
 
         <!-- ----------------- INÍCIO: BLOCO MATERIAIS ---------------- -->
-        <div class="module-intro-block">
+        <div class="module-intro-block" id="m3-materiaisApoio">
             <div class="materials-hero">
                 <h1 class="module-title">Materiais de Apoio</h1>
                 <p class="materials-hero p">Acesse todos os slides e documentos complementares do curso. Os materiais estão organizados por seção para facilitar sua consulta.</p>

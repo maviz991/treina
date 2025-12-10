@@ -27,395 +27,146 @@
     </style>
 </head>
 <body>
-    <!--                    INÍCIO: BLOCO SEÇÃO 4 - GEOSTORY           -->
-    <div class="module-intro-block" id="m4-s4-criandoGeoStory">
-        <div class="guide-container">
-            <h2 class="guide-container-title">Criando GeoStory no MapStore2</h2>
-            
-            <div class="content-layout-cols">
-                <div class="content-col-text">
-                    <p>O GeoStory é uma funcionalidade que permite criar <strong>narrativas interativas e visuais</strong> usando texto, imagens, vídeos e mapas geográficos. É ideal para apresentar informações espaciais de forma atrativa, sequencial e baseada em contexto, como em reportagens, apresentações, relatórios ou <span class="badge-link badge-text-gray" data-toggle="tooltip" title="Narrativa visual e textual para dar contexto aos dados geográficos">storytelling<span class="icon-custon icon-question"></span></span> institucional.</p>
-                </div>
-            </div>
-            
-            <!-- Bloco de Nota Essencial -->
-            <div class="notice-block notice-info">
-                <div class="notice-icon">
-                    <svg class="icon-custon icon-info"></svg>
-                </div>
-                <div class="notice-content">
-                    <p><strong>Dica:</strong> Abra o Geohab e realize os passos abaixo.</p>
-                </div>
-            </div>
-            
-            <!-- PASSO 1: CRIANDO UMA NOVA GEOSTORY -->
-            <div class="step-component" id="m4-s4-criandoNovaGeoStory">
-                <div class="step-header">
-                    <div class="step-number">1</div>
-                    <h3 class="step-title">Criando uma Nova GeoStory</h3>
-                </div>
-                <div class="step-body">
-                    <div class="step-content-col-text">
-                        <p>No topo da interface do Geohab, acesse o menu <span class="badge-link badge-text-lilac">Apps</span> e clique em <span class="badge-link badge-text-lilac">Criar Nova GeoStory</span>.</p>
-                        <ul class="list-unstyled">
-                            <li class="mb-2"><span class="badge-circular-red mr-2">1</span> <strong>Apps:</strong> Acesso às ferramentas do Geohab.</li>
-                            <li class="mb-2"><span class="badge-circular-red mr-2">2</span> <strong>Criar Nova GeoStory:</strong> Inicia o editor de narrativas.</li>
-                        </ul>
-                        <p class="d-none d-lg-block">
-                            <br>
-                            <span class="step-legend-text"><strong>Passe o mouse sobre o número</strong> na imagem para ver a função de cada botão. E clique para aplicar zoom-in ou zoom-out.</span>
-                        </p>
-                        <p class="d-lg-none">
-                            <br>
-                            <span class="step-legend-text"><strong>Toque em um item da legenda abaixo</strong> para ver sua localização na imagem. E clique novamente para dar zoom-in ou zoom-out.</span>
-                        </p>
+    
+    <!-- ----------------- INÍCIO: BLOCO MATERIAIS ---------------- -->
+    <div class="module-intro-block">
+        <div class="materials-hero">
+            <h1 class="module-title">Materiais de Apoio</h1>
+            <p class="materials-hero p">Acesse todos os slides e documentos complementares do curso. Os materiais estão organizados por seção para facilitar sua consulta.</p>
+        </div>
+        <!-- Seção: Módulo 4 -->
+        <div class="materials-section">
+            <div class="materials-grid">
+                <!-- Card 1: Tecnologias por Trás dos Mapas -->
+                <div class="material-card">
+                    <div class="material-header">
+                        <div class="material-icon">
+                            <svg class="icon-custon icon-chip"></svg>                        
+                        </div>
+                        <h3 class="material-title">1. Tecnologias por Trás dos Mapas</h3>
                     </div>
-
-                    <div class="step-content-media-hotspot">
-                        <div class="interactive-image-wrapper">
-                            <div class="interactive-image-inner-container">
-                                <img src="https://stor.cdhu.sp.gov.br/treina/publico/img-4-18.png"
-                                    alt="Tela de criação de GeoStory, mostrando as opções 'Em Branco' e 'Com base em modelo'">
-                                <!-- Hotspots -->
-                                <div class="hotspot" data-hotspot="1" style="top: 11.2%; left: 25.5%;"
-                                    data-toggle="tooltip" title="Menu Apps">1</div>
-                                <div class="hotspot" data-hotspot="2" style="top: 23%; left: 14.5%;"
-                                    data-toggle="tooltip" title="Criar Nova GeoStory">2</div>
-                            </div>
-                        </div>
-                        <!-- Mobile -->
-                        <div class="interactive-legend d-lg-none mt-4">
-                            <div class="legend-item" data-hotspot="1" data-zoom="3,25,11">
-                                <div class="icon-custon icon-search icon-mobile"></div>
-                                <div><b>1. Apps:</b> Acesso às ferramentas do Geohab.</div>
-                            </div>
-                            <div class="legend-item" data-hotspot="2" data-zoom="3,15,25">
-                                <div class="icon-custon icon-search icon-mobile"></div>
-                                <div><strong>2. Criar Nova GeoStory:</strong> Inicia o editor de narrativas.</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- PASSO 2: TIPOS DE SEÇÃO -->
-            <div class="step-component" id="m4-s4-tiposSecao">
-                <div class="step-header">
-                    <div class="step-number">2</div>
-                    <h3 class="step-title">Conheça as áreas de edição do GeoStory</h3>
-                </div>
-                <div class="step-body">
-                    <div class="step-content-col-text">
-                        <p>Uma GeoStory é construída a partir de diferentes tipos de seções, cada uma com um propósito específico:</p>
-                        <ul class="list-unstyled">
-                            <li class="mb-2"><span class="badge-circular-red mr-2">1</span> <strong>Título:</strong> Apresenta o título da história, com imagem de fundo.</li>
-                            <li class="mb-2"><span class="badge-circular-red mr-2">2</span> <strong>Modo Edição:</strong> Alterna para edição do GeoStory (Se você tiver permissão).</li>
-                            <li class="mb-2"><span class="badge-circular-red mr-2">3</span> <strong>Barra de ferramentas:</strong> Configura o GeoStory e exibição de edição.</li>
-                            <li class="mb-2"><span class="badge-circular-red mr-2">4</span> <strong>Elementos adicionados:</strong> Exibe todos os elementos que você Adiciona, aqui você pode Reordenar.</li>
-                            <li class="mb-2"><span class="badge-circular-red mr-2">5</span> <strong>Adicionar elementos:</strong> Onde você escolhe o tipo de elemento que deseja adiconar.</li>
-                        </ul>
-                        <p class="d-none d-lg-block">
-                            <br>
-                            <span class="step-legend-text"><strong>Passe o mouse sobre o número</strong> na imagem para ver a função de cada botão. E clique para aplicar zoom-in ou zoom-out.</span>
-                        </p>
-                        <p class="d-lg-none">
-                            <br>
-                            <span class="step-legend-text"><strong>Toque em um item da legenda abaixo</strong> para ver sua localização na imagem. E clique novamente para dar zoom-in ou zoom-out.</span>
-                        </p>
-                    </div>
-
-                    <div class="step-content-media-hotspot">
-                        <div class="interactive-image-wrapper">
-                            <div class="interactive-image-inner-container">
-                                <img src="https://stor.cdhu.sp.gov.br/treina/publico/img-4-19.png"
-                                    alt="Menu de tipos de seção disponíveis no editor de GeoStory">
-                                <!-- Hotspots -->
-                                <div class="hotspot" data-hotspot="1" style="top: 46%; left: 68%;"
-                                    data-toggle="tooltip" title="Título">1</div>
-                                <div class="hotspot" data-hotspot="2" style="top: 22.5%; left: 23%;"
-                                    data-toggle="tooltip" title="Modo edição">2</div>
-                                <div class="hotspot" data-hotspot="3" style="top: 97%; left: 57.6%;"
-                                    data-toggle="tooltip" title="Tipos de elementos e área de adição">3</div>
-                                <div class="hotspot" data-hotspot="4" style="top: 28%; left: 10%;"
-                                    data-toggle="tooltip" title="Elementos adicionados">4</div>
-                                <div class="hotspot" data-hotspot="5" style="top: 14%; left: 15%;"
-                                    data-toggle="tooltip" title="Configurações e exebição">5</div>
-                            </div>
-                        </div>
-                        <!-- Mobile -->
-                        <div class="interactive-legend d-lg-none mt-4">
-                            <div class="legend-item" data-hotspot="1" data-zoom="3,68,46">
-                                <div class="icon-custon icon-search icon-mobile"></div>
-                                <div><b>1. Título:</b> Apresenta o título da história.</div>
-                            </div>
-                            <div class="legend-item" data-hotspot="2" data-zoom="3,23,22">
-                                <div class="icon-custon icon-search icon-mobile"></div>
-                                <div><strong>2. Modo Edição:</strong> Alterna para edição do GeoStory (Se você tiver permissão).</div>
-                            </div>
-                            <div class="legend-item" data-hotspot="3" data-zoom="3,57,95">
-                                <div class="icon-custon icon-search icon-mobile"></div>
-                                <div><strong>3. Barra de ferramentas:</strong> Configura o GeoStory e exibição de edição.</div>
-                            </div>
-                            <div class="legend-item" data-hotspot="4" data-zoom="3,10,28">
-                                <div class="icon-custon icon-search icon-mobile"></div>
-                                <div><strong>4. Elementos adicionados:</strong> Exibe todos os elementos que você Adiciona, aqui você pode Reordenar.</div>
-                            </div>
-                            <div class="legend-item" data-hotspot="5" data-zoom="3,15,14">
-                                <div class="icon-custon icon-search icon-mobile"></div>
-                                <div><strong>5. Adicionar elementos:</strong> Onde você escolhe o tipo de elemento que deseja adiconar.</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- PASSO 3: ADICIONANDO CONTEÚDO -->
-            <div class="step-component" id="m4-s4-adicionandoConteudo">
-                <div class="step-header">
-                    <div class="step-number">3</div>
-                    <h3 class="step-title">Tipos de Conteúdos para as Seções</h3>
-                </div>
-                <div class="step-body">
-                    <div class="step-content-col-text">
-                        <p>Clique no botão <kbd>+</kbd> para adicionar uma nova seção à sua história:</p>
-                        <ul class="list-unstyled">
-                            <li class="mb-2"><span class="badge-circular-red mr-2">1</span> <strong>Seção de Título:</strong> Ideal para o início da história.</li>
-                            <li class="mb-2"><span class="badge-circular-red mr-2">2</span> <strong>Seção de Banner:</strong> Para dar destaque a uma Imagem, Vídeo ou Mapa decorativo.</li>                            
-                            <li class="mb-2"><span class="badge-circular-red mr-2">3</span> <strong>Seção de Parágrafo/Texto:</strong> Para descrever dados ou contextualizar.</li>
-                            <li class="mb-2"><span class="badge-circular-red mr-2">4</span> <strong>Seção Imersiva:</strong> Combina Paragráfo mais Banner. E o paragráfo pode conter imagens, textos ou Páginas Web.</li>
-                            <li class="mb-2"><span class="badge-circular-red mr-2">5</span> <strong>Seção de Geocarrossel:</strong> Insere vários marcadores para você dar destaque a locais específico em mapas.</li>
-                            <li class="mb-2"><span class="badge-circular-red mr-2">6</span> <strong>Seção de Mídia:</strong> Permite Inserir imagens, vídeos ou mapas.</li>
-                            <li class="mb-2"><span class="badge-circular-red mr-2">7</span> <strong>Seção Página da Web:</strong> Insere uma página de web dentro da sua história.</li>                        
-                        </ul>
-                        <p class="d-none d-lg-block">
-                            <br>
-                            <span class="step-legend-text"><strong>Passe o mouse sobre o número</strong> na imagem para ver a função de cada botão. E clique para aplicar zoom-in ou zoom-out.</span>
-                        </p>
-                        <p class="d-lg-none">
-                            <br>
-                            <span class="step-legend-text"><strong>Toque em um item da legenda abaixo</strong> para ver sua localização na imagem. E clique novamente para dar zoom-in ou zoom-out.</span>
-                        </p>
-                    </div>
-
-                    <div class="step-content-media-hotspot">
-                        <div class="interactive-image-wrapper">
-                            <div class="interactive-image-inner-container">
-                                <img src="https://stor.cdhu.sp.gov.br/treina/publico/img-4-20.png"
-                                    alt="Editor de GeoStory mostrando a adição de uma seção de mapa interativo">
-                                <!-- Hotspots -->
-                                <div class="hotspot" data-hotspot="1" style="top: 86%; left: 53%;"
-                                    data-toggle="tooltip" title="Seção de Título">1</div>
-                                <div class="hotspot" data-hotspot="2" style="top: 86%; left: 55.5%;"
-                                    data-toggle="tooltip" title="Seção de Banner">2</div>
-                                <div class="hotspot" data-hotspot="3" style="top: 86%; left: 58%;"
-                                    data-toggle="tooltip" title="Seção de Parágrafo/Texto">3</div>
-                                <div class="hotspot" data-hotspot="4" style="top: 86%; left: 60.5%;"
-                                    data-toggle="tooltip" title="Seção Imersiva">4</div>
-                                <div class="hotspot" data-hotspot="5" style="top: 86%; left: 62.5%;"
-                                    data-toggle="tooltip" title="Seção Imersiva">5</div>
-                                <div class="hotspot" data-hotspot="6" style="top: 86%; left: 64.5%;"
-                                    data-toggle="tooltip" title="Seção Imersiva">6</div>  
-                                <div class="hotspot" data-hotspot="7" style="top: 86%; left: 66.5%;"
-                                    data-toggle="tooltip" title="Seção Imersiva">7</div>                                                                                                          
-                            </div>
-                        </div>
-                        <!-- Mobile -->                                           
-                        <div class="interactive-legend d-lg-none mt-4">
-                            <div class="legend-item" data-hotspot="1" data-zoom="3,53,86">
-                                <div class="icon-custon icon-search icon-mobile"></div>
-                                <div><strong>1. Seção de Título:</strong> Ideal para o início da história.</div>
-                            </div>
-                            <div class="legend-item" data-hotspot="2" data-zoom="3,55,86">
-                                <div class="icon-custon icon-search icon-mobile"></div>
-                                <div><strong>2. Seção de Banner:</strong> Para dar destaque a uma Imagem, Vídeo ou Mapa decorativo.</div>
-                            </div>
-                            <div class="legend-item" data-hotspot="3" data-zoom="3,58,86">
-                                <div class="icon-custon icon-search icon-mobile"></div>
-                                <div><strong>3. Seção de Parágrafo/Texto:</strong> Para descrever dados ou contextualizar.</div>
-                            </div>
-                            <div class="legend-item" data-hotspot="4" data-zoom="3,60,86">
-                                <div class="icon-custon icon-search icon-mobile"></div>
-                                <div><strong>4. Seção Imersiva:</strong> Combina Paragráfo mais Banner. E o paragráfo pode conter imagens, textos ou Páginas Web.</div>
-                            </div>
-                            <div class="legend-item" data-hotspot="5" data-zoom="3,62,86">
-                                <div class="icon-custon icon-search icon-mobile"></div>
-                                <div><strong>5. Seção de Geocarrossel:</strong> Insere vários marcadores para você dar destaque a locais específico em mapas.</div>
-                            </div>    
-                            <div class="legend-item" data-hotspot="6" data-zoom="3,64,86">
-                                <div class="icon-custon icon-search icon-mobile"></div>
-                                <div><strong>6. Seção de Mídia:</strong> Permite Inserir imagens, vídeos ou mapas.</div>
-                            </div>
-                            <div class="legend-item" data-hotspot="7" data-zoom="3,66,86">
-                                <div class="icon-custon icon-search icon-mobile"></div>
-                                <div><strong>7. Seção Página da Web:</strong> Insere uma página de web dentro da sua história.</div>
-                            </div>                                                        
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- PASSO 4: ESTILIZANDO E ORGANIZANDO -->
-            <div class="step-component" id="m4-s4-estilizandoOrganizando">
-                <div class="step-header">
-                    <div class="step-number">4</div>
-                    <h3 class="step-title">Estilizando e Organizando</h3>
-                </div>
-                <div class="step-body">
-                    <div class="step-content-col-text">
-                        <p>Personalize sua GeoStory com as opções de estilo e organização:</p>
-                        <ul class="list-unstyled">
-                            <li class="mb-2"><span class="badge-circular-red mr-2">1</span> <strong>Configurações:</strong> Personalize as cores de fundo e texto, bem como adicone logo e barra de navegação.</li>
-                            <li class="mb-2"><span class="badge-circular-red mr-2">2</span> <strong>Renomear seções:</strong> Dê nome as seções para ter uma boa organização delas.</li>
-                            <li class="mb-2"><span class="badge-circular-red mr-2">3</span> <strong>Reordenar seções:</strong> Altere a ordem das seções.</li>
-                            <li class="mb-2"><span class="badge-circular-red mr-2">4</span> <strong>Zoom no conteúdo:</strong> Clique e localize a seção rápidamente.</li>
-                        </ul>
-                        <p class="d-none d-lg-block">
-                            <br>
-                            <span class="step-legend-text"><strong>Passe o mouse sobre o número</strong> na imagem para ver a função de cada botão. E clique para aplicar zoom-in ou zoom-out.</span>
-                        </p>
-                        <p class="d-lg-none">
-                            <br>
-                            <span class="step-legend-text"><strong>Toque em um item da legenda abaixo</strong> para ver sua localização na imagem. E clique novamente para dar zoom-in ou zoom-out.</span>
-                        </p>
-                    </div>
-
-                    <div class="step-content-media-hotspot">
-                        <div class="interactive-image-wrapper">
-                            <div class="interactive-image-inner-container">
-                                <img src="https://stor.cdhu.sp.gov.br/treina/publico/img-4-21.png"
-                                    alt="Opções de personalização de uma seção no GeoStory">
-                                <!-- Hotspots -->
-                                <div class="hotspot" data-hotspot="1" style="top: 20.5%; left: 12.5%;"
-                                    data-toggle="tooltip" title="Configurações">1</div>
-                                <div class="hotspot" data-hotspot="2" style="top: 23%; left: 10%;"
-                                    data-toggle="tooltip" title="Renomear Seções">2</div>
-                                <div class="hotspot" data-hotspot="3" style="top: 50%; left: 1.5%;"
-                                    data-toggle="tooltip" title="Reordenar seções">3</div>
-                                <div class="hotspot" data-hotspot="4" style="top: 52%; left: 20%;"
-                                    data-toggle="tooltip" title="Zoom no conteúdo">4</div>
-                            </div>
-                        </div>
-                        <!-- Mobile -->
-                        <div class="interactive-legend d-lg-none mt-4">
-                            <div class="legend-item" data-hotspot="1" data-zoom="3,12,20">
-                                <div class="icon-custon icon-search icon-mobile"></div>
-                                <div><b>1. Reordenar:</b> Altere a ordem das seções.</div>
-                            </div>
-                            <div class="legend-item" data-hotspot="2" data-zoom="3,10,23">
-                                <div class="icon-custon icon-search icon-mobile"></div>
-                                <div><strong>2. Cores:</strong> Personalize as cores.</div>
-                            </div>
-                            <div class="legend-item" data-hotspot="3" data-zoom="3,1.5,50">
-                                <div class="icon-custon icon-search icon-mobile"></div>
-                                <div><strong>3. Alinhamento:</strong> Ajuste o alinhamento.</div>
-                            </div>
-                            <div class="legend-item" data-hotspot="4" data-zoom="3,20,52">
-                                <div class="icon-custon icon-search icon-mobile"></div>
-                                <div><strong>4. Largura:</strong> Defina a largura.</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- PASSO 5: SALVANDO E COMPARTILHANDO -->
-            <div class="step-component" id="m4-s4-salvandoCompartilhando">
-                <div class="step-header">
-                    <div class="step-number">5</div>
-                    <h3 class="step-title">Salvando e Compartilhando</h3>
-                </div>
-                <div class="step-body">
-                    <div class="step-content-col-text">
-                        <p>Após concluir sua GeoStory, salve e compartilhe:</p>
-                        <ul class="list-unstyled">
-                            <li class="mb-2"><span class="badge-circular-red mr-2">1</span> <strong>Opções:</strong> Clique no Menu de Opções.</li>
-                            <li class="mb-2"><span class="badge-circular-red mr-2">2</span> <strong>Salvar ou Salvar como:</strong> <kbd>Salvar como</kbd> para a primeira vez, ou quando deseja criar uma cópia, ou <kbd>Salvar</kbd> Para salvar edições em um GeoStory.</li>
-                        </ul>
-                        <p><b>Para novos GeoStories:</b> Defina nome, detalhes, Ícone e permissões de Acesso.</p>
-                        <p class="d-none d-lg-block">
-                            <span class="step-legend-text"><strong>Passe o mouse sobre o número</strong> na imagem para ver a função de cada botão. E clique para aplicar zoom-in ou zoom-out.</span>
-                        </p>
-                        <p class="d-lg-none">
-                            <span class="step-legend-text"><strong>Toque em um item da legenda abaixo</strong> para ver sua localização na imagem. E clique novamente para dar zoom-in ou zoom-out.</span>
-                        </p>
-                    </div>
-
-                    <div class="step-content-media-hotspot">
-                        <div class="interactive-image-wrapper">
-                            <div class="interactive-image-inner-container">
-                                <img src="https://stor.cdhu.sp.gov.br/treina/publico/img-4-22.png"
-                                    alt="Botão 'Salvar' destacado na interface do editor de GeoStory">
-                                <!-- Hotspots -->
-                                <div class="hotspot" data-hotspot="1" style="top: 8%; left: 98%;"
-                                    data-toggle="tooltip" title="Botão Salvar">1</div>
-                                <div class="hotspot" data-hotspot="2" style="top: 18%; left: 90%;"
-                                    data-toggle="tooltip" title="Campo Título">2</div>
-                            </div>
-                        </div>
-                        <!-- Mobile -->
-                        <div class="interactive-legend d-lg-none mt-4">
-                            <div class="legend-item" data-hotspot="1" data-zoom="3,98,8">
-                                <div class="icon-custon icon-search icon-mobile"></div>
-                                <div><b>1. Salvar:</b> Salva as alterações da GeoStory.</div>
-                            </div>
-                            <div class="legend-item" data-hotspot="2" data-zoom="3,90,18">
-                                <div class="icon-custon icon-search icon-mobile"></div>
-                                <div><strong>2. Título:</strong> Informe o título da GeoStory.</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Bloco de Dicas e Boas Práticas -->
-            <div class="notice-block notice-info">
-                <div class="notice-icon">
-                    <svg class="icon-custon icon-info"></svg>
-                </div>
-                <div class="notice-content">
-                    <h4>Dicas e Boas Práticas</h4>
-                    <ul>
-                        <li>Combine seções de mapa com zooms e camadas diferentes para focar em detalhes específicos.</li>
-                        <li>Use transições suaves entre as seções para criar um fluxo narrativo contínuo.</li>
-                        <li>Insira dashboards via página de web. Copie o URL do Dashboard criado na plataforma e cole no GeoStory.</li>
-                        <li>Ideal para apresentações públicas, relatórios de projetos ou material educacional.</li>
-                        <li>Mantenha os textos curtos e objetivos em cada seção.</li>
-                        <li>Crie uma estrutura lógica: introdução → contexto → análise → conclusão.</li>
-                        <li>Use imagens em boa resolução para um visual profissional.</li>
-                        <li>Teste a sua GeoStory em diferentes tamanhos de tela para garantir a responsividade.</li>
-                    </ul>
-                </div>
-            </div>
-            
-            <!-- ACCORDION MATERIAIS DA SEÇÃO -->
-            <div class="collapsible-material-section">
-                <a href="#material-sct-content-criandoGeoStory" class="material-sct-header" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="material-sct-content-criandoGeoStory">
-                    <div class="collapsible-header-title-group">
-                        <div class="material-sct-chevron">
-                            <svg class="icon-custon icon-chevron"></svg>
-                        </div>
-                        <div class="material-sct-header-icon">
-                            <svg class="icon-custon icon-book"></svg>
-                        </div>
-                        <h3 class="material-sct-header-title">Materiais de Apoio</h3>
-                    </div>
-                </a>
-                <div class="collapse" id="material-sct-content-criandoGeoStory">
-                    <div class="material-sct-body">
-                        <div class="collapsible-description">
-                            <p>Para expandir seu conhecimento sobre criação de GeoStories no MapStore2, acesse os materiais abaixo.</p>
-                        </div>
-                        <div class="collapsible-content">
-                            <div class="collapsible-content-btn">
-                                <a href="https://mapstore.geosolutionsgroup.com/mapstore/docs/geostory" target="_blank" class="material-sct-action-button" title="Acesse a documentação oficial" data-toggle="tooltip" data-placement="right">
-                                    <span>Documentação Oficial</span>
-                                    <svg class="icon-custon icon-arrow-right"></svg>
+                    <div class="material-content">
+                        <p class="material-description">Material de apoio para a seção sobre tecnologias que possibilitam a visualização e interação com mapas digitais.</p>
+                        <div class="material-files">
+                            <div class="file-item">
+                                <div class="file-info">
+                                    <div class="file-info-header">
+                                        <svg class="file-icon icon-custon icon-file"></svg>
+                                        <span class="file-name">Materiais Disponíveis</span>
+                                    </div>
+                                    <div class="file-info-icons">
+                                        <a href="#" target="_blank" class="file-type" title="Acese o PDF" data-placement="auto" data-toggle="tooltip">PDF</a>
+                                    </div>
+                                </div>
+                                <a href="#" target="_blank" title="Baixe todos os materiais" data-toggle="tooltip">
+                                    <svg class="download-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                                        <polyline points="7 10 12 15 17 10"></polyline>
+                                        <line x1="12" y1="15" x2="12" y2="3"></line>
+                                    </svg>
                                 </a>
                             </div>
-                            <div class="collapsible-content-btn">
-                                <a href="https://mapstore.geo-solutions.it/mapstore/#/geostory" target="_blank" class="material-sct-action-button" title="Veja exemplos prontos" data-toggle="tooltip" data-placement="right">
-                                    <span>Exemplos Prontos</span>
-                                    <svg class="icon-custon icon-arrow-right"></svg>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Card 2: Criando Mapas no Geohab -->
+                <div class="material-card">
+                    <div class="material-header">
+                        <div class="material-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="red" version="1.1" id="Layer_1" x="0px" y="0px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve" width="512" height="512">
+                                <path d="M255.668,511.885l150.667-147.364c83.577-82.846,84.169-217.758,1.323-301.334s-217.758-84.169-301.334-1.323  c-0.443,0.439-0.884,0.88-1.323,1.323c-83.211,83.213-83.21,218.126,0.003,301.337c0.056,0.056,0.112,0.112,0.168,0.168  L255.668,511.885z M135.13,93.316c66.524-66.618,174.458-66.695,241.076-0.17s66.695,174.458,0.17,241.076L255.668,452.266  L135.13,334.392c-66.571-66.568-66.574-174.498-0.006-241.07C135.126,93.32,135.128,93.318,135.13,93.316L135.13,93.316z   M234.36,235.162h-63.923v-42.616h63.923v-63.923h42.615v63.923h63.923v42.616h-63.923v63.923H234.36V235.162z"/>
+                                </svg>
+                        </div>
+                        <h3 class="material-title">2. Criando Mapas no Geohab</h3>
+                    </div>
+                    <div class="material-content">
+                        <p class="material-description">Material complementar sobre criação, personalização e compartilhamento de mapas interativos no Geohab.</p>
+                        <div class="material-files">
+                            <div class="file-item">
+                                <div class="file-info">
+                                    <div class="file-info-header">
+                                        <svg class="file-icon icon-custon icon-file"></svg>
+                                        <span class="file-name">Materiais Disponíveis</span>
+                                    </div>
+                                    <div class="file-info-icons">
+                                        <a href="#" target="_blank" class="file-type" title="Acese o PDF" data-placement="auto" data-toggle="tooltip">PDF</a>
+                                    </div>
+                                </div>
+                                <a href="#" target="_blank" title="Baixe todos os materiais" data-toggle="tooltip">
+                                    <svg class="download-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                                        <polyline points="7 10 12 15 17 10"></polyline>
+                                        <line x1="12" y1="15" x2="12" y2="3"></line>
+                                    </svg>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Card 3: Criando Dashboards no Geohab -->
+                <div class="material-card">
+                    <div class="material-header">
+                        <div class="material-icon">
+                            <svg class="icon-custon icon-dashboard">
+                              </svg>
+                        </div>
+                        <h3 class="material-title">3. Criando Dashboards no Geohab</h3>
+                    </div>
+                    <div class="material-content">
+                        <p class="material-description">Material detalhado sobre criação de painéis interativos com mapas, gráficos e widgets no Geohab.</p>
+                        <div class="material-files">
+                            <div class="file-item">
+                                <div class="file-info">
+                                    <div class="file-info-header">
+                                        <svg class="file-icon icon-custon icon-file"></svg>
+                                        <span class="file-name">Materiais Disponíveis</span>
+                                    </div>
+                                    <div class="file-info-icons">
+                                        <a href="#" target="_blank" class="file-type" title="Acese o PDF" data-placement="auto" data-toggle="tooltip">PDF</a>
+                                    </div>
+                                </div>
+                                <a href="#" target="_blank" title="Baixe todos os materiais" data-toggle="tooltip">
+                                    <svg class="download-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                                        <polyline points="7 10 12 15 17 10"></polyline>
+                                        <line x1="12" y1="15" x2="12" y2="3"></line>
+                                    </svg>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Card 4: Criando GeoStory no MapStore2 -->
+                <div class="material-card">
+                    <div class="material-header">
+                        <div class="material-icon">
+                            <svg class="icon-custon icon-telling">
+                              </svg>
+                        </div>
+                        <h3 class="material-title">4. Criando GeoStory no Geohab</h3>
+                    </div>
+                    <div class="material-content">
+                        <p class="material-description">Material sobre criação de narrativas interativas com mapas, textos e mídias no MapStore2.</p>
+                        <div class="material-files">
+                            <div class="file-item">
+                                <div class="file-info">
+                                    <div class="file-info-header">
+                                        <svg class="file-icon icon-custon icon-file"></svg>
+                                        <span class="file-name">Materiais Disponíveis</span>
+                                    </div>
+                                    <div class="file-info-icons">
+                                        <a href="#" target="_blank" class="file-type" title="Acese o PDF" data-placement="auto" data-toggle="tooltip">PDF</a>
+                                    </div>
+                                </div>
+                                <a href="#" target="_blank" title="Baixe todos os materiais" data-toggle="tooltip">
+                                    <svg class="download-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                                        <polyline points="7 10 12 15 17 10"></polyline>
+                                        <line x1="12" y1="15" x2="12" y2="3"></line>
+                                    </svg>
                                 </a>
                             </div>
                         </div>
@@ -424,7 +175,32 @@
             </div>
         </div>
     </div>
-    <!--                         FIM: BLOCO SEÇÃO 4                          -->
+    <!-- ------------------- FIM: BLOCO MATERIAIS ------------------- -->
+
+        <!--                    INÍCIO: BLOCO DE CONCLUSÃO                       -->
+        <div class="footer-action">
+            <a class="btn btn-secondary" href="/course/view.php?id=29#section-0">
+                Voltar para o Início do Curso
+            </a>
+        </div>
+        <div class="completion-block">
+            <div class="completion-icon-wrapper">
+                <svg class="icon-custon icon-completation"></svg>
+            </div>
+            <h2 class="module-title">Parabéns <span class="placeholder-firstname"></span>, Módulo Concluído!</h2>
+
+            <p class="completion-text">
+                Você aprendeu como são entregues os mapas a você e a criar produtos no Geohab, como Mapas, DashBoards e GeoStories. Ótimo trabalho!
+            </p>
+            <a href="/course/view.php?id=29&section=0#coursecontentcollapse32" class="btn-next-module">
+                Ir para o Certificado
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line class="dash" x1="5" y1="12" x2="19" y2="12"></line>
+                    <polyline class="arrow-p" points="12 5 19 12 12 19"></polyline>
+                </svg>
+            </a>
+        </div>
+        <!--                      FIM: BLOCO DE CONCLUSÃO                        -->      
     
         <!-- ======================================================= -->
         <!--     SCRIPTS ESSENCIAIS (jQuery, Popper, Bootstrap)      -->
