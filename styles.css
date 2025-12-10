@@ -395,6 +395,39 @@ Obs.: Use bootstrap 4.0*/
   vertical-align: middle;
 }
 
+.badge-circular-red-glass {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 28px;
+  height: 28px;
+
+  /* Glassmorphism avançado (estilo iOS) */
+  background: linear-gradient(
+      to bottom right,
+      rgba(255, 0, 0),
+      rgba(255, 0, 0, 0.55),
+      rgba(255, 0, 0, 0.35)
+    );
+  backdrop-filter: blur(120px) saturate(160%);
+  -webkit-backdrop-filter: blur(14px) saturate(160%);
+
+  /* Borda iluminada */
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  box-shadow:
+    inset 0 1px 1.5px rgba(255, 255, 255, 0.15),
+    0 4px 12px rgba(0, 0, 0, 0.15);
+
+  /* Curvatura */
+  border-radius: 50%;
+
+  /* Texto */
+  color: white;
+  font-weight: bold;
+  font-size: 14px;
+  vertical-align: middle;
+}
+
 .badge-circular-ret-red {
   display: inline-flex;
   justify-content: center;
@@ -942,14 +975,16 @@ body {
 
 /* ------------------------- Seção de Suporte ------------------------- */
 .welcome-support-section {
-  background-color: #fffbe6;
-  border: 1px solid #ffe58f;
-  border-left: 5px solid #f8b328;
+  background-color: #fffaf0;
+  border: 1px solid #ffeed9;
+  border-left: 5px solid #fabd5a;
   padding: 25px;
   border-radius: 8px;
   margin-top: 40px;
   margin-bottom: 10px;
 }
+
+
 .welcome-support-section h3 {
   margin-top: 0;
   font-family: 'Axiforma', 'Montserrat', sans-serif;
