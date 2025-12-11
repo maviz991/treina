@@ -7,6 +7,158 @@ DATA ATUALIZAÇÃO: 19/11/2025
 
 Obs.: Use bootstrap 4.0*/
 
+
+/* 2. CORREÇÃO CRÍTICA DO MOODLE (Alinhamento dos Checkboxes) */
+
+/* ok */
+/* Quando a classe 'geohab-full-width' for ativada na linha: */
+.path-mod-lesson .fitem.geohab-full-width .col-md-3 {
+    display: none !important; /* Oculta o label vazio */
+}
+
+.path-mod-lesson .fitem.geohab-full-width .col-md-9 {
+    flex: 0 0 100% !important; /* Estica a resposta para 100% */
+    max-width: 100% !important;
+    padding-left: 0 !important;
+    margin-left: 10px;
+}
+
+/* Força a coluna dos checkboxes (col-md-9) a ocupar 100% da largura */
+.path-mod-lesson .fitem .col-md-9 {
+    flex: 0 0 100%;
+    max-width: 100%;
+    padding-left: 10px; 
+}
+
+/* Ajustes específicos para Associação (onde o label existe) */
+/* Garante que o texto da esquerda fique alinhado verticalmente com o select da direita */
+.path-mod-lesson .fitem:not(.geohab-full-width) {
+    margin-left: -5px;
+    align-items: center; 
+    background: #f8f9fa;
+    border: 1px solid #f0f0f0; /* Linha sutil separando pares */
+    border-radius: .5rem;
+}
+.path-mod-lesson .fitem:not(.geohab-full-width) label {
+    font-weight: 600;
+    color: #555;
+}
+/* ok */
+.path-mod-lesson .form-check {
+    padding-left: 0; 
+    background-color: #f8f9fa; 
+    padding: 10px 15px;
+    border-radius: 5px;
+    border: 1px solid #eee;
+}
+
+.path-mod-lesson .form-check-input {
+    margin-left: 0;
+    margin-right: 10px;
+    position: relative; 
+    margin-top: 0;
+}
+
+.path-mod-lesson .form-check label {
+    cursor: pointer;
+    width: 100%; 
+    font-weight: normal;
+    margin-bottom: 0;
+}
+
+
+.path-mod-lesson .form-check:hover {
+    background-color: #fff0f0;
+    border-color: #ffcccc;
+}
+
+/* Aplica apenas nas páginas de Lição para não quebrar o resto do Moodle */
+    body.path-mod-lesson {
+        background-color: #f8f9fa; /* Fundo cinza claro */
+    }
+
+    /* 1. Transforma a caixa da questão em um Card */
+    .path-mod-lesson .box.generalbox {
+        background: #fff;
+        border: 1px solid #ddd;
+        border-radius: .5rem;
+        padding: 30px;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        margin-bottom: 0;
+        max-width: 900px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    /* ok*/
+    .path-mod-lesson .btn-primary, 
+    .path-mod-lesson input[type="submit"],
+    .path-mod-lesson button[type="submit"] {
+        background-color: #ff1100 !important;
+        border-color: #ff1100 !important;
+        color: #fff !important;
+        border-radius: .5rem;
+        font-weight: 400;
+        transition: all 0.3s;
+    }
+
+    #fitem_id_submitbutton {
+        margin: 10px;
+        padding: 10px;
+    }    
+    
+    .path-mod-lesson .btn-primary:hover,
+    .path-mod-lesson input[type="submit"]:hover,
+    .path-mod-lesson button[type="submit"]:hover {
+        background-color: #cc0000 !important;
+        transition: all 0.3s;
+    }
+
+    /* 3. Estiliza as opções de resposta (Radio/Checkbox) */
+    .path-mod-lesson .answeroption {
+        transition: background 0.2s;
+    }
+    
+    .path-mod-lesson .answeroption:hover {
+        background-color: #f5f6ff; /* Um vermelho bem clarinho */
+    }
+
+    /* 4. Estiliza a Tabela de Associação (Matching) */
+    .path-mod-lesson table.table {
+        width: 100%;
+        margin-top: 20px;
+    }
+    .path-mod-lesson select {
+        border: 1px solid #ced4da;
+        border-radius: .5rem;
+    }
+
+    /* 5. Estiliza a mensagem de Feedback (quando acerta/erra) */
+    .path-mod-lesson .feedbackbox {
+        border: 1px solid #dee2e6;
+        background-color: #e2e3e5;
+        color: #383d41;
+        padding: 15px;
+        border-radius: 5px;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+    /* Se for resposta correta (geralmente o moodle usa classes específicas, mas varia por tema) */
+    .path-mod-lesson .correct {
+        border: 1px solid;
+        width: auto;
+        height: auto;
+        color: #155724;
+        padding-inline: 7px;
+        background-color: #d4edda;
+        border-color: #c3e6cb;
+        border-radius: .5rem;
+    }
+
+    .tertiary-navigation .navitem, .tertiary-navigation .navitem-divider {
+        display: block;
+        margin-bottom: 25px;
+    }
 /* =================================================================== */
 /*          INICIO - SISTEMA DE ÍCONES GLOBAIS (VIA CSS MASK)          */
 /* =================================================================== */
@@ -317,7 +469,7 @@ Obs.: Use bootstrap 4.0*/
 .badge-color-gray {
   display: inline-block;
   background-color: #b8c1ca;
-  color: white;
+  color: #525252;
   border: solid 0px #000;
   border-radius: 3px;
   padding: 0.25em 0.6em;
@@ -1411,7 +1563,7 @@ body {
 .module-intro-block {
   background-color: #ffffff;
   border-radius: 12px;
-  padding-left: 30px;
+  padding: 20px;
 }
 .module-intro-block p, .module-intro-block li {
   text-align: justify;
