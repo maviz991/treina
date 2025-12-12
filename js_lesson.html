@@ -54,7 +54,7 @@
                     gradeBox.style.display = 'none'; // Oculta original
                 }
     
-                // 6. O BOTÃO DE VOLTAR (A Mágica acontece aqui)
+                // 6. O BOTÃO DE VOLTAR 
                 var targetUrl = "";
                 var btnLabel = "Voltar para o Curso";
     
@@ -103,140 +103,96 @@
     </script>
 <script>
     document.addEventListener("DOMContentLoaded", function() {
-        
-        // TRAVA DE SEGURANÇA 1: Verifica se estamos na URL de visualização da questão
-        // Se a URL contiver "continue.php", o script PARA imediatamente.
-        if (window.location.href.indexOf('view.php') === -1) {
+    
+        // === TRAVA DE SEGURANÇA MÁXIMA ===
+        // Verifica o ID do corpo da página.
+        // Se não for EXATAMENTE a página de visão do aluno, o script se autodestrói.
+        var bodyId = document.body.id;
+        if (bodyId !== 'page-mod-lesson-view') {
+            // console.log("GeoHab: Página de administração detectada. Script cancelado.");
             return; 
         }
-    
-        // TRAVA DE SEGURANÇA 2: Verifica classes básicas
-        var lessonBlock = document.querySelector('.lesson-block');
-        var isLessonPage = document.body.classList.contains('path-mod-lesson');
-    
-        if (isLessonPage && lessonBlock) {
-            
-            var questionType = ""; 
-            
-            // FOCA APENAS NO FORMULÁRIO DE RESPOSTA (Evita pegar busca do site ou login)
-            // O Moodle geralmente coloca a área de resposta dentro de .fcontainer ou .box
-            var answerArea = document.querySelector('.path-mod-lesson .fcontainer') || 
-                             document.querySelector('.path-mod-lesson .answeroptiongroup') ||
-                             document.querySelector('.path-mod-lesson form input[name="answer"]').closest('form');
-    
-            if (answerArea) {
-                
-                // 1. ASSOCIAÇÃO (Selects)
-                if (answerArea.querySelector('select')) {
-                    questionType = "Associação";
-                }
-                
-                // 2. MÚLTIPLA ESCOLHA (Checkboxes)
-                else if (answerArea.querySelector('input[type="checkbox"]')) {
-                    questionType = "Múltipla Escolha";
-                }
-                
-                // 3. VERDADEIRO/FALSO ou ESCOLHA ÚNICA (Radios)
-                else if (answerArea.querySelector('input[type="radio"]')) {
-                    var textContent = answerArea.innerText || "";
-                    if (textContent.includes("Verdadeiro") || textContent.includes("Falso") || 
-                        textContent.includes("True") || textContent.includes("False")) {
-                        questionType = "Verdadeiro / Falso";
-                    } else {
-                        questionType = "Múltipla Escolha"; 
-                    }
-                }
-                
-                // 4. DISSERTAÇÃO (Textarea visível)
-                else if (answerArea.querySelector('textarea')) {
-                     questionType = "Dissertação";
-                }
-                
-                // 5. RESPOSTA CURTA (Input Text)
-                // Refinamento: Verifica se o ID começa com "id_answer" para ter certeza que é campo de resposta
-                // e não um campo de busca perdido na página.
-                else if (answerArea.querySelector('input[type="text"][id^="id_answer"]')) {
-                    questionType = "Resposta Curta";
-                }
-            }
-    
-            // INJEÇÃO DO BADGE
-            if (questionType !== "" && !lessonBlock.querySelector('.lesson-badge')) {
-                var badgeSpan = document.createElement('span');
-                badgeSpan.className = 'lesson-badge';
-                badgeSpan.textContent = questionType;
-                
-                var titleDiv = lessonBlock.querySelector('.lesson-block-title');
-                if (titleDiv) {
-                    titleDiv.parentNode.insertBefore(badgeSpan, titleDiv.nextSibling);
-                } else {
-                    lessonBlock.appendChild(badgeSpan);
-                }
-            }
-        }
-    });
-    </script>
-<script>
-    document.addEventListener("DOMContentLoaded", function() {
-        // Verifica se estamos em uma lição
-        if (document.body.classList.contains('path-mod-lesson')) {
-            
-            // Seleciona todas as linhas de formulário (fitem)
-            var rows = document.querySelectorAll('.path-mod-lesson .fitem');
-            
-            rows.forEach(function(row) {
-                // Pega a coluna do label (col-md-3)
-                var labelCol = row.querySelector('.col-md-3');
-                
-                if (labelCol) {
-                    // Verifica o texto dentro dela (removendo espaços vazios)
-                    var textContent = labelCol.innerText.trim();
-                    
-                    // SE ESTIVER VAZIO (Caso da Múltipla Escolha / Verdadeiro ou Falso)
-                    if (textContent.length === 0) {
-                        // Adiciona nossa classe especial para ocultar o label e esticar a resposta
-                        row.classList.add('geohab-full-width');
-                    }
-                    // SE TIVER TEXTO (Caso da Associação), não faz nada, mantendo o padrão.
-                }
-            });
-            
-            // Bônus: Melhora visual dos Selects de Associação
-            var selects = document.querySelectorAll('.path-mod-lesson select');
-            selects.forEach(function(s) {
-                s.classList.add('form-control'); // Estilo Bootstrap bonito
-                s.style.maxWidth = "100%";
-            });
-        }
-    });
-    </script>
-    <script>
-    // Executa apenas se estiver numa página de Lição
-    if (document.body.classList.contains('path-mod-lesson')) {
         
-        document.addEventListener("DOMContentLoaded", function() {
+        // === CÓDIGO DA LIÇÃO (Só roda se passou na trava acima) ===
+    
+        // 1. LÓGICA DO CARD FINAL (CONCLUSÃO)
+        // --------------------------------------------------
+        var mainHeading = document.querySelector('#region-main h2');
+        var gradeBox = document.querySelector('.path-mod-lesson .box.generalbox');
+        
+        // Tenta achar links de saída
+        var specificBackLink = document.querySelector('.flexsections-activity-page-navigate-back a');
+        var standardExitLink = document.querySelector('.path-mod-lesson .lessonbutton');
+        
+        // Detecta se é fim
+        var isEndPage = false;
+        if (mainHeading && (mainHeading.innerText.includes('fim desta lição') || mainHeading.innerText.includes('reached the end'))) {
+            isEndPage = true;
+        } else if (gradeBox && standardExitLink) {
+            isEndPage = true;
+        }
+    
+        if (isEndPage) {
+            // ... (Mesma lógica do card final que criamos antes) ...
+            document.body.classList.add('geohab-lesson-finished');
+            var card = document.createElement('div');
+            card.className = 'geohab-end-card';
+            card.innerHTML = '<div class="geohab-success-icon"><i class="fi fi-rs-check-circle"></i></div>' +
+                             '<div class="geohab-end-title" style="font-size:1.8rem; font-weight:700; margin:10px 0;">Parabéns! Lição Concluída.</div>';
             
-            // 1. Embeleza os Inputs de Texto (Resposta Curta)
-            var textInputs = document.querySelectorAll('.path-mod-lesson input[type="text"]');
-            textInputs.forEach(function(input) {
-                input.classList.add('form-control'); // Classe Bootstrap
-                input.style.marginTop = "10px";
-                input.style.maxWidth = "500px";
-            });
+            if (gradeBox) {
+                var cleanText = gradeBox.innerText.replace(/\n/g, "<br>");
+                card.innerHTML += '<div class="geohab-grade-box" style="background:#f8f9fa; padding:15px; border-radius:8px; margin:20px 0;">' + cleanText + '</div>';
+                gradeBox.style.display = 'none';
+            }
     
-            // 2. Embeleza os Selects (Associação)
-            var selects = document.querySelectorAll('.path-mod-lesson select');
-            selects.forEach(function(select) {
-                select.classList.add('form-control');
-                select.style.marginBottom = "10px";
-            });
+            var targetUrl = specificBackLink ? specificBackLink.href : (standardExitLink ? standardExitLink.href : '#');
+            var btnText = specificBackLink ? specificBackLink.innerText : "Voltar ao Curso";
+            
+            var newBtn = document.createElement('a');
+            newBtn.href = targetUrl;
+            newBtn.className = 'geohab-finish-btn';
+            newBtn.innerHTML = btnText;
+            card.appendChild(newBtn);
     
-            // 3. Tenta melhorar os Radios e Checkboxes
-            // O Moodle muitas vezes coloca inputs dentro de labels ou td, é chato de estilizar via JS puro,
-            // mas o CSS que passei acima já resolve 90% do visual.
-        });
-    }
-    </script>
+            var contentDiv = document.querySelector('#region-main div[role="main"]');
+            if(contentDiv) contentDiv.prepend(card);
+            
+            // Se for fim, não roda o resto do script (questões)
+            return;
+        }
+    
+    
+        // 2. LÓGICA DE QUESTÕES (BADGE E LAYOUT)
+        // --------------------------------------------------
+        
+        // Procura formulário de resposta
+        var hasAnswerArea = document.querySelector('.fcontainer') || document.querySelector('.answeroption');
+        if (!hasAnswerArea) return; // Se não tem resposta, para.
+    
+        // A) BADGE AUTOMÁTICO
+        var lessonBlock = document.querySelector('.lesson-block') || document.querySelector('.geohab-card-header');
+        if (lessonBlock) {
+            var questionType = "";
+            // Detecta tipo...
+            if (document.querySelector('select')) questionType = "Associação";
+            else if (document.querySelector('textarea')) questionType = "Dissertação";
+            else if (document.querySelector('input[type="text"][id^="id_answer"]')) questionType = "Resposta Curta";
+            else if (document.querySelector('input[type="checkbox"]')) questionType = "Múltipla Escolha";
+            else if (document.querySelector('input[type="radio"]')) {
+                 var txt = document.body.innerText;
+                 questionType = (txt.includes("Verdadeiro") || txt.includes("Falso")) ? "Verdadeiro / Falso" : "Múltipla Escolha";
+            }
+    
+            if (questionType !== "" && !lessonBlock.querySelector('.lesson-badge')) {
+                var badge = document.createElement('span');
+                badge.className = 'lesson-badge geohab-badge';
+                badge.textContent = questionType;
+                badge.style.marginRight = "10px";
+                
+                var title = lessonBlock.querySelector('.geohab-title') || lessonBlock.querySelector('h3');
+                if(title) title.parentNode.insertBefore(badge, title.nextSibling);
+                else lessonBlock.appendC
     <script>
         // ===================================================================
         // SCRIPT PARA O CURSO GEOHAB - VERSÃO CONSOLIDADA
