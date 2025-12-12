@@ -812,6 +812,47 @@ body {
 
 
 /* =================================================================== */
+/*                            INÍCIO - LIÇÃO                           */
+/* =================================================================== */  
+  .lesson-block {
+    background-color: #ffffff;
+    border-radius: 12px;
+    padding: 20px;
+  }
+  .module-intro-block p, .module-intro-block li {
+    text-align: justify;
+    font-family: 'Montserrat', sans-serif;
+    line-height: 1.7;
+    color: #444;
+  }
+
+  .lesson-block-title {
+    font-family: 'Axiforma', 'Montserrat', sans-serif;
+    color: var(--color-secondary);
+    font-weight: 700;
+    font-size: 1.8em;
+    border-left: 4px solid var(--color-primary);
+    padding-left: 15px;
+    margin-top: 0;
+    margin-bottom: 25px; /* Aumenta o espaço depois do título */
+  }
+
+  .lesson-badge {
+  display: inline-block;
+  background-color: #b8c1ca;
+  color: #525252;
+  border: solid 0px #000;
+  border-radius: 3px;
+  padding: 0.25em 0.6em;
+  font-size: 0.75rem;
+  font-weight: 500;
+  }
+/* =================================================================== */
+/*                              FIM - LIÇÃO                            */
+/* =================================================================== */  
+
+
+/* =================================================================== */
 /*                      INÍCIO: BLOCO DE BOAS-VINDAS                   */
 /* =================================================================== */
 /* ---------------------  Botão 'Continuar onde pare' ------------------ */
@@ -2847,9 +2888,6 @@ body {
   from, to { color: transparent; }
   50% { color: #343a40; }
 }
-
 /* =================================================================== */
 /*                  FIM: TEXTO ANIMADO PARA EXEMPLOS                   */
 /* =================================================================== */
-
-

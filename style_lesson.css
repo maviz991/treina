@@ -7,10 +7,104 @@ DATA ATUALIZAÇÃO: 19/11/2025
 
 Obs.: Use bootstrap 4.0*/
 
+/* =======================================================
+   6. ESTILO DA PÁGINA FINAL (CONCLUSÃO)
+   ======================================================= */
 
-/* 2. CORREÇÃO CRÍTICA DO MOODLE (Alinhamento dos Checkboxes) */
+/* Oculta o link de "Voltar" do topo apenas na página final para não confundir */
+body.geohab-lesson-finished .flexsections-activity-page-navigate-back {
+    display: none !important;
+}
 
-/* ok */
+/* Oculta o título original H2 (vamos criar um melhor) */
+body.geohab-lesson-finished h2 {
+    display: none;
+}
+
+/* Estilo do Container Central (O Card) */
+.geohab-end-card {
+    background: white;
+    max-width: 600px;
+    margin: 40px auto;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    text-align: center;
+    border-top: 5px solid #28a745; /* Verde Sucesso */
+    animation: slideUp 0.5s ease-out;
+}
+
+/* Ícone de Sucesso Animado */
+.geohab-success-icon {
+    font-size: 4rem;
+    color: #28a745;
+    margin-bottom: 20px;
+    display: inline-block;
+    animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* Título de Parabéns */
+.geohab-end-title {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+/* Texto da Nota */
+.geohab-grade-box {
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    padding: 20px;
+    margin: 20px 0;
+    font-size: 1.1rem;
+    color: #555;
+}
+
+.geohab-grade-value {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #ff1100; /* Vermelho da marca */
+    display: block;
+    margin-top: 5px;
+}
+
+/* Botão Principal (Voltar ao Curso) */
+.geohab-finish-btn {
+    display: block;
+    width: 100%;
+    background-color: var(--color-primary);
+    color: white !important;
+    padding: 15px;
+    border-radius: .5rem;
+    font-size: 1.1rem;
+    font-weight: 400;
+    text-decoration: none;
+    transition: background 0.3s, transform 0.2s;
+    box-shadow: 0 4px 6px rgba(255, 17, 0, 0.2);
+}
+
+.geohab-finish-btn:hover {
+    background-color: #cc0000;
+    transition: all 0.3s;
+    box-shadow: 0 8px 15px rgba(0,0,0,0.4);
+    ;
+    text-decoration: none;
+}
+
+/* Animações */
+@keyframes slideUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+@keyframes popIn {
+    from { transform: scale(0); }
+    to { transform: scale(1); }
+}
+
+
+/* /mod/lesson */
+/*  CORREÇÃO CRÍTICA DO MOODLE  */
 /* Quando a classe 'geohab-full-width' for ativada na linha: */
 .path-mod-lesson .fitem.geohab-full-width .col-md-3 {
     display: none !important; /* Oculta o label vazio */
@@ -33,7 +127,7 @@ Obs.: Use bootstrap 4.0*/
 /* Ajustes específicos para Associação (onde o label existe) */
 /* Garante que o texto da esquerda fique alinhado verticalmente com o select da direita */
 .path-mod-lesson .fitem:not(.geohab-full-width) {
-    margin-left: -5px;
+    margin-inline: -5px;
     align-items: center; 
     background: #f8f9fa;
     border: 1px solid #f0f0f0; /* Linha sutil separando pares */
@@ -103,7 +197,6 @@ Obs.: Use bootstrap 4.0*/
     }
 
     #fitem_id_submitbutton {
-        margin: 10px;
         padding: 10px;
     }    
     
@@ -133,7 +226,7 @@ Obs.: Use bootstrap 4.0*/
         border-radius: .5rem;
     }
 
-    /* 5. Estiliza a mensagem de Feedback (quando acerta/erra) */
+    /* 5. Estiliza a mensagem de Feedback  */
     .path-mod-lesson .feedbackbox {
         border: 1px solid #dee2e6;
         background-color: #e2e3e5;
@@ -143,22 +236,105 @@ Obs.: Use bootstrap 4.0*/
         margin-bottom: 20px;
         text-align: center;
     }
-    /* Se for resposta correta (geralmente o moodle usa classes específicas, mas varia por tema) */
+    /* Se for resposta correta */
     .path-mod-lesson .correct {
-        border: 1px solid;
+        background-color: #d4edda;
+        border: 1px solid #c3e6cb;
+        border-left: 5px solid #178419;
         width: auto;
         height: auto;
         color: #155724;
-        padding-inline: 7px;
-        background-color: #d4edda;
-        border-color: #c3e6cb;
+        padding: 7px;
         border-radius: .5rem;
+    }
+
+    /* Se for resposta incorreta */
+    .path-mod-lesson .incorrect {
+        background-color: #edd4d4;
+        border: 1px solid #e6c3c3;
+        border-left: 5px solid #d01414;
+        width: auto;
+        height: auto;
+        color: #571515;
+        padding: 7px;
+        border-radius: .5rem;
+    }
+
+    .path-mod-lesson .feedback {
+        background-color: #edd4d4;
+        border: 1px solid #e6c3c3;
+        border-left: 5px solid #d01414;
+        width: auto;
+        height: auto;
+        color: #571515;
+        padding-inline: 7px;
+        border-radius: .5rem;
+        margin-bottom: 15px;
     }
 
     .tertiary-navigation .navitem, .tertiary-navigation .navitem-divider {
         display: block;
         margin-bottom: 25px;
     }
+/*------------------------ VERDADEIRO/FALSO ---------------------------*/  
+/* =======================================================
+   5. MELHORIA DO VERDADEIRO OU FALSO (RADIOS)
+   ======================================================= */
+
+/* 1. Prepara o Container para distribuir os botões */
+.path-mod-lesson .answeroptiongroup .d-flex.flex-wrap {
+    width: 100%; /* Garante que o container use a largura toda */
+    gap: 15px;   /* Cria um espaço entre os botões Verdadeiro e Falso */
+}
+
+/* 2. Transforma o LABEL (a caixa) em um Card Botão */
+.path-mod-lesson .answeroptiongroup .form-check-inline {
+    flex: 1; /* Faz os botões crescerem igualmente (50% cada) */
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Centraliza o texto e a bolinha */
+    background-color: #fff;
+    border: 1px solid #dee2e6;
+    padding: 20px; /* Mais espaço interno para ficar "gordinho" */
+    border-radius: 8px;
+    margin-right: 0 !important; /* Remove margens laterais padrão do Bootstrap */
+    margin-bottom: 0 !important;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    min-width: 150px; /* Garante que não quebre em telas muito pequenas */
+}
+
+/* 3. Efeito Hover (ao passar o mouse) */
+.path-mod-lesson .answeroptiongroup .form-check-inline:hover {
+    background-color: #fff0f0; /* Vermelho bem claro */
+    border-color: #ffcccc;
+    box-shadow: 0 10px 15px rgba(0,0,0,0.08); /* Sombra suave */
+    transition: all 0.3s;
+}
+
+/* 4. Estilo da Bolinha (Radio Input) */
+.path-mod-lesson .answeroptiongroup .form-check-input {
+    margin-top: 0;
+    margin-right: 10px;
+    transform: scale(1.3); /* Aumenta a bolinha */
+    cursor: pointer;
+}
+
+/* 5. Ajuste de Texto */
+.path-mod-lesson .answeroptiongroup label {
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: #495057;
+}
+
+/* EXTRA: Se o Moodle permitir, destaca o selecionado  */
+.path-mod-lesson .answeroptiongroup .form-check-inline:has(input:checked) {
+    border-color: #ff1100;
+    background-color: #fff0f0;
+    font-weight: bold;
+}
+
+
 /* =================================================================== */
 /*          INICIO - SISTEMA DE ÍCONES GLOBAIS (VIA CSS MASK)          */
 /* =================================================================== */
@@ -405,6 +581,50 @@ Obs.: Use bootstrap 4.0*/
 /* =================================================================== */
 /*                          FIM - CSS ANTIGO                           */
 /* =================================================================== */
+
+/* =================================================================== */
+/*                            INÍCIO - LIÇÃO                           */
+/* =================================================================== */  
+    .lesson-block {
+        position: relative;
+        margin-bottom: 20px;
+        background-color: #ffffff;
+        border-radius: 12px;
+        padding: 20px;
+    }
+    .module-intro-block p, .module-intro-block li {
+        text-align: justify;
+        font-family: 'Montserrat', sans-serif;
+        line-height: 1.7;
+        color: #444;
+    }
+
+    .lesson-block-title {
+        font-family: 'Axiforma', 'Montserrat', sans-serif;
+        color: var(--color-secondary);
+        font-weight: 700;
+        font-size: 1.8em;
+        border-left: 4px solid var(--color-primary);
+        padding-left: 15px;
+        margin-top: 0;
+        margin-bottom: 25px; /* Aumenta o espaço depois do título */
+    }
+
+  .lesson-badge {
+    display: inline-block;
+    background-color: #b8c1ca;
+    color: #525252;
+    border: solid 0px #000;
+    border-radius: 3px;
+    padding: 0.25em 0.6em;
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    margin-top: 10px; 
+  }
+/* =================================================================== */
+/*                              FIM - LIÇÃO                            */
+/* =================================================================== */  
 
 
 /* =================================================================== */
@@ -2999,9 +3219,6 @@ body {
   from, to { color: transparent; }
   50% { color: #343a40; }
 }
-
 /* =================================================================== */
 /*                  FIM: TEXTO ANIMADO PARA EXEMPLOS                   */
 /* =================================================================== */
-
-
