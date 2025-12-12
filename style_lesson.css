@@ -10,103 +10,9 @@ Obs.: Use bootstrap 4.0*/
 /* =======================================================
    6. ESTILO DA PÁGINA FINAL (CONCLUSÃO)
    ======================================================= */
-
-/* Oculta o link de "Voltar" do topo apenas na página final para não confundir */
-body.geohab-lesson-finished .flexsections-activity-page-navigate-back {
-    display: none !important;
-}
-
-/* Oculta o título original H2 (vamos criar um melhor) */
-body.geohab-lesson-finished h2 {
-    display: none;
-}
-
-/* Estilo do Container Central (O Card) */
-.geohab-end-card {
-    background: white;
-    max-width: 600px;
-    margin: 40px auto;
-    padding: 40px;
-    border-radius: 12px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-    text-align: center;
-    border-top: 5px solid #28a745; /* Verde Sucesso */
-    animation: slideUp 0.5s ease-out;
-}
-
-/* Ícone de Sucesso Animado */
-.geohab-success-icon {
-    font-size: 4rem;
-    color: #28a745;
-    margin-bottom: 20px;
-    display: inline-block;
-    animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-}
-
-/* Título de Parabéns */
-.geohab-end-title {
-    font-size: 1.8rem;
-    font-weight: 700;
-    color: #333;
-    margin-bottom: 10px;
-}
-
-/* Texto da Nota */
-.geohab-grade-box {
-    background-color: #f8f9fa;
-    border-radius: 8px;
-    padding: 20px;
-    margin: 20px 0;
-    font-size: 1.1rem;
-    color: #555;
-}
-
-.geohab-grade-value {
-    font-size: 1.5rem;
-    font-weight: bold;
-    color: #ff1100; /* Vermelho da marca */
-    display: block;
-    margin-top: 5px;
-}
-
-/* Botão Principal (Voltar ao Curso) */
-.geohab-finish-btn {
-    display: block;
-    width: 100%;
-    background-color: var(--color-primary);
-    color: white !important;
-    padding: 15px;
-    border-radius: .5rem;
-    font-size: 1.1rem;
-    font-weight: 400;
-    text-decoration: none;
-    transition: background 0.3s, transform 0.2s;
-    box-shadow: 0 4px 6px rgba(255, 17, 0, 0.2);
-}
-
-.geohab-finish-btn:hover {
-    background-color: #cc0000;
-    transition: all 0.3s;
-    box-shadow: 0 8px 15px rgba(0,0,0,0.4);
-    ;
-    text-decoration: none;
-}
-
-/* Animações */
-@keyframes slideUp {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-@keyframes popIn {
-    from { transform: scale(0); }
-    to { transform: scale(1); }
-}
-
-
 /* /mod/lesson */
 /* =======================================================
-   GEOHAB - ESTILO FINAL V7 (CORREÇÃO DE HOVER)
-   Escopo: #page-mod-lesson-view
+     #page-mod-lesson-view
    ======================================================= */
 
 /* 1. CONFIGURAÇÃO GERAL */
@@ -124,7 +30,7 @@ body#page-mod-lesson-view {
     max-width: 900px;
 }
 
-/* 2. CORREÇÃO DE LAYOUT (ASSOCIAÇÃO - LADO A LADO) */
+/* 2. CORREÇÃO DE LAYOUT */
 #page-mod-lesson-view .fitem:not(.geohab-full-width) {
     display: flex !important;
     flex-direction: row !important;
@@ -170,7 +76,7 @@ body#page-mod-lesson-view {
 }
 
 
-/* 3. CORREÇÃO DE LAYOUT (MÚLTIPLA ESCOLHA - FULL WIDTH) */
+/* 3. CORREÇÃO DE LAYOUT */
 #page-mod-lesson-view .fitem.geohab-full-width .col-md-3,
 #page-mod-lesson-view .fitem.geohab-full-width .col-form-label {
     display: none !important;
@@ -230,41 +136,36 @@ body#page-mod-lesson-view {
 }
 
 
-/* =======================================================
-   5. HOVER E ESTADOS ATIVOS
-   ======================================================= */
-
+/*  5. HOVER E ESTADOS ATIVOS */
 /* HOVER GERAL (Associação, Checkbox, V/F) */
 #page-mod-lesson-view .fitem:not(.geohab-full-width):hover,
 #page-mod-lesson-view .answeroption .form-check:hover,
 #page-mod-lesson-view .form-check-inline:hover {
     background-color: #fff0f0 !important;
     border-color: #ffcccc !important;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+    transition: all 0.2s ease-in-out;
 }
 
-/* SELECIONADO (:CHECKED) - Mantém o estilo após clique */
 /* Para Checkbox e V/F */
 #page-mod-lesson-view .form-check:has(input:checked),
 #page-mod-lesson-view .form-check-inline:has(input:checked) {
     background-color: #fff0f0 !important;
-    border-color: #ff1100 !important;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
+    border-color: #ffc1c1 !important;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
     font-weight: 500;
+    transition: all 0.2s ease-in-out;
 }
 
 /* Para Associação (Quando focado/selecionado) */
 #page-mod-lesson-view .fitem:not(.geohab-full-width):focus-within {
     background-color: #fff0f0 !important;
-    border-color: #ff1100 !important;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
+    border-color: #ffc1c1 !important;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+    transition: all 0.2s ease-in-out;
 }
 
-
-/* =======================================================
-   6. BOTÕES, FEEDBACK E EXTRAS
-   ======================================================= */
-/* Botões Vermelhos */
+/*  6. BOTÕES, FEEDBACK E EXTRAS */
 #page-mod-lesson-view .btn-primary, 
 #page-mod-lesson-view input[type="submit"],
 #page-mod-lesson-view button[type="submit"] {
@@ -275,7 +176,8 @@ body#page-mod-lesson-view {
     font-weight: 400;
     transition: all 0.2s;
     padding: 8px 25px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    transition: all 0.2s ease-in-out;
 }
 #page-mod-lesson-view #fitem_id_submitbutton {
     background: transparent;
@@ -285,7 +187,8 @@ body#page-mod-lesson-view {
 #page-mod-lesson-view .btn-primary:hover,
 #page-mod-lesson-view input[type="submit"]:hover {
     background-color: #cc0000 !important;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.35);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    transition: all 0.2s ease-in-out;
 }
 
 /* Feedback */
@@ -353,13 +256,6 @@ body#page-mod-lesson-view {
     display: inline-block;
     margin-bottom: 15px;
 }
-/* Card Final */
-/* #page-mod-lesson-view .geohab-end-card { background: white; max-width: 600px; margin: 40px auto; padding: 40px; border-radius: .5rem; box-shadow: 0 10px 25px rgba(0,0,0,0.1); text-align: center; border-top: 5px solid #28a745; }
-#page-mod-lesson-view .geohab-success-icon { font-size: 4rem; color: #28a745; margin-bottom: 20px; }
-#page-mod-lesson-view .geohab-end-title { font-size: 1.8rem; font-weight: 700; color: #333; margin-bottom: 10px; }
-#page-mod-lesson-view .geohab-grade-box { background: #f8f9fa; padding: 15px; border-radius: .5rem; margin: 20px 0; color: #555; }
-#page-mod-lesson-view .geohab-finish-btn { display: block; width: 100%; background-color: #ff1100; color: white !important; padding: 10px; border-radius: .5rem; font-weight: 400; text-decoration: none; margin-top: 20px; transition: all 0.2s; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
-#page-mod-lesson-view .geohab-finish-btn:hover { background-color: #cc0000; box-shadow: 0 4px 8px rgba(204, 0, 0, 0.3); } */
 
 /* Limpeza */
 #page-mod-lesson-view .tertiary-navigation .navitem,
@@ -370,10 +266,8 @@ body#page-mod-lesson-view {
 
 
 /* =======================================================
-   GEOHAB - ESTILO VISUAL FINAL (BASEADO NO SEU DESIGN)
    Escopo: #page-mod-lesson-view (Apenas visão do aluno)
    ======================================================= */
-
 /* 1. CONFIGURAÇÃO GERAL */
 body#page-mod-lesson-view {
     background-color: #f8f9fa; /* Fundo cinza claro */
@@ -394,11 +288,11 @@ body#page-mod-lesson-view {
 
 /* 2. CORREÇÃO CRÍTICA DE LAYOUT (Quando o JS marca como Full Width) */
 #page-mod-lesson-view .fitem.geohab-full-width .col-md-3 {
-    display: none !important; /* Oculta o label vazio */
+    display: none !important; 
 }
 
 #page-mod-lesson-view .fitem.geohab-full-width .col-md-9 {
-    flex: 0 0 100% !important; /* Estica a resposta para 100% */
+    flex: 0 0 100% !important;
     max-width: 100% !important;
     padding-left: 0 !important;
     margin-left: 10px;
@@ -409,7 +303,7 @@ body#page-mod-lesson-view {
     margin-inline: -5px;
     align-items: center; 
     background: #f8f9fa;
-    border: 1px solid #f0f0f0; /* Linha sutil separando pares */
+    border: 1px solid #f0f0f0;
     border-radius: .5rem;
     padding: 10px;
     margin-bottom: 10px;
@@ -427,8 +321,8 @@ body#page-mod-lesson-view {
     padding: 10px 15px;
     border-radius: 5px;
     border: 1px solid #eee;
-    width: 100%; /* Garante clique total */
-    display: flex; /* Alinhamento flex */
+    width: 100%; 
+    display: flex; 
     align-items: center;
 }
 
@@ -511,7 +405,7 @@ body#page-mod-lesson-view {
 #page-mod-lesson-view .correct {
     background-color: #d4edda;
     border: 1px solid #c3e6cb;
-    border-left: 5px solid #178419; /* Sua borda verde */
+    border-left: 5px solid #178419;
     width: auto;
     height: auto;
     color: #155724;
@@ -525,7 +419,7 @@ body#page-mod-lesson-view {
 #page-mod-lesson-view .incorrect {
     background-color: #edd4d4;
     border: 1px solid #e6c3c3;
-    border-left: 5px solid #d01414; /* Sua borda vermelha */
+    border-left: 5px solid #d01414; 
     width: auto;
     height: auto;
     color: #571515;
@@ -555,69 +449,97 @@ body#page-mod-lesson-view {
 }
 
 /* 8. ELEMENTOS INJETADOS PELO JS (Badge, Título, Card Final) */
-
-/* Título e Badge */
-#page-mod-lesson-view .geohab-title {
-    color: #ff1100;
-    border-bottom: 2px solid #ff1100;
-    padding-bottom: 5px;
-    margin-bottom: 15px;
-    font-size: 1.6rem;
-    font-weight: 700;
-}
-#page-mod-lesson-view .geohab-badge {
-    background-color: #6c757d;
-    color: white;
-    padding: 4px 10px;
-    border-radius: 4px; /* Mantive consistente */
-    font-size: 0.75rem;
-    font-weight: 500;
-    /* uppercase removido conforme seu padrão de botões, ou mantemos se for badge */
-    /* text-transform: uppercase; -> Mantive sem uppercase para seguir seu padrão */
-    display: inline-block;
-    margin-bottom: 15px;
+/* Oculta o link de "Voltar" do topo apenas na página final para não confundir */
+body.geohab-lesson-finished .flexsections-activity-page-navigate-back {
+    display: none !important;
 }
 
-/* Card de Conclusão (Novo) */
-#page-mod-lesson-view .geohab-end-card {
+/* Oculta o título original H2 */
+body.geohab-lesson-finished h2 {
+    display: none;
+}
+
+/* Estilo do Container */
+.geohab-end-card {
     background: white;
-    max-width: 600px;
+    max-width: 800px;
     margin: 40px auto;
     padding: 40px;
-    border-radius: .5rem; /* Seu padrão */
+    border-radius: 12px;
     box-shadow: 0 10px 25px rgba(0,0,0,0.1);
     text-align: center;
-    border-top: 5px solid #28a745;
+    border-top: 5px solid #28a745; 
+    animation: slideUp 0.5s ease-out;
 }
-#page-mod-lesson-view .geohab-success-icon {
+
+/* Ícone de Sucesso Animado */
+.geohab-success-icon {
     font-size: 4rem;
     color: #28a745;
     margin-bottom: 20px;
-}
-#page-mod-lesson-view .geohab-grade-box {
-    background: #f8f9fa; 
-    padding: 15px; 
-    border-radius: .5rem; 
-    margin: 20px 0; 
-    color: #555;
-}
-/* Botão de Voltar no Card Final (Segue seu estilo de botão) */
-#page-mod-lesson-view .geohab-finish-btn {
-    display: block;
-    width: 100%;
-    background-color: #ff1100;
-    color: white !important;
-    padding: 10px;
-    border-radius: .5rem; /* Seu padrão */
-    font-weight: 400; /* Seu padrão */
-    text-decoration: none;
-    margin-top: 20px;
-    transition: all 0.3s;
-}
-#page-mod-lesson-view .geohab-finish-btn:hover {
-    background-color: #cc0000;
+    display: inline-block;
+    animation: popIn 0.9s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
+/* Título de Parabéns */
+.geohab-end-title {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+/* Texto da Nota */
+.geohab-grade-box {
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    padding: 20px;
+    margin: 20px 0;
+    font-size: 1.1rem;
+    color: #555;
+}
+
+.geohab-grade-value {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #ff1100; /* Vermelho da marca */
+    display: block;
+    margin-top: 5px;
+}
+
+/* Botão Principal (Voltar ao Curso) */
+.geohab-finish-btn {
+    display: block;
+    width: 100%;
+    background-color: var(--color-primary);
+    color: white !important;
+    padding: 10px;
+    border-radius: .5rem;
+    margin-inline: auto;
+    font-size: 1.1rem;
+    font-weight: 400;
+    text-decoration: none;
+    transition: background 0.3s, transform 0.2s;
+    box-shadow: 0 4px 6px rgba(255, 17, 0, 0.2);
+}
+
+.geohab-finish-btn:hover {
+    background-color: #cc0000;
+    transition: all 0.3s;
+    box-shadow: 0 8px 15px rgba(0,0,0,0.4);
+    ;
+    text-decoration: none;
+}
+
+/* Animações */
+@keyframes slideUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+@keyframes popIn {
+    from { transform: scale(0); }
+    to { transform: scale(1); }
+}
 
 
 /* =================================================================== */
