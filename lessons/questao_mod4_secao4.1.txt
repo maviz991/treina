@@ -1,0 +1,7 @@
+// Seção 4.1 - Múltipla Escolha
+::Seção 4.1:: Quais tecnologias estão por trás dos mapas interativos no Geohab? {
+    ~%33.333%MapStore 2
+    ~%33.333%GeoServer
+    ~%33.333%OpenLayers
+    ~%-100%Microsoft PowerPoint
+}

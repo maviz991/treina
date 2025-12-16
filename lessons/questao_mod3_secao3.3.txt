@@ -1,0 +1,7 @@
+// Seção 3.3 - Associação
+::Seção 3.3:: Associe os passos do processo de filtragem no Visualizador com suas descrições: {
+    =Selecionar camada -> Escolher a camada no painel
+    =Abrir filtro -> Clicar na ferramenta de filtro
+    =Definir critérios -> Escolher o que filtrar
+    =Aplicar filtro -> Ver o resultado
+}

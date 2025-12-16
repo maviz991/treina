@@ -1,0 +1,8 @@
+// Seção 1.6 - Associação
+::Seção 1.6:: Associe os perfis de acesso com suas permissões: {
+    =Leitor -> Acesso apenas para visualização de dados e mapas
+    =Editor -> Permite visualizar e editar informações
+    =Revisor -> Além de editar, pode revisar e aprovar alterações
+    =Administrador Local -> Gerencia usuários e permissões localmente
+    =Super Usuário -> Acesso completo ao sistema
+}

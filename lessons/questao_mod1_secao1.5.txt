@@ -1,0 +1,8 @@
+// Seção 1.5 - Múltipla Escolha (Várias respostas corretas)
+::Seção 1.5:: Quais são os principais tipos de geoserviços? {
+    ~%33.333%WMS (Web Map Service)
+    ~%33.333%WFS (Web Feature Service)
+    ~%33.333%WCS (Web Coverage Service)
+    ~%-100%GPS (Global Positioning System)
+    ####WMS, WFS e WCS são os principais tipos de geoserviços.
+}

@@ -1,0 +1,8 @@
+// Seção 2.1 - Resposta Curta (Aceita variações)
+::Seção 2.1:: Quais credenciais um funcionário da CDHU deve utilizar para acessar o Geohab? {
+    =Usuário e senha de rede
+    =Login de rede
+    =Credenciais de rede
+    =Usuário corporativo
+    =Senha corporativa
+}

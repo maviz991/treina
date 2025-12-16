@@ -1,0 +1,8 @@
+// Seção 4.2 - Associação
+::Seção 4.2:: Associe os passos para criar um mapa no Geohab com suas descrições: {
+    =Criar mapa -> Acessar o menu Apps
+    =Adicionar camadas -> Clicar em "Adicionar Camada"
+    =Personalizar -> Mudar cores e símbolos
+    =Salvar mapa -> Definir título e descrição
+    =Compartilhar -> Gerar link para o mapa
+}

@@ -1,0 +1,8 @@
+// Seção 2.2 - Múltipla Escolha (Várias respostas corretas)
+::Seção 2.2:: Quais são os passos corretos para acessar o Geohab? {
+    ~%33.333%Abrir o portal Geohab
+    ~%33.333%Clicar no botão "Entrar"
+    ~%33.333%Utilizar usuário e senha de rede
+    ~%-100%Criar uma nova conta
+    ####Para acessar o Geohab, utilize suas credenciais de rede.
+}

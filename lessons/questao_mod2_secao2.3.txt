@@ -1,0 +1,8 @@
+// Seção 2.3 - Associação
+::Seção 2.3:: Associe os componentes da página inicial do Geohab com suas funções: {
+    =Catálogo -> Buscar e explorar dados
+    =Visualizador -> Visualizar mapas
+    =Apps -> Aplicações complementares
+    =Serviços -> Gerenciar camadas
+    =Administração -> Gerenciar usuários
+}

@@ -1,0 +1,2 @@
+// Seção 1.3 - Ensaio (Dissertativa - Requer correção manual ou serve apenas como reflexão)
+::Seção 1.3:: O que significa interoperabilidade no contexto do Geohab? {}

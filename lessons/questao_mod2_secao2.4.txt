@@ -1,0 +1,7 @@
+// Seção 2.4 - Múltipla Escolha
+::Seção 2.4:: Quais ferramentas estão disponíveis na barra lateral do Visualizador? {
+    ~%25%Adicionar camadas
+    ~%25%Medir distâncias
+    ~%25%Desenhar formas
+    ~%25%Adicionar textos
+}

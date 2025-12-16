@@ -1,0 +1,2 @@
+// Seção 3.4 - Verdadeiro ou Falso
+::Seção 3.4:: O filtro espacial permite selecionar elementos por localização. {T}

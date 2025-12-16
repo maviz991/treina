@@ -1,0 +1,9 @@
+// Seção 1.1 - Múltipla Escolha (Várias respostas corretas)
+::Seção 1.1:: Quais são os tipos fundamentais de dados geoespaciais? {
+    ~%25%Pontos
+    ~%25%Linhas
+    ~%25%Polígonos
+    ~%25%Raster
+    ~%-100%Vetores
+    ####Pontos, Linhas, Polígonos e Raster são os tipos fundamentais de dados geoespaciais. Vetores é a categoria que agrupa pontos, linhas e polígonos.
+}

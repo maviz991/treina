@@ -1,0 +1,7 @@
+// Seção 4.4 - Múltipla Escolha
+::Seção 4.4:: Quais tipos de dados podem ser visualizados no MapStore? {
+    ~%25%Dados vetoriais
+    ~%25%Dados matriciais (raster)
+    ~%25%Dados WMS
+    ~%25%Dados WFS
+}

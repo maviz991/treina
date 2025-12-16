@@ -1,0 +1,7 @@
+// Seção 1.2 - Associação
+::Seção 1.2:: Associe os formatos de arquivo com suas características: {
+    =Shapefile (.shp) -> Formato mais comum para armazenar dados vetoriais
+    =GeoPackage (.gpkg) -> Formato recomendado pela CDHU
+    =GeoJSON / KML -> Formato ideal para aplicações web
+    =GeoTIFF (.tif / .tiff) -> Formato para armazenar imagens georreferenciadas
+}

@@ -1,0 +1,2 @@
+// Seção 4.3 - Verdadeiro ou Falso
+::Seção 4.3:: O GeoServer é um software que permite publicar dados geoespaciais como serviços web. {T}

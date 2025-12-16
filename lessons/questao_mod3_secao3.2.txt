@@ -1,0 +1,2 @@
+// Seção 3.2 - Verdadeiro ou Falso
+::Seção 3.2:: O Visualizador do Geohab permite sobrepor camadas. {T}
