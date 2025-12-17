@@ -5,13 +5,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Curso Geohab - M1S4</title>
+    <title>Curso Geohab - Módulo 1 - Seção 4</title>
 
     <!-- FONTES -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
-
+    <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/3.0.0/uicons-thin-rounded/css/uicons-thin-rounded.css'>
+    <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/3.0.0/uicons-bold-rounded/css/uicons-bold-rounded.css'>    
+    <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/3.0.0/uicons-regular-rounded/css/uicons-regular-rounded.css'>    
     <!-- CSS DO BOOTSTRAP 4 (Apenas um é necessário) -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
     <!-- CSS -->
@@ -51,91 +53,7 @@
     }
     
 /* ================================================ */
-/* ESTILOS PARA CONTEÚDO DE INTEROPERABILIDADE */
-/* ================================================ */
-
-/* --- Container para conteúdo de interoperabilidade --- */
-.interoperability-content {
-  font-family: 'Montserrat', sans-serif;
-  line-height: 1.7;
-  color: #333;
-  max-width: 900px;
-  margin: 0 auto;
-  padding: 20px;
-}
-
-/* --- Títulos e subtítulos --- */
-.interoperability-subtitle {
-  font-family: 'Axiforma', 'Montserrat', sans-serif;
-  font-size: 1.6em;
-  font-weight: 600;
-  color: #333;
-  margin: 25px 0 15px 0;
-  border-left: 4px solid var(--color-primary);
-  padding-left: 15px;
-}
-
-.interoperability-section {
-  margin-bottom: 30px;
-}
-
-/* --- Listas --- */
-.interoperability-list {
-  list-style-type: none;
-  padding-left: 0;
-}
-
-.interoperability-list li {
-  margin-bottom: 15px;
-  position: relative;
-  padding-left: 25px;
-}
-
-.interoperability-list li::before {
-  content: "•";
-  color: var(--color-primary);
-  font-weight: bold;
-  position: absolute;
-  left: 0;
-  font-size: 1.2em;
-}
-
-/* --- Links e referências --- */
-.interoperability-link {
-  color: var(--color-primary);
-  text-decoration: none;
-  font-weight: 500;
-  transition: color 0.2s ease;
-}
-
-.interoperability-link:hover {
-  color: var(--color-primary-dark);
-  text-decoration: underline;
-}
-
-/* --- Rodapé do documento --- */
-.document-footer {
-  margin-top: 40px;
-  padding-top: 15px;
-  border-top: 1px solid #e0e0e0;
-  font-size: 0.85em;
-  color: #666;
-  text-align: right;
-}
-
-/* --- Responsividade --- */
-@media (max-width: 768px) {
-  .interoperability-content {
-    padding: 15px;
-  }
-  
-  .interoperability-subtitle {
-    font-size: 1.4em;
-  }
-}
-
-/* ================================================ */
-/* FIM - ESTILOS PARA CONTEÚDO DE INTEROPERABILIDADE */
+/* FIM - NOVOS ESTILOS PARA CONTEÚDO DE INTEROPERABILIDADE */
 /* ================================================ */
 /* Container Principal */
 .gh-header-right-align {
@@ -154,7 +72,7 @@
         top: 0;
         right: 0;
         height: 100%;
-        width: 290px; 
+        width: 310px; 
         z-index: 0;
         /* Opcional: Se quiser inverter o desenho horizontalmente, descomente abaixo: */
         /* transform: scaleX(-1); */
@@ -168,11 +86,9 @@
         justify-content: space-between;
         align-items: center;
         height: 100%;
-        padding: 0 30px;
+        padding: 0 15px;
         color: white;
     }
-
-
 
     .gh-item {
       flex: 1;
@@ -208,15 +124,16 @@
   /* 5. ESTILO DO DEPARTAMENTO */
   .gh-dept {
       text-align: right;
-      font-size: 0.75rem;
+      font-size: 0.8rem;
+      font-family: 'Axiforma';
       font-weight: 600;
-      color: #e3e3e3;
+      color: #ffffff;
       text-transform: uppercase;
 
   }
 
   /* =========================================================
-     6. A MÁGICA: O DESIGN DA BARRA INFERIOR (ESTILO TECH)
+     6. O DESIGN DA BARRA INFERIOR (ESTILO TECH)
      ========================================================= */
   
   /* A linha vermelha fina na base inteira */
@@ -331,96 +248,170 @@
     }
     */
 }
-
-
 </style>
 </head>
 <body>
-  <div class="gh-header-right-align">
-        <div class="gh-decoration-right">
-        <svg width="100%" height="100%" viewBox="0 0 279.83276 72.34375" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-            <defs>
-                <clipPath id="clipRight1"><path d="m 1230,0 h 210 v 54.457031 h -210 z m 0,0" clip-rule="nonzero"/></clipPath>
-                <clipPath id="clipRight2"><path d="m 1246.9375,54.257812 c -1.3359,-1.792968 -1.3633,-4.414062 0.3477,-6.3125 2.8086,-3.050781 5.7265,-6.019531 8.5859,-9.015624 2.8633,-2.996094 2.8359,-5.828126 -0.1875,-8.71875 -7.8359,-7.566407 -15.6992,-15.136719 -23.5625,-22.679688 -1.2305,-1.203125 -2.1406,-2.511719 -1.9766,-4.332031 0.211,-2.40625 1.5508,-3.929688 3.7696,-4.492188 h 223.0547 v 55.550781 z m 0,0" clip-rule="nonzero"/></clipPath>
-            </defs>
-            <g transform="translate(-18237.147,-3230.4205)">
-                <g clip-path="url(#clipRight1)" transform="matrix(1.3333333,0,0,1.3333333,16596.98,3230.4205)">
-                    <g clip-path="url(#clipRight2)">
-                        <path fill="#ff1100" d="M -31.859375,-14.640625 H 1470.2305 V 67.632812 H -31.859375 Z" fill-opacity="1" fill-rule="nonzero"/>
-                    </g>
-                </g>
-            </g>
-        </svg>
+<div class="gh-header-right-align">
+  <div class="gh-decoration-right">
+    <svg width="100%" height="100%" viewBox="0 0 279.83276 72.34375" preserveAspectRatio="none"
+      xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <clipPath id="clipRight1">
+          <path d="m 1230,0 h 210 v 54.457031 h -210 z m 0,0" clip-rule="nonzero" />
+        </clipPath>
+        <clipPath id="clipRight2">
+          <path
+            d="m 1246.9375,54.257812 c -1.3359,-1.792968 -1.3633,-4.414062 0.3477,-6.3125 2.8086,-3.050781 5.7265,-6.019531 8.5859,-9.015624 2.8633,-2.996094 2.8359,-5.828126 -0.1875,-8.71875 -7.8359,-7.566407 -15.6992,-15.136719 -23.5625,-22.679688 -1.2305,-1.203125 -2.1406,-2.511719 -1.9766,-4.332031 0.211,-2.40625 1.5508,-3.929688 3.7696,-4.492188 h 223.0547 v 55.550781 z m 0,0"
+            clip-rule="nonzero" />
+        </clipPath>
+      </defs>
+      <g transform="translate(-18237.147,-3230.4205)">
+        <g clip-path="url(#clipRight1)" transform="matrix(1.3333333,0,0,1.3333333,16596.98,3230.4205)">
+          <g clip-path="url(#clipRight2)">
+            <path fill="#ff1100" d="M -31.859375,-14.640625 H 1470.2305 V 67.632812 H -31.859375 Z" fill-opacity="1"
+              fill-rule="nonzero" />
+          </g>
+        </g>
+      </g>
+    </svg>
+  </div>
+  <div class="gh-content-layer">
+    <div class="gh-item gh-logo">
+      <img src="https://cda.cdhu.sp.gov.br/pics/logos/source/GLPI_Logo-white.svg" alt="Logo">
     </div>
-    <div class="gh-content-layer">
-        <div class="gh-item gh-logo">
-            <img src="https://cda.cdhu.sp.gov.br/pics/logos/source/GLPI_Logo-white.svg" alt="Logo">
-        </div>
-        <div class="gh-item gh-titles">
-            <h1 class="gh-main">CURSO DO GEOHAB</h1>
-            <h2 class="gh-sub">MÓDULO 1</h2>
-        </div>
-        <div class="gh-item gh-dept">
-            <span>Sup. de Tecnologia e Informação</span>
-        </div>
+    <div class="gh-item gh-titles">
+      <h1 class="gh-main">CURSO DO GEOHAB</h1>
+      <h2 class="gh-sub">MÓDULO 1</h2>
     </div>
+    <div class="gh-item gh-dept">
+      <span>Sup. de Tecnologia e Informação</span>
+    </div>
+  </div>
 </div>
-</div>
+  <!--     EDITAR ABAIXO     -->
 
-    <div class="guide-container" style="padding: 25px;">
-      <div class="materials-hero" style="text-align: center;">
-        <h1 style="font-size: 2.5rem;">Noções de Rede: Entendendo os GeoServiços no Geohab</h1><br>
+  <div class="guide-container" style="padding: 0 45px 45px 45px;">
+    <div class="materials-hero" style="text-align: center;">
+      <h1 style="font-size: 2.5rem;">Noções de Rede: Entendendo os GeoServiços</h1><br>
+    </div>
+    <h2>A Infraestrutura Digital: A Web como Fundamento</h2>
+    <p>O Geohab, assim como a maioria das aplicações contemporâneas, opera sobre a infraestrutura da Internet e da World
+      Wide Web. Isso significa que toda a troca de informações – como solicitar um mapa ou obter dados sobre uma feição –
+      ocorre através de protocolos e endereçamentos padronizados, possibilitando que o seu navegador (ou o
+      <strong>Visualizador (MapStore 2)</strong> integrado a ele) se comunique com os servidores do Geohab.
+    </p>
+    <h2>O Funcionamento dos GeoServiços</h2>
+    <p>Quando você utiliza o <strong>Visualizador</strong> no Geohab – por exemplo, ao aplicar zoom, deslocar o mapa ou
+      clicar para obter informações de uma camada – uma sequência de comunicações ocorre entre o seu computador e os
+      servidores do Geohab.<br>
+    <h4>Analisemos os elementos principais desse processo:</h4>
+    </p>
+    <ul>
+      <li><strong>O Endereço (URL - Uniform Resource Locator):</strong><br>Cada GeoServiço disponibilizado pelo Geohab
+        (como o serviço de mapas WMS ou o serviço de feições WFS, ambos fornecidos pelo componente Serviços
+        (GeoServer)) possui um endereço único na internet: a URL.<br> - Essa URL não direciona apenas para um site
+        genérico, mas para um ponto específico no servidor com capacidade para compreender e processar solicitações de
+        dados geoespaciais.<br> - Exemplo conceitual: Uma URL para solicitar um mapa poderia ter o seguinte formato (os
+        "..." representam outros parâmetros da solicitação):</li>
+  
+      <div class="lesson-badge"> <a
+          href="https://geo.cdhu.sp.gov.br/geoserver/ows?service=WMS&version=1.3.0&request=GetCapabilities"
+          target="_blank" rel="noopener" style="text-decoration: none; color: currentColor;"><i
+            class="fi fi-rr-up-right-from-square" style="font-size: 10px;""></i> https://geo.cdhu.sp.gov.br/geoserver/ows?service=WMS&version=1.3.0&request=GetCapabilities...</a></div></p>
+      </ul>
+    <ul>
+      <li><strong>A Conversa (Requisições HTTP):</strong><br>Para " conversar" com esses serviços através de suas URLs, o
+            seu navegador (ou o Visualizador) utiliza o protocolo HTTP (Hypertext Transfer Protocol). É a linguagem
+            fundamental da web.<br>A forma mais comum de fazer um "pedido" a um GeoServiço para visualização de dados é
+            através de uma requisição HTTP GET.<br>Nesse método, todos os detalhes do pedido (que mapa você quer, qual a
+            área
+            de interesse, quais camadas, etc.) são incluídos diretamente na URL, como uma série de parâmetros nome=valor
+            separados por &amp;.<br><br>Por exemplo: Quando o
+            <strong>Visualizador</strong> precisa
+            mostrar uma camada específica em uma determinada área do mapa, ele monta uma URL especial contendo parâmetros
+            como:</li>
+  
+            <div class="lesson-badge">SERVICE=WMS</div>
+            <div class="lesson-badge">REQUEST=GetMap</div>
+            <div class="lesson-badge">LAYERS=nome_da_camada</div>
+            <div class="lesson-badge">BBOX=coordenadas_da_area</div>
+            <div class="lesson-badge">WIDTH=largura_pixels</div>
+            <div class="lesson-badge">HEIGHT=altura_pixels</div>, etc.
+            <p>Esta URL é enviada ao servidor.<br><br>Existe também o método HTTP POST, usado para enviar dados mais
+              complexos ou
+              volumosos ao servidor, geralmente dentro do "corpo" da requisição, e não na URL. Embora menos visível para o
+              usuário
+              final em operações de visualização, é importante para outras interações, como a edição de dados ou submissão
+              de
+              formulários complexos.<br><br></p>
+    </ul>
+    <ul>
+      <li><strong>A Resposta (Dados e Formatos):</strong><br>Após receber a requisição HTTP (a solicitação), o servidor do
+        Geohab (especificamente o GeoServer, no caso de um pedido de mapa) processa-a.<br>Se a solicitação for válida, o
+        servidor retorna uma resposta HTTP. O conteúdo dessa resposta depende do que foi solicitado:</li>
+      <ul>
+        <li>Se foi um pedido de mapa (como um WMS GetMap), a resposta geralmente é uma imagem (nos formatos PNG, JPG,
+          etc.).
+        </li>
+        <li>Se foi um pedido por dados de feições (como um WFS GetFeature), a resposta pode ser dados estruturados em
+          formatos como XML/GML ou GeoJSON.</li>
+        <li>Se foi um pedido pelas "capacidades" de um serviço (para saber quais camadas ele oferece, por exemplo, através
+          de uma requisição <strong>GetCapabilities</strong>), a resposta é um documento XML descrevendo o serviço.</li>
+      </ul>
+    </ul>
+    <br><br>  <br><br>
+  
+    <p>Esses diferentes formatos (PNG, JPG, XML, GML, GeoJSON) constituem as codificações: elas definem como os dados
+      estão organizados para que o seu navegador ou o <strong>Visualizador</strong> possam interpretá-los e exibi-los
+      corretamente.</p>
+    <h2>Serviços, Interfaces e Operações (Padrões OGC)</h2>
+    <p>Os GeoServiços do Geohab seguem os padrões estabelecidos pelo OGC (Open Geospatial Consortium). Esses padrões
+      definem:</p>
+    <ul>
+      <li><strong>Serviço</strong>: Conjunto de funcionalidades disponibilizadas por um servidor. Por exemplo, o GeoServer
+        no Geohab oferece o serviço WMS (para mapas) e o serviço WFS (para dados vetoriais). Considere o GeoServer como um
+        sistema que oferece diferentes tipos de acesso (Serviços).<br><br></li>
+      <li><strong>Interface</strong>: Especifica o conjunto de solicitações que podem ser realizadas a um serviço. Cada
+        serviço possui um conjunto de operações disponíveis (Interface).<br><br></li>
+      <li><strong>Operação</strong>: Solicitação específica realizada a um serviço através de sua interface. Cada operação
+        disponível constitui uma funcionalidade específica.<br>Exemplos de Operações Comuns:</li>
+    </ul>
+    <ul>
+      <li><strong>GetCapabilities</strong>: Pergunta ao serviço "O que você pode fazer? Quais camadas você tem?".</li>
+      <li><strong>GetMap </strong>(para WMS): Solicita "Me dê uma imagem de mapa para estas camadas, nesta área".</li>
+      <li><strong>GetFeature </strong>(para WFS): Solicita "Me dê os dados vetoriais (geometria e atributos) para estas
+        feições".</li>
+    </ul>
+    <div class="notice-block notice-info">
+      <div class="notice-icon">
+        <svg class="icon-custon icon-info"></svg>
       </div>
-      <h3 class="interoperability-subtitle">A Infraestrutura Digital: A Web como Fundamento</h3>
-      <p>O Geohab, assim como a maioria das aplicações contemporâneas, opera sobre a infraestrutura da Internet e da World Wide Web. Isso significa que toda a troca de informações – como solicitar um mapa ou obter dados sobre uma feição – ocorre através de protocolos e endereçamentos padronizados, possibilitando que o seu navegador (ou o <strong>Visualizador (MapStore 2)</strong> integrado a ele) se comunique com os servidores do Geohab.</p>
-      <h3 class="interoperability-subtitle">O Funcionamento dos GeoServiços</h3>
-      <p>Quando você utiliza o <strong>Visualizador</strong> no Geohab – por exemplo, ao aplicar zoom, deslocar o mapa ou clicar para obter informações de uma camada – uma sequência de comunicações ocorre entre o seu computador e os servidores do Geohab. Analisemos os elementos principais desse processo:</p>
-      <ul class="interoperability-list">
-        <li><strong>O Endereço (URL - Uniform Resource Locator):</strong><br>Cada GeoServiço disponibilizado pelo Geohab (como o serviço de mapas WMS ou o serviço de feições WFS, ambos fornecidos pelo componente <strong>Serviços (GeoServer)</strong>) possui um endereço único na internet: a URL.<br>Essa URL não direciona apenas para um site genérico, mas para um ponto específico no servidor com capacidade para compreender e processar solicitações de dados geoespaciais.<br><br>Exemplo conceitual: Uma URL para solicitar um mapa poderia ter o seguinte formato (os "..." representam outros parâmetros da solicitação):</li>
-      </ul>
-  <pre> <a href="https://geo.cdhu.sp.gov.br/geoserver/ows?SERVICE=WMS&amp;REQUEST=GetMap&amp;" target="_blank" rel="noopener">https://geo.cdhu.sp.gov.br/geoserver/ows?SERVICE=WMS&amp;REQUEST=GetMap&amp;</a>...</pre>
-  <ul>
-  <li><strong>A Conversa (Requisições HTTP):</strong><br>Para "conversar" com esses serviços através de suas URLs, o seu navegador (ou o Visualizador) utiliza o protocolo HTTP (Hypertext Transfer Protocol). É a linguagem fundamental da web.<br>A forma mais comum de fazer um "pedido" a um GeoServiço para visualização de dados é através de uma requisição HTTP GET.<br>Nesse método, todos os detalhes do pedido (que mapa você quer, qual a área de interesse, quais camadas, etc.) são incluídos diretamente na URL, como uma série de parâmetros nome=valor separados por &amp;.<br><br>Por exemplo: Quando o <code><strong class="ng-star-inserted"><span style="color: #b96ad9;">Visualizador</span></strong></code> precisa mostrar uma camada específica em uma determinada área do mapa, ele monta uma URL especial contendo parâmetros como:</li>
-  </ul>
-  <pre>SERVICE=WMS, REQUEST=GetMap, LAYERS=nome_da_camada, BBOX=coordenadas_da_area, WIDTH=largura_pixels, HEIGHT=altura_pixels, etc. </pre>
-  <p>Esta URL é enviada ao servidor.<br><br>Existe também o método HTTP POST, usado para enviar dados mais complexos ou volumosos ao servidor, geralmente dentro do "corpo" da requisição, e não na URL. Embora menos visível para o usuário final em operações de visualização, é importante para outras interações, como a edição de dados ou submissão de formulários complexos.<br><br></p>
-      <ul class="interoperability-list">
-        <li><strong>A Resposta (Dados e Formatos):</strong><br>Após receber a requisição HTTP (a solicitação), o servidor do Geohab (especificamente o GeoServer, no caso de um pedido de mapa) processa-a.<br>Se a solicitação for válida, o servidor retorna uma resposta HTTP. O conteúdo dessa resposta depende do que foi solicitado:
-          <li>Se foi um pedido de mapa (como um WMS GetMap), a resposta geralmente é uma imagem (nos formatos PNG, JPG, etc.).</li>
-          <li>Se foi um pedido por dados de feições (como um WFS GetFeature), a resposta pode ser dados estruturados em formatos como XML/GML ou GeoJSON.</li>
-          <li>Se foi um pedido pelas "capacidades" de um serviço (para saber quais camadas ele oferece, por exemplo, através de uma requisição <strong>GetCapabilities</strong>), a resposta é um documento XML descrevendo o serviço.</li>
-        </li>
-      </ul>
-      <p>Esses diferentes formatos (PNG, JPG, XML, GML, GeoJSON) constituem as codificações: elas definem como os dados estão organizados para que o seu navegador ou o <strong>Visualizador</strong> possam interpretá-los e exibi-los corretamente.</p>
-      <h3 class="interoperability-subtitle">Serviços, Interfaces e Operações (Padrões OGC)</h3>
-      <p>Os GeoServiços do Geohab seguem os padrões estabelecidos pelo OGC (Open Geospatial Consortium). Esses padrões definem:</p>
-      <ul class="interoperability-list">
-        <li><strong>Serviço</strong>: Conjunto de funcionalidades disponibilizadas por um servidor. Por exemplo, o GeoServer no Geohab oferece o serviço WMS (para mapas) e o serviço WFS (para dados vetoriais). Considere o GeoServer como um sistema que oferece diferentes tipos de acesso (Serviços).<br><br></li>
-        <li><strong>Interface</strong>: Especifica o conjunto de solicitações que podem ser realizadas a um serviço. Cada serviço possui um conjunto de operações disponíveis (Interface).<br><br></li>
-        <li><strong>Operação</strong>: Solicitação específica realizada a um serviço através de sua interface. Cada operação disponível constitui uma funcionalidade específica.<br>Exemplos de Operações Comuns:
-       
-          <li><strong>GetCapabilities</strong>: Pergunta ao serviço "O que você pode fazer? Quais camadas você tem?".</li>
-          <li><strong>GetMap </strong>(para WMS): Pede "Me dê uma imagem de mapa para estas camadas, nesta área".</li>
-          <li><strong>GetFeature </strong>(para WFS): Pede "Me dê os dados vetoriais (geometria e atributos) para estas feições".</li>
-        
-        </li>
-      </ul>
-  <h3>Exemplo Prático Simplificado: Visualizando uma Camada no Geohab.</h3>
-  <ol>
-  <li>Você, no Visualizador, ativa uma camada ou move o mapa.</li>
-  <li>O Visualizador "traduz" sua ação em um pedido OGC, por exemplo, uma operação GetMap do serviço WMS.</li>
-  <li>Ele constrói uma URL com todos os parâmetros necessários (camada, área, tamanho da imagem, etc.).</li>
-  <li>Essa URL é enviada ao GeoServer (que implementa o serviço WMS) como uma requisição HTTP GET.</li>
-  <li>O GeoServer processa o pedido, "desenha" a imagem do mapa solicitado.</li>
-  <li>O GeoServer envia a imagem de volta para o seu navegador/Visualizador como resposta HTTP.</li>
-  <li>O Visualizador recebe a imagem e a exibe para você.</li>
-  </ol>
-      <h3 class="interoperability-subtitle">Conclusão</h3>
-      <p>Compreender esses conceitos fundamentais de URL, requisições HTTP e padrões OGC contribui para esclarecer o funcionamento do Geohab na busca e apresentação de informações geoespaciais de forma dinâmica e interativa. Embora não seja necessário memorizar os detalhes técnicos, o conhecimento dessa comunicação padronizada que ocorre nos bastidores pode ampliar sua compreensão sobre as capacidades e a flexibilidade da plataforma.</p>
-      <div class="document-footer">
-        <p>Data: 09/05/2025<br>Versão: 1.1</p>
+      <div class="notice-content">
+        <h3><b>Exemplo Prático Simplificado: Visualizando uma Camada no Geohab</b></h3>
+        <ul>
+          <li>Você, no Visualizador, ativa uma camada ou move o mapa.</li>
+          <li>O Visualizador "traduz" sua ação em um pedido OGC, por exemplo, uma operação GetMap do serviço WMS.</li>
+          <li>Ele constrói uma URL com todos os parâmetros necessários (camada, área, tamanho da imagem, etc.).</li>
+          <li>Essa URL é enviada ao GeoServer (que implementa o serviço WMS) como uma requisição HTTP GET.</li>
+          <li>O GeoServer processa o pedido, "desenha" a imagem do mapa solicitado.</li>
+          <li>O GeoServer envia a imagem de volta para o seu navegador/Visualizador como resposta HTTP.</li>
+          <li>O Visualizador recebe a imagem e a exibe para você.</li>
+        </ul>
       </div>
     </div>
+  
+    <h2>Conclusão</h2>
+    <p>Compreender esses conceitos fundamentais de URL, requisições HTTP e padrões OGC contribui para esclarecer o
+      funcionamento do Geohab na busca e apresentação de informações geoespaciais de forma dinâmica e interativa. Embora
+      não seja necessário memorizar os detalhes técnicos, o conhecimento dessa comunicação padronizada que ocorre nos
+      bastidores pode ampliar sua compreensão sobre as capacidades e a flexibilidade da plataforma.</p>
+    <div class="document-footer">
+      <p><i class="fi fi-tr-calendar"></i> Data de criação: 09 de mai. de 2025<br>
+        <i class="fi fi-tr-calendar-pen"></i> Data de atualização: <span class="gh-auto-date"></span><br>
+        <i class="fi fi-tr-code-compare"></i> Versão: 1.2
+        </p>
+    </div>
+  </div>
 
         <!-- ======================================================= -->
         <!--     SCRIPTS ESSENCIAIS (jQuery, Popper, Bootstrap)      -->
@@ -431,6 +422,24 @@
 
         <!-- SEU ARQUIVO JAVASCRIPT (MODIFICADO) -->
         <script src="script.js"></script>
+        <script>
+          document.addEventListener("DOMContentLoaded", function() {
+              // 1. Pega a data de hoje
+              var hoje = new Date();
+              
+              // 2. Formata para português (Ex: 24/10/2023)
+              //var dataFormatada = hoje.toLocaleDateString('pt-BR');
+              
+              // Se preferir por extenso (Ex: 24 de outubro de 2023), use esta linha no lugar da de cima:
+              var dataFormatada = hoje.toLocaleDateString('pt-BR', { day: 'numeric', month: 'short', year: 'numeric' });
+          
+              // 3. Procura o elemento e coloca a data dentro
+              var elementosData = document.querySelectorAll('.gh-auto-date');
+              elementosData.forEach(function(elemento) {
+                  elemento.textContent = dataFormatada;
+              });
+          });
+          </script>
 </body>
 
 </html>    
