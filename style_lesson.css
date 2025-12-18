@@ -1067,6 +1067,22 @@ body.geohab-lesson-finished h2 {
   vertical-align: middle;
 }
 
+
+.badge-circular-black {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 24px;
+  height: 24px;
+  background-color: var(--color-secondary);
+  color: white;
+  padding-top: 4px;
+  border-radius: 50%;
+  font-weight: bold;
+  font-size: 14px;
+  vertical-align: middle;
+}
+
 .badge-circular-blue {
   display: inline-flex;
   justify-content: center;

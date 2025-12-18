@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Curso Geohab - Módulo 1 - Seção 4</title>
+    <title>Curso Geohab - Módulo 1 - Seção 6.1 - Papéis</title>
 
     <!-- FONTES -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -175,6 +175,7 @@
       .gh-header-right-align { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; background-color: #000000 !important; }
       .gh-main, .gh-sub, .gh-dept span { color: #ffffff !important; text-shadow: none !important; }
       .gh-decoration-right { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+      .thead-dark{ -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
   }
 
 /* =========================================
@@ -234,7 +235,9 @@
     }
     
     /* Se tiver algum logo SVG ou PNG, força contraste */
-
+    .table-bordered .thead-dark {
+      color: black !important;
+    }
     
     /* 4. LIMPEZA (Opcional) */
     /* Esconde elementos do Moodle que não devem sair no PDF (Menu, Breadcrumbs, etc) */
@@ -289,129 +292,207 @@
   </div>
 </div>
   <!--     EDITAR ABAIXO     -->
-
+  <!-- ======================================================= -->
+  <!--                M1S6.1 - PAPÉIS: DEFININDO FUNÇÕES E PERMISSÕES          -->
+  <!-- ======================================================= -->
   <div class="guide-container" style="padding: 0 45px 45px 45px;">
     <div class="materials-hero" style="text-align: center;">
-      <h1 style="font-size: 2.5rem;">Noções de Rede: Entendendo os GeoServiços</h1><br>
+      <h1 style="font-size: 2.5rem;">Papéis: Definindo Funções e Permissões</h1><br>
     </div>
-    <h2>A Infraestrutura Digital: A Web como Fundamento</h2>
-    <p>O Geohab, assim como a maioria das aplicações contemporâneas, opera sobre a infraestrutura da Internet e da World
-      Wide Web. Isso significa que toda a troca de informações – como solicitar um mapa ou obter dados sobre uma feição –
-      ocorre através de protocolos e endereçamentos padronizados, possibilitando que o seu navegador (ou o
-      <strong>Visualizador (MapStore 2)</strong> integrado a ele) se comunique com os servidores do Geohab.
+  
+    <h2>Sobre os Papéis</h2>
+    <p>Conforme apresentado na seção anterior, os <strong>Papéis</strong> (Roles) são uma das quatro instâncias de
+      configuração do sistema de perfis de acesso do Geohab, funcionando como "etiquetas" que definem conjuntos
+      específicos de permissões. Cada <strong>Papel</strong> representa um conjunto de direitos e responsabilidades em
+      relação ao acesso, criação, edição, revisão e administração de dados geoespaciais e funcionalidades do sistema. A
+      seguir, detalhamos cada um dos <strong>Papéis</strong> padrão do Geohab.</p>
+    <br>
+    <h2>Leitor</h2>
+    <h4>Função Principal</h4>
+    <p>Concede direitos de visualização e leitura de dados e metadados que foram publicados e disponibilizados no Geohab.
     </p>
-    <h2>O Funcionamento dos GeoServiços</h2>
-    <p>Quando você utiliza o <strong>Visualizador</strong> no Geohab – por exemplo, ao aplicar zoom, deslocar o mapa ou
-      clicar para obter informações de uma camada – uma sequência de comunicações ocorre entre o seu computador e os
-      servidores do Geohab.<br>
-    <h4>Analisemos os elementos principais desse processo:</h4>
-    </p>
-    <ul>
-      <li><strong>O Endereço (URL - Uniform Resource Locator):</strong><br>Cada GeoServiço disponibilizado pelo Geohab
-        (como o serviço de mapas WMS ou o serviço de feições WFS, ambos fornecidos pelo componente Serviços
-        (GeoServer)) possui um endereço único na internet: a URL.<br> - Essa URL não direciona apenas para um site
-        genérico, mas para um ponto específico no servidor com capacidade para compreender e processar solicitações de
-        dados geoespaciais.<br> - Exemplo conceitual: Uma URL para solicitar um mapa poderia ter o seguinte formato (os
-        "..." representam outros parâmetros da solicitação):</li>
   
-      <div class="lesson-badge"> <a
-          href="https://geo.cdhu.sp.gov.br/geoserver/ows?service=WMS&version=1.3.0&request=GetCapabilities"
-          target="_blank" rel="noopener" style="text-decoration: none; color: currentColor;"><i
-            class="fi fi-rr-up-right-from-square" style="font-size: 10px;""></i> https://geo.cdhu.sp.gov.br/geoserver/ows?service=WMS&version=1.3.0&request=GetCapabilities...</a></div></p>
-      </ul>
+    <h4>Permissões e Poderes Chave</h4>
     <ul>
-      <li><strong>A Conversa (Requisições HTTP):</strong><br>Para " conversar" com esses serviços através de suas URLs, o
-            seu navegador (ou o Visualizador) utiliza o protocolo HTTP (Hypertext Transfer Protocol). É a linguagem
-            fundamental da web.<br>A forma mais comum de fazer um "pedido" a um GeoServiço para visualização de dados é
-            através de uma requisição HTTP GET.<br>Nesse método, todos os detalhes do pedido (que mapa você quer, qual a
-            área
-            de interesse, quais camadas, etc.) são incluídos diretamente na URL, como uma série de parâmetros nome=valor
-            separados por &amp;.<br><br>Por exemplo: Quando o
-            <strong>Visualizador</strong> precisa
-            mostrar uma camada específica em uma determinada área do mapa, ele monta uma URL especial contendo parâmetros
-            como:</li>
+      <li>Visualizar (ler) camadas de mapa que foram publicadas no <span class="badge-text-blue">Serviços
+          (GeoServer)</span>;</li>
+      <li>Acessar e ler os metadados de todas as camadas e serviços disponíveis no <span
+          class="badge-text-salmon">Catálogo (GeoNetwork)</span>;</li>
+      <li>Utilizar as ferramentas de navegação e consulta básica do <span class="badge-text-purple">Visualizador (MapStore
+          2)</span>.
+      </li>
+    </ul>
   
-            <div class="lesson-badge">SERVICE=WMS</div>
-            <div class="lesson-badge">REQUEST=GetMap</div>
-            <div class="lesson-badge">LAYERS=nome_da_camada</div>
-            <div class="lesson-badge">BBOX=coordenadas_da_area</div>
-            <div class="lesson-badge">WIDTH=largura_pixels</div>
-            <div class="lesson-badge">HEIGHT=altura_pixels</div>, etc.
-            <p>Esta URL é enviada ao servidor.<br><br>Existe também o método HTTP POST, usado para enviar dados mais
-              complexos ou
-              volumosos ao servidor, geralmente dentro do "corpo" da requisição, e não na URL. Embora menos visível para o
-              usuário
-              final em operações de visualização, é importante para outras interações, como a edição de dados ou submissão
-              de
-              formulários complexos.<br><br></p>
-    </ul>
+    <h4>Considerações</h4>
     <ul>
-      <li><strong>A Resposta (Dados e Formatos):</strong><br>Após receber a requisição HTTP (a solicitação), o servidor do
-        Geohab (especificamente o GeoServer, no caso de um pedido de mapa) processa-a.<br>Se a solicitação for válida, o
-        servidor retorna uma resposta HTTP. O conteúdo dessa resposta depende do que foi solicitado:</li>
-      <ul>
-        <li>Se foi um pedido de mapa (como um WMS GetMap), a resposta geralmente é uma imagem (nos formatos PNG, JPG,
-          etc.).
-        </li>
-        <li>Se foi um pedido por dados de feições (como um WFS GetFeature), a resposta pode ser dados estruturados em
-          formatos como XML/GML ou GeoJSON.</li>
-        <li>Se foi um pedido pelas "capacidades" de um serviço (para saber quais camadas ele oferece, por exemplo, através
-          de uma requisição <strong>GetCapabilities</strong>), a resposta é um documento XML descrevendo o serviço.</li>
-      </ul>
+      <li>Este é o nível de acesso mais básico, correspondente às operações CRUD: Read (R) apenas;</li>
+      <li>A leitura pode ser servida em diferentes granularidades de acesso de dados (como WMS e/ou WFS, etc.);</li>
+      <li>Usuários com este papel não podem criar, editar ou excluir camadas ou metadados;</li>
+      <li>Todos os outros <strong>Papéis</strong> mais elevados inerentemente possuem as permissões de um Leitor;</li>
+      <li>Conforme a tabela da seção 6, este papel corresponde ao <kbd>LEITOR_SETOR</kbd>.</li>
     </ul>
-    <br><br>  <br><br>
+    <br>
+    <h2>Editor</h2>
+    <h3>Função Principal</h3>
+    <p>Produzir, inserir e atualizar o conteúdo (feições e atributos) de camadas vetoriais específicas, geralmente dentro
+      de seu Setor de atuação, esse papel desempenha atividades, principalmente, dentro do componente <b>Serviços (GeoServer)</b>.</p>
   
-    <p>Esses diferentes formatos (PNG, JPG, XML, GML, GeoJSON) constituem as codificações: elas definem como os dados
-      estão organizados para que o seu navegador ou o <strong>Visualizador</strong> possam interpretá-los e exibi-los
-      corretamente.</p>
-    <h2>Serviços, Interfaces e Operações (Padrões OGC)</h2>
-    <p>Os GeoServiços do Geohab seguem os padrões estabelecidos pelo OGC (Open Geospatial Consortium). Esses padrões
-      definem:</p>
+    <h4>Permissões e Poderes Chave</h4>
     <ul>
-      <li><strong>Serviço</strong>: Conjunto de funcionalidades disponibilizadas por um servidor. Por exemplo, o GeoServer
-        no Geohab oferece o serviço WMS (para mapas) e o serviço WFS (para dados vetoriais). Considere o GeoServer como um
-        sistema que oferece diferentes tipos de acesso (Serviços).<br><br></li>
-      <li><strong>Interface</strong>: Especifica o conjunto de solicitações que podem ser realizadas a um serviço. Cada
-        serviço possui um conjunto de operações disponíveis (Interface).<br><br></li>
-      <li><strong>Operação</strong>: Solicitação específica realizada a um serviço através de sua interface. Cada operação
-        disponível constitui uma funcionalidade específica.<br>Exemplos de Operações Comuns:</li>
+      <li>Atualizar dados existentes em camadas vetoriais designadas (editar geometrias, modificar atributos);</li>
+      <li>Inserir novas feições (registros) em camadas existentes;</li>
+      <li>Apagar feições (registros) individuais de camadas (especialmente aquelas pelas quais é responsável);</li>
+      <li>Atualizar os metadados das camadas que edita para refletir as alterações.</li>
     </ul>
+  <br>
+    <h5>Limitações e Considerações:</h5>
     <ul>
-      <li><strong>GetCapabilities</strong>: Pergunta ao serviço "O que você pode fazer? Quais camadas você tem?".</li>
-      <li><strong>GetMap </strong>(para WMS): Solicita "Me dê uma imagem de mapa para estas camadas, nesta área".</li>
-      <li><strong>GetFeature </strong>(para WFS): Solicita "Me dê os dados vetoriais (geometria e atributos) para estas
-        feições".</li>
+      <li>Normalmente, não possui permissão para criar novas camadas do zero (isso geralmente é responsabilidade do
+        <strong>Administrador local</strong>);
+      </li>
+      <li>Não possui permissão para apagar camadas inteiras ou estruturas de dados;</li>
+      <li>O foco é na produção e manutenção do conteúdo dos dados propriamente ditos;</li>
+      <li>Conforme a tabela da seção 6, este papel corresponde ao <kbd>EDITOR_SETOR</kbd> com operações CRUD: Read (R) e
+        Update (U).</li>
     </ul>
+    <br>
+
+    <br><br><br><br>    
+    <h2>Revisor</h2>
+    <h3>Função Principal</h3>
+    <p>Garantir a qualidade, precisão e conformidade dos dados e metadados antes que sejam formalmente publicados ou após
+      alterações significativas. Esse papel desempenha atividades, principalmente, dentro do componente <b>Catálogo (GeoNetwork)</b></p>
+  
+    <h4>Permissões e Poderes Chave:</h4>
+    <ul>
+      <li>Acessar e revisar o conteúdo detalhado das camadas (vetoriais e <em>raster</em>) e seus respectivos metadados,
+        geralmente após serem trabalhados por um <strong>Editor</strong>;</li>
+      <li>Realizar apontamentos de erros, inconsistências ou necessidade de melhorias nas camadas e metadados (ex: Datum,
+        topologia, conformidade com Perfil MGB 2.0, etc.);</li>
+      <li>Aprovar o conteúdo revisado, indicando que está apto para o próximo passo: publicação de camada e/ou metadado
+        pelo <strong>Administrador local</strong>;</li>
+      <li>Comunicar-se com Editores e Administradores Locais sobre o status da revisão;</li>
+    </ul>
+  <br>
+    <h5>Considerações:</h5>
+    <ul>
+      <li>Atua como um controle de qualidade fundamental no fluxo de trabalho dos dados e na produção de Metadados;</li>
+      <li>Pode ter permissão para fazer pequenas correções, dependendo da configuração, mas o foco principal é a
+        validação;</li>
+      <li>Conforme a tabela da seção 6, este papel corresponde ao <kbd>REVISOR_SETOR</kbd> com operações CRUD: Create (C),
+        Read (R) e Update (U).</li>
+    </ul>
+    <br>
+    <h2>Administrador Local</h2>
+    <h4>Função Principal</h4>
+    <p>Gerenciar todos os aspectos dos dados geoespaciais, usuários e permissões dentro de um <b>Setor</b> específico da CDHU
+       cadastrada no Geohab.</p>
+  
+    <h4>Permissões e Poderes Chave (Dentro do escopo de seu Setor)</h4>
+  
+    <h5>Gerenciamento de Dados e Metadados</h5>
+    <ul>
+      <li>Criar novas camadas (vetoriais e <em>raster</em>) e seus respectivos metadados;</li>
+      <li>Ler, atualizar e excluir camadas e metadados sob sua responsabilidade;</li>
+      <li>Publicar camadas e metadados, tornando-os acessíveis a outros usuários conforme as permissões definidas;</li>
+      <li>Definir a sensibilidade e as políticas de acesso para os dados de seu setor.</li>
+    </ul>
+  
+    <h5>Gerenciamento de Usuários e Permissões do Setor</h5>
+    <ul>
+      <li>Criar, atualizar e apagar perfis de usuários vinculados ao seu setor;</li>
+      <li>Atribuir (delegar) <strong>Papéis</strong> (como <strong>Leitor</strong>, <strong>Editor</strong>,
+        <strong>Revisor</strong>) a usuários dentro de seu setor, controlando o acesso deles aos recursos do setor;
+      </li>
+      <li>Conceder acesso específico a camadas de seu setor para usuários internos ou externos à seu Setor, em colaboração
+        com outros Administradores Locais ou o Super Usuário quando necessário.</li>
+    </ul>
+  <br>
+    <h5>Considerações</h5>
+    <ul>
+      <li>Possui amplos poderes, mas limitados ao contexto de seu <b>Setor</b>;</li>
+      <li>É o único perfil de usuário que possui poder apagar camadas e metadados;</li>
+      <li>É o principal responsável pela governança dos dados de seu <b>Setor</b> no Geohab;</li>
+      <li>Conforme a tabela da seção 6, este papel corresponde ao <kbd>ADMIN_LOCAL_SETOR</kbd> com operações CRUD
+        completas: Create (C), Read (R), Update (U) e Delete (D).</li>
+    </ul>
+    <br>
+    <br><br><br>
+
+    <h2>Super Usuário</h2>
+    <h4>Função Principal</h4>
+    <p>Administrar globalmente a plataforma Geohab, incluindo todos os seus componentes, configurações, usuários e dados
+      em todos os <b>Setores</b>.</p>
+  
+    <h4>Permissões e Poderes Chave (Abrangendo toda a plataforma)</h4>
+  
+    <h5>Gerenciamento Global de Usuários e Roles (Papéis)</h5>
+    <ul>
+      <li>Criar, ler, atualizar e apagar quaisquer perfis de usuários em qualquer <b>Setor</b>, para fins de suporte;</li>
+      <li>Atribuir qualquer <strong>Papel</strong>, incluindo a de <strong>Administrador local</strong>, a usuários
+        autorizados;</li>
+      <li>Gerenciar a configuração de <strong>Papéis</strong> e <b>Setores</b>, conforme a
+        norma do Geohab.</li>
+    </ul>
+  
+    <h5>Gerenciamento Global de Dados e Metadados</h5>
+    <ul>
+      <li>Criar, ler, atualizar, excluir e publicar quaisquer camadas e metadados em toda a plataforma, para fins de
+        suporte.</li>
+    </ul>
+  
+    <h5>Administração do Sistema</h5>
+    <ul>
+      <li>Executar tarefas de configuração e manutenção dos componentes do Geohab (<span class="badge-text-blue">Serviços
+          (GeoServer)</span>, <span class="badge-text-salmon">Catálogo (GeoNetwork)</span>, <span
+          class="badge-text-purple">Visualizador (MapStore 2)</span>, etc.);</li>
+      <li>Monitorar o desempenho e a segurança da plataforma;</li>
+      <li>Gerenciar integrações com outros sistemas.</li>
+    </ul>
+  
+    <div class="notice-block notice-warning">
+      <div class="notice-icon">
+        <svg class="icon-custon icon-warning"></svg>
+      </div>
+      <div class="notice-content">
+        <h4>Considerações e Restrições Importantes</h4>
+        <p>Este <strong>Papel</strong> é altamente privilegiado e deve ser restrita a um número mínimo de técnicos
+          qualificados (ex: equipe de TI/STI da CDHU para operações completas do sistema e, potencialmente, Service Desk
+          para funções de suporte mais limitadas como redefinição de senhas e primeiro nível de reporte de erros).</p>
+      </div>
+    </div>
+  
     <div class="notice-block notice-info">
       <div class="notice-icon">
         <svg class="icon-custon icon-info"></svg>
       </div>
       <div class="notice-content">
-        <h3><b>Exemplo Prático Simplificado: Visualizando uma Camada no Geohab</b></h3>
-        <ul>
-          <li>Você, no Visualizador, ativa uma camada ou move o mapa.</li>
-          <li>O Visualizador "traduz" sua ação em um pedido OGC, por exemplo, uma operação GetMap do serviço WMS.</li>
-          <li>Ele constrói uma URL com todos os parâmetros necessários (camada, área, tamanho da imagem, etc.).</li>
-          <li>Essa URL é enviada ao GeoServer (que implementa o serviço WMS) como uma requisição HTTP GET.</li>
-          <li>O GeoServer processa o pedido, "desenha" a imagem do mapa solicitado.</li>
-          <li>O GeoServer envia a imagem de volta para o seu navegador/Visualizador como resposta HTTP.</li>
-          <li>O Visualizador recebe a imagem e a exibe para você.</li>
-        </ul>
+        <h4>Princípio da Subsidiariedade e Governança</h4>
+        <p>Embora o Super Usuário tenha capacidade técnica para executar ações em qualquer <span
+            class="badge-text-blue">Setor</span> (como criar, publicar ou excluir uma camada de um setor específico), para
+          fins de suporte, é uma prática de boa governança que tais ações relacionadas a dados setoriais sejam realizadas
+          apenas mediante solicitação e autorização expressa do <strong>Administrador Local</strong> responsável ou do
+          proprietário dos dados, via CDA. Isso respeita a autonomia dos setores e a responsabilidade pela gestão de seus
+          próprios dados.</p>
       </div>
     </div>
-  
+  <br>
     <h2>Conclusão</h2>
-    <p>Compreender esses conceitos fundamentais de URL, requisições HTTP e padrões OGC contribui para esclarecer o
-      funcionamento do Geohab na busca e apresentação de informações geoespaciais de forma dinâmica e interativa. Embora
-      não seja necessário memorizar os detalhes técnicos, o conhecimento dessa comunicação padronizada que ocorre nos
-      bastidores pode ampliar sua compreensão sobre as capacidades e a flexibilidade da plataforma.</p>
+    <p>Compreender as responsabilidades e poderes de cada <strong>Papel</strong> (Role) é essencial para o uso adequado e
+      seguro do Geohab, garantindo que os processos de criação, gestão e disseminação de dados geoespaciais na CDHU sejam
+      eficientes e sigam as políticas estabelecidas. Estes papéis, em conjunto com as outras três instâncias de
+      configuração (<strong>Setores</strong>, <strong>Usuários</strong> e <strong>Delegações</strong>), formam o sistema
+      completo de perfis de acesso apresentado na seção anterior.</p>
+  
+    <hr>
     <div class="document-footer">
       <p><i class="fi fi-tr-calendar"></i> Data de criação: 09 de mai. de 2025<br>
         <i class="fi fi-tr-calendar-pen"></i> Data de atualização: <span class="gh-auto-date"></span><br>
-        <i class="fi fi-tr-code-compare"></i> Versão: 1.2
-        </p>
+        <i class="fi fi-tr-code-compare"></i> Versão: 1.1
+      </p>
     </div>
   </div>
+ 
 
         <!-- ======================================================= -->
         <!--     SCRIPTS ESSENCIAIS (jQuery, Popper, Bootstrap)      -->
