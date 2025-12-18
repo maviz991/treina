@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Curso Geohab - Módulo 1 - Seção 6.1 - Papéis</title>
+    <title>Curso Geohab - Módulo 1 - Seção 6.2 - Fluxo de Trabalho</title>
 
     <!-- FONTES -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -291,207 +291,311 @@
     </div>
   </div>
 </div>
-  <!--     EDITAR ABAIXO     -->
+<!-- ======================================================= -->
+<!--                M1S6 - PERFIS DE ACESSO NO GEOHAB          -->
+<!-- ======================================================= -->
   <!-- ======================================================= -->
-  <!--                M1S6.1 - PAPÉIS: DEFININDO FUNÇÕES E PERMISSÕES          -->
+<!-- ======================================================= -->
+  <!--                M1S6.2 - FLUXO DE TRABALHO                -->
   <!-- ======================================================= -->
   <div class="guide-container" style="padding: 0 45px 45px 45px;">
     <div class="materials-hero" style="text-align: center;">
-      <h1 style="font-size: 2.5rem;">Papéis: Definindo Funções e Permissões</h1><br>
+      <h1 style="font-size: 2.5rem;">Fluxo de Trabalho: Publicação de Camadas e Metadados</h1><br>
     </div>
   
-    <h2>Sobre os Papéis</h2>
-    <p>Conforme apresentado na seção anterior, os <strong>Papéis</strong> (Roles) são uma das quatro instâncias de
-      configuração do sistema de perfis de acesso do Geohab, funcionando como "etiquetas" que definem conjuntos
-      específicos de permissões. Cada <strong>Papel</strong> representa um conjunto de direitos e responsabilidades em
-      relação ao acesso, criação, edição, revisão e administração de dados geoespaciais e funcionalidades do sistema. A
-      seguir, detalhamos cada um dos <strong>Papéis</strong> padrão do Geohab.</p>
-    <br>
-    <h2>Leitor</h2>
-    <h4>Função Principal</h4>
-    <p>Concede direitos de visualização e leitura de dados e metadados que foram publicados e disponibilizados no Geohab.
-    </p>
+    <h2>Sobre o Fluxo de Trabalho</h2>
+    <p>Para assegurar a qualidade, consistência e governança dos dados no Geohab, é crucial que cada etapa do processo de gestão seja bem definida. Este documento detalha o "Caminho Feliz" (<em>Happy Path</em>) para a publicação de dados, respeitando a separação técnica entre quem gerencia a <strong>estrutura</strong> (banco de dados) e quem produz o <strong>conteúdo</strong> (informação geográfica).</p>
+<br>  
+    <h2>Definições de Papéis e Ambientes de Atuação</h2>
+    <p>A tabela abaixo resume as responsabilidades no ciclo de vida do dado, indicando onde cada papel atua tecnicamente:</p>
+    
+    <table class="table table-bordered">
+      <thead class="thead-dark">
+        <tr>
+          <th>PAPEL</th>
+          <th>AMBIENTE PRINCIPAL</th>
+          <th>RESPONSABILIDADE E AÇÕES</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Leitor</strong><br><kbd>LEITOR_SETOR</kbd></td>
+          <td>Visualizador / Catálogo</td>
+          <td>
+            <ul>
+              <li><strong>Consumo:</strong> Não participa da produção. Apenas visualiza dados aprovados.</li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td><strong>Editor</strong><br><kbd>EDITOR_SETOR</kbd></td>
+          <td><strong>Serviços (GeoServer)</strong><br>via QGIS (WFS-T)</td>
+          <td>
+            <ul>
+              <li><strong>Produção de Conteúdo:</strong> Insere, desenha e edita feições (pontos, linhas, polígonos).</li>
+              <li><strong>Manutenção:</strong> Pode apagar feições incorretas (conteúdo), mas nunca a camada (estrutura).</li>
+              <li><strong>Documentação:</strong> Fornece as informações técnicas para a "Linhagem".</li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td><strong>Revisor</strong><br><kbd>REVISOR_SETOR</kbd></td>
+          <td><strong>Catálogo (GeoNetwork)</strong><br>e Ferramentas de Validação</td>
+          <td>
+            <ul>
+              <li><strong>QA Geoespacial:</strong> Analisa a qualidade geométrica e topológica do trabalho do Editor.</li>
+              <li><strong>Metadados:</strong> Cria e gerencia o registro de metadado (MGB 2.0).</li>
+              <li><strong>Vínculo:</strong> Associa tecnicamente a Camada ao Metadado.</li>
+              <li><strong>Aprovação:</strong> Autoriza a publicação.</li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td><strong>Administrador Local</strong><br><kbd>ADMIN_LOCAL_SETOR</kbd></td>
+          <td>GeoServer (Admin) / GeoNetwork</td>
+          <td>
+            <ul>
+              <li><strong>Gestão de Estrutura:</strong> Cria tabelas vazias, configura Stores e Layers.</li>
+              <li><strong>Publicação:</strong> Torna o serviço (WMS/WFS) visível para o público alvo.</li>
+              <li><strong>Governança:</strong> Define permissões de acesso.</li>
+            </ul>
+          </td>
+        </tr>
+      </tbody>
+    </table>
   
-    <h4>Permissões e Poderes Chave</h4>
-    <ul>
-      <li>Visualizar (ler) camadas de mapa que foram publicadas no <span class="badge-text-blue">Serviços
-          (GeoServer)</span>;</li>
-      <li>Acessar e ler os metadados de todas as camadas e serviços disponíveis no <span
-          class="badge-text-salmon">Catálogo (GeoNetwork)</span>;</li>
-      <li>Utilizar as ferramentas de navegação e consulta básica do <span class="badge-text-purple">Visualizador (MapStore
-          2)</span>.
-      </li>
-    </ul>
-  
-    <h4>Considerações</h4>
-    <ul>
-      <li>Este é o nível de acesso mais básico, correspondente às operações CRUD: Read (R) apenas;</li>
-      <li>A leitura pode ser servida em diferentes granularidades de acesso de dados (como WMS e/ou WFS, etc.);</li>
-      <li>Usuários com este papel não podem criar, editar ou excluir camadas ou metadados;</li>
-      <li>Todos os outros <strong>Papéis</strong> mais elevados inerentemente possuem as permissões de um Leitor;</li>
-      <li>Conforme a tabela da seção 6, este papel corresponde ao <kbd>LEITOR_SETOR</kbd>.</li>
-    </ul>
-    <br>
-    <h2>Editor</h2>
-    <h3>Função Principal</h3>
-    <p>Produzir, inserir e atualizar o conteúdo (feições e atributos) de camadas vetoriais específicas, geralmente dentro
-      de seu Setor de atuação, esse papel desempenha atividades, principalmente, dentro do componente <b>Serviços (GeoServer)</b>.</p>
-  
-    <h4>Permissões e Poderes Chave</h4>
-    <ul>
-      <li>Atualizar dados existentes em camadas vetoriais designadas (editar geometrias, modificar atributos);</li>
-      <li>Inserir novas feições (registros) em camadas existentes;</li>
-      <li>Apagar feições (registros) individuais de camadas (especialmente aquelas pelas quais é responsável);</li>
-      <li>Atualizar os metadados das camadas que edita para refletir as alterações.</li>
-    </ul>
-  <br>
-    <h5>Limitações e Considerações:</h5>
-    <ul>
-      <li>Normalmente, não possui permissão para criar novas camadas do zero (isso geralmente é responsabilidade do
-        <strong>Administrador local</strong>);
-      </li>
-      <li>Não possui permissão para apagar camadas inteiras ou estruturas de dados;</li>
-      <li>O foco é na produção e manutenção do conteúdo dos dados propriamente ditos;</li>
-      <li>Conforme a tabela da seção 6, este papel corresponde ao <kbd>EDITOR_SETOR</kbd> com operações CRUD: Read (R) e
-        Update (U).</li>
-    </ul>
-    <br>
-
-    <br><br><br><br>    
-    <h2>Revisor</h2>
-    <h3>Função Principal</h3>
-    <p>Garantir a qualidade, precisão e conformidade dos dados e metadados antes que sejam formalmente publicados ou após
-      alterações significativas. Esse papel desempenha atividades, principalmente, dentro do componente <b>Catálogo (GeoNetwork)</b></p>
-  
-    <h4>Permissões e Poderes Chave:</h4>
-    <ul>
-      <li>Acessar e revisar o conteúdo detalhado das camadas (vetoriais e <em>raster</em>) e seus respectivos metadados,
-        geralmente após serem trabalhados por um <strong>Editor</strong>;</li>
-      <li>Realizar apontamentos de erros, inconsistências ou necessidade de melhorias nas camadas e metadados (ex: Datum,
-        topologia, conformidade com Perfil MGB 2.0, etc.);</li>
-      <li>Aprovar o conteúdo revisado, indicando que está apto para o próximo passo: publicação de camada e/ou metadado
-        pelo <strong>Administrador local</strong>;</li>
-      <li>Comunicar-se com Editores e Administradores Locais sobre o status da revisão;</li>
-    </ul>
-  <br>
-    <h5>Considerações:</h5>
-    <ul>
-      <li>Atua como um controle de qualidade fundamental no fluxo de trabalho dos dados e na produção de Metadados;</li>
-      <li>Pode ter permissão para fazer pequenas correções, dependendo da configuração, mas o foco principal é a
-        validação;</li>
-      <li>Conforme a tabela da seção 6, este papel corresponde ao <kbd>REVISOR_SETOR</kbd> com operações CRUD: Create (C),
-        Read (R) e Update (U).</li>
-    </ul>
-    <br>
-    <h2>Administrador Local</h2>
-    <h4>Função Principal</h4>
-    <p>Gerenciar todos os aspectos dos dados geoespaciais, usuários e permissões dentro de um <b>Setor</b> específico da CDHU
-       cadastrada no Geohab.</p>
-  
-    <h4>Permissões e Poderes Chave (Dentro do escopo de seu Setor)</h4>
-  
-    <h5>Gerenciamento de Dados e Metadados</h5>
-    <ul>
-      <li>Criar novas camadas (vetoriais e <em>raster</em>) e seus respectivos metadados;</li>
-      <li>Ler, atualizar e excluir camadas e metadados sob sua responsabilidade;</li>
-      <li>Publicar camadas e metadados, tornando-os acessíveis a outros usuários conforme as permissões definidas;</li>
-      <li>Definir a sensibilidade e as políticas de acesso para os dados de seu setor.</li>
-    </ul>
-  
-    <h5>Gerenciamento de Usuários e Permissões do Setor</h5>
-    <ul>
-      <li>Criar, atualizar e apagar perfis de usuários vinculados ao seu setor;</li>
-      <li>Atribuir (delegar) <strong>Papéis</strong> (como <strong>Leitor</strong>, <strong>Editor</strong>,
-        <strong>Revisor</strong>) a usuários dentro de seu setor, controlando o acesso deles aos recursos do setor;
-      </li>
-      <li>Conceder acesso específico a camadas de seu setor para usuários internos ou externos à seu Setor, em colaboração
-        com outros Administradores Locais ou o Super Usuário quando necessário.</li>
-    </ul>
-  <br>
-    <h5>Considerações</h5>
-    <ul>
-      <li>Possui amplos poderes, mas limitados ao contexto de seu <b>Setor</b>;</li>
-      <li>É o único perfil de usuário que possui poder apagar camadas e metadados;</li>
-      <li>É o principal responsável pela governança dos dados de seu <b>Setor</b> no Geohab;</li>
-      <li>Conforme a tabela da seção 6, este papel corresponde ao <kbd>ADMIN_LOCAL_SETOR</kbd> com operações CRUD
-        completas: Create (C), Read (R), Update (U) e Delete (D).</li>
-    </ul>
-    <br>
-    <br><br><br>
-
-    <h2>Super Usuário</h2>
-    <h4>Função Principal</h4>
-    <p>Administrar globalmente a plataforma Geohab, incluindo todos os seus componentes, configurações, usuários e dados
-      em todos os <b>Setores</b>.</p>
-  
-    <h4>Permissões e Poderes Chave (Abrangendo toda a plataforma)</h4>
-  
-    <h5>Gerenciamento Global de Usuários e Roles (Papéis)</h5>
-    <ul>
-      <li>Criar, ler, atualizar e apagar quaisquer perfis de usuários em qualquer <b>Setor</b>, para fins de suporte;</li>
-      <li>Atribuir qualquer <strong>Papel</strong>, incluindo a de <strong>Administrador local</strong>, a usuários
-        autorizados;</li>
-      <li>Gerenciar a configuração de <strong>Papéis</strong> e <b>Setores</b>, conforme a
-        norma do Geohab.</li>
-    </ul>
-  
-    <h5>Gerenciamento Global de Dados e Metadados</h5>
-    <ul>
-      <li>Criar, ler, atualizar, excluir e publicar quaisquer camadas e metadados em toda a plataforma, para fins de
-        suporte.</li>
-    </ul>
-  
-    <h5>Administração do Sistema</h5>
-    <ul>
-      <li>Executar tarefas de configuração e manutenção dos componentes do Geohab (<span class="badge-text-blue">Serviços
-          (GeoServer)</span>, <span class="badge-text-salmon">Catálogo (GeoNetwork)</span>, <span
-          class="badge-text-purple">Visualizador (MapStore 2)</span>, etc.);</li>
-      <li>Monitorar o desempenho e a segurança da plataforma;</li>
-      <li>Gerenciar integrações com outros sistemas.</li>
-    </ul>
-  
-    <div class="notice-block notice-warning">
-      <div class="notice-icon">
-        <svg class="icon-custon icon-warning"></svg>
+    <div class="notice-block notice-info">
+        <div class="notice-icon">
+          <span class="icon-custon icon-info"></span>
+        </div>
+        <div class="notice-content">
+          <h3>A Dupla Natureza do Revisor</h3>
+          <p>O papel de <strong>Revisor</strong> possui uma função híbrida crucial:</p>
+          <ol>
+            <li><strong>Técnica (Sistema):</strong> É quem opera o <span class="badge-text-salmon">Catálogo</span> para criar e editar metadados.</li>
+            <li><strong>Qualidade (Negócio):</strong> É quem valida se o dado geoespacial desenhado pelo Editor (no GeoServer/QGIS) está cartograficamente correto.</li>
+          </ol>
+        </div>
       </div>
-      <div class="notice-content">
-        <h4>Considerações e Restrições Importantes</h4>
-        <p>Este <strong>Papel</strong> é altamente privilegiado e deve ser restrita a um número mínimo de técnicos
-          qualificados (ex: equipe de TI/STI da CDHU para operações completas do sistema e, potencialmente, Service Desk
-          para funções de suporte mais limitadas como redefinição de senhas e primeiro nível de reporte de erros).</p>
+
+    <h2>Fluxo de Trabalho Detalhado (11 Passos)</h2>
+    <p>O processo ideal para levar um novo dado geoespacial à publicação envolve as seguintes etapas sequenciais:</p>
+  
+    <!-- PASSO 1 -->
+    <div class="step-component">
+      <div class="step-header">
+        <div class="step-number">1</div>
+        <h3 class="step-title">Solicitação de Nova Estrutura (Demanda)</h3>
+      </div>
+      <div class="step-body">
+        <div class="step-content-col-text">
+          <ul>
+            <li><strong>Agente:</strong> <strong>Administrador Local</strong>.</li>
+            <li><strong>Ação:</strong> Identifica a necessidade de uma nova camada. Caso a tabela não exista no banco, formaliza a solicitação (ex: via chamado) detalhando campos, tipos de dados e projeção desejada.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  
+    <!-- PASSO 2 -->
+    <div class="step-component">
+      <div class="step-header">
+        <div class="step-number">2</div>
+        <h3 class="step-title">Criação da Estrutura (Vazia)</h3>
+      </div>
+      <div class="step-body">
+        <div class="step-content-col-text">
+          <ul>
+            <li><strong>Agente:</strong> Grupo Geo/Suporte ou <strong>Admin Local</strong> (com permissão).</li>
+            <li><strong>Ambiente:</strong> Banco de Dados / GeoServer.</li>
+            <li><strong>Ação:</strong> Cria a tabela física (estrutura) e configura o Layer no GeoServer. A camada é disponibilizada para o setor "em branco". <strong>Nenhum dado (feição) existe ainda.</strong></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  
+    <!-- PASSO 3 -->
+    <div class="step-component">
+      <div class="step-header">
+        <div class="step-number">3</div>
+        <h3 class="step-title">Produção do Conteúdo Geoespacial</h3>
+      </div>
+      <div class="step-body">
+        <div class="step-content-col-text">
+          <ul>
+            <li><strong>Agente:</strong> <strong>Editor</strong>.</li>
+            <li><strong>Ambiente:</strong> QGIS conectado via WFS-T.</li>
+            <li><strong>Ação:</strong>
+              <ul>
+                <li><strong>Editor:</strong> Popula a camada. Desenha geometrias, insere registros e preenche atributos.</li>
+                <li><strong>Estilo:</strong> Gera o arquivo de estilo (SLD) para a camada.</li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  
+    <!-- PASSO 4 -->
+    <div class="step-component">
+      <div class="step-header">
+        <div class="step-number">4</div>
+        <h3 class="step-title">Submissão para Revisão</h3>
+      </div>
+      <div class="step-body">
+        <div class="step-content-col-text">
+          <ul>
+            <li><strong>Agente:</strong> <strong>Editor</strong>.</li>
+            <li><strong>Ação:</strong> Notifica o <strong>Revisor</strong> que a camada foi populada e está pronta para análise de qualidade.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  
+    <!-- PASSO 5 -->
+    <div class="step-component">
+      <div class="step-header">
+        <div class="step-number">5</div>
+        <h3 class="step-title">Validação da Qualidade Geoespacial (QA)</h3>
+      </div>
+      <div class="step-body">
+        <div class="step-content-col-text">
+          <ul>
+            <li><strong>Agente:</strong> <strong>Revisor</strong>.</li>
+            <li><strong>Ação:</strong> Analisa a camada produzida quanto à precisão geométrica, topologia (ex: sobreposições) e completude de atributos.
+                <br><em>Nota: Se houver erros, devolve para o Passo 3 (Ciclo de Correção). Se aprovado, segue para o Passo 6.</em>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  
+    <!-- PASSO 6 -->
+    <div class="step-component">
+      <div class="step-header">
+        <div class="step-number">6</div>
+        <h3 class="step-title">Criação do Metadado</h3>
+      </div>
+      <div class="step-body">
+        <div class="step-content-col-text">
+          <ul>
+            <li><strong>Agente:</strong> <strong>Revisor</strong>.</li>
+            <li><strong>Ambiente:</strong> <span class="badge-text-salmon">Catálogo (GeoNetwork)</span>.</li>
+            <li><strong>Ação:</strong> Cria o registro de metadado (usando template MGB 2.0). Preenche identificação, sistema de referência e restrições.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- PASSO 7 -->
+    <div class="step-component">
+        <div class="step-header">
+          <div class="step-number">7</div>
+          <h3 class="step-title">Documentação da Linhagem</h3>
+        </div>
+        <div class="step-body">
+          <div class="step-content-col-text">
+            <ul>
+              <li><strong>Agente:</strong> <strong>Editor</strong> (Fornece) e <strong>Revisor</strong> (Registra).</li>
+              <li><strong>Ação:</strong> O Editor fornece os detalhes técnicos de como o dado foi produzido (processamento, fontes, datas) para que o Revisor preencha o campo "Linhagem" no metadado.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+     <!-- PASSO 8 -->
+     <div class="step-component">
+        <div class="step-header">
+          <div class="step-number">8</div>
+          <h3 class="step-title">Associação Camada-Metadado</h3>
+        </div>
+        <div class="step-body">
+          <div class="step-content-col-text">
+            <ul>
+              <li><strong>Agente:</strong> <strong>Revisor</strong>.</li>
+              <li><strong>Ação:</strong> Realiza o vínculo técnico (Link) no GeoNetwork, associando o metadado ao serviço WMS/WFS correspondente no GeoServer.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+    <!-- PASSO 9 -->
+    <div class="step-component">
+        <div class="step-header">
+          <div class="step-number">9</div>
+          <h3 class="step-title">Aprovação Final</h3>
+        </div>
+        <div class="step-body">
+          <div class="step-content-col-text">
+            <ul>
+              <li><strong>Agente:</strong> <strong>Revisor</strong>.</li>
+              <li><strong>Ação:</strong> Valida que o metadado está completo e aponta para a camada correta. Notifica o <strong>Administrador Local</strong> que o conjunto está pronto para publicação.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+  
+    <!-- PASSO 10 -->
+    <div class="step-component">
+      <div class="step-header">
+        <div class="step-number">10</div>
+        <h3 class="step-title">Publicação no Geohab</h3>
+      </div>
+      <div class="step-body">
+        <div class="step-content-col-text">
+          <ul>
+            <li><strong>Agente:</strong> <strong>Administrador Local</strong>.</li>
+            <li><strong>Ação:</strong>
+              <ul>
+                <li><strong>No GeoServer:</strong> Verifica configurações finais e habilita a camada.</li>
+                <li><strong>No GeoNetwork:</strong> Define as permissões de visualização (ex: Público ou Interno) e publica o metadado.</li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  
+    <!-- PASSO 11 -->
+    <div class="step-component">
+      <div class="step-header">
+        <div class="step-number">11</div>
+        <h3 class="step-title">Disponibilização e Uso</h3>
+      </div>
+      <div class="step-body">
+        <div class="step-content-col-text">
+          <p>A camada e seu metadado estão agora disponíveis no Geohab para consulta e uso pelos usuários com as devidas
+            permissões, acessíveis através do <span class="badge-text-purple">Visualizador (MapStore 2)</span> e do <span
+              class="badge-text-salmon">Catálogo</span>.</p>
+        </div>
       </div>
     </div>
   
     <div class="notice-block notice-info">
       <div class="notice-icon">
-        <svg class="icon-custon icon-info"></svg>
+        <span class="icon-custon icon-info"></span>
       </div>
       <div class="notice-content">
-        <h4>Princípio da Subsidiariedade e Governança</h4>
-        <p>Embora o Super Usuário tenha capacidade técnica para executar ações em qualquer <span
-            class="badge-text-blue">Setor</span> (como criar, publicar ou excluir uma camada de um setor específico), para
-          fins de suporte, é uma prática de boa governança que tais ações relacionadas a dados setoriais sejam realizadas
-          apenas mediante solicitação e autorização expressa do <strong>Administrador Local</strong> responsável ou do
-          proprietário dos dados, via CDA. Isso respeita a autonomia dos setores e a responsabilidade pela gestão de seus
-          próprios dados.</p>
+        <h3>Notas sobre o Fluxo</h3>
+        <ul>
+          <li><strong>Flexibilidade:</strong> O <strong>Administrador Local</strong> pode executar tarefas de Editor ou Revisor se necessário, mas a separação de papéis é recomendada para boa governança.</li>
+          <li><strong>Segurança:</strong> A definição de quem pode ver o dado (Público vs. Privado) é feita exclusivamente no Passo 10 pelo Administrador Local.</li>
+        </ul>
       </div>
     </div>
-  <br>
+  
     <h2>Conclusão</h2>
-    <p>Compreender as responsabilidades e poderes de cada <strong>Papel</strong> (Role) é essencial para o uso adequado e
-      seguro do Geohab, garantindo que os processos de criação, gestão e disseminação de dados geoespaciais na CDHU sejam
-      eficientes e sigam as políticas estabelecidas. Estes papéis, em conjunto com as outras três instâncias de
-      configuração (<strong>Setores</strong>, <strong>Usuários</strong> e <strong>Delegações</strong>), formam o sistema
-      completo de perfis de acesso apresentado na seção anterior.</p>
+    <p>Este fluxo de trabalho estruturado garante que nenhum dado seja publicado sem passar por: 1) Criação estrutural adequada; 2) Produção de conteúdo qualificada; 3) Validação técnica e documental; 4) Publicação controlada. A clareza nas etapas evita a publicação de dados inconsistentes ou sem documentação.</p>
   
     <hr>
     <div class="document-footer">
-      <p><i class="fi fi-tr-calendar"></i> Data de criação: 09 de mai. de 2025<br>
+      <p><i class="fi fi-tr-calendar"></i> Data de criação: 14 de mai. de 2025<br>
         <i class="fi fi-tr-calendar-pen"></i> Data de atualização: <span class="gh-auto-date"></span><br>
-        <i class="fi fi-tr-code-compare"></i> Versão: 1.1
+        <i class="fi fi-tr-code-compare"></i> Versão: 1.3
       </p>
     </div>
   </div>
+
  
 
         <!-- ======================================================= -->
