@@ -573,6 +573,8 @@ function setupInteractiveImages() {
     });
 } 
 
+
+
 // Executa a função principal quando a página carrega
 setupInteractiveImages();
 
@@ -587,7 +589,37 @@ $(window).on('resize', function() {
     // AVISO: A chamada ao Web Service e a contagem de conclusão do Moodle
     // vão falhar localmente. O código foi deixado aqui, mas comentado
     // ou dentro de 'try...catch' para não quebrar o resto do script.
-    
+    async function forceDownload(url, filename) {
+        try {
+          // 1. O navegador vai buscar o arquivo nos bastidores
+          const response = await fetch(url);
+          
+          // Verifica se deu certo
+          if (!response.ok) throw new Error('Falha na rede');
+      
+          // 2. Transforma o arquivo num "Blob" (objeto binário)
+          const blob = await response.blob();
+          
+          // 3. Cria um link temporário na memória do navegador
+          const blobUrl = window.URL.createObjectURL(blob);
+          
+          // 4. Cria um link invisível, clica nele e remove
+          const link = document.createElement('a');
+          link.href = blobUrl;
+          link.download = filename; // Aqui o nome é forçado!
+          document.body.appendChild(link);
+          link.click();
+          
+          // Limpeza
+          document.body.removeChild(link);
+          window.URL.revokeObjectURL(blobUrl);
+      
+        } catch (error) {
+          console.error('Erro no download:', error);
+          // Se o truque falhar (ex: bloqueio de CORS), abre numa nova aba como plano B
+          window.open(url, '_blank');
+        }
+      }
     console.warn("A lógica de progresso do curso e dos módulos está desativada em ambiente local, pois depende de APIs e da estrutura do Moodle.");
     
 });

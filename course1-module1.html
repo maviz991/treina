@@ -7,6 +7,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/3.0.0/uicons-bold-rounded/css/uicons-bold-rounded.css'>
 
     <link rel="stylesheet" href="styles.css">
     <script src="/script.js"></script>
@@ -1240,19 +1241,18 @@
                     </div>
                     <div class="collapsible-content">
                         <div class="collapsible-content-btn">
-                            <a href="/mod/resource/view.php?id=642" class="material-sct-action-button"
-                                title="Clique aqui" data-toggle="tooltip" data-placement="auto"><span>PDF - Perfis de
+                            <a href="/mod/page/view.php?id=1047" class="material-sct-action-button"
+                                title="Clique aqui" data-toggle="tooltip" data-placement="auto"><span>Acesar - Perfis de
                                     Acesso</span>
                                     <svg class="icon-custon icon-arrow-right"></svg>
                             </a>
-                            <a href="/mod/resource/view.php?id=636" class="material-sct-action-button"
-                                title="Clique aqui" data-toggle="tooltip" data-placement="right"><span>PDF - Papeís do
-                                    Geohab</span>
+                            <a href="/mod/page/view.php?id=1048" class="material-sct-action-button"
+                                title="Clique aqui" data-toggle="tooltip" data-placement="right"><span>Acesar - Papeis</span>
                                     <svg class="icon-custon icon-arrow-right"></svg>
                             </a>
-                            <a href="/mod/resource/view.php?id=635" class="material-sct-action-button"
-                                title="Clique aqui" data-toggle="tooltip" data-placement="auto"><span>PDF -
-                                    Responsabilidades</span>
+                            <a href="/mod/page/view.php?id=1049" class="material-sct-action-button"
+                                title="Clique aqui" data-toggle="tooltip" data-placement="auto"><span>Acesar -
+                                    Fluxo de trabalho</span>
                                     <svg class="icon-custon icon-arrow-right"></svg>
                             </a>
                         </div>
@@ -1264,11 +1264,11 @@
 </div>
 <!--                         FIM: BLOCO SEÇÃO 6                          -->
 
-<!--                    INÍCIO: BLOCO DE MATERIAIS                       -->
+<!--                    INÍCIO: BLOCO DE MATERIAIS   7                    -->
 <div class="module-intro-block" id="m1-s7-materials">
     <div class="materials-hero">
         <h1 class="module-title">Materiais de Apoio</h1>
-        <p class="materials-hero p">Acesse todos os slides e documentos complementares do curso. Os materiais estão
+        <p class="materials-hero p">Acesse todos os slides e documentos complementares do curso.<br> Os materiais estão
             organizados por seção para facilitar sua consulta.</p>
     </div>
     <!-- Seção: Módulo 1 -->
@@ -1293,12 +1293,22 @@
                                     <span class="file-name">Materiais Disponíveis</span>
                                 </div>
                                 <div class="file-info-icons">
+                                    <a href="#" 
+                                        onclick="forceDownload('https://stor.cdhu.sp.gov.br/treina/publico/curso1/docs/modulo4-secao1-tecnologias_mapas.pdf',
+                                         'manual-padroes.pdf'); return false;" 
+                                        class="file-type" 
+                                        title="Baixar PDF" 
+                                        data-placement="auto" 
+                                        data-toggle="tooltip">
+                                        <i class="fi fi-br-align-center"></i> PDF*
+                                    </a>
+                            
                                     <a href="/mod/resource/view.php?id=638" target="_blank"
-                                        class="file-type" title="Acesse o PDF" data-placement="auto"
-                                        data-toggle="tooltip">PDF</a>
+                                        class="file-type-slider slider" title="Acesse o PDF do SLIDE" data-placement="auto"
+                                        data-toggle="tooltip"><i class="fi fi-br-rectangle-vertical-history"></i> SLIDES</a>
                                 </div>
                             </div>
-                            <a href="/mod/resource/view.php?id=638" target="_blank"
+                            <a href="#" target="_blank"
                                 title="Baixe todos os materiais" data-toggle="tooltip">
                                 <svg class="download-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                     viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
@@ -1312,7 +1322,7 @@
                     </div>
                 </div>
             </div>
-            <!-- Card 2: Interoperabilidade -->
+            <!-- Card 3: Interoperabilidade -->
             <div class="material-card" id="m1-s7-materials-card2">
                 <div class="material-header">
                     <div class="material-icon">
@@ -1335,9 +1345,20 @@
                                     <span class="file-name">Materiais Disponíveis</span>
                                 </div>
                                 <div class="file-info-icons">
+                                    <a href="#" 
+                                        onclick="forceDownload('https://stor.cdhu.sp.gov.br/treina/publico/curso1/docs/modulo1-secao3-padroes.pdf',
+                                         'modulo1-secao3-padroes.pdf'); return false;" 
+                                        class="file-type" 
+                                        title="Baixar PDF" 
+                                        data-placement="auto" 
+                                        data-toggle="tooltip">
+                                        <i class="fi fi-br-align-center"></i> PDF
+                                    </a>                                    
+
                                     <a href="/mod/resource/view.php?id=639" target="_blank"
-                                        class="file-type" title="Acesse o PDF" data-placement="auto"
-                                        data-toggle="tooltip">PDF</a>
+                                        class="file-type-slider slider" title="Acesse o PDF do Slide" data-placement="auto"
+                                        data-toggle="tooltip"><i class="fi fi-br-rectangle-vertical-history"></i> SLIDES</a>
+
                                 </div>
                             </div>
                             <a href="/mod/resource/view.php?id=639" target="_blank"
@@ -1354,7 +1375,7 @@
                     </div>
                 </div>
             </div>
-            <!-- Card 3: Noções de Rede -->
+            <!-- Card 4: Noções de Rede -->
             <div class="material-card" id="m1-s7-materials-card3">
                 <div class="material-header">
                     <div class="material-icon">
@@ -1380,9 +1401,19 @@
                                     <span class="file-name">Materiais Disponíveis</span>
                                 </div>
                                 <div class="file-info-icons">
+                                    <a href="#" 
+                                        onclick="forceDownload('https://stor.cdhu.sp.gov.br/treina/publico/curso1/docs/modulo1-secao4-redes.pdf',
+                                         'modulo1-secao4-redes.pdf'); return false;" 
+                                        class="file-type" 
+                                        title="Baixar PDF" 
+                                        data-placement="auto" 
+                                        data-toggle="tooltip">
+                                        <i class="fi fi-br-align-center"></i> PDF
+                                    </a>                                    
+
                                     <a href="/mod/resource/view.php?id=640" target="_blank"
-                                        class="file-type" title="Acesse o PDF" data-toggle="tooltip"
-                                        data-placement="auto">PDF</a>
+                                        class="file-type-slider slider" title="Acesse o PDF do Slide" data-toggle="tooltip"
+                                        data-placement="auto"><i class="fi fi-br-rectangle-vertical-history"></i> SLIDES</a>
                                 </div>
                             </div>
                             <a href="/mod/resource/view.php?id=640" target="_blank"
@@ -1423,9 +1454,16 @@
                                     <span class="file-name">Materiais Disponíveis</span>
                                 </div>
                                 <div class="file-info-icons">
+                                    <a href="#"
+                                        onclick="forceDownload('https://stor.cdhu.sp.gov.br/treina/publico/curso1/docs/modulo1-secao5-geoservicos.pdf',
+                                         'modulo1-secao5-geoservicos.pdf'); return false;"
+                                        class="file-type" title="Baixar PDF" data-placement="auto" data-toggle="tooltip">
+                                        <i class="fi fi-br-align-center"></i> PDF
+                                    </a>
+                                    
                                     <a href="/mod/resource/view.php?id=641" target="_blank"
-                                        class="file-type" title="Acesse o PDF" data-toggle="tooltip"
-                                        data-placement="auto">PDF</a>
+                                        class="file-type-slider slider" title="Acesse o PDF do Slide" data-toggle="tooltip"
+                                        data-placement="auto"><i class="fi fi-br-rectangle-vertical-history"></i> SLIDES</a>
                                 </div>
                             </div>
                             <a href="/mod/resource/view.php?id=641" target="_blank"
@@ -1465,16 +1503,28 @@
                                     <span class="file-name">Materiais Disponíveis</span>
                                 </div>
                                 <div class="file-info-icons">
-                                    <a href="/mod/resource/view.php?id=642" target="_blank"
-                                        class="file-type" title="Clique aqui" data-toggle="tooltip"
-                                        data-placement="auto">PDF - Perfis de Acesso</a>
-                                    <a href="/mod/resource/view.php?id=636" target="_blank"
-                                        class="file-type" title="Clique aqui" data-toggle="tooltip"
-                                        data-placement="auto">PDF - Papeís do Geohab</a>
-                                    <a href="/mod/resource/view.php?id=635" target="_blank"
-                                        class="file-type" title="Clique aqui" data-toggle="tooltip"
-                                        data-placement="auto">PDF - Responsabilidades</a>
+                                    <a href="#"
+                                        onclick="forceDownload('https://stor.cdhu.sp.gov.br/treina/publico/curso1/docs/modulo1-secao6-perfis_de_acesso.pdf',
+                                         'modulo1-secao6-perfis_de_acesso.pdf'); return false;"
+                                        class="file-type" title="Baixar PDF" data-placement="auto" data-toggle="tooltip">
+                                        <i class="fi fi-br-align-center"></i> PDF - Perfis
+                                    </a>
+                                    <a href="#"
+                                        onclick="forceDownload('https://stor.cdhu.sp.gov.br/treina/publico/curso1/docs/modulo1-secao6_1-papeis.pdf',
+                                         'modulo1-secao6_1-papeis.pdf'); return false;"
+                                        class="file-type" title="Baixar PDF" data-placement="auto" data-toggle="tooltip">
+                                        <i class="fi fi-br-align-center"></i> PDF - Papéis
+                                    </a>
+                                    <a href="#"
+                                        onclick="forceDownload('https://stor.cdhu.sp.gov.br/treina/publico/curso1/docs/modulo1-secao6_2-fluxo_de_trabalho.pdf',
+                                         'modulo1-secao6_2-fluxo_de_trabalho.pdf'); return false;"
+                                        class="file-type" title="Baixar PDF" data-placement="auto" data-toggle="tooltip">
+                                        <i class="fi fi-br-align-center"></i> PDF - Fluxo
+                                    </a>   
 
+                                    <a href="/mod/resource/view.php?id=642" target="_blank"
+                                        class="file-type-slider slider" title="Acesse o PDF do Slide" data-toggle="tooltip"
+                                        data-placement="auto"><i class="fi fi-br-rectangle-vertical-history"></i> SLIDES - Perfis</a>
                                 </div>
                             </div>
                             <a href="/mod/resource/view.php?id=642" target="_blank"
@@ -1493,12 +1543,13 @@
             </div>
         </div>
     </div>
-    <div class="section-divider"></div>
-    <!-- Seção: Materiais Complementares -->
+    <br><p>* Material impresso do conteúdo - não é material complementar</p>
+    <!--<div class="section-divider"></div>
+     Seção: Materiais Complementares 
     <div class="materials-section">
         <h2 class="guide-container-title">Materiais Complementares</h2>
         <div class="materials-grid">
-            <!-- Card 6: Documentação Técnica -->
+            <! Card 6: Documentação Técnica 
             <div class="material-card" id="m1-s7-materials-card7">
                 <div class="material-header">
                     <div class="material-icon">
@@ -1538,7 +1589,7 @@
                     </div>
                 </div>
             </div>
-            <!-- Card 7: Tutoriais e Guias Rápidos -->
+            <!- Card 7: Tutoriais e Guias Rápidos 
             <div class="material-card" id="m1-s7-materials-card8">
                 <div class="material-header">
                     <div class="material-icon">
@@ -1578,8 +1629,8 @@
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
+            </div>-->
+</div> 
     </div>
 </div>
 <!--                      FIM: BLOCO DE MATERIAIS                        -->

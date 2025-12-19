@@ -1,87 +1,296 @@
 <script>
-    document.addEventListener("DOMContentLoaded", function() {
+    async function forceDownload(url, filename) {
+      try {
+        // 1. O navegador vai buscar o arquivo nos bastidores
+        const response = await fetch(url);
         
-        // TRAVA DE SEGURANÇA 1: Verifica se estamos na URL de visualização da questão
-        if (window.location.href.indexOf('view.php') === -1) {
-            return; 
-        }
+        // Verifica se deu certo
+        if (!response.ok) throw new Error('Falha na rede');
     
-        // Verifica se é página de lição
-        if (document.body.classList.contains('path-mod-lesson')) {
+        // 2. Transforma o arquivo num "Blob" (objeto binário)
+        const blob = await response.blob();
+        
+        // 3. Cria um link temporário na memória do navegador
+        const blobUrl = window.URL.createObjectURL(blob);
+        
+        // 4. Cria um link invisível, clica nele e remove
+        const link = document.createElement('a');
+        link.href = blobUrl;
+        link.download = filename; // Aqui o nome é forçado!
+        document.body.appendChild(link);
+        link.click();
+        
+        // Limpeza
+        document.body.removeChild(link);
+        window.URL.revokeObjectURL(blobUrl);
+    
+      } catch (error) {
+        console.error('Erro no download:', error);
+        // Se o truque falhar (ex: bloqueio de CORS), abre numa nova aba como plano B
+        window.open(url, '_blank');
+      }
+    }
+    </script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
             
-            // -----------------------------------------------------------
-            // 1. DEFINIR VARIÁVEIS GERAIS E DETECTAR FIM DE PÁGINA
-            // (Precisamos saber se é o fim antes de tentar formatar o título)
-            // -----------------------------------------------------------
-            var mainHeading = document.querySelector('#region-main h2');
-            var gradeBox = document.querySelector('.path-mod-lesson .box.generalbox');
-            var standardExitLink = document.querySelector('.path-mod-lesson .lessonbutton');
-            var specificBackLink = document.querySelector('.flexsections-activity-page-navigate-back a');
+            // TRAVA DE SEGURANÇA 1: Verifica se estamos na URL de visualização da questão
+            if (window.location.href.indexOf('view.php') === -1) {
+                return; 
+            }
+        
+            // Verifica se é página de lição
+            if (document.body.classList.contains('path-mod-lesson')) {
+                
+                // -----------------------------------------------------------
+                // 1. DEFINIR VARIÁVEIS GERAIS E DETECTAR FIM DE PÁGINA
+                // (Precisamos saber se é o fim antes de tentar formatar o título)
+                // -----------------------------------------------------------
+                var mainHeading = document.querySelector('#region-main h2');
+                var gradeBox = document.querySelector('.path-mod-lesson .box.generalbox');
+                var standardExitLink = document.querySelector('.path-mod-lesson .lessonbutton');
+                var specificBackLink = document.querySelector('.flexsections-activity-page-navigate-back a');
+        
+                var isEndPage = false;
+                if (mainHeading && (mainHeading.innerText.includes('fim desta lição') || mainHeading.innerText.includes('reached the end'))) {
+                    isEndPage = true;
+                } else if (gradeBox && standardExitLink) {
+                    // Se tem caixa de nota e botão de sair, mas não tem formulário de resposta
+                    if (!document.querySelector('.answeroption') && !document.querySelector('.fitem')) {
+                        isEndPage = true;
+                    }
+                }
+        
+                // -----------------------------------------------------------
+                // 2. [CIRURGIA] INJEÇÃO DO TÍTULO AUTOMÁTICO
+                // (Só roda se NÃO for página de fim)
+                // -----------------------------------------------------------
+                if (!isEndPage) {
+                    var moodleContent = document.querySelector('.path-mod-lesson .contents');
+                    
+                    if (moodleContent) {
+                        // Verifica se já não tem o bloco para não duplicar
+                        if (!moodleContent.querySelector('.lesson-block')) {
+                            
+                            // Pega o texto original (geralmente dentro de .no-overflow)
+                            var textContainer = moodleContent.querySelector('.no-overflow') || moodleContent;
+                            var originalContent = textContainer.innerHTML;
+                
+                            // Cria a estrutura HTML do Geohab
+                            var newStructure =  '<div class="lesson-block">' +
+                                                '   <div class="lesson-block-title">' +
+                                                '       <h3>' + originalContent + '</h3>' +
+                                                '   </div>' +
+                                                '   <!-- O Badge será inserido aqui pelo código abaixo -->' +
+                                                '</div>';
+                
+                            // Substitui o HTML "cru" pela nova estrutura
+                            moodleContent.innerHTML = newStructure;
+                        }
+                    }
+                }
+        
+                // -----------------------------------------------------------
+                // 3. CÓDIGO DO BADGE (SEU CÓDIGO ORIGINAL)
+                // (Agora ele vai encontrar o .lesson-block criado acima)
+                // -----------------------------------------------------------
+                var lessonBlock = document.querySelector('.lesson-block');
+                
+                // Verifica se achou o bloco (seja manual ou automático)
+                if (lessonBlock) {
+                    
+                    var questionType = ""; 
+                    
+                    // Busca área de resposta
+                    var answerArea = document.querySelector('.path-mod-lesson .fcontainer') || 
+                                     document.querySelector('.path-mod-lesson .answeroptiongroup') ||
+                                     document.querySelector('.path-mod-lesson form input[name="answer"]').closest('form');
+        
+                    if (answerArea) {
+                        if (answerArea.querySelector('select')) {
+                            questionType = "Associação";
+                        }
+                        else if (answerArea.querySelector('input[type="checkbox"]')) {
+                            questionType = "Múltipla Escolha";
+                        }
+                        else if (answerArea.querySelector('input[type="radio"]')) {
+                            var textContent = document.body.innerText;
+                            if (textContent.includes("Verdadeiro") || textContent.includes("Falso") || 
+                                textContent.includes("True") || textContent.includes("False")) {
+                                questionType = "Verdadeiro / Falso";
+                            } else {
+                                questionType = "Múltipla Escolha"; 
+                            }
+                        }
+                        else if (answerArea.querySelector('textarea')) {
+                             questionType = "Dissertação";
+                        }
+                        else if (answerArea.querySelector('input[type="text"][id^="id_answer"]')) {
+                            questionType = "Resposta Curta";
+                        }
+                    }
+        
+                    // INJEÇÃO DO BADGE
+                    if (questionType !== "" && !lessonBlock.querySelector('.lesson-badge')) {
+                        var badgeSpan = document.createElement('span');
+                        badgeSpan.className = 'lesson-badge geohab-badge';
+                        badgeSpan.textContent = questionType;
+                        badgeSpan.style.marginRight = "10px";
+                        
+                        var titleDiv = lessonBlock.querySelector('.lesson-block-title');
+                        if (titleDiv) {
+                            titleDiv.parentNode.insertBefore(badgeSpan, titleDiv.nextSibling);
+                        } else {
+                            lessonBlock.appendChild(badgeSpan);
+                        }
+                    }
+                }
     
-            var isEndPage = false;
-            if (mainHeading && (mainHeading.innerText.includes('fim desta lição') || mainHeading.innerText.includes('reached the end'))) {
-                isEndPage = true;
-            } else if (gradeBox && standardExitLink) {
-                // Se tem caixa de nota e botão de sair, mas não tem formulário de resposta
-                if (!document.querySelector('.answeroption') && !document.querySelector('.fitem')) {
+            }
+        });
+        </script>
+    
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            
+            // Verifica se é página de lição
+            if (document.body.classList.contains('path-mod-lesson')) {
+                
+                // Tenta encontrar elementos chaves da página de fim
+                var mainHeading = document.querySelector('#region-main h2');
+                var gradeBox = document.querySelector('.path-mod-lesson .box.generalbox');
+                
+                // ELEMENTOS DE NAVEGAÇÃO
+                // 1. O link "inteligente" do seu tema (que fica no topo e sabe a seção certa)
+                var specificBackLink = document.querySelector('.flexsections-activity-page-navigate-back a');
+                // 2. O botão padrão do Moodle (caso o de cima falhe)
+                var standardExitLink = document.querySelector('.path-mod-lesson .lessonbutton');
+        
+                // LÓGICA DE DETECÇÃO DE PÁGINA FINAL
+                var isEndPage = false;
+                if (mainHeading && (mainHeading.innerText.includes('fim desta lição') || mainHeading.innerText.includes('reached the end'))) {
+                    isEndPage = true;
+                } else if (gradeBox && standardExitLink) {
                     isEndPage = true;
                 }
-            }
-    
-            // -----------------------------------------------------------
-            // 2. [CIRURGIA] INJEÇÃO DO TÍTULO AUTOMÁTICO
-            // (Só roda se NÃO for página de fim)
-            // -----------------------------------------------------------
-            if (!isEndPage) {
-                var moodleContent = document.querySelector('.path-mod-lesson .contents');
-                
-                if (moodleContent) {
-                    // Verifica se já não tem o bloco para não duplicar
-                    if (!moodleContent.querySelector('.lesson-block')) {
+        
+                if (isEndPage) {
+                    console.log("Geohab: Página de conclusão detectada. Gerando Card...");
+                    
+                    // 1. Adiciona classe ao Body para o CSS ocultar os elementos originais
+                    document.body.classList.add('geohab-lesson-finished');
+        
+                    // 2. Cria o Container do Card
+                    var card = document.createElement('div');
+                    card.className = 'geohab-end-card';
+        
+                    // 3. Ícone
+                    card.innerHTML = '<div class="geohab-success-icon"><i class="fi fi-rs-check-circle"></i></div>';
+                    
+                    // 4. Título
+                    var title = document.createElement('div');
+                    title.className = 'geohab-end-title';
+                    title.innerText = "Parabéns! Lição Concluída.";
+                    card.appendChild(title);
+        
+                    // 5. Nota (Se houver)
+                    if (gradeBox) {
+                        var cleanText = gradeBox.innerText.replace(/\n/g, "<br>");
+                        var gradeDiv = document.createElement('div');
+                        gradeDiv.className = 'geohab-grade-box';
+                        gradeDiv.innerHTML = cleanText;
+                        // Destaque para números
+                        gradeDiv.innerHTML = gradeDiv.innerHTML.replace(/(\d+[,.]\d+)/g, '<span class="geohab-grade-value">$1</span>');
+                        card.appendChild(gradeDiv);
                         
-                        // Pega o texto original (geralmente dentro de .no-overflow)
-                        var textContainer = moodleContent.querySelector('.no-overflow') || moodleContent;
-                        var originalContent = textContainer.innerHTML;
-            
-                        // Cria a estrutura HTML do Geohab
-                        var newStructure =  '<div class="lesson-block">' +
-                                            '   <div class="lesson-block-title">' +
-                                            '       <h3>' + originalContent + '</h3>' +
-                                            '   </div>' +
-                                            '   <!-- O Badge será inserido aqui pelo código abaixo -->' +
-                                            '</div>';
-            
-                        // Substitui o HTML "cru" pela nova estrutura
-                        moodleContent.innerHTML = newStructure;
+                        gradeBox.style.display = 'none'; // Oculta original
+                    }
+        
+                    // 6. O BOTÃO DE VOLTAR 
+                    var targetUrl = "";
+                    var btnLabel = "Voltar para o Curso";
+        
+                    if (specificBackLink) {
+                        // Prioridade: Usa o link do "Voltar para Seção X" do seu tema
+                        targetUrl = specificBackLink.href;
+                        
+                        // Tenta pegar o nome da seção do texto original (ex: "Voltar para 'Seção 1'")
+                        var originalText = specificBackLink.innerText.trim();
+                        // Remove a seta ou ícones se tiver texto sujo
+                        if (originalText.toLowerCase().includes('voltar para')) {
+                            btnLabel = originalText; 
+                        } else {
+                            btnLabel = "Voltar para a Seção";
+                        }
+                    } else if (standardExitLink) {
+                        // Fallback: Usa o botão padrão se o específico não existir
+                        targetUrl = standardExitLink.href;
+                    }
+        
+                    if (targetUrl) {
+                        var newBtn = document.createElement('a');
+                        newBtn.href = targetUrl;
+                        newBtn.className = 'geohab-finish-btn';
+                        newBtn.innerHTML = btnLabel + ' <i class="fi fi-rs-arrow-right" style="margin-left:5px; font-size: 0.9em;"></i>';
+                        
+                        card.appendChild(newBtn);
+                    }
+                    
+                    // Oculta botão padrão antigo se existir
+                    if (standardExitLink) standardExitLink.style.display = 'none';
+        
+                    // 7. Insere o Card na página
+                    var mainRegion = document.querySelector('#region-main');
+                    if (mainRegion) {
+                        var contentDiv = mainRegion.querySelector('div[role="main"]');
+                        if(contentDiv) {
+                             contentDiv.prepend(card);
+                        } else {
+                             mainRegion.prepend(card);
+                        }
                     }
                 }
             }
-    
-            // -----------------------------------------------------------
-            // 3. CÓDIGO DO BADGE (SEU CÓDIGO ORIGINAL)
-            // (Agora ele vai encontrar o .lesson-block criado acima)
-            // -----------------------------------------------------------
-            var lessonBlock = document.querySelector('.lesson-block');
+        });
+        </script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
             
-            // Verifica se achou o bloco (seja manual ou automático)
-            if (lessonBlock) {
+            // TRAVA DE SEGURANÇA 1: Verifica se estamos na URL de visualização da questão
+            // Se a URL contiver "continue.php", o script PARA imediatamente.
+            if (window.location.href.indexOf('view.php') === -1) {
+                return; 
+            }
+        
+            // TRAVA DE SEGURANÇA 2: Verifica classes básicas
+            var lessonBlock = document.querySelector('.lesson-block');
+            var isLessonPage = document.body.classList.contains('path-mod-lesson');
+        
+            if (isLessonPage && lessonBlock) {
                 
                 var questionType = ""; 
                 
-                // Busca área de resposta
+                // FOCA APENAS NO FORMULÁRIO DE RESPOSTA (Evita pegar busca do site ou login)
+                // O Moodle geralmente coloca a área de resposta dentro de .fcontainer ou .box
                 var answerArea = document.querySelector('.path-mod-lesson .fcontainer') || 
                                  document.querySelector('.path-mod-lesson .answeroptiongroup') ||
                                  document.querySelector('.path-mod-lesson form input[name="answer"]').closest('form');
-    
+        
                 if (answerArea) {
+                    
+                    // 1. ASSOCIAÇÃO (Selects)
                     if (answerArea.querySelector('select')) {
                         questionType = "Associação";
                     }
+                    
+                    // 2. MÚLTIPLA ESCOLHA (Checkboxes)
                     else if (answerArea.querySelector('input[type="checkbox"]')) {
                         questionType = "Múltipla Escolha";
                     }
+                    
+                    // 3. VERDADEIRO/FALSO ou ESCOLHA ÚNICA (Radios)
                     else if (answerArea.querySelector('input[type="radio"]')) {
-                        var textContent = document.body.innerText;
+                        var textContent = answerArea.innerText || "";
                         if (textContent.includes("Verdadeiro") || textContent.includes("Falso") || 
                             textContent.includes("True") || textContent.includes("False")) {
                             questionType = "Verdadeiro / Falso";
@@ -89,20 +298,25 @@
                             questionType = "Múltipla Escolha"; 
                         }
                     }
+                    
+                    // 4. DISSERTAÇÃO (Textarea visível)
                     else if (answerArea.querySelector('textarea')) {
                          questionType = "Dissertação";
                     }
+                    
+                    // 5. RESPOSTA CURTA (Input Text)
+                    // Refinamento: Verifica se o ID começa com "id_answer" para ter certeza que é campo de resposta
+                    // e não um campo de busca perdido na página.
                     else if (answerArea.querySelector('input[type="text"][id^="id_answer"]')) {
                         questionType = "Resposta Curta";
                     }
                 }
-    
+        
                 // INJEÇÃO DO BADGE
                 if (questionType !== "" && !lessonBlock.querySelector('.lesson-badge')) {
                     var badgeSpan = document.createElement('span');
-                    badgeSpan.className = 'lesson-badge geohab-badge';
+                    badgeSpan.className = 'lesson-badge';
                     badgeSpan.textContent = questionType;
-                    badgeSpan.style.marginRight = "10px";
                     
                     var titleDiv = lessonBlock.querySelector('.lesson-block-title');
                     if (titleDiv) {
@@ -112,1095 +326,931 @@
                     }
                 }
             }
-
-        }
-    });
-    </script>
-
-<script>
-    document.addEventListener("DOMContentLoaded", function() {
-        
-        // Verifica se é página de lição
-        if (document.body.classList.contains('path-mod-lesson')) {
-            
-            // Tenta encontrar elementos chaves da página de fim
-            var mainHeading = document.querySelector('#region-main h2');
-            var gradeBox = document.querySelector('.path-mod-lesson .box.generalbox');
-            
-            // ELEMENTOS DE NAVEGAÇÃO
-            // 1. O link "inteligente" do seu tema (que fica no topo e sabe a seção certa)
-            var specificBackLink = document.querySelector('.flexsections-activity-page-navigate-back a');
-            // 2. O botão padrão do Moodle (caso o de cima falhe)
-            var standardExitLink = document.querySelector('.path-mod-lesson .lessonbutton');
-    
-            // LÓGICA DE DETECÇÃO DE PÁGINA FINAL
-            var isEndPage = false;
-            if (mainHeading && (mainHeading.innerText.includes('fim desta lição') || mainHeading.innerText.includes('reached the end'))) {
-                isEndPage = true;
-            } else if (gradeBox && standardExitLink) {
-                isEndPage = true;
-            }
-    
-            if (isEndPage) {
-                console.log("Geohab: Página de conclusão detectada. Gerando Card...");
-                
-                // 1. Adiciona classe ao Body para o CSS ocultar os elementos originais
-                document.body.classList.add('geohab-lesson-finished');
-    
-                // 2. Cria o Container do Card
-                var card = document.createElement('div');
-                card.className = 'geohab-end-card';
-    
-                // 3. Ícone
-                card.innerHTML = '<div class="geohab-success-icon"><i class="fi fi-rs-check-circle"></i></div>';
-                
-                // 4. Título
-                var title = document.createElement('div');
-                title.className = 'geohab-end-title';
-                title.innerText = "Parabéns! Lição Concluída.";
-                card.appendChild(title);
-    
-                // 5. Nota (Se houver)
-                if (gradeBox) {
-                    var cleanText = gradeBox.innerText.replace(/\n/g, "<br>");
-                    var gradeDiv = document.createElement('div');
-                    gradeDiv.className = 'geohab-grade-box';
-                    gradeDiv.innerHTML = cleanText;
-                    // Destaque para números
-                    gradeDiv.innerHTML = gradeDiv.innerHTML.replace(/(\d+[,.]\d+)/g, '<span class="geohab-grade-value">$1</span>');
-                    card.appendChild(gradeDiv);
-                    
-                    gradeBox.style.display = 'none'; // Oculta original
-                }
-    
-                // 6. O BOTÃO DE VOLTAR 
-                var targetUrl = "";
-                var btnLabel = "Voltar para o Curso";
-    
-                if (specificBackLink) {
-                    // Prioridade: Usa o link do "Voltar para Seção X" do seu tema
-                    targetUrl = specificBackLink.href;
-                    
-                    // Tenta pegar o nome da seção do texto original (ex: "Voltar para 'Seção 1'")
-                    var originalText = specificBackLink.innerText.trim();
-                    // Remove a seta ou ícones se tiver texto sujo
-                    if (originalText.toLowerCase().includes('voltar para')) {
-                        btnLabel = originalText; 
-                    } else {
-                        btnLabel = "Voltar para a Seção";
-                    }
-                } else if (standardExitLink) {
-                    // Fallback: Usa o botão padrão se o específico não existir
-                    targetUrl = standardExitLink.href;
-                }
-    
-                if (targetUrl) {
-                    var newBtn = document.createElement('a');
-                    newBtn.href = targetUrl;
-                    newBtn.className = 'geohab-finish-btn';
-                    newBtn.innerHTML = btnLabel + ' <i class="fi fi-rs-arrow-right" style="margin-left:5px; font-size: 0.9em;"></i>';
-                    
-                    card.appendChild(newBtn);
-                }
-                
-                // Oculta botão padrão antigo se existir
-                if (standardExitLink) standardExitLink.style.display = 'none';
-    
-                // 7. Insere o Card na página
-                var mainRegion = document.querySelector('#region-main');
-                if (mainRegion) {
-                    var contentDiv = mainRegion.querySelector('div[role="main"]');
-                    if(contentDiv) {
-                         contentDiv.prepend(card);
-                    } else {
-                         mainRegion.prepend(card);
-                    }
-                }
-            }
-        }
-    });
-    </script>
-<script>
-    document.addEventListener("DOMContentLoaded", function() {
-        
-        // TRAVA DE SEGURANÇA 1: Verifica se estamos na URL de visualização da questão
-        // Se a URL contiver "continue.php", o script PARA imediatamente.
-        if (window.location.href.indexOf('view.php') === -1) {
-            return; 
-        }
-    
-        // TRAVA DE SEGURANÇA 2: Verifica classes básicas
-        var lessonBlock = document.querySelector('.lesson-block');
-        var isLessonPage = document.body.classList.contains('path-mod-lesson');
-    
-        if (isLessonPage && lessonBlock) {
-            
-            var questionType = ""; 
-            
-            // FOCA APENAS NO FORMULÁRIO DE RESPOSTA (Evita pegar busca do site ou login)
-            // O Moodle geralmente coloca a área de resposta dentro de .fcontainer ou .box
-            var answerArea = document.querySelector('.path-mod-lesson .fcontainer') || 
-                             document.querySelector('.path-mod-lesson .answeroptiongroup') ||
-                             document.querySelector('.path-mod-lesson form input[name="answer"]').closest('form');
-    
-            if (answerArea) {
-                
-                // 1. ASSOCIAÇÃO (Selects)
-                if (answerArea.querySelector('select')) {
-                    questionType = "Associação";
-                }
-                
-                // 2. MÚLTIPLA ESCOLHA (Checkboxes)
-                else if (answerArea.querySelector('input[type="checkbox"]')) {
-                    questionType = "Múltipla Escolha";
-                }
-                
-                // 3. VERDADEIRO/FALSO ou ESCOLHA ÚNICA (Radios)
-                else if (answerArea.querySelector('input[type="radio"]')) {
-                    var textContent = answerArea.innerText || "";
-                    if (textContent.includes("Verdadeiro") || textContent.includes("Falso") || 
-                        textContent.includes("True") || textContent.includes("False")) {
-                        questionType = "Verdadeiro / Falso";
-                    } else {
-                        questionType = "Múltipla Escolha"; 
-                    }
-                }
-                
-                // 4. DISSERTAÇÃO (Textarea visível)
-                else if (answerArea.querySelector('textarea')) {
-                     questionType = "Dissertação";
-                }
-                
-                // 5. RESPOSTA CURTA (Input Text)
-                // Refinamento: Verifica se o ID começa com "id_answer" para ter certeza que é campo de resposta
-                // e não um campo de busca perdido na página.
-                else if (answerArea.querySelector('input[type="text"][id^="id_answer"]')) {
-                    questionType = "Resposta Curta";
-                }
-            }
-    
-            // INJEÇÃO DO BADGE
-            if (questionType !== "" && !lessonBlock.querySelector('.lesson-badge')) {
-                var badgeSpan = document.createElement('span');
-                badgeSpan.className = 'lesson-badge';
-                badgeSpan.textContent = questionType;
-                
-                var titleDiv = lessonBlock.querySelector('.lesson-block-title');
-                if (titleDiv) {
-                    titleDiv.parentNode.insertBefore(badgeSpan, titleDiv.nextSibling);
-                } else {
-                    lessonBlock.appendChild(badgeSpan);
-                }
-            }
-        }
-    });
-    </script>
-<script>
-    document.addEventListener("DOMContentLoaded", function() {
-        // Verifica se estamos em uma lição
-        if (document.body.classList.contains('path-mod-lesson')) {
-            
-            // Seleciona todas as linhas de formulário (fitem)
-            var rows = document.querySelectorAll('.path-mod-lesson .fitem');
-            
-            rows.forEach(function(row) {
-                // Pega a coluna do label (col-md-3)
-                var labelCol = row.querySelector('.col-md-3');
-                
-                if (labelCol) {
-                    // Verifica o texto dentro dela (removendo espaços vazios)
-                    var textContent = labelCol.innerText.trim();
-                    
-                    // SE ESTIVER VAZIO (Caso da Múltipla Escolha / Verdadeiro ou Falso)
-                    if (textContent.length === 0) {
-                        // Adiciona nossa classe especial para ocultar o label e esticar a resposta
-                        row.classList.add('geohab-full-width');
-                    }
-                    // SE TIVER TEXTO (Caso da Associação), não faz nada, mantendo o padrão.
-                }
-            });
-            
-            // Bônus: Melhora visual dos Selects de Associação
-            var selects = document.querySelectorAll('.path-mod-lesson select');
-            selects.forEach(function(s) {
-                s.classList.add('form-control'); // Estilo Bootstrap bonito
-                s.style.maxWidth = "100%";
-            });
-        }
-    });
-    </script>
-    <script>
-    // Executa apenas se estiver numa página de Lição
-    if (document.body.classList.contains('path-mod-lesson')) {
-        
-        document.addEventListener("DOMContentLoaded", function() {
-            
-            // 1. Embeleza os Inputs de Texto (Resposta Curta)
-            var textInputs = document.querySelectorAll('.path-mod-lesson input[type="text"]');
-            textInputs.forEach(function(input) {
-                input.classList.add('form-control'); // Classe Bootstrap
-                input.style.marginTop = "10px";
-                input.style.maxWidth = "500px";
-            });
-    
-            // 2. Embeleza os Selects (Associação)
-            var selects = document.querySelectorAll('.path-mod-lesson select');
-            selects.forEach(function(select) {
-                select.classList.add('form-control');
-                select.style.marginBottom = "10px";
-            });
-    
-            // 3. Tenta melhorar os Radios e Checkboxes
-            // O Moodle muitas vezes coloca inputs dentro de labels ou td, é chato de estilizar via JS puro,
-            // mas o CSS que passei acima já resolve 90% do visual.
         });
-    }
-    </script>
+        </script>
     <script>
-        // ===================================================================
-        // SCRIPT PARA O CURSO GEOHAB - VERSÃO CONSOLIDADA
-        // ===================================================================
-        
-        document.addEventListener('DOMContentLoaded', function() {
-        
-            // ===============================================================
-            // PARTE 1: RASTREADOR DE NAVEGAÇÃO (BOTÃO "CONTINUAR")
-            // ===============================================================
-            try {
-                const courseIdMatch = document.body.className.match(/course-(\d+)/);
-                if (courseIdMatch) {
-                    const courseIdForResume = courseIdMatch[1];
-                    const storageKey = `moodle-last-activity-${courseIdForResume}`;
-        
-                    function saveLastUrl(url) {
-                        if (!url || typeof url !== 'string') return;
-                        const isInvalidLink = ['update=', 'delete=', 'hide=', 'move.php', 'javascript:;'].some(term => url.includes(term));
-                        if (!isInvalidLink) {
-                            console.log(`(RASTREADOR) Salvando a URL: ${url}`);
-                            localStorage.setItem(storageKey, url);
+        document.addEventListener("DOMContentLoaded", function() {
+            // Verifica se estamos em uma lição
+            if (document.body.classList.contains('path-mod-lesson')) {
+                
+                // Seleciona todas as linhas de formulário (fitem)
+                var rows = document.querySelectorAll('.path-mod-lesson .fitem');
+                
+                rows.forEach(function(row) {
+                    // Pega a coluna do label (col-md-3)
+                    var labelCol = row.querySelector('.col-md-3');
+                    
+                    if (labelCol) {
+                        // Verifica o texto dentro dela (removendo espaços vazios)
+                        var textContent = labelCol.innerText.trim();
+                        
+                        // SE ESTIVER VAZIO (Caso da Múltipla Escolha / Verdadeiro ou Falso)
+                        if (textContent.length === 0) {
+                            // Adiciona nossa classe especial para ocultar o label e esticar a resposta
+                            row.classList.add('geohab-full-width');
                         }
+                        // SE TIVER TEXTO (Caso da Associação), não faz nada, mantendo o padrão.
                     }
-        
-                    document.body.addEventListener('click', function(e) {
-                        const target = e.target;
-                        const collapseButton = target.closest('a[data-toggle="collapse"]');
-                        const playButton = target.closest('.vjs-big-play-button');
-                        const navLink = target.closest('h3.sectionname a:not(.quickeditlink), li.activity a.aalink:not(.quickeditlink), footer .btn-geohab-popover');
-        
-                        if (collapseButton) {
-                            const anchor = collapseButton.getAttribute('href');
-                            if (anchor && anchor.startsWith('#')) {
-                                const urlWithAnchor = `${window.location.pathname}${window.location.search}${anchor}`;
-                                saveLastUrl(urlWithAnchor);
-                            }
-                        } else if (playButton) {
-                            const videoContainer = playButton.closest('[id^="video-"]');
-                            if (videoContainer) {
-                                const urlWithAnchor = `${window.location.pathname}${window.location.search}#${videoContainer.id}`;
-                                saveLastUrl(urlWithAnchor);
-                            } else {
-                                saveLastUrl(window.location.href);
-                            }
-                        } else if (navLink) {
-                            saveLastUrl(navLink.href);
-                        }
-                    });
-                    console.log("(RASTREADOR) 'Ouvintes' de navegação estão ativos.");
-                }
-            } catch (e) {
-                console.error("Erro na lógica do Rastreador:", e);
+                });
+                
+                // Bônus: Melhora visual dos Selects de Associação
+                var selects = document.querySelectorAll('.path-mod-lesson select');
+                selects.forEach(function(s) {
+                    s.classList.add('form-control'); // Estilo Bootstrap bonito
+                    s.style.maxWidth = "100%";
+                });
             }
+        });
+        </script>
+        <script>
+        // Executa apenas se estiver numa página de Lição
+        if (document.body.classList.contains('path-mod-lesson')) {
+            
+            document.addEventListener("DOMContentLoaded", function() {
+                
+                // 1. Embeleza os Inputs de Texto (Resposta Curta)
+                var textInputs = document.querySelectorAll('.path-mod-lesson input[type="text"]');
+                textInputs.forEach(function(input) {
+                    input.classList.add('form-control'); // Classe Bootstrap
+                    input.style.marginTop = "10px";
+                    input.style.maxWidth = "500px";
+                });
         
-            // ===============================================================
-            // PARTE 2: EXIBIDOR DO BOTÃO "CONTINUAR"
-            // ===============================================================
-            try {
-                const resumeButton = document.getElementById('resume-course-button');
-                if (resumeButton) {
+                // 2. Embeleza os Selects (Associação)
+                var selects = document.querySelectorAll('.path-mod-lesson select');
+                selects.forEach(function(select) {
+                    select.classList.add('form-control');
+                    select.style.marginBottom = "10px";
+                });
+        
+                // 3. Tenta melhorar os Radios e Checkboxes
+                // O Moodle muitas vezes coloca inputs dentro de labels ou td, é chato de estilizar via JS puro,
+                // mas o CSS que passei acima já resolve 90% do visual.
+            });
+        }
+        </script>
+        <script>
+            // ===================================================================
+            // SCRIPT PARA O CURSO GEOHAB - VERSÃO CONSOLIDADA
+            // ===================================================================
+            
+            document.addEventListener('DOMContentLoaded', function() {
+            
+                // ===============================================================
+                // PARTE 1: RASTREADOR DE NAVEGAÇÃO (BOTÃO "CONTINUAR")
+                // ===============================================================
+                try {
                     const courseIdMatch = document.body.className.match(/course-(\d+)/);
                     if (courseIdMatch) {
                         const courseIdForResume = courseIdMatch[1];
                         const storageKey = `moodle-last-activity-${courseIdForResume}`;
-                        const lastVisitedUrl = localStorage.getItem(storageKey);
-                        if (lastVisitedUrl) {
-                            resumeButton.href = lastVisitedUrl;
-                            resumeButton.style.display = 'inline-block';
-                            console.log("(EXIBIDOR) Botão 'Continuar' configurado para:", lastVisitedUrl);
-                        }
-                    }
-                }
-            } catch (e) {
-                console.error("Erro na lógica do Exibidor:", e);
-            }
-        
-            // ===================================================================
-            // INICIALIZAÇÃO DE COMPONENTES BOOTSTRAP (jQuery + Bootstrap)
-            // ===================================================================
-            require(['jquery', 'core/popper', 'core/bootstrap'], function($, popper) {
-                console.log("jQuery e Bootstrap estão prontos. Inicializando popovers...");
-                
-                $('[data-toggle="popover"]').popover();
-        
-                $('body').on('click', function (e) {
-                    $('[data-toggle="popover"]').each(function () {
-                        if (!$(this).is(e.target) && $(this).has(e.target).length === 0 && $('.popover').has(e.target).length === 0) {
-                            $(this).popover('hide');
-                        }
-                    });
-                });
-            });
-        
-            // ===================================================================
-            // FUNÇÃO HELPER: Verifica se estamos na página principal do curso
-            // ===================================================================
-            function isCourseHomePage() {
-                const urlParams = new URLSearchParams(window.location.search);
-                const sectionParam = urlParams.get('section');
-                return !urlParams.has('section') || sectionParam === '0';
-            }
-        
-            // ===================================================================
-            // SETUP INICIAL DA PÁGINA
-            // ===================================================================
             
-            // 1. Injetar nome do usuário
-            try {
-                const userFullNameElement = document.querySelector('.loggedinas strong');
-                if (userFullNameElement) {
-                    const fullName = userFullNameElement.textContent.trim();
-                    const firstName = fullName.split(' ')[0];
-                    document.querySelectorAll('.placeholder-firstname').forEach(el => {
-                        el.textContent = firstName;
-                    });
-                }
-            } catch (e) {
-                console.error('Erro ao buscar nome de usuário:', e);
-            }
-        
-            // 2. Marcar cards de atalho com cadeado
-            document.querySelectorAll('.module-shortcut-card').forEach(card => {
-                const sectionNumber = card.getAttribute('data-section-target');
-                if (!sectionNumber) return;
-                const moodleSection = document.querySelector(`#section-${sectionNumber}`) || document.querySelector(`.course-section-header[data-number='${sectionNumber}']`);
-                if (moodleSection && moodleSection.querySelector('.icon.fa-lock')) {
-                    card.classList.add('locked');
-                }
-            });
-            
-            // 3. Verificar e controlar botões "Acessar Módulo"
-            function extractSectionNumberFromButton(buttonContainer) {
-                const link = buttonContainer.querySelector('a');
-                if (!link) return null;
-                const href = link.getAttribute('href');
-                if (!href) return null;
-                const sectionMatch = href.match(/section=(\d+)/);
-                return sectionMatch ? sectionMatch[1] : null;
-            }
-        
-            document.querySelectorAll('.footer-action.js-home-only').forEach(buttonContainer => {
-                const sectionNumber = extractSectionNumberFromButton(buttonContainer);
-                if (!sectionNumber) return;
-                const moodleSection = document.querySelector(`#section-${sectionNumber}`) || document.querySelector(`.course-section-header[data-number='${sectionNumber}']`);
-                if (moodleSection && !moodleSection.querySelector('.icon.fa-lock')) {
-                    buttonContainer.classList.add('module-unlocked');
-                }
-            });
-        
-            // 4. Configurar o botão contextual (Voltar ao topo / Início)
-            document.querySelectorAll('.js-context-button-container').forEach(container => {
-                const button = container.querySelector('a');
-                if (!button) return;
-                if (isCourseHomePage()) {
-                    button.textContent = button.dataset.toplevelText || "Voltar ao topo";
-                    button.href = button.dataset.toplevelHref || "#page-wrapper";
-                    button.classList.add('js-scroll-link');
-                } else {
-                    button.textContent = button.dataset.sectionText || "Voltar para o Início do Curso";
-                    button.href = button.dataset.sectionHref || `/course/view.php?id=${new URLSearchParams(window.location.search).get('id')}`;
-                    button.classList.remove('js-scroll-link');
-                }
-                container.style.display = 'block';
-            });
-        
-            // 5. Exibir elementos que só aparecem na página principal
-            if (isCourseHomePage()) {
-                document.querySelectorAll('.js-home-only').forEach(element => {
-                    if (element.classList.contains('footer-action') && element.classList.contains('module-unlocked')) {
-                        element.style.display = 'block';
-                    } else if (!element.classList.contains('footer-action')) {
-                        element.style.display = '';
-                    }
-                });
-            }
-        
-            // ===================================================================
-            // INICIALIZAÇÃO DE COMPONENTES INTERATIVOS (Modal, Lupa)
-            // ===================================================================
-        
-            // 1. Lógica para Modal de Imagem
-            document.querySelectorAll('.image-modal-wrapper').forEach(wrapper => {
-                const triggerImg = wrapper.querySelector('.modal-trigger-img');
-                const modal = wrapper.querySelector('.image-modal-popup');
-                if (triggerImg && modal) {
-                    const modalDisplayImg = modal.querySelector('.modal-display-img');
-                    const modalCaptionText = modal.querySelector('.modal-caption-text');
-                    const closeButton = modal.querySelector('.custom-close');
-        
-                    triggerImg.addEventListener('click', function() {
-                        modal.style.display = "block";
-                        if (modalDisplayImg) modalDisplayImg.src = this.src;
-                        if (modalCaptionText) modalCaptionText.innerHTML = this.alt;
-                    });
-                    if (closeButton) {
-                        closeButton.addEventListener('click', () => modal.style.display = "none");
-                    }
-                    modal.addEventListener('click', (event) => {
-                        if (event.target === modal) modal.style.display = "none";
-                    });
-                }
-            });
-            
-            document.addEventListener('keydown', event => {
-                if (event.key === 'Escape') {
-                    document.querySelectorAll('.image-modal-popup[style*="display: block"]').forEach(m => m.style.display = "none");
-                }
-            });
-            
-            // 2. Lógica para Lupa (Magnify)
-            function magnify(imgID, zoom) {
-                var img = document.getElementById(imgID);
-                if (!img) return;
-                var glass, w, h, bw;
-                glass = document.createElement("DIV");
-                glass.setAttribute("class", "img-magnifier-glass");
-                img.parentElement.insertBefore(glass, img);
-                glass.style.backgroundImage = "url('" + img.src + "')";
-                glass.style.backgroundRepeat = "no-repeat";
-                glass.style.backgroundSize = (img.width * zoom) + "px " + (img.height * zoom) + "px";
-                bw = 3;
-                w = glass.offsetWidth / 2;
-                h = glass.offsetHeight / 2;
-                function moveMagnifier(e) {
-                    e.preventDefault();
-                    var pos = getCursorPos(e), x = pos.x, y = pos.y;
-                    if (x > img.width - (w / zoom)) { x = img.width - (w / zoom); }
-                    if (x < w / zoom) { x = w / zoom; }
-                    if (y > img.height - (h / zoom)) { y = img.height - (h / zoom); }
-                    if (y < h / zoom) { y = h / zoom; }
-                    glass.style.left = (x - w) + "px";
-                    glass.style.top = (y - h) + "px";
-                    glass.style.backgroundPosition = "-" + ((x * zoom) - w + bw) + "px -" + ((y * zoom) - h + bw) + "px";
-                }
-                function getCursorPos(e) {
-                    var a = img.getBoundingClientRect(), x = 0, y = 0;
-                    e = e || window.event;
-                    x = (e.pageX || e.touches[0].pageX) - a.left - window.pageXOffset;
-                    y = (e.pageY || e.touches[0].pageY) - a.top - window.pageYOffset;
-                    return { x: x, y: y };
-                }
-                glass.addEventListener("mousemove", moveMagnifier);
-                img.addEventListener("mousemove", moveMagnifier);
-                glass.addEventListener("touchmove", moveMagnifier);
-                img.addEventListener("touchmove", moveMagnifier);
-            }
-            if (document.getElementById("myimage")) {
-                magnify("myimage", 2);
-            }
-        
-            // ===================================================================
-            // OUVINTE PARA ROLAGEM SUAVE
-            // ===================================================================
-            document.body.addEventListener('click', function(e) {
-                const link = e.target.closest('a');
-                if (!link || !link.classList.contains('js-scroll-link')) return;
-                
-                e.preventDefault();
-                const anchorTargetId = link.getAttribute('href');
-                if (anchorTargetId && anchorTargetId.startsWith('#')) {
-                    const anchorTarget = document.querySelector(anchorTargetId);
-                    if (anchorTarget) {
-                        anchorTarget.scrollIntoView({
-                            behavior: 'smooth',
-                            block: 'start'
-                        });
-                    }
-                }
-            });
-        
-            // ===================================================================
-            // BARRA DE PROGRESSO DO CURSO (VIA WEB SERVICE EDWISER)
-            // ===================================================================
-            const progressContainer = document.querySelector('.course-progress-container');
-            const courseProgressFill = document.getElementById('course-progress-fill');
-            const courseProgressText = document.getElementById('course-progress-text');
-        
-            if (progressContainer && courseProgressFill && courseProgressText) {
-                const courseId = progressContainer.getAttribute('data-courseid');
-                if (courseId) {
-                    require(['core/ajax'], function(ajax) {
-                        ajax.call([{
-                            methodname: 'format_remuiformat_course_progress_data',
-                            args: { courseid: courseId },
-                            done: function(response) {
-                                const percentage = response.percentage || 0;
-                                console.log(`Progresso recebido do Web Service: ${percentage}%`);
-                                courseProgressFill.style.width = percentage + '%';
-                                courseProgressText.textContent = `${percentage}% concluído`;
-                            },
-                            fail: function(ex) {
-                                console.error("Falha ao chamar o Web Service de progresso:", ex);
-                                courseProgressText.textContent = "Erro ao carregar progresso.";
+                        function saveLastUrl(url) {
+                            if (!url || typeof url !== 'string') return;
+                            const isInvalidLink = ['update=', 'delete=', 'hide=', 'move.php', 'javascript:;'].some(term => url.includes(term));
+                            if (!isInvalidLink) {
+                                console.log(`(RASTREADOR) Salvando a URL: ${url}`);
+                                localStorage.setItem(storageKey, url);
                             }
-                        }]);
-                    });
-                } else {
-                    console.error("Não foi possível encontrar o 'data-courseid' no contêiner da barra de progresso.");
-                }
-            }
-        
-            // ===================================================================
-            // BARRAS DE PROGRESSO DE MÓDULO
-            // ===================================================================
-            document.querySelectorAll('.course-progress-container[data-module-section]').forEach(progressContainer => {
-                const sectionNumber = progressContainer.getAttribute('data-module-section');
-                if (!sectionNumber) return;
-        
-                const moodleSection = document.querySelector(`#section-${sectionNumber}`);
-                if (!moodleSection) return;
-        
-                const activitiesInSection = moodleSection.querySelectorAll('.activity .activity-completion');
-                const totalActivities = activitiesInSection.length;
-                const completedInSection = moodleSection.querySelectorAll('.activity .activity-completion .btn-success');
-                const completedCount = completedInSection.length;
-        
-                let progressPercent = 0;
-                if (totalActivities > 0) {
-                    progressPercent = Math.round((completedCount / totalActivities) * 100);
-                }
-                
-                console.log(`Progresso Módulo ${sectionNumber}: ${completedCount} de ${totalActivities} concluídas = ${progressPercent}%`);
-        
-                const progressBarFill = progressContainer.querySelector('.course-progress-bar-fill');
-                const progressText = progressContainer.querySelector('.progress-text');
-        
-                if (progressBarFill) progressBarFill.style.width = progressPercent + '%';
-                if (progressText) progressText.textContent = `${progressPercent}% concluído`;
-            });
-        
-            // ===================================================================
-            // ANIMAÇÃO DE TEXTO (BUSCA)
-            // ===================================================================
-            require(['jquery'], function($) {
-                const animatedTextElement = $('#animated-search-text');
-                if (animatedTextElement.length) {
-                    const searchTerms = ["São Paulo", "SSARU", "zoneamento", "PDHU", "limite municipal"];
-                    let termIndex = 0;
-                    let charIndex = 0;
-                    let isDeleting = false;
-        
-                    function typeAnimation() {
-                        const currentTerm = searchTerms[termIndex];
-                        const typeDelay = isDeleting ? 75 : 150;
-        
-                        if (isDeleting) {
-                            animatedTextElement.text(currentTerm.substring(0, charIndex - 1));
-                            charIndex--;
-                        } else {
-                            animatedTextElement.text(currentTerm.substring(0, charIndex + 1));
-                            charIndex++;
                         }
-        
-                        if (!isDeleting && charIndex === currentTerm.length) {
-                            setTimeout(() => { isDeleting = true; }, 2000);
-                        } else if (isDeleting && charIndex === 0) {
-                            isDeleting = false;
-                            termIndex = (termIndex + 1) % searchTerms.length;
-                        }
-                        
-                        setTimeout(typeAnimation, typeDelay);
-                    }
-                    
-                    typeAnimation();
-                    console.log("(ANIMADOR) Animação de texto iniciada.");
-                }
-            });
-        });
-        
-        // ===================================================================
-        // LÓGICA PARA LEGENDA INTERATIVA E HOTSPOTS (DESKTOP)
-        // ===================================================================
-        function initInteractiveLegend() {
-            if (typeof jQuery === 'undefined') return;
             
-            const $ = jQuery;
+                        document.body.addEventListener('click', function(e) {
+                            const target = e.target;
+                            const collapseButton = target.closest('a[data-toggle="collapse"]');
+                            const playButton = target.closest('.vjs-big-play-button');
+                            const navLink = target.closest('h3.sectionname a:not(.quickeditlink), li.activity a.aalink:not(.quickeditlink), footer .btn-geohab-popover');
             
-            $('.step-content-layout-cols').each(function() {
-                const container = $(this);
-                const legendItems = container.find('.legend-item');
-                const hotspots = container.find('.hotspot');
-        
-                if (legendItems.length > 0 && hotspots.length > 0) {
-                    
-                    function activateItem(hotspotId) {
-                        legendItems.removeClass('active');
-                        hotspots.removeClass('active');
-                        container.find('.legend-item[data-hotspot="' + hotspotId + '"]').addClass('active');
-                        container.find('.hotspot[data-hotspot="' + hotspotId + '"]').addClass('active');
-                    }
-                    
-                    // Função para gerenciar o comportamento de dois cliques no mobile
-                    function activateMobileItem(hotspotId, zoomData) {
-                        const $legendItem = legendItems.filter('[data-hotspot="' + hotspotId + '"]');
-                        const $hotspot = hotspots.filter('[data-hotspot="' + hotspotId + '"]');
-                        const isActive = $legendItem.hasClass('active');
-                        
-                        if (isActive) {
-                            // Segundo clique: aplica o zoom
-                            if (zoomData) {
-                                const stepContainer = container.closest('.step-component');
-                                const imageWrapper = stepContainer.find('.interactive-image-wrapper');
-                                const innerContainer = imageWrapper.find('.interactive-image-inner-container');
-                                const image = innerContainer.find('img');
-                                
-                                if (image.length > 0) {
-                                    const parts = zoomData.split(',');
-                                    const scale = parseFloat(parts[0]);
-                                    const posX = parseFloat(parts[1]);
-                                    const posY = parseFloat(parts[2]);
-                                    
-                                    const translateX = (posX - 50) * -1;
-                                    const translateY = (posY - 50) * -1;
-                                    
-                                    const transformValue = 'scale(' + scale + ') translate(' + translateX + '%, ' + translateY + '%)';
-                                    
-                                    innerContainer[0].style.transform = transformValue;
-                                    innerContainer[0].style.transition = 'transform 0.5s ease';
-                                    
-                                    image[0].style.transform = 'none';
-                                    image[0].style.transition = 'none';
-    
-                                    hotspots.each(function() {
-                                        this.style.transform = 'translate(-50%, -50%)';
-                                        this.style.transition = 'all 0.5s ease';
-                                    });
-    
-                                    // Scroll suave
-                                    $('html, body').animate({
-                                        scrollTop: imageWrapper.offset().top - 50
-                                    }, 300);
+                            if (collapseButton) {
+                                const anchor = collapseButton.getAttribute('href');
+                                if (anchor && anchor.startsWith('#')) {
+                                    const urlWithAnchor = `${window.location.pathname}${window.location.search}${anchor}`;
+                                    saveLastUrl(urlWithAnchor);
                                 }
+                            } else if (playButton) {
+                                const videoContainer = playButton.closest('[id^="video-"]');
+                                if (videoContainer) {
+                                    const urlWithAnchor = `${window.location.pathname}${window.location.search}#${videoContainer.id}`;
+                                    saveLastUrl(urlWithAnchor);
+                                } else {
+                                    saveLastUrl(window.location.href);
+                                }
+                            } else if (navLink) {
+                                saveLastUrl(navLink.href);
                             }
-                        } else {
-                            // Primeiro clique: apenas ativa o hotspot
-                            activateItem(hotspotId);
+                        });
+                        console.log("(RASTREADOR) 'Ouvintes' de navegação estão ativos.");
+                    }
+                } catch (e) {
+                    console.error("Erro na lógica do Rastreador:", e);
+                }
+            
+                // ===============================================================
+                // PARTE 2: EXIBIDOR DO BOTÃO "CONTINUAR"
+                // ===============================================================
+                try {
+                    const resumeButton = document.getElementById('resume-course-button');
+                    if (resumeButton) {
+                        const courseIdMatch = document.body.className.match(/course-(\d+)/);
+                        if (courseIdMatch) {
+                            const courseIdForResume = courseIdMatch[1];
+                            const storageKey = `moodle-last-activity-${courseIdForResume}`;
+                            const lastVisitedUrl = localStorage.getItem(storageKey);
+                            if (lastVisitedUrl) {
+                                resumeButton.href = lastVisitedUrl;
+                                resumeButton.style.display = 'inline-block';
+                                console.log("(EXIBIDOR) Botão 'Continuar' configurado para:", lastVisitedUrl);
+                            }
                         }
                     }
-        
-                    // Remove listeners anteriores
-                    legendItems.off('click.legend mouseenter.legend');
-                    hotspots.off('click.hotspot mouseenter.hotspot');
-        
-                    // Para componentes de imagem interativa, comportamento especial
-                    if (container.find('.interactive-image-wrapper').length > 0) {
-                        // Apenas hover para feedback visual em componentes de imagem interativa
-                        legendItems.on('mouseenter.legend', function() {
-                            const hotspotId = $(this).data('hotspot');
-                            activateItem(hotspotId);
+                } catch (e) {
+                    console.error("Erro na lógica do Exibidor:", e);
+                }
+            
+                // ===================================================================
+                // INICIALIZAÇÃO DE COMPONENTES BOOTSTRAP (jQuery + Bootstrap)
+                // ===================================================================
+                require(['jquery', 'core/popper', 'core/bootstrap'], function($, popper) {
+                    console.log("jQuery e Bootstrap estão prontos. Inicializando popovers...");
+                    
+                    $('[data-toggle="popover"]').popover();
+            
+                    $('body').on('click', function (e) {
+                        $('[data-toggle="popover"]').each(function () {
+                            if (!$(this).is(e.target) && $(this).has(e.target).length === 0 && $('.popover').has(e.target).length === 0) {
+                                $(this).popover('hide');
+                            }
                         });
-                        
-                        // Comportamento de clique para mobile usando activateMobileItem
-                        legendItems.on('click.legend', function() {
-                            const hotspotId = $(this).data('hotspot');
-                            const zoomData = $(this).data('zoom');
-                            activateMobileItem(hotspotId, zoomData);
+                    });
+                });
+            
+                // ===================================================================
+                // FUNÇÃO HELPER: Verifica se estamos na página principal do curso
+                // ===================================================================
+                function isCourseHomePage() {
+                    const urlParams = new URLSearchParams(window.location.search);
+                    const sectionParam = urlParams.get('section');
+                    return !urlParams.has('section') || sectionParam === '0';
+                }
+            
+                // ===================================================================
+                // SETUP INICIAL DA PÁGINA
+                // ===================================================================
+                
+                // 1. Injetar nome do usuário
+                try {
+                    const userFullNameElement = document.querySelector('.loggedinas strong');
+                    if (userFullNameElement) {
+                        const fullName = userFullNameElement.textContent.trim();
+                        const firstName = fullName.split(' ')[0];
+                        document.querySelectorAll('.placeholder-firstname').forEach(el => {
+                            el.textContent = firstName;
                         });
-                        
-                        // Limpa ao sair da área da legenda
-                        container.find('.interactive-legend').off('mouseleave.legend').on('mouseleave.legend', function() {
-                            legendItems.removeClass('active');
-                            hotspots.removeClass('active');
+                    }
+                } catch (e) {
+                    console.error('Erro ao buscar nome de usuário:', e);
+                }
+            
+                // 2. Marcar cards de atalho com cadeado
+                document.querySelectorAll('.module-shortcut-card').forEach(card => {
+                    const sectionNumber = card.getAttribute('data-section-target');
+                    if (!sectionNumber) return;
+                    const moodleSection = document.querySelector(`#section-${sectionNumber}`) || document.querySelector(`.course-section-header[data-number='${sectionNumber}']`);
+                    if (moodleSection && moodleSection.querySelector('.icon.fa-lock')) {
+                        card.classList.add('locked');
+                    }
+                });
+                
+                // 3. Verificar e controlar botões "Acessar Módulo"
+                function extractSectionNumberFromButton(buttonContainer) {
+                    const link = buttonContainer.querySelector('a');
+                    if (!link) return null;
+                    const href = link.getAttribute('href');
+                    if (!href) return null;
+                    const sectionMatch = href.match(/section=(\d+)/);
+                    return sectionMatch ? sectionMatch[1] : null;
+                }
+            
+                document.querySelectorAll('.footer-action.js-home-only').forEach(buttonContainer => {
+                    const sectionNumber = extractSectionNumberFromButton(buttonContainer);
+                    if (!sectionNumber) return;
+                    const moodleSection = document.querySelector(`#section-${sectionNumber}`) || document.querySelector(`.course-section-header[data-number='${sectionNumber}']`);
+                    if (moodleSection && !moodleSection.querySelector('.icon.fa-lock')) {
+                        buttonContainer.classList.add('module-unlocked');
+                    }
+                });
+            
+                // 4. Configurar o botão contextual (Voltar ao topo / Início)
+                document.querySelectorAll('.js-context-button-container').forEach(container => {
+                    const button = container.querySelector('a');
+                    if (!button) return;
+                    if (isCourseHomePage()) {
+                        button.textContent = button.dataset.toplevelText || "Voltar ao topo";
+                        button.href = button.dataset.toplevelHref || "#page-wrapper";
+                        button.classList.add('js-scroll-link');
+                    } else {
+                        button.textContent = button.dataset.sectionText || "Voltar para o Início do Curso";
+                        button.href = button.dataset.sectionHref || `/course/view.php?id=${new URLSearchParams(window.location.search).get('id')}`;
+                        button.classList.remove('js-scroll-link');
+                    }
+                    container.style.display = 'block';
+                });
+            
+                // 5. Exibir elementos que só aparecem na página principal
+                if (isCourseHomePage()) {
+                    document.querySelectorAll('.js-home-only').forEach(element => {
+                        if (element.classList.contains('footer-action') && element.classList.contains('module-unlocked')) {
+                            element.style.display = 'block';
+                        } else if (!element.classList.contains('footer-action')) {
+                            element.style.display = '';
+                        }
+                    });
+                }
+            
+                // ===================================================================
+                // INICIALIZAÇÃO DE COMPONENTES INTERATIVOS (Modal, Lupa)
+                // ===================================================================
+            
+                // 1. Lógica para Modal de Imagem
+                document.querySelectorAll('.image-modal-wrapper').forEach(wrapper => {
+                    const triggerImg = wrapper.querySelector('.modal-trigger-img');
+                    const modal = wrapper.querySelector('.image-modal-popup');
+                    if (triggerImg && modal) {
+                        const modalDisplayImg = modal.querySelector('.modal-display-img');
+                        const modalCaptionText = modal.querySelector('.modal-caption-text');
+                        const closeButton = modal.querySelector('.custom-close');
+            
+                        triggerImg.addEventListener('click', function() {
+                            modal.style.display = "block";
+                            if (modalDisplayImg) modalDisplayImg.src = this.src;
+                            if (modalCaptionText) modalCaptionText.innerHTML = this.alt;
+                        });
+                        if (closeButton) {
+                            closeButton.addEventListener('click', () => modal.style.display = "none");
+                        }
+                        modal.addEventListener('click', (event) => {
+                            if (event.target === modal) modal.style.display = "none";
+                        });
+                    }
+                });
+                
+                document.addEventListener('keydown', event => {
+                    if (event.key === 'Escape') {
+                        document.querySelectorAll('.image-modal-popup[style*="display: block"]').forEach(m => m.style.display = "none");
+                    }
+                });
+                
+                // 2. Lógica para Lupa (Magnify)
+                function magnify(imgID, zoom) {
+                    var img = document.getElementById(imgID);
+                    if (!img) return;
+                    var glass, w, h, bw;
+                    glass = document.createElement("DIV");
+                    glass.setAttribute("class", "img-magnifier-glass");
+                    img.parentElement.insertBefore(glass, img);
+                    glass.style.backgroundImage = "url('" + img.src + "')";
+                    glass.style.backgroundRepeat = "no-repeat";
+                    glass.style.backgroundSize = (img.width * zoom) + "px " + (img.height * zoom) + "px";
+                    bw = 3;
+                    w = glass.offsetWidth / 2;
+                    h = glass.offsetHeight / 2;
+                    function moveMagnifier(e) {
+                        e.preventDefault();
+                        var pos = getCursorPos(e), x = pos.x, y = pos.y;
+                        if (x > img.width - (w / zoom)) { x = img.width - (w / zoom); }
+                        if (x < w / zoom) { x = w / zoom; }
+                        if (y > img.height - (h / zoom)) { y = img.height - (h / zoom); }
+                        if (y < h / zoom) { y = h / zoom; }
+                        glass.style.left = (x - w) + "px";
+                        glass.style.top = (y - h) + "px";
+                        glass.style.backgroundPosition = "-" + ((x * zoom) - w + bw) + "px -" + ((y * zoom) - h + bw) + "px";
+                    }
+                    function getCursorPos(e) {
+                        var a = img.getBoundingClientRect(), x = 0, y = 0;
+                        e = e || window.event;
+                        x = (e.pageX || e.touches[0].pageX) - a.left - window.pageXOffset;
+                        y = (e.pageY || e.touches[0].pageY) - a.top - window.pageYOffset;
+                        return { x: x, y: y };
+                    }
+                    glass.addEventListener("mousemove", moveMagnifier);
+                    img.addEventListener("mousemove", moveMagnifier);
+                    glass.addEventListener("touchmove", moveMagnifier);
+                    img.addEventListener("touchmove", moveMagnifier);
+                }
+                if (document.getElementById("myimage")) {
+                    magnify("myimage", 2);
+                }
+            
+                // ===================================================================
+                // OUVINTE PARA ROLAGEM SUAVE
+                // ===================================================================
+                document.body.addEventListener('click', function(e) {
+                    const link = e.target.closest('a');
+                    if (!link || !link.classList.contains('js-scroll-link')) return;
+                    
+                    e.preventDefault();
+                    const anchorTargetId = link.getAttribute('href');
+                    if (anchorTargetId && anchorTargetId.startsWith('#')) {
+                        const anchorTarget = document.querySelector(anchorTargetId);
+                        if (anchorTarget) {
+                            anchorTarget.scrollIntoView({
+                                behavior: 'smooth',
+                                block: 'start'
+                            });
+                        }
+                    }
+                });
+            
+                // ===================================================================
+                // BARRA DE PROGRESSO DO CURSO (VIA WEB SERVICE EDWISER)
+                // ===================================================================
+                const progressContainer = document.querySelector('.course-progress-container');
+                const courseProgressFill = document.getElementById('course-progress-fill');
+                const courseProgressText = document.getElementById('course-progress-text');
+            
+                if (progressContainer && courseProgressFill && courseProgressText) {
+                    const courseId = progressContainer.getAttribute('data-courseid');
+                    if (courseId) {
+                        require(['core/ajax'], function(ajax) {
+                            ajax.call([{
+                                methodname: 'format_remuiformat_course_progress_data',
+                                args: { courseid: courseId },
+                                done: function(response) {
+                                    const percentage = response.percentage || 0;
+                                    console.log(`Progresso recebido do Web Service: ${percentage}%`);
+                                    courseProgressFill.style.width = percentage + '%';
+                                    courseProgressText.textContent = `${percentage}% concluído`;
+                                },
+                                fail: function(ex) {
+                                    console.error("Falha ao chamar o Web Service de progresso:", ex);
+                                    courseProgressText.textContent = "Erro ao carregar progresso.";
+                                }
+                            }]);
                         });
                     } else {
-                        // Para componentes não interativos, mantém o comportamento completo
-                        legendItems.on('click.legend mouseenter.legend', function() {
-                            const hotspotId = $(this).data('hotspot');
-                            activateItem(hotspotId);
-                        });
-        
-                        hotspots.on('click.hotspot mouseenter.hotspot', function() {
-                            const hotspotId = $(this).data('hotspot');
-                            activateItem(hotspotId);
-                        });
-        
-                        // Limpa ao sair
-                        container.find('.step-content-col-text, .step-content-col-media, .step-content-media-hotspot').off('mouseleave.legend').on('mouseleave.legend', function() {
-                            legendItems.removeClass('active');
-                            hotspots.removeClass('active');
-                        });
+                        console.error("Não foi possível encontrar o 'data-courseid' no contêiner da barra de progresso.");
                     }
                 }
+            
+                // ===================================================================
+                // BARRAS DE PROGRESSO DE MÓDULO
+                // ===================================================================
+                document.querySelectorAll('.course-progress-container[data-module-section]').forEach(progressContainer => {
+                    const sectionNumber = progressContainer.getAttribute('data-module-section');
+                    if (!sectionNumber) return;
+            
+                    const moodleSection = document.querySelector(`#section-${sectionNumber}`);
+                    if (!moodleSection) return;
+            
+                    const activitiesInSection = moodleSection.querySelectorAll('.activity .activity-completion');
+                    const totalActivities = activitiesInSection.length;
+                    const completedInSection = moodleSection.querySelectorAll('.activity .activity-completion .btn-success');
+                    const completedCount = completedInSection.length;
+            
+                    let progressPercent = 0;
+                    if (totalActivities > 0) {
+                        progressPercent = Math.round((completedCount / totalActivities) * 100);
+                    }
+                    
+                    console.log(`Progresso Módulo ${sectionNumber}: ${completedCount} de ${totalActivities} concluídas = ${progressPercent}%`);
+            
+                    const progressBarFill = progressContainer.querySelector('.course-progress-bar-fill');
+                    const progressText = progressContainer.querySelector('.progress-text');
+            
+                    if (progressBarFill) progressBarFill.style.width = progressPercent + '%';
+                    if (progressText) progressText.textContent = `${progressPercent}% concluído`;
+                });
+            
+                // ===================================================================
+                // ANIMAÇÃO DE TEXTO (BUSCA)
+                // ===================================================================
+                require(['jquery'], function($) {
+                    const animatedTextElement = $('#animated-search-text');
+                    if (animatedTextElement.length) {
+                        const searchTerms = ["São Paulo", "SSARU", "zoneamento", "PDHU", "limite municipal"];
+                        let termIndex = 0;
+                        let charIndex = 0;
+                        let isDeleting = false;
+            
+                        function typeAnimation() {
+                            const currentTerm = searchTerms[termIndex];
+                            const typeDelay = isDeleting ? 75 : 150;
+            
+                            if (isDeleting) {
+                                animatedTextElement.text(currentTerm.substring(0, charIndex - 1));
+                                charIndex--;
+                            } else {
+                                animatedTextElement.text(currentTerm.substring(0, charIndex + 1));
+                                charIndex++;
+                            }
+            
+                            if (!isDeleting && charIndex === currentTerm.length) {
+                                setTimeout(() => { isDeleting = true; }, 2000);
+                            } else if (isDeleting && charIndex === 0) {
+                                isDeleting = false;
+                                termIndex = (termIndex + 1) % searchTerms.length;
+                            }
+                            
+                            setTimeout(typeAnimation, typeDelay);
+                        }
+                        
+                        typeAnimation();
+                        console.log("(ANIMADOR) Animação de texto iniciada.");
+                    }
+                });
             });
             
-            console.log("(INTERATIVO) Legenda interativa inicializada");
-        }
-        
-    // ===================================================================
-    // LÓGICA PARA IMAGEM INTERATIVA COM ZOOM (MOBILE E DESKTOP) - MODIFICADO
-    // ===================================================================
-    function setupInteractiveImages() {
-        if (typeof jQuery === 'undefined') {
-            console.log("jQuery não disponível ainda para imagens");
-            return;
-        }
-        
-        const $ = jQuery;
-        const isDesktop = window.matchMedia('(min-width: 992px)').matches;
-    
-        $('.step-component').each(function() {
-            const stepContainer = $(this);
-            const imageWrapper = stepContainer.find('.interactive-image-wrapper');
-            const innerContainer = imageWrapper.find('.interactive-image-inner-container');
-    
-            const image = innerContainer.find('img');
-            const hotspots = innerContainer.find('.hotspot'); // Hotspots estão no innerContainer
-            const legendItems = stepContainer.find('.interactive-legend .legend-item');
-            // FIM NOVO
-    
-            if (hotspots.length === 0) return;
-            
-            // ... (console.log) ...
-    
-            // Limpa eventos anteriores
-            if ($.fn.tooltip) {
-                hotspots.tooltip('dispose'); // Mantemos o dispose para limpeza
-            }
-            hotspots.off('.interactive');
-            hotspots.off('.desktop'); // Adiciona um namespace para desktop
-            legendItems.off('.interactive');
-            
-            // IMPORTANTE: Limpa também os estados ativos ao reinicializar
-            hotspots.removeClass('active');
-            legendItems.removeClass('active');
-    
-            // ===================================
-            // FUNÇÕES GLOBAIS DE ZOOM (Reutilizadas)
-            // ===================================
-            function activateZoom(hotspotId, zoomData) {
-                console.log("DEBUG: activateZoom chamado para hotspotId:", hotspotId, "com zoomData:", zoomData);
+            // ===================================================================
+            // LÓGICA PARA LEGENDA INTERATIVA E HOTSPOTS (DESKTOP)
+            // ===================================================================
+            function initInteractiveLegend() {
+                if (typeof jQuery === 'undefined') return;
                 
-                hotspots.removeClass('active');
-                legendItems.removeClass('active');
-                stepContainer.find('.hotspot[data-hotspot="' + hotspotId + '"]').addClass('active');
-                stepContainer.find('.legend-item[data-hotspot="' + hotspotId + '"]').addClass('active');
-    
-                if (zoomData && image.length > 0) {
-                    const parts = zoomData.split(',');
-                    const scale = parseFloat(parts[0]);
-                    const posX = parseFloat(parts[1]);
-                    const posY = parseFloat(parts[2]);
-                    
-                    const translateX = (posX - 50) * -1;
-                    const translateY = (posY - 50) * -1;
-                    
-                    const transformValue = 'scale(' + scale + ') translate(' + translateX + '%, ' + translateY + '%)';
-                    
-                    console.log("DEBUG: Aplicando transform:", transformValue);
-                    
-                    // Remover temporariamente os eventos de clique fora para evitar conflitos
-                    $(document).off('click.resetZoomDesktop');
-                    $(document).off('click.resetZoomMobile');
-                    
-                    innerContainer[0].style.transform = transformValue;
-                    innerContainer[0].style.transition = 'transform 0.5s ease'; // Aumentado para melhor visualização
-                    
-                    image[0].style.transform = 'none';
-                    image[0].style.transition = 'none';
-    
-                    hotspots.each(function() {
-                        this.style.transform = 'translate(-50%, -50%)';
-                        this.style.transition = 'all 0.5s ease';
-                    });
-    
-                    // NOVO: Scroll suave para o wrapper para centralizar a área visível após o zoom
-                    $('html, body').animate({
-                        scrollTop: imageWrapper.offset().top - 50 // Ajuste 50px de margem superior
-                    }, 300);
-                    
-                    // Reativar os eventos de clique fora após um pequeno delay
-                    setTimeout(function() {
-                        if (isDesktop) {
-                            $(document).on('click.resetZoomDesktop', function(event) {
-                                const $target = $(event.target);
-                                if (!$target.closest('.step-component').length &&
-                                    !$target.closest('.tooltip').length) {
-                                    console.log("DEBUG: Clique fora detectado em desktop, resetando visualização");
-                                    resetView();
+                const $ = jQuery;
+                
+                $('.step-content-layout-cols').each(function() {
+                    const container = $(this);
+                    const legendItems = container.find('.legend-item');
+                    const hotspots = container.find('.hotspot');
+            
+                    if (legendItems.length > 0 && hotspots.length > 0) {
+                        
+                        function activateItem(hotspotId) {
+                            legendItems.removeClass('active');
+                            hotspots.removeClass('active');
+                            container.find('.legend-item[data-hotspot="' + hotspotId + '"]').addClass('active');
+                            container.find('.hotspot[data-hotspot="' + hotspotId + '"]').addClass('active');
+                        }
+                        
+                        // Função para gerenciar o comportamento de dois cliques no mobile
+                        function activateMobileItem(hotspotId, zoomData) {
+                            const $legendItem = legendItems.filter('[data-hotspot="' + hotspotId + '"]');
+                            const $hotspot = hotspots.filter('[data-hotspot="' + hotspotId + '"]');
+                            const isActive = $legendItem.hasClass('active');
+                            
+                            if (isActive) {
+                                // Segundo clique: aplica o zoom
+                                if (zoomData) {
+                                    const stepContainer = container.closest('.step-component');
+                                    const imageWrapper = stepContainer.find('.interactive-image-wrapper');
+                                    const innerContainer = imageWrapper.find('.interactive-image-inner-container');
+                                    const image = innerContainer.find('img');
+                                    
+                                    if (image.length > 0) {
+                                        const parts = zoomData.split(',');
+                                        const scale = parseFloat(parts[0]);
+                                        const posX = parseFloat(parts[1]);
+                                        const posY = parseFloat(parts[2]);
+                                        
+                                        const translateX = (posX - 50) * -1;
+                                        const translateY = (posY - 50) * -1;
+                                        
+                                        const transformValue = 'scale(' + scale + ') translate(' + translateX + '%, ' + translateY + '%)';
+                                        
+                                        innerContainer[0].style.transform = transformValue;
+                                        innerContainer[0].style.transition = 'transform 0.5s ease';
+                                        
+                                        image[0].style.transform = 'none';
+                                        image[0].style.transition = 'none';
+        
+                                        hotspots.each(function() {
+                                            this.style.transform = 'translate(-50%, -50%)';
+                                            this.style.transition = 'all 0.5s ease';
+                                        });
+        
+                                        // Scroll suave
+                                        $('html, body').animate({
+                                            scrollTop: imageWrapper.offset().top - 50
+                                        }, 300);
+                                    }
                                 }
+                            } else {
+                                // Primeiro clique: apenas ativa o hotspot
+                                activateItem(hotspotId);
+                            }
+                        }
+            
+                        // Remove listeners anteriores
+                        legendItems.off('click.legend mouseenter.legend');
+                        hotspots.off('click.hotspot mouseenter.hotspot');
+            
+                        // Para componentes de imagem interativa, comportamento especial
+                        if (container.find('.interactive-image-wrapper').length > 0) {
+                            // Apenas hover para feedback visual em componentes de imagem interativa
+                            legendItems.on('mouseenter.legend', function() {
+                                const hotspotId = $(this).data('hotspot');
+                                activateItem(hotspotId);
+                            });
+                            
+                            // Comportamento de clique para mobile usando activateMobileItem
+                            legendItems.on('click.legend', function() {
+                                const hotspotId = $(this).data('hotspot');
+                                const zoomData = $(this).data('zoom');
+                                activateMobileItem(hotspotId, zoomData);
+                            });
+                            
+                            // Limpa ao sair da área da legenda
+                            container.find('.interactive-legend').off('mouseleave.legend').on('mouseleave.legend', function() {
+                                legendItems.removeClass('active');
+                                hotspots.removeClass('active');
                             });
                         } else {
-                            $(document).on('click.resetZoomMobile', function(event) {
-                                const $target = $(event.target);
-                                if (!$target.closest('.step-component').length &&
-                                    !$target.closest('.interactive-legend').length) {
-                                    console.log("DEBUG: Clique fora detectado em mobile, resetando visualização");
-                                    resetView();
-                                }
+                            // Para componentes não interativos, mantém o comportamento completo
+                            legendItems.on('click.legend mouseenter.legend', function() {
+                                const hotspotId = $(this).data('hotspot');
+                                activateItem(hotspotId);
+                            });
+            
+                            hotspots.on('click.hotspot mouseenter.hotspot', function() {
+                                const hotspotId = $(this).data('hotspot');
+                                activateItem(hotspotId);
+                            });
+            
+                            // Limpa ao sair
+                            container.find('.step-content-col-text, .step-content-col-media, .step-content-media-hotspot').off('mouseleave.legend').on('mouseleave.legend', function() {
+                                legendItems.removeClass('active');
+                                hotspots.removeClass('active');
                             });
                         }
-                    }, 600); // Tempo um pouco maior que a transição para garantir que o zoom seja aplicado primeiro
-                }
+                    }
+                });
+                
+                console.log("(INTERATIVO) Legenda interativa inicializada");
             }
             
-            function resetView() {
-                console.log("DEBUG: resetView() chamado");
+        // ===================================================================
+        // LÓGICA PARA IMAGEM INTERATIVA COM ZOOM (MOBILE E DESKTOP) - MODIFICADO
+        // ===================================================================
+        function setupInteractiveImages() {
+            if (typeof jQuery === 'undefined') {
+                console.log("jQuery não disponível ainda para imagens");
+                return;
+            }
+            
+            const $ = jQuery;
+            const isDesktop = window.matchMedia('(min-width: 992px)').matches;
+        
+            $('.step-component').each(function() {
+                const stepContainer = $(this);
+                const imageWrapper = stepContainer.find('.interactive-image-wrapper');
+                const innerContainer = imageWrapper.find('.interactive-image-inner-container');
+        
+                const image = innerContainer.find('img');
+                const hotspots = innerContainer.find('.hotspot'); // Hotspots estão no innerContainer
+                const legendItems = stepContainer.find('.interactive-legend .legend-item');
+                // FIM NOVO
+        
+                if (hotspots.length === 0) return;
                 
+                // ... (console.log) ...
+        
+                // Limpa eventos anteriores
+                if ($.fn.tooltip) {
+                    hotspots.tooltip('dispose'); // Mantemos o dispose para limpeza
+                }
+                hotspots.off('.interactive');
+                hotspots.off('.desktop'); // Adiciona um namespace para desktop
+                legendItems.off('.interactive');
+                
+                // IMPORTANTE: Limpa também os estados ativos ao reinicializar
                 hotspots.removeClass('active');
                 legendItems.removeClass('active');
-    
-                if (innerContainer.length > 0){
-                    innerContainer[0].style.transform = 'scale(1) translate(0, 0)';
-                    innerContainer[0].style.transition = 'transform 0.5s ease';
-                }
-                
-                if (image.length > 0) {
-                    image[0].style.transform = 'none';
-                    image[0].style.transition = 'none';
-                }
-                
-                hotspots.each(function() {
-                    this.style.transform = 'translate(-50%, -50%)';
-                });
-                
-                // Reseta todos os ícones para o estado inicial (search)
-                legendItems.each(function() {
-                    const $icon = $(this).find('.icon-custon');
-                    $icon.removeClass('icon-zoom-in icon-zoom-out').addClass('icon-search');
-                });
-            }
-            // ===================================
-            // FIM FUNÇÕES GLOBAIS DE ZOOM
-            // ===================================
-    
-    
-            // ===================================
-            // LÓGICA PARA DESKTOP
-            // ===================================
-            if (isDesktop) {
-                console.log("→ Modo Desktop: Ativando Tooltip no Hover e Zoom no Clique");
-                
-                // 1. Inicializar Tooltips do Bootstrap (No Hover)
-                if ($.fn.tooltip) {
-                    hotspots.each(function() {
-                        $(this).tooltip({
-                            placement: 'auto', // Mudança para 'auto' para melhor posicionamento
-                            boundary: 'viewport',
-                            trigger: 'hover' // Ativa no hover, desativa ao sair
-                        });
-                    });
-                }
-                
-                // 2. Adiciona o listener de clique (Para o Zoom)
-                hotspots.on('click.desktop', function(e) {
-                    console.log("DEBUG: Clique no hotspot em desktop detectado");
-                    e.preventDefault();
-                    e.stopPropagation();
-    
-                    const $this = $(this);
-                    const hotspotId = $this.data('hotspot');
-                    const isActive = $this.hasClass('active'); // NOVO: Verifica se já está ativo
-    
-                    console.log("DEBUG: hotspotId:", hotspotId, "isActive:", isActive);
-    
-                    // 1. Se já estiver ativo, reseta e sai.
-                    if (isActive) {
-                        console.log("DEBUG: Hotspot já está ativo, resetando visualização");
-                        resetView();
-                        return;
-                    }
-    
-                    // Fecha qualquer tooltip aberto no clique
-                    if ($.fn.tooltip) {
-                        $this.tooltip('hide');
-                    }
+        
+                // ===================================
+                // FUNÇÕES GLOBAIS DE ZOOM (Reutilizadas)
+                // ===================================
+                function activateZoom(hotspotId, zoomData) {
+                    console.log("DEBUG: activateZoom chamado para hotspotId:", hotspotId, "com zoomData:", zoomData);
                     
-                    // 2. Se não estiver ativo, aplica o zoom
-                    const zoomData = stepContainer.find('.interactive-legend .legend-item[data-hotspot="' + hotspotId + '"]').data('zoom');
-                    console.log("DEBUG: zoomData encontrado:", zoomData);
-                    activateZoom(hotspotId, zoomData);
-                    });
-                
-            } 
-            // ===================================
-            // LÓGICA PARA MOBILE (COM ZOOM!)
-            // ===================================
-            else {
-                console.log("→ Modo Mobile: Ativando legenda com zoom");
-                
-                if (legendItems.length === 0) {
-                    console.warn("⚠️ Nenhum item de legenda encontrado");
-                    return;
-                }
-    
-                // Limpa eventos anteriores para evitar múltiplos listeners
-                hotspots.off('click.interactive mouseenter.interactive mouseleave.interactive');
-                legendItems.off('click.interactive mouseenter.interactive');
-                
-                // FUNÇÃO PARA MOBILE (Usa a função global activateZoom)
-                legendItems.on('click.interactive', function(e) {
-                    console.log("DEBUG: Clique no item de legenda em mobile detectado");
-                    e.preventDefault();
-                    e.stopPropagation();
-                    
-                    const $this = $(this);
-                    const hotspotId = $this.data('hotspot');
-                    const zoomData = $this.data('zoom');
-                    const isActive = $this.hasClass('active');
-                    
-                    // Verifica se o zoom está ativo (verificando se o transform do innerContainer tem scale diferente de 1)
-                    const isZoomed = innerContainer.length > 0 &&
-                                    innerContainer[0].style.transform &&
-                                    innerContainer[0].style.transform.includes('scale(') &&
-                                    !innerContainer[0].style.transform.includes('scale(1)');
-    
-                    console.log("DEBUG: hotspotId:", hotspotId, "isActive:", isActive, "isZoomed:", isZoomed, "zoomData:", zoomData);
-    
-                    // 1. Se está com zoom ativo, reseta (zoom-out) e volta para o ícone de busca
-                    if (isZoomed && isActive) {
-                        console.log("DEBUG: Zoom ativo, resetando visualização (zoom-out)");
-                        resetView();
-                        return;
-                    }
-    
-                    // 2. Se já está ativo mas sem zoom, aplica o zoom (segundo clique) e muda para zoom-out
-                    if (isActive && !isZoomed) {
-                        console.log("DEBUG: Item de legenda já está ativo, aplicando zoom");
-                        
-                        // Muda o ícone para zoom-out ANTES de aplicar o zoom
-                        $this.find('.icon-custon').removeClass('icon-search icon-zoom-in').addClass('icon-zoom-out');
-                        
-                        // Remove temporariamente os eventos de clique fora para evitar conflitos
-                        $(document).off('click.resetZoomMobile');
-                        
-                        // Aplica o zoom
-                        activateZoom(hotspotId, zoomData);
-                        return;
-                    }
-    
-                    // 3. Se não estiver ativo, apenas ativa o hotspot (primeiro clique) e muda para zoom-in
-                    console.log("DEBUG: Ativando hotspot sem zoom (primeiro clique)");
                     hotspots.removeClass('active');
                     legendItems.removeClass('active');
                     stepContainer.find('.hotspot[data-hotspot="' + hotspotId + '"]').addClass('active');
-                    $this.addClass('active');
+                    stepContainer.find('.legend-item[data-hotspot="' + hotspotId + '"]').addClass('active');
+        
+                    if (zoomData && image.length > 0) {
+                        const parts = zoomData.split(',');
+                        const scale = parseFloat(parts[0]);
+                        const posX = parseFloat(parts[1]);
+                        const posY = parseFloat(parts[2]);
+                        
+                        const translateX = (posX - 50) * -1;
+                        const translateY = (posY - 50) * -1;
+                        
+                        const transformValue = 'scale(' + scale + ') translate(' + translateX + '%, ' + translateY + '%)';
+                        
+                        console.log("DEBUG: Aplicando transform:", transformValue);
+                        
+                        // Remover temporariamente os eventos de clique fora para evitar conflitos
+                        $(document).off('click.resetZoomDesktop');
+                        $(document).off('click.resetZoomMobile');
+                        
+                        innerContainer[0].style.transform = transformValue;
+                        innerContainer[0].style.transition = 'transform 0.5s ease'; // Aumentado para melhor visualização
+                        
+                        image[0].style.transform = 'none';
+                        image[0].style.transition = 'none';
+        
+                        hotspots.each(function() {
+                            this.style.transform = 'translate(-50%, -50%)';
+                            this.style.transition = 'all 0.5s ease';
+                        });
+        
+                        // NOVO: Scroll suave para o wrapper para centralizar a área visível após o zoom
+                        $('html, body').animate({
+                            scrollTop: imageWrapper.offset().top - 50 // Ajuste 50px de margem superior
+                        }, 300);
+                        
+                        // Reativar os eventos de clique fora após um pequeno delay
+                        setTimeout(function() {
+                            if (isDesktop) {
+                                $(document).on('click.resetZoomDesktop', function(event) {
+                                    const $target = $(event.target);
+                                    if (!$target.closest('.step-component').length &&
+                                        !$target.closest('.tooltip').length) {
+                                        console.log("DEBUG: Clique fora detectado em desktop, resetando visualização");
+                                        resetView();
+                                    }
+                                });
+                            } else {
+                                $(document).on('click.resetZoomMobile', function(event) {
+                                    const $target = $(event.target);
+                                    if (!$target.closest('.step-component').length &&
+                                        !$target.closest('.interactive-legend').length) {
+                                        console.log("DEBUG: Clique fora detectado em mobile, resetando visualização");
+                                        resetView();
+                                    }
+                                });
+                            }
+                        }, 600); // Tempo um pouco maior que a transição para garantir que o zoom seja aplicado primeiro
+                    }
+                }
+                
+                function resetView() {
+                    console.log("DEBUG: resetView() chamado");
                     
-                    // Reseta todos os ícones para search e depois muda apenas o atual para zoom-in
+                    hotspots.removeClass('active');
+                    legendItems.removeClass('active');
+        
+                    if (innerContainer.length > 0){
+                        innerContainer[0].style.transform = 'scale(1) translate(0, 0)';
+                        innerContainer[0].style.transition = 'transform 0.5s ease';
+                    }
+                    
+                    if (image.length > 0) {
+                        image[0].style.transform = 'none';
+                        image[0].style.transition = 'none';
+                    }
+                    
+                    hotspots.each(function() {
+                        this.style.transform = 'translate(-50%, -50%)';
+                    });
+                    
+                    // Reseta todos os ícones para o estado inicial (search)
                     legendItems.each(function() {
                         const $icon = $(this).find('.icon-custon');
                         $icon.removeClass('icon-zoom-in icon-zoom-out').addClass('icon-search');
                     });
-                    $this.find('.icon-custon').removeClass('icon-search icon-zoom-out').addClass('icon-zoom-in');
-    
-                    // Scroll suave para o item
-                    const legendContainer = this.closest('.interactive-legend');
-                    if (legendContainer) {
-                        this.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-                    }
-                });
-    
-                // HOVER nos itens (feedback visual) - Mantido no mobile
-                legendItems.on('mouseenter.interactive', function() {
-                    const hotspotId = $(this).data('hotspot');
-                    stepContainer.find('.hotspot[data-hotspot="' + hotspotId + '"]').addClass('hover');
-                });
-    
-                legendItems.on('mouseleave.interactive', function() {
-                    hotspots.removeClass('hover');
-                });
-    
-                // Reset ao clicar fora (Usa a função global resetView)
-                $(document).off('click.resetZoomMobile').on('click.resetZoomMobile', function(event) {
-                    const $target = $(event.target);
-                    if (!$target.closest('.step-component').length && 
-                        !$target.closest('.interactive-legend').length) {
-                        resetView();
-                    }
-                });
-                
-                console.log("✅ Mobile configurado:", legendItems.length, "itens");
-            }
-        });
-    } 
-    // Executa a função principal quando a página carrega
-    setupInteractiveImages();
-    
-    // ===================================================================
-        // INICIALIZAÇÃO COMPATÍVEL COM MOODLE
-        // ===================================================================
-        function initMoodleInteractive() {
-            if (typeof jQuery === 'undefined') {
-                console.log("Aguardando jQuery...");
-                setTimeout(initMoodleInteractive, 100);
-                return;
-            }
+                }
+                // ===================================
+                // FIM FUNÇÕES GLOBAIS DE ZOOM
+                // ===================================
         
-            console.log("Inicializando componentes interativos...");
-            initInteractiveLegend();
-            setupInteractiveImages();
-        }
         
-        // Múltiplos pontos de entrada
-        if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', initMoodleInteractive);
-        } else {
-            initMoodleInteractive();
-        }
-        
-        // Garante execução após jQuery do Moodle estar pronto
-        require(['jquery'], function($) {
-            window.jQuery = window.$ = $;
-            $(document).ready(function() {
-                initMoodleInteractive();
-            });
-        });
-        
-        // Observa mudanças no DOM
-        if (typeof MutationObserver !== 'undefined') {
-            const observer = new MutationObserver(function(mutations) {
-                let shouldReinit = false;
-                mutations.forEach(function(mutation) {
-                    if (mutation.addedNodes.length > 0) {
-                        mutation.addedNodes.forEach(function(node) {
-                            if (node.nodeType === 1 && typeof jQuery !== 'undefined') {
-                                const $node = jQuery(node);
-                                if ($node.hasClass('step-component') || $node.find('.step-component').length > 0) {
-                                    shouldReinit = true;
-                                }
-                            }
+                // ===================================
+                // LÓGICA PARA DESKTOP
+                // ===================================
+                if (isDesktop) {
+                    console.log("→ Modo Desktop: Ativando Tooltip no Hover e Zoom no Clique");
+                    
+                    // 1. Inicializar Tooltips do Bootstrap (No Hover)
+                    if ($.fn.tooltip) {
+                        hotspots.each(function() {
+                            $(this).tooltip({
+                                placement: 'auto', // Mudança para 'auto' para melhor posicionamento
+                                boundary: 'viewport',
+                                trigger: 'hover' // Ativa no hover, desativa ao sair
+                            });
                         });
                     }
-                });
-                if (shouldReinit) {
-                    console.log("Conteúdo novo detectado, reinicializando...");
-                    setTimeout(initMoodleInteractive, 100);
+                    
+                    // 2. Adiciona o listener de clique (Para o Zoom)
+                    hotspots.on('click.desktop', function(e) {
+                        console.log("DEBUG: Clique no hotspot em desktop detectado");
+                        e.preventDefault();
+                        e.stopPropagation();
+        
+                        const $this = $(this);
+                        const hotspotId = $this.data('hotspot');
+                        const isActive = $this.hasClass('active'); // NOVO: Verifica se já está ativo
+        
+                        console.log("DEBUG: hotspotId:", hotspotId, "isActive:", isActive);
+        
+                        // 1. Se já estiver ativo, reseta e sai.
+                        if (isActive) {
+                            console.log("DEBUG: Hotspot já está ativo, resetando visualização");
+                            resetView();
+                            return;
+                        }
+        
+                        // Fecha qualquer tooltip aberto no clique
+                        if ($.fn.tooltip) {
+                            $this.tooltip('hide');
+                        }
+                        
+                        // 2. Se não estiver ativo, aplica o zoom
+                        const zoomData = stepContainer.find('.interactive-legend .legend-item[data-hotspot="' + hotspotId + '"]').data('zoom');
+                        console.log("DEBUG: zoomData encontrado:", zoomData);
+                        activateZoom(hotspotId, zoomData);
+                        });
+                    
+                } 
+                // ===================================
+                // LÓGICA PARA MOBILE (COM ZOOM!)
+                // ===================================
+                else {
+                    console.log("→ Modo Mobile: Ativando legenda com zoom");
+                    
+                    if (legendItems.length === 0) {
+                        console.warn("⚠️ Nenhum item de legenda encontrado");
+                        return;
+                    }
+        
+                    // Limpa eventos anteriores para evitar múltiplos listeners
+                    hotspots.off('click.interactive mouseenter.interactive mouseleave.interactive');
+                    legendItems.off('click.interactive mouseenter.interactive');
+                    
+                    // FUNÇÃO PARA MOBILE (Usa a função global activateZoom)
+                    legendItems.on('click.interactive', function(e) {
+                        console.log("DEBUG: Clique no item de legenda em mobile detectado");
+                        e.preventDefault();
+                        e.stopPropagation();
+                        
+                        const $this = $(this);
+                        const hotspotId = $this.data('hotspot');
+                        const zoomData = $this.data('zoom');
+                        const isActive = $this.hasClass('active');
+                        
+                        // Verifica se o zoom está ativo (verificando se o transform do innerContainer tem scale diferente de 1)
+                        const isZoomed = innerContainer.length > 0 &&
+                                        innerContainer[0].style.transform &&
+                                        innerContainer[0].style.transform.includes('scale(') &&
+                                        !innerContainer[0].style.transform.includes('scale(1)');
+        
+                        console.log("DEBUG: hotspotId:", hotspotId, "isActive:", isActive, "isZoomed:", isZoomed, "zoomData:", zoomData);
+        
+                        // 1. Se está com zoom ativo, reseta (zoom-out) e volta para o ícone de busca
+                        if (isZoomed && isActive) {
+                            console.log("DEBUG: Zoom ativo, resetando visualização (zoom-out)");
+                            resetView();
+                            return;
+                        }
+        
+                        // 2. Se já está ativo mas sem zoom, aplica o zoom (segundo clique) e muda para zoom-out
+                        if (isActive && !isZoomed) {
+                            console.log("DEBUG: Item de legenda já está ativo, aplicando zoom");
+                            
+                            // Muda o ícone para zoom-out ANTES de aplicar o zoom
+                            $this.find('.icon-custon').removeClass('icon-search icon-zoom-in').addClass('icon-zoom-out');
+                            
+                            // Remove temporariamente os eventos de clique fora para evitar conflitos
+                            $(document).off('click.resetZoomMobile');
+                            
+                            // Aplica o zoom
+                            activateZoom(hotspotId, zoomData);
+                            return;
+                        }
+        
+                        // 3. Se não estiver ativo, apenas ativa o hotspot (primeiro clique) e muda para zoom-in
+                        console.log("DEBUG: Ativando hotspot sem zoom (primeiro clique)");
+                        hotspots.removeClass('active');
+                        legendItems.removeClass('active');
+                        stepContainer.find('.hotspot[data-hotspot="' + hotspotId + '"]').addClass('active');
+                        $this.addClass('active');
+                        
+                        // Reseta todos os ícones para search e depois muda apenas o atual para zoom-in
+                        legendItems.each(function() {
+                            const $icon = $(this).find('.icon-custon');
+                            $icon.removeClass('icon-zoom-in icon-zoom-out').addClass('icon-search');
+                        });
+                        $this.find('.icon-custon').removeClass('icon-search icon-zoom-out').addClass('icon-zoom-in');
+        
+                        // Scroll suave para o item
+                        const legendContainer = this.closest('.interactive-legend');
+                        if (legendContainer) {
+                            this.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                        }
+                    });
+        
+                    // HOVER nos itens (feedback visual) - Mantido no mobile
+                    legendItems.on('mouseenter.interactive', function() {
+                        const hotspotId = $(this).data('hotspot');
+                        stepContainer.find('.hotspot[data-hotspot="' + hotspotId + '"]').addClass('hover');
+                    });
+        
+                    legendItems.on('mouseleave.interactive', function() {
+                        hotspots.removeClass('hover');
+                    });
+        
+                    // Reset ao clicar fora (Usa a função global resetView)
+                    $(document).off('click.resetZoomMobile').on('click.resetZoomMobile', function(event) {
+                        const $target = $(event.target);
+                        if (!$target.closest('.step-component').length && 
+                            !$target.closest('.interactive-legend').length) {
+                            resetView();
+                        }
+                    });
+                    
+                    console.log("✅ Mobile configurado:", legendItems.length, "itens");
                 }
             });
+        } 
+        // Executa a função principal quando a página carrega
+        setupInteractiveImages();
         
-            observer.observe(document.body, {
-                childList: true,
-                subtree: true
-            });
-        }
-        
-        // Reinicializa no resize
-        let resizeTimer;
-        window.addEventListener('resize', function() {
-            clearTimeout(resizeTimer);
-            resizeTimer = setTimeout(function() {
-                console.log("Resize detectado, reinicializando...");
-                initMoodleInteractive();
-            }, 250);
-        });
-        </script>
-        <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
-    
+        // ===================================================================
+            // INICIALIZAÇÃO COMPATÍVEL COM MOODLE
+            // ===================================================================
+            function initMoodleInteractive() {
+                if (typeof jQuery === 'undefined') {
+                    console.log("Aguardando jQuery...");
+                    setTimeout(initMoodleInteractive, 100);
+                    return;
+                }
             
+                console.log("Inicializando componentes interativos...");
+                initInteractiveLegend();
+                setupInteractiveImages();
+            }
+            
+            // Múltiplos pontos de entrada
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', initMoodleInteractive);
+            } else {
+                initMoodleInteractive();
+            }
+            
+            // Garante execução após jQuery do Moodle estar pronto
+            require(['jquery'], function($) {
+                window.jQuery = window.$ = $;
+                $(document).ready(function() {
+                    initMoodleInteractive();
+                });
+            });
+            
+            // Observa mudanças no DOM
+            if (typeof MutationObserver !== 'undefined') {
+                const observer = new MutationObserver(function(mutations) {
+                    let shouldReinit = false;
+                    mutations.forEach(function(mutation) {
+                        if (mutation.addedNodes.length > 0) {
+                            mutation.addedNodes.forEach(function(node) {
+                                if (node.nodeType === 1 && typeof jQuery !== 'undefined') {
+                                    const $node = jQuery(node);
+                                    if ($node.hasClass('step-component') || $node.find('.step-component').length > 0) {
+                                        shouldReinit = true;
+                                    }
+                                }
+                            });
+                        }
+                    });
+                    if (shouldReinit) {
+                        console.log("Conteúdo novo detectado, reinicializando...");
+                        setTimeout(initMoodleInteractive, 100);
+                    }
+                });
+            
+                observer.observe(document.body, {
+                    childList: true,
+                    subtree: true
+                });
+            }
+            
+            // Reinicializa no resize
+            let resizeTimer;
+            window.addEventListener('resize', function() {
+                clearTimeout(resizeTimer);
+                resizeTimer = setTimeout(function() {
+                    console.log("Resize detectado, reinicializando...");
+                    initMoodleInteractive();
+                }, 250);
+            });
+            </script>
+            <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+                <script>
+              document.addEventListener("DOMContentLoaded", function() {
+                  // 1. Pega a data de hoje
+                  var hoje = new Date();
+                  
+                  // 2. Formata para português (Ex: 24/10/2023)
+                  //var dataFormatada = hoje.toLocaleDateString('pt-BR');
+                  
+                  // Se preferir por extenso (Ex: 24 de outubro de 2023), use esta linha no lugar da de cima:
+                  var dataFormatada = hoje.toLocaleDateString('pt-BR', { day: 'numeric', month: 'short', year: 'numeric' });
+              
+                  // 3. Procura o elemento e coloca a data dentro
+                  var elementosData = document.querySelectorAll('.gh-auto-date');
+                  elementosData.forEach(function(elemento) {
+                      elemento.textContent = dataFormatada;
+                  });
+              });
+              </script>
+                

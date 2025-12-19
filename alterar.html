@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Curso Geohab - Módulo 1 - Seção 6 - Perfis de Acesso</title>
+    <title>modulo4-secao3-criando_dashboards</title>
 
     <!-- FONTES -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -252,6 +252,152 @@
     */
 }
 </style>
+
+<style>
+/* Estilos para legendas de imagens no PDF */
+.image-caption {
+    display: flex;
+    align-content: center;
+    align-items: center;
+    font-size: 0.9rem;
+    font-style: italic;
+    color: #666;
+    margin-top: 0.5em;
+    text-align: center;
+    margin-bottom: 1.5em;
+}
+
+@media print {
+    .image-caption {
+        page-break-inside: avoid;
+        margin-bottom: 1em;
+    }
+}
+</style>
+
+<style>
+/* Estilos para formatação PDF */
+@media print {
+    /* Container principal */
+    .guide-container {
+        padding: 0 45px 45px 45px !important;
+    }
+    
+    /* Remover elementos interativos */
+    .image-modal-wrapper {
+        position: relative !important;
+    }
+    
+    .image-modal-popup {
+        display: none !important;
+    }
+    
+    .modal-trigger-img {
+        cursor: default !important;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        max-width: 100%;
+        height: auto;
+    }
+    
+    /* Formatação para badges */
+    .badge-link {
+        font-weight: bold;
+        text-decoration: none;
+    }
+    
+    .badge-text-purple {
+        color: #6f42c1;
+        font-weight: bold;
+    }
+    
+    .badge-text-blue {
+        color: #007bff;
+        font-weight: bold;
+    }
+    
+    /* Evitar quebra de página em elementos importantes */
+    .step-component {
+        page-break-inside: avoid;
+        margin-bottom: 30px;
+    }
+    
+    .definition-item {
+        page-break-inside: avoid;
+        margin-bottom: 15px;
+    }
+    
+    /* Legendas de imagens */
+    .image-caption {
+        display: block;
+        font-size: 0.9rem;
+        font-style: italic;
+        color: #666;
+        margin-top: 0.5em;
+        text-align: center;
+        margin-bottom: 1.5em;
+    }
+    
+    /* Ajustes para impressão */
+    .notice-block {
+        page-break-inside: avoid;
+        margin: 20px 0;
+    }
+    
+    .content-layout-cols {
+        display: block;
+    }
+    
+    .content-col-text,
+    .content-col-media {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+}
+
+/* Estilos para visualização em tela */
+@media screen {
+    .image-modal-wrapper {
+        position: relative;
+        cursor: pointer;
+    }
+    
+    .image-modal-popup {
+        display: none;
+        position: fixed;
+        z-index: 1000;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0,0,0,0.9);
+        text-align: center;
+    }
+    
+    .modal-display-img {
+        max-width: 90%;
+        max-height: 90%;
+        margin: 20px auto;
+        display: block;
+    }
+    
+    .custom-close {
+        position: absolute;
+        top: 15px;
+        right: 35px;
+        color: #f1f1f1;
+        font-size: 40px;
+        font-weight: bold;
+        cursor: pointer;
+    }
+    
+    .modal-caption-text {
+        color: #f1f1f1;
+        text-align: center;
+        padding: 10px;
+    }
+}
+</style>
 </head>
 <body>
 <div class="gh-header-right-align">
@@ -284,7 +430,7 @@
     </div>
     <div class="gh-item gh-titles">
       <h1 class="gh-main">CURSO DO GEOHAB</h1>
-      <h2 class="gh-sub">MÓDULO 1</h2>
+      <h2 class="gh-sub">MÓDULO 4</h2>
     </div>
     <div class="gh-item gh-dept">
       <span>Sup. de Tecnologia e Informação</span>
@@ -292,248 +438,618 @@
   </div>
 </div>
 
-<div class="guide-container" style="padding: 0 45px 45px 45px;">
-  <div class="materials-hero" style="text-align: center;">
-    <h1 style="font-size: 2.5rem;">Perfis de Acesso no Geohab</h1><br>
-  </div>
-
-  <h2>Sobre os Perfis de Acesso</h2>
-  <p>No Geohab, a segurança da informação e o controle sobre os dados geoespaciais produzidos e gerenciados pela CDHU
-    são primordiais. Para garantir que apenas as pessoas certas tenham acesso às informações e funcionalidades corretas,
-    a plataforma utiliza um sistema robusto de perfis de acesso.</p>
-  <p>Este sistema permite delimitar com precisão os "poderes" e as funções de cada usuário. Para construir um perfil de
-    acesso e definir o que um usuário pode fazer, o Geohab combina quatro elementos principais, que chamamos aqui de
-    "instâncias de configuração":</p>
-
-  <div class="notice-block notice-info">
-    <div class="notice-icon">
-      <span class="icon-custon icon-info"></span>
-    </div>
-    <div class="notice-content">
-      <h3>Instâncias de Configuração</h3>
-      <p>O sistema de perfis de acesso do Geohab é baseado em quatro elementos principais que trabalham em conjunto para
-        definir as permissões dos usuários: <strong>Setores</strong>, <strong>Papéis</strong>, <strong>Usuários</strong> e <strong>Delegações</strong>.</p>
-    </div>
-  </div>
-  <br>
-
-  <h2 class="step-title">Setores (Organizations)</h2>
-  <p>As Organizations (Setores) no Geohab são usadas para agrupar usuários de forma lógica, geralmente refletindo
-    a estrutura departamental ou de equipes da CDHU. Elas ajudam a organizar os usuários e podem ser usadas como
-    um primeiro nível para agrupar permissões.</p>
-
-  <h4>Como funcionam?</h4>
-  <ul>
-    <li>Cada usuário é obrigatoriamente associado a um Setor principal. E recebe o papel básico de cada setor, chamado
-      de <b>Leitor</b>.</li>
-    <li>Um <b>Super Usuário</b> ou <b>Administrador Local</b> com privilégios adequados pode, se
-      necessário, atribuir um papel de um setor a um usuário de outros Setores.</li>
-    <li>As Organizations (Setores) facilitam o gerenciamento, pois permitem aplicar certas configurações ou
-      visibilidades de forma coletiva aos seus membros. Logo, os membros de cada setor tem acesso direto aos dados do
-      seu setor.</li>
-    <li>No contexto da CDHU: Cada setor da companhia (Diretorias e/ou Superintendências) é tipicamente representado como
-      uma organização dentro do Geohab.</li>
-  </ul>
-  <br>
-
-  <h2> Papéis (Roles)</h2>
-  <p>Os <b>Papéis</b> são como "etiquetas" que definem conjuntos específicos de
-    permissões. Um papel agrupa uma série de direitos sobre o que um usuário pode ou não pode fazer dentro da
-    plataforma e em seus componentes, principalmente no <span class="badge-text-blue">Serviços (GeoServer)</span> e no <span
-      class="badge-text-salmon">Catálogo (GeoNetwork)</span>, refletindo também no <span
-      class="badge-text-purple">Visualizador (MapStore 2)</span>.</p>
-
-  <h4>Como funcionam?</h4>
-  <ul>
-    <li>Os perfis de acesso são efetivamente definidos quando um <b>Usuário</b> é
-      associado a um ou mais <b>Papéis</b>.</li>
-    <li>Esses papéis são armazenados no sistema de autenticação central do Geohab e são reconhecidos pelos
-      diferentes componentes da plataforma.</li>
-    <li>Ao atribuir um papel a um <b>Usuário</b>, estamos, na prática, concedendo a
-      ele um conjunto de permissões pré-definidas de acesso e manipulação de dados.</li>
-    <li>Todos os <b>Setores</b> têm quatro <b>Papéis</b> padrão: Administrador Local, Revisor, Editor e Leitor.</li>
-  </ul>
-  <br>  <br>  <br>  <br>  <br>  <br>
-  
-  <h3>Papéis Padrão no Geohab e suas Capacidades (CRUD)</h3>
-  <p>O Geohab utiliza um conjunto de papéis padrão, cujas permissões podem ser entendidas em termos de operações
-    CRUD: Create (Criar), Read (Ler), Update (Atualizar), Delete (Apagar/Excluir).</p>
-
-  <table class="table table-bordered">
-    <thead class="thead-dark">
-      <tr>
-        <th>PAPEL</th>
-        <th>DESCRIÇÃO RESUMIDA</th>
-        <th>C</th>
-        <th>R</th>
-        <th>U</th>
-        <th>D</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><strong>Super usuário</strong><br><kbd>SUPERUSER</kbd></td>
-        <td>Administra toda a plataforma Geohab, incluindo usuários, organizações, papéis e configurações globais.</td>
-        <td class="text-center"><span class="badge badge-success">SIM</span></td>
-        <td class="text-center"><span class="badge badge-success">SIM</span></td>
-        <td class="text-center"><span class="badge badge-success">SIM</span></td>
-        <td class="text-center"><span class="badge badge-success">SIM</span></td>
-      </tr>
-      <tr>
-        <td><strong>Administrador local</strong><br><kbd>ADMIN_LOCAL_SETOR</kbd></td>
-        <td>Administra os recursos do Setor. Cria a estrutura de camadas, publica dados, gerencia permissões locais e associa usuários a papéis.</td>
-        <td class="text-center"><span class="badge badge-success">SIM</span></td>
-        <td class="text-center"><span class="badge badge-success">SIM</span></td>
-        <td class="text-center"><span class="badge badge-success">SIM</span></td>
-        <td class="text-center"><span class="badge badge-success">SIM</span></td>
-      </tr>
-      <tr>
-        <td><strong>Revisor</strong><br><kbd>REVISOR_SETOR</kbd></td>
-        <td>Valida a qualidade dos dados geoespaciais e <strong>CRIA</strong> os metadados no Catálogo. Aprova a camada para publicação.</td>
-        <td class="text-center"><span class="badge badge-success">SIM</span><sup>1</sup></td>
-        <td class="text-center"><span class="badge badge-success">SIM</span></td>
-        <td class="text-center"><span class="badge badge-success">SIM</span></td>
-        <td class="text-center"><span class="badge badge-danger">NÃO</span></td>
-      </tr>
-      <tr>
-        <td><strong>Editor</strong><br><kbd>EDITOR_SETOR</kbd></td>
-        <td>Produz dados geoespaciais (conteúdo). Pode inserir e excluir feições (linhas/polígonos) para manter a qualidade do desenho.</td>
-        <td class="text-center"><span class="badge badge-warning">SIM*</span></td>
-        <td class="text-center"><span class="badge badge-success">SIM</span></td>
-        <td class="text-center"><span class="badge badge-success">SIM</span></td>
-        <td class="text-center"><span class="badge badge-warning">SIM*</span></td>
-      </tr>
-      <tr>
-        <td><strong>Leitor</strong><br><kbd>LEITOR_SETOR</kbd></td>
-        <td>Pode visualizar/ler as camadas e metadados do seu setor específico.</td>
-        <td class="text-center"><span class="badge badge-danger">NÃO</span></td>
-        <td class="text-center"><span class="badge badge-success">SIM</span></td>
-        <td class="text-center"><span class="badge badge-danger">NÃO</span></td>
-        <td class="text-center"><span class="badge badge-danger">NÃO</span></td>
-      </tr>
-      <tr>
-        <td><strong>Usuário logado</strong><br><kbd>User</kbd></td>
-        <td>Pode visualizar/ler as camadas públicas do Geohab ou versões publicas de Camadas de Setores.</td>
-        <td class="text-center"><span class="badge badge-danger">NÃO</span></td>
-        <td class="text-center"><span class="badge badge-success">SIM</span></td>
-        <td class="text-center"><span class="badge badge-danger">NÃO</span></td>
-        <td class="text-center"><span class="badge badge-danger">NÃO</span></td>
-      </tr>
-    </tbody>
-  </table>
-  <div class="notice-block notice-info">
-    <div class="notice-icon">
-      <span class="icon-custon icon-info"></span>
-    </div>
-    <div class="notice-content">
-      <h3>Distinção Técnica no Ecossistema (Banco de Dados e GeoServer)</h3>
-      <div class="step-body" style="padding-top: 10px;">
-        <div class="step-content-col-text">
-          <p>Para compreender corretamente as permissões marcadas com asterisco (*) e (1) na tabela acima, é fundamental distinguir o acesso à <strong>ESTRUTURA</strong> do acesso ao <strong>CONTEÚDO</strong> dentro do Banco de Dados Geoespacial:<br><br></p>
-          
-          <div class="row">
-            <div class="col-md-6">
-              <h5><b>1. Gestão de Estrutura (Camada/Tabela)</b></h5>
-              <p>Refere-se à criação (DDL) ou exclusão do "recipiente" dos dados.</p>
-              <ul>
-                <li><strong>Responsável:</strong> <b>ADMIN_LOCAL</b></li>
-                <li><strong>O que é:</strong> Criar uma nova tabela no banco ou publicar um novo Layer no GeoServer.</li>
-                <li><strong>Editor:</strong> <span class="badge badge-danger">NÃO PODE</span> criar ou destruir camadas.</li>
-              </ul>
+<!-- Colocar abaixo pagina formatadas para PDF-->
+<div class="module-intro-block" id="m4-s3-dashboard">
+    <div class="guide-container">
+        <h2 class="guide-container-title">Criando Dashboards no Geohab</h2>
+        
+        <div class="content-layout-cols">
+            <div class="content-col-text">
+                <p>O <strong>Dashboard</strong> é uma ferramenta poderosa para criar <strong>painéis interativos</strong>, combinando <strong>mapas</strong>, <strong>gráficos</strong>, <strong>tabelas</strong>, <strong>indicadores</strong> e <strong>filtros</strong> em uma única interface visual. Ele permite que usuários finais explorem dados geoespaciais de forma intuitiva, facilitando a <strong>análise de dados</strong> e a <strong>tomada de decisão</strong>.</p>
             </div>
-            <div class="col-md-6">
-              <h5><b>2. Gestão de Conteúdo (Feições/Linhas)</b></h5>
-              <p>Refere-se à manipulação (DML) dos dados dentro da camada.</p>
-              <ul>
-                <li><strong>Responsável:</strong> <b>EDITOR</b></li>
-                <li><strong>O que é:</strong> Desenhar (Insert), alterar (Update) ou apagar (Delete) geometrias e atributos.</li>
-                <li><strong>Editor:</strong> <span class="badge badge-success">PODE</span> apagar feições individuais para corrigir erros.</li>
-              </ul>
-            </div>
-          </div>
-          <p style="margin-top: 15px; font-size: 0.9rem;"><em>Nota sobre o Revisor (1): Ele possui permissão de Criação (C) especificamente para <strong>Metadados</strong> no Catálogo (GeoNetwork), não para dados espaciais no GeoServer.</em></p>
         </div>
-      </div>
-    </div>
-  </div>
-  <!-- SEÇÃO DE DISTINÇÃO TÉCNICA -->
+        
+        <!-- Bloco de Nota Essencial -->
+        <div class="notice-block notice-warning">
+            <div class="notice-icon">
+                <svg class="icon-custon icon-warning"></svg>
+            </div>
+            <div class="notice-content">
+                <p><strong>Pré-requisitos:</strong> Estar autenticado no Geohab com permissões para criar conteúdo, ter ao menos um mapa ou camada configurado, e ter acesso a fontes de dados (camadas vetoriais com atributos).</p>
+            </div>
+        </div>
+        
+        <!-- PASSO 1: ACESSANDO A ÁREA DE DASHBOARDS -->
+        <div class="step-component" id="m4-s3-dashboard-passo1">
+            <div class="step-header">
+                <div class="step-number">1</div>
+                <h3 class="step-title">Acessando a Área de Dashboards</h3>
+            </div>
+            <div class="step-body">
+                <div class="step-content-col-text">
+                    <p>Acesse o menu <span class="badge-link badge-text-lilac">Apps</span> e clique no ícone de novo <span class="badge-link badge-text-lilac">Dashboard</span>.</p>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><span class="badge-circular-red mr-2">1</span> <strong>Apps:</strong> Acesso às ferramentas do Geohab.</li>
+                        <li class="mb-2"><span class="badge-circular-red mr-2">2</span> <strong>Dashboard:</strong> Inicia um novo painel.</li>
+                    </ul>
+                    <p class="d-none d-lg-block">
+                        <br>
+                        <span class="step-legend-text"><strong>Passe o mouse sobre o número</strong> na imagem para ver a função de cada botão. E clique para aplicar zoom-in ou zoom-out.</span>
+                    </p>
+                    <p class="d-lg-none">
+                        <br>
+                        <span class="step-legend-text"><strong>Toque em um item da legenda abaixo</strong> para ver sua localização na imagem. E clique novamente para dar zoom-in ou zoom-out.</span>
+                    </p>
+                </div>
 
-  <h3>Granularidade de acesso</h3>
-  <p>Os <b>Papéis</b> permitem um controle muito granular. Por exemplo, o Papel <kbd>EDITOR_SETOR-A</kbd> apenas poderá
-    editar as camadas para as quais esse <b>Papel</b> foi especificamente delegado, no caso dados do Setor A.<br> <br> 
-    É possível delegar <b>Papéis</b> de forma diferenciada
-    para cada componente do Geohab (<span class="badge-text-blue">Serviços</span>, <span
-      class="badge-text-salmon">Catálogo</span>, <span class="badge-text-purple">Visualizador</span>) e para
-    diferentes níveis de recursos, como armazéns de dados, espaços geográficos, grupos de camadas, camadas
-    individuais ou, em casos muito específicos, até mesmo linhas de dados dentro de uma camada.</p>
+                <div class="step-content-media-hotspot">
+                    <div class="interactive-image-wrapper">
+                        <div class="interactive-image-inner-container">
+                            <img src="https://stor.cdhu.sp.gov.br/treina/publico/img-4-11.png"
+                                alt="Menu de aplicativos do Geohab com destaque para o ícone de criação de Dashboard">
+                            <!-- Hotspots -->
+                            <div class="hotspot" data-hotspot="1" style="top: 10.6%; left:25.5%;"
+                                data-toggle="tooltip" title="Menu Apps">1</div>
+                            <div class="hotspot" data-hotspot="2" style="top: 23.3%; left: 11.9%;"
+                                data-toggle="tooltip" title="Ícone Dashboard">2</div>
+                        </div>
+                    </div>
+                    <!-- Mobile -->
+                    <div class="interactive-legend d-lg-none mt-4">
+                        <div class="legend-item" data-hotspot="1" data-zoom="3,26,10">
+                            <div class="icon-custon icon-search icon-mobile"></div>
+                            <div><b>1. Apps:</b> Acesso às ferramentas do Geohab.</div>
+                        </div>
+                        <div class="legend-item" data-hotspot="2" data-zoom="3,11,23">
+                            <div class="icon-custon icon-search icon-mobile"></div>
+                            <div><strong>2. Dashboard:</strong> Inicia um novo painel.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- PASSO 2: CONFIGURAÇÕES INICIAIS -->
+        <div class="step-component" id="m4-s3-dashboard-passo2">
+            <div class="step-header">
+                <div class="step-number">2</div>
+                <h3 class="step-title">Tipos de Widgets do Dashboard</h3>
+            </div>
+            <div class="step-body">
+                <div class="step-content-col-text">
+                    <p>Adicione Widgets ao seu dashboard:</p>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><span class="badge-circular-red mr-2">1</span> <strong>Adicionar Widget:</strong> Abre o painel de Widgets.</li>
+                        <li class="mb-2"><span class="badge-circular-red mr-2">2</span> <strong>Gráficos:</strong> Adiciona gráficos, Barras, pizza ou linha.</li>
+                        <li class="mb-2"><span class="badge-circular-red mr-2">3</span> <strong>Texto:</strong> Adiciona caixa de texto para títulos ou explicações.</li>
+                        <li class="mb-2"><span class="badge-circular-red mr-2">4</span> <strong>Tabelas:</strong> Adiciona uma tabela para exibição de dados em formato tabular.</li>
+                        <li class="mb-2"><span class="badge-circular-red mr-2">5</span> <strong>Contador:</strong> Adiciona um contadador para KPIs (Key Performance Indicators).</li>
+                        <li class="mb-2"><span class="badge-circular-red mr-2">6</span> <strong>Mapa:</strong> Adiciona mapas ou camadas interativas com seleção de feições</li>
 
-  <p>- Em resumo: Os <b>Papéis</b> são a "ponte" que conecta os usuários e os setores e,
-    consequentemente, às permissões, muitas vezes de forma contextualizada a recursos específicos.</p>
-<br><br><br><br>
-  <div class="notice-block notice-info">
-    <div class="notice-icon">
-      <svg class="icon-custon icon-info">
-      </svg>
-    </div>
-    <div class="notice-content">
-      <strong>Informação:</strong> Todos os usuário da plataforma têm, por padrão, o Papel de <b>Usuário logado <b>User</b></b>. Isso garante que, no mínimo, todos
-      possam visualizar os metadados e as camadas que foram publicadas para acesso geral (público da companhia), e não tenham acesso a dados privados.
-    </div>
-  </div>
-  <br>
+                    </ul>
+                    <p class="d-none d-lg-block">
+                        <br>
+                        <span class="step-legend-text"><strong>Passe o mouse sobre o número</strong> na imagem para ver a função de cada botão. E clique para aplicar zoom-in ou zoom-out.</span>
+                    </p>
+                    <p class="d-lg-none">
+                        <br>
+                        <span class="step-legend-text"><strong>Toque em um item da legenda abaixo</strong> para ver sua localização na imagem. E clique novamente para dar zoom-in ou zoom-out.</span>
+                    </p>
+                </div>
 
-  <h2>Usuários (Users)</h2>
+                <div class="step-content-media-hotspot">
+                    <div class="interactive-image-wrapper">
+                        <div class="interactive-image-inner-container">
+                            <img src="https://stor.cdhu.sp.gov.br/treina/publico/img-4-12.png"
+                                alt="Tipos de Widgets do Dashboard">
+                            <!-- Hotspots -->
+                            <div class="hotspot" data-hotspot="1" style="top: 17%; left: 96.5%;"
+                                data-toggle="tooltip" title="Abre o painel para adicionar Widgets">1</div>
+                            <div class="hotspot" data-hotspot="2" style="top: 30%; left: 71%;"
+                                data-toggle="tooltip" title="Adiciona Widget de Gráfico">2</div>
+                            <div class="hotspot" data-hotspot="3" style="top: 43%; left: 71%;"
+                                data-toggle="tooltip" title="Adiciona Widget de caixa textos">3</div>
+                            <div class="hotspot" data-hotspot="4" style="top: 55%; left: 71%;"
+                                data-toggle="tooltip" title="Adiciona Widget de tabela">4</div>
+                            <div class="hotspot" data-hotspot="5" style="top: 67%; left: 71%;"
+                                data-toggle="tooltip" title="Adiciona Widget de contador">5</div>
+                            <div class="hotspot" data-hotspot="6" style="top: 80%; left: 71%;"
+                                data-toggle="tooltip" title="Adiciona Widget de mapas ou camadas">6</div>                                    
+                        </div>
+                    </div>
+                    <!-- Mobile -->
+                    <div class="interactive-legend d-lg-none mt-4">
+                        <div class="legend-item" data-hotspot="1" data-zoom="3,96,17">
+                            <div class="icon-custon icon-search icon-mobile"></div>
+                            <div><b>1. Adicionar Widget:</b> Abre o painel de Widgets.</div>
+                        </div>
+                        <div class="legend-item" data-hotspot="2" data-zoom="3,71,30">
+                            <div class="icon-custon icon-search icon-mobile"></div>
+                            <div><strong>2. Gráfico:</strong> Adiciona gráficos.</div>
+                        </div>
+                        <div class="legend-item" data-hotspot="3" data-zoom="3,71,43">
+                            <div class="icon-custon icon-search icon-mobile"></div>
+                            <div><strong>3. Texto:</strong> Adiciona caixa de texto.</div>
+                        </div>
+                        <div class="legend-item" data-hotspot="4" data-zoom="3,71,55">
+                            <div class="icon-custon icon-search icon-mobile"></div>
+                            <div><strong>4. Tabela:</strong> Adiciona uma tabela.</div>
+                        </div>
+                        <div class="legend-item" data-hotspot="5" data-zoom="3,71,67">
+                            <div class="icon-custon icon-search icon-mobile"></div>
+                            <div><strong>5. Contador:</strong> Adicona um bloco de contador.</div>
+                        </div>
+                        <div class="legend-item" data-hotspot="6" data-zoom="3,71,80">
+                            <div class="icon-custon icon-search icon-mobile"></div>
+                            <div><strong>6. Mapa:</strong> Adiciona mapas ou camadas.</div>
+                        </div>                            
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- PASSO 3: TIPOS DE WIDGETS -->
+        <div class="step-component" id="m4-s3-dashboard-passo3">
+            <div class="step-header">
+                <div class="step-number">3</div>
+                <h3 class="step-title">Exemplo de dashboard</h3>
+            </div>
+            <div class="step-body">
+                <div class="step-content-col-text">
+                    <p>O dashboard possui uma interface modular onde você pode adicionar <span class="badge-link badge-text-blue">Widgets</span> em qualquer posição. Veja o exemplo:</p>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><span class="badge-circular-red mr-2">1</span> <strong>Exemplo de Gráficos</strong></li>
+                        <li class="mb-2"><span class="badge-circular-red mr-2">2</span> <strong>Exemplo de Texto</strong></li>
+                        <li class="mb-2"><span class="badge-circular-red mr-2">3</span> <strong>Exemplo de Tabbela</strong> </li>
+                        <li class="mb-2"><span class="badge-circular-red mr-2">4</span> <strong>Exemplo de Indicadores</strong></li>
+                        <li class="mb-2"><span class="badge-circular-red mr-2">5</span> <strong>Exemplo de Mapa</strong></li>
+                        
+                    </ul>
+                    <p class="d-none d-lg-block">
+                        <br>
+                        <span class="step-legend-text"><strong>Passe o mouse sobre o número</strong> na imagem para ver a função de cada botão. E clique para aplicar zoom-in ou zoom-out.</span>
+                    </p>
+                    <p class="d-lg-none">
+                        <br>
+                        <span class="step-legend-text"><strong>Toque em um item da legenda abaixo</strong> para ver sua localização na imagem. E clique novamente para dar zoom-in ou zoom-out.</span>
+                    </p>
+                </div>
 
-  <p>Os <b>Usuários</b> representam as contas individuais dos colaboradores,
-    indivíduos ou entidades que precisam acessar o Geohab e seus recursos.</p>
+                <div class="step-content-media-hotspot">
+                    <div class="interactive-image-wrapper">
+                        <div class="interactive-image-inner-container">
+                            <img src="https://stor.cdhu.sp.gov.br/treina/publico/img-4-13.png"
+                                alt="Interface de adição de widgets ao dashboard">
+                            <!-- Hotspots -->
+                            <div class="hotspot" data-hotspot="1" style="top: 16.5%; left: 74.5%;"
+                                data-toggle="tooltip" title="Gráficos">1</div>
+                            <div class="hotspot" data-hotspot="2" style="top: 52%; left: 74%;"
+                                data-toggle="tooltip" title="Tabela">2</div>
+                            <div class="hotspot" data-hotspot="3" style="top: 69%; left: 75.5%;"
+                                data-toggle="tooltip" title="Texto">3</div>
+                            <div class="hotspot" data-hotspot="4" style="top: 83.5%; left: 10.5%;"
+                                data-toggle="tooltip" title="Indicadores">4</div>
+                            <div class="hotspot" data-hotspot="5" style="top: 18%; left: 22%;"
+                                data-toggle="tooltip" title="Mapa">5</div>
+                        </div>
+                    </div>
+                    <!-- Mobile -->
+                    <div class="interactive-legend d-lg-none mt-4">
+                        <div class="legend-item" data-hotspot="1" data-zoom="3,80,30">
+                            <div class="icon-custon icon-search icon-mobile"></div>
+                            <div><b>1. Exemplo de Gráficos:</b> Barras, pizza ou linha.</div>
+                        </div>
+                        <div class="legend-item" data-hotspot="2" data-zoom="3,80,60">
+                            <div class="icon-custon icon-search icon-mobile"></div>
+                            <div><strong>2. Exemplo de Tabela:</strong> Dados em formato tabular.</div>
+                        </div>
+                        <div class="legend-item" data-hotspot="3" data-zoom="3,80,82">
+                            <div class="icon-custon icon-search icon-mobile"></div>
+                            <div><strong>3. Exemplo de Texto:</strong> Títulos ou explicações.</div>
+                        </div>
+                        <div class="legend-item" data-hotspot="4" data-zoom="3,10,85">
+                            <div class="icon-custon icon-search icon-mobile"></div>
+                            <div><strong>4. Exemplo de Indicadores:</strong> KPIs de desempenho.</div>
+                        </div>
+                        <div class="legend-item" data-hotspot="5" data-zoom="1.5,32,47">
+                            <div class="icon-custon icon-search icon-mobile"></div>
+                            <div><strong>5. Exemplo de Mapa:</strong> Mapas interativos.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- PASSO 4: ADICIONANDO WIDGETS -->
+        <div class="step-component" id="m4-s3-dashboard-passo4">
+            <div class="step-header">
+                <div class="step-number">4</div>
+                <h3 class="step-title">Filtros em Contadores (KPIs)</h3>
+            </div>
+            <div class="step-body">
+                <div class="step-content-col-text">
+                    <p>Os contadores precisam ser filtrados para que reflitam a infomação que você deseja, a partir de um dados em uma dada camada:</p>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><span class="badge-circular-red mr-2">1</span> <strong>Edição de contador</strong> Abra a edição de um contador.</li>
+                        <li class="mb-2"><span class="badge-circular-red mr-2">2</span> <strong>Editar:</strong> Clique em 'Editar'.</li>
+                        <li class="mb-2"><span class="badge-circular-red mr-2">3</span> <strong>Filtro:</strong> Abra o painel de filtro.</li>
+                        <li class="mb-2"><span class="badge-circular-red mr-2">4</span> <strong>Lógica de contagem:</strong> Todos (lógica AND ou E) Qualquer (lógica OR ou OU).</li>
+                        <li class="mb-2"><span class="badge-circular-red mr-2">5</span> <strong>Condição:</strong> Adicione condições de filtragem de dados.</li>
+                        <li class="mb-2"><span class="badge-circular-red mr-2">6</span> <strong>Campo:</strong> Selecione um campo da camada selecionada associada ao contador.</li>
+                        <li class="mb-2"><span class="badge-circular-red mr-2">7</span> <strong>Regra:</strong> Igual, maior, maior ou igaul, etc.</li>
+                        <li class="mb-2"><span class="badge-circular-red mr-2">8</span> <strong>O que deve ser filtrado:</strong> Selecione o que você deseja filtrar.</li>
+                        <li class="mb-2"><span class="badge-circular-red mr-2">9</span> <strong>Pesquisa:</strong> Aplica o filtro.</li>
+                        <li class="mb-2"><span class="badge-circular-red mr-2">10</span> <strong>Interatividade:</strong> Liga a interatividade do filtro.</li>
+                        <li class="mb-2"><span class="badge-circular-red mr-2">11</span> <strong>Conexão de interatividade:</strong> Clique em qual mapa você deseja associar o contador interativo.</li>
+                        <li class="mb-2"><span class="badge-circular-red mr-2">12</span> <strong>Salvar:</strong> Aqui você vai para a tela de salvar as edições de filtro.</li>
 
-  <h4>Como funcionam?</h4>
-  <ul>
-    <li>Cada Usuário possui um login e senha únicos (Login de rede CDHU).
-    </li>
-    <li>Como mencionado, cada usuário é associado a pelo menos um <b>Setor</b>.
-    </li>
-    <li>A um Usuário pode ser atribuído um ou mais <b>Papéis</b>, que podem ser papéis gerais da plataforma ou
-      específicos para seu <b>Setor</b> ou para um determinado projeto ou recurso.
-    </li>
-  </ul>
-  <br>
-  <h2>Delegações (Delegations)</h2>
+                    </ul>
+                    <p class="d-none d-lg-block">
+                        <br>
+                        <span class="step-legend-text"><strong>Passe o mouse sobre o número</strong> na imagem para ver a função de cada botão. E clique para aplicar zoom-in ou zoom-out.</span>
+                    </p>
+                    <p class="d-lg-none">
+                        <br>
+                        <span class="step-legend-text"><strong>Toque em um item da legenda abaixo</strong> para ver sua localização na imagem. E clique novamente para dar zoom-in ou zoom-out.</span>
+                    </p>
+                </div>
 
-  <p>Essa instância de configuração de acesso não é obrigatória, apenas usada em necessidades especificas. Então, as
-    <b>Delegações</b> são o mecanismo pelo qual os <b>Administradores Locais</b> podem conceder direitos
-    administrativos a um usuário de seu setor. Ou seja, dar direito a um usuário de seu setor a conceder acesso a dados
-    do seu setor, no que compete a acesso de dados.</p>
+                <div class="step-content-media-hotspot">
+                    <div class="interactive-image-wrapper">
+                        <div class="interactive-image-inner-container">
+                            <img src="https://stor.cdhu.sp.gov.br/treina/publico/img-4-14.png"
+                                alt="Janela de configuração de um widget de gráfico">
+                            <!-- Hotspots -->
+                            <div class="hotspot" data-hotspot="1" style="top: 84%; left: 48%;"
+                                data-toggle="tooltip" title="Editar Widget">1</div>
+                            <div class="hotspot" data-hotspot="2" style="top: 89%; left: 45%;"
+                                data-toggle="tooltip" title="Editar contador">2</div>
+                            <div class="hotspot" data-hotspot="3" style="top: 26.6%; left: 86.5%;"
+                                data-toggle="tooltip" title="Filtro">3</div>
+                            <div class="hotspot" data-hotspot="4" style="top: 23.5%; left: 10.4%;"
+                                data-toggle="tooltip" title="Lógica de contagem">4</div>
+                            <div class="hotspot" data-hotspot="5" style="top: 24.5%; left: 30.5%;"
+                                data-toggle="tooltip" title="Condição">5</div>
+                            <div class="hotspot" data-hotspot="6" style="top: 38%; left: 10.4%;"
+                                data-toggle="tooltip" title="Campo">6</div>
+                            <div class="hotspot" data-hotspot="7" style="top: 38%; left: 17%;"
+                                data-toggle="tooltip" title="Regra">7</div>
+                            <div class="hotspot" data-hotspot="8" style="top: 37%; left: 27.5%;"
+                                data-toggle="tooltip" title="O que deve ser filtrado">8</div>
+                            <div class="hotspot" data-hotspot="9" style="top: 14%; left: 18.5%;"
+                                data-toggle="tooltip" title="Pesquisa">9</div>
+                            <div class="hotspot" data-hotspot="10" style="top: 16.5%; left: 83.8%;"
+                                data-toggle="tooltip" title="Interatividade">10</div>
+                            <div class="hotspot" data-hotspot="11" style="top: 22%; left: 41%;"
+                                data-toggle="tooltip" title="Conexão de interatividade">11</div> 
+                            <div class="hotspot" data-hotspot="12" style="top: 16.5%; left: 88.5%;"
+                                data-toggle="tooltip" title="Salvar">12</div>                                                                                                                                                     
+                        </div>
+                    </div>
+                    <!-- Mobile -->
+                    <div class="interactive-legend d-lg-none mt-4">
+                        <div class="legend-item" data-hotspot="1" data-zoom="3,48,84">
+                            <div class="icon-custon icon-search icon-mobile"></div>
+                            <div><b>1. Editar Widget:</b> Abra a edição de um contador.</div>
+                        </div>
+                        <div class="legend-item" data-hotspot="2" data-zoom="3,45,89">
+                            <div class="icon-custon icon-search icon-mobile"></div>
+                            <div><strong>2. Editar contador:</strong> Clique em 'Editar'.</div>
+                        </div>
+                        <div class="legend-item" data-hotspot="3" data-zoom="3,86,26">
+                            <div class="icon-custon icon-search icon-mobile"></div>
+                            <div><strong>3. Filtro:</strong> Abra o painel de filtro.</div>
+                        </div>
+                        <div class="legend-item" data-hotspot="4" data-zoom="3,10,23">
+                            <div class="icon-custon icon-search icon-mobile"></div>
+                            <div><strong>4. Lógica de contagem:</strong> Todos (lógica AND ou E) Qualquer (lógica OR ou OU).</div>
+                        </div>
+                        <div class="legend-item" data-hotspot="5" data-zoom="3,30,24">
+                            <div class="icon-custon icon-search icon-mobile"></div>
+                            <div><strong>5. Condição:</strong> Adicione condições de filtragem de dados.</div>
+                        </div>
+                        <div class="legend-item" data-hotspot="6" data-zoom="3,10,38">
+                            <div class="icon-custon icon-search icon-mobile"></div>
+                            <div><strong>6. Campo:</strong>Selecione um campo da camada selecionada associada ao contador.</div>
+                        </div>
+                        <div class="legend-item" data-hotspot="7" data-zoom="3,17,38">
+                            <div class="icon-custon icon-search icon-mobile"></div>
+                            <div><b>7. Regra:</b> Igual, maior, maior ou igual, etc.</div>
+                        </div>
+                        <div class="legend-item" data-hotspot="8" data-zoom="3,37,27">
+                            <div class="icon-custon icon-search icon-mobile"></div>
+                            <div><strong>8. O que deve ser filtrado:</strong> Selecione o que você deseja filtrar.</div>
+                        </div>
+                        <div class="legend-item" data-hotspot="9" data-zoom="3,14,18">
+                            <div class="icon-custon icon-search icon-mobile"></div>
+                            <div><strong>9. Pesquisa:</strong> Aplica o filtro.</div>
+                        </div>
+                        <div class="legend-item" data-hotspot="10" data-zoom="3,83,16">
+                            <div class="icon-custon icon-search icon-mobile"></div>
+                            <div><strong>10. Interatividade:</strong> Liga a interatividade do filtro.</div>
+                        </div>
+                        <div class="legend-item" data-hotspot="11" data-zoom="3,41,22">
+                            <div class="icon-custon icon-search icon-mobile"></div>
+                            <div><strong>11. Conexão de interatividade:</strong> Clique em qual mapa você deseja associar o contador interativo.</div>
+                        </div>
+                        <div class="legend-item" data-hotspot="12" data-zoom="3,88,16">
+                            <div class="icon-custon icon-search icon-mobile"></div>
+                            <div><strong>12. Salvar:</strong> Aqui você vai para a tela de salvar as edições de filtro.</div>
+                        </div>                            
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- PASSO 5: Layout e Design -->
+        <div class="step-component" id="m4-s3-dashboard-passo5">
+            <div class="step-header">
+                <div class="step-number">5</div>
+                <h3 class="step-title">Layout e Design</h3>
+            </div>
+            <div class="step-body">
+                <div class="step-content-col-text">
+                    <p>Você pode ajustar o layout do seu dashboard:</p>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><span class="badge-circular-red mr-2">1</span> <strong>Redimensionar:</strong> Arraste as bordas para ajustar o tamanho.</li>
+                        <li class="mb-2"><span class="badge-circular-red mr-2">2</span> <strong>Mover:</strong> Clique na parte superir e arraste e solte para reposicionar.</li>
+                        <li class="mb-2"><span class="badge-circular-red mr-2">3</span> <strong>Organizar:</strong> Agrupe por seções lógicas, como esses contadores.</li>
+                        <li class="mb-2"><span class="badge-circular-red mr-2">4</span> <strong>Textos:</strong> Use widgets de texto para títulos e explicações.</li>
+                    </ul>
+                    <p class="d-none d-lg-block">
+                        <br>
+                        <span class="step-legend-text"><strong>Passe o mouse sobre o número</strong> na imagem para ver a função de cada botão. E clique para aplicar zoom-in ou zoom-out.</span>
+                    </p>
+                    <p class="d-lg-none">
+                        <br>
+                        <span class="step-legend-text"><strong>Toque em um item da legenda abaixo</strong> para ver sua localização na imagem. E clique novamente para dar zoom-in ou zoom-out.</span>
+                    </p>
+                </div>
 
-  <h4>Como funcionam?</h4>
-  <ul>
-    <li>O <b>Administrador Local</b> pode conceder a um usuário poderes administrativos de acesso de dados a outro
-      usuário "X" do seu setor, então, o usuário "x", poderá conceder ou remover acesso de dados a outros usuários de
-      seu setor.</li>
-  </ul>
+                <div class="step-content-media-hotspot">
+                    <div class="interactive-image-wrapper">
+                        <div class="interactive-image-inner-container">
+                            <img src="https://stor.cdhu.sp.gov.br/treina/publico/img-4-15.png"
+                                alt="Exemplo de filtro interativo aplicado a um dashboard">
+                            <!-- Hotspots -->
+                            <div class="hotspot" data-hotspot="1" style="top: 44%; left: 83%;"
+                                data-toggle="tooltip" title="Redimensionar">1</div>
+                            <div class="hotspot" data-hotspot="2" style="top: 17%; left: 35%;"
+                                data-toggle="tooltip" title="Mover">2</div>
+                            <div class="hotspot" data-hotspot="3" style="top: 85%; left: 32.5%;"
+                                data-toggle="tooltip" title="Organizar">3</div>
+                            <div class="hotspot" data-hotspot="4" style="top: 50%; left: 74%;"
+                                data-toggle="tooltip" title="Textos">4</div>
+                        </div>
+                    </div>
+                    <!-- Mobile -->
+                    <div class="interactive-legend d-lg-none mt-4">
+                        <div class="legend-item" data-hotspot="1" data-zoom="3,83,44">
+                            <div class="icon-custon icon-search icon-mobile"></div>
+                            <div><b>1. Redimensionar:</b> Ajuste o tamanho dos widgets.</div>
+                        </div>
+                        <div class="legend-item" data-hotspot="2" data-zoom="1.5,35,40">
+                            <div class="icon-custon icon-search icon-mobile"></div>
+                            <div><strong>2. Mover:</strong> Reposicione os widgets.</div>
+                        </div>
+                        <div class="legend-item" data-hotspot="3" data-zoom="1.6,32,95">
+                            <div class="icon-custon icon-search icon-mobile"></div>
+                            <div><strong>3. Organizar:</strong> Agrupe por seções lógicas.</div>
+                        </div>
+                        <div class="legend-item" data-hotspot="4" data-zoom="3,74,50">
+                            <div class="icon-custon icon-search icon-mobile"></div>
+                            <div><strong>4. Textos:</strong> Use para títulos e explicações.</div>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- PASSO 6: LAYOUT E DESIGN -->
+        <div class="step-component" id="m4-s3-dashboard-passo6">
+            <div class="step-header">
+                <div class="step-number">6</div>
+                <h3 class="step-title">Layout e Design</h3>
+            </div>
+            <div class="step-body">
+                <div class="step-content-col-text">
+                    <p>Você pode ajustar o layout do seu dashboard:</p>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><span class="badge-circular-red mr-2">1</span> <strong>Redimensionar:</strong> Arraste as bordas para ajustar o tamanho.</li>
+                        <li class="mb-2"><span class="badge-circular-red mr-2">2</span> <strong>Mover:</strong> Arraste e solte para reposicionar.</li>
+                        <li class="mb-2"><span class="badge-circular-red mr-2">3</span> <strong>Organizar:</strong> Agrupe por seções lógicas.</li>
+                        <li class="mb-2"><span class="badge-circular-red mr-2">4</span> <strong>Textos:</strong> Use widgets de texto para títulos e explicações.</li>
+                    </ul>
+                    <p class="d-none d-lg-block">
+                        <br>
+                        <span class="step-legend-text"><strong>Passe o mouse sobre o número</strong> na imagem para ver a função de cada botão. E clique para aplicar zoom-in ou zoom-out.</span>
+                    </p>
+                    <p class="d-lg-none">
+                        <br>
+                        <span class="step-legend-text"><strong>Toque em um item da legenda abaixo</strong> para ver sua localização na imagem. E clique novamente para dar zoom-in ou zoom-out.</span>
+                    </p>
+                </div>
 
-  <h4>Delegação Padrão</h4>
-  <p>Por padrão, no Geohab, os <b>Administradores Locais</b> são delegados a gerenciar todos os papéis de seu setor,
-    então eles podem conceder ou remover acesso aos usuários de seu setor, ou de outro setor, em necessidades
-    especiais.</p>
+                <div class="step-content-media-hotspot">
+                    <div class="interactive-image-wrapper">
+                        <div class="interactive-image-inner-container">
+                            <img src="https://stor.cdhu.sp.gov.br/treina/publico/img-4-16.png"
+                                alt="Dashboard com layout ajustado, mostrando widgets redimensionados e organizados">
+                            <!-- Hotspots -->
+                            <div class="hotspot" data-hotspot="1" style="top: 20%; left: 15%;"
+                                data-toggle="tooltip" title="Redimensionar Widget">1</div>
+                            <div class="hotspot" data-hotspot="2" style="top: 35%; left: 15%;"
+                                data-toggle="tooltip" title="Mover Widget">2</div>
+                            <div class="hotspot" data-hotspot="3" style="top: 50%; left: 15%;"
+                                data-toggle="tooltip" title="Organizar por Seções">3</div>
+                            <div class="hotspot" data-hotspot="4" style="top: 65%; left: 15%;"
+                                data-toggle="tooltip" title="Widget de Texto">4</div>
+                        </div>
+                    </div>
+                    <!-- Mobile -->
+                    <div class="interactive-legend d-lg-none mt-4">
+                        <div class="legend-item" data-hotspot="1" data-zoom="3,15,20">
+                            <div class="icon-custon icon-search icon-mobile"></div>
+                            <div><b>1. Redimensionar:</b> Ajuste o tamanho dos widgets.</div>
+                        </div>
+                        <div class="legend-item" data-hotspot="2" data-zoom="3,15,35">
+                            <div class="icon-custon icon-search icon-mobile"></div>
+                            <div><strong>2. Mover:</strong> Reposicione os widgets.</div>
+                        </div>
+                        <div class="legend-item" data-hotspot="3" data-zoom="3,15,50">
+                            <div class="icon-custon icon-search icon-mobile"></div>
+                            <div><strong>3. Organizar:</strong> Agrupe por seções lógicas.</div>
+                        </div>
+                        <div class="legend-item" data-hotspot="4" data-zoom="3,15,65">
+                            <div class="icon-custon icon-search icon-mobile"></div>
+                            <div><strong>4. Textos:</strong> Use para títulos e explicações.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- PASSO 7: SALVANDO E COMPARTILHANDO -->
+        <div class="step-component" id="m4-s3-dashboard-passo7">
+            <div class="step-header">
+                <div class="step-number">7</div>
+                <h3 class="step-title">Salvando e Compartilhando</h3>
+            </div>
+            <div class="step-body">
+                <div class="step-content-col-text">
+                    <p>Após concluir seu dashboard, salve e compartilhe:</p>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><span class="badge-circular-red mr-2">1</span> <strong>Salvar:</strong> Salva as alterações do dashboard.</li>
+                        <li class="mb-2"><span class="badge-circular-red mr-2">2</span> <strong>Compartilhar:</strong> Abre as opções de compartilhamento.</li>
+                        <li class="mb-2"><span class="badge-circular-red mr-2">3</span> <strong>Link:</strong> Copia a URL para acessar o dashboard.</li>
+                        <li class="mb-2"><span class="badge-circular-red mr-2">4</span> <strong>Permissões:</strong> Define quem pode visualizar ou editar.</li>
+                    </ul>
+                    <p class="d-none d-lg-block">
+                        <br>
+                        <span class="step-legend-text"><strong>Passe o mouse sobre o número</strong> na imagem para ver a função de cada botão. E clique para aplicar zoom-in ou zoom-out.</span>
+                    </p>
+                    <p class="d-lg-none">
+                        <br>
+                        <span class="step-legend-text"><strong>Toque em um item da legenda abaixo</strong> para ver sua localização na imagem. E clique novamente para dar zoom-in ou zoom-out.</span>
+                    </p>
+                </div>
 
-  <br>
-  <h2>Conclusão</h2>
-  <p>A combinação dessas quatro instâncias – <b>Setores</b>, <b>Papéis</b>, <b>Usuários</b> e <b>Delegações</b> – formam o sistema de permissionamento do Geohab. Entender como elas
-    interagem é crucial para administradores garantirem que os dados da CDHU sejam acessados e gerenciados de forma
-    segura, eficiente e em conformidade com as políticas do Setor e da CDHU. Para os usuários, conhecer seu perfil de acesso
-    ajuda a entender quais funcionalidades estão disponíveis e porquê.</p>
-
-  <hr>
-  <div class="document-footer">
-    <p><i class="fi fi-tr-calendar"></i> Data de criação: 09 de mai. de 2025<br>
-      <i class="fi fi-tr-calendar-pen"></i> Data de atualização: <span class="gh-auto-date"></span><br>
-      <i class="fi fi-tr-code-compare"></i> Versão: 1.5
-    </p>
-  </div>
+                <div class="step-content-media-hotspot">
+                    <div class="interactive-image-wrapper">
+                        <div class="interactive-image-inner-container">
+                            <img src="https://stor.cdhu.sp.gov.br/treina/publico/img-4-17.png"
+                                alt="Janela de compartilhamento do dashboard com opções de link e permissões">
+                            <!-- Hotspots -->
+                            <div class="hotspot" data-hotspot="1" style="top: 20%; left: 15%;"
+                                data-toggle="tooltip" title="Botão Salvar">1</div>
+                            <div class="hotspot" data-hotspot="2" style="top: 35%; left: 15%;"
+                                data-toggle="tooltip" title="Botão Compartilhar">2</div>
+                            <div class="hotspot" data-hotspot="3" style="top: 50%; left: 15%;"
+                                data-toggle="tooltip" title="Opção de Link">3</div>
+                            <div class="hotspot" data-hotspot="4" style="top: 65%; left: 15%;"
+                                data-toggle="tooltip" title="Configurações de Permissão">4</div>
+                        </div>
+                    </div>
+                    <!-- Mobile -->
+                    <div class="interactive-legend d-lg-none mt-4">
+                        <div class="legend-item" data-hotspot="1" data-zoom="3,15,20">
+                            <div class="icon-custon icon-search icon-mobile"></div>
+                            <div><b>1. Salvar:</b> Salva as alterações do dashboard.</div>
+                        </div>
+                        <div class="legend-item" data-hotspot="2" data-zoom="3,15,35">
+                            <div class="icon-custon icon-search icon-mobile"></div>
+                            <div><strong>2. Compartilhar:</strong> Abre opções de compartilhamento.</div>
+                        </div>
+                        <div class="legend-item" data-hotspot="3" data-zoom="3,15,50">
+                            <div class="icon-custon icon-search icon-mobile"></div>
+                            <div><strong>3. Link:</strong> URL para acessar o dashboard.</div>
+                        </div>
+                        <div class="legend-item" data-hotspot="4" data-zoom="3,15,65">
+                            <div class="icon-custon icon-search icon-mobile"></div>
+                            <div><strong>4. Permissões:</strong> Quem pode visualizar ou editar.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Bloco de Dicas e Boas Práticas -->
+        <div class="notice-block notice-info">
+            <div class="notice-icon">
+                <svg class="icon-custon icon-info"></svg>
+            </div>
+            <div class="notice-content">
+                <h4>Dicas e Boas Práticas</h4>
+                <ul>
+                    <li>Use expressões de agregação para KPIs (ex: média de população por região).</li>
+                    <li>Combine mapas com widgets vinculados para análises geoespaciais interativas.</li>
+                    <li>Habilite o modo de seleção no mapa para filtrar dados clicando em feições.</li>
+                    <li>Mantenha o layout limpo e objetivo.</li>
+                    <li>Nomeie widgets e filtros claramente.</li>
+                    <li>Evite muitos gráficos em um único painel – prefira vários dashboards pequenos.</li>
+                    <li>Revise os metadados das camadas para garantir que os campos estão bem definidos.</li>
+                </ul>
+            </div>
+        </div>
+    
+            <!-- ACCORDION TASK -->
+        <div class="collapsible-task-section">
+            <a href="#task-content-4" class="task-header" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="task-content-4">
+                <div class="collapsible-header-title-group">
+                    <div class="task-chevron"><svg class="icon-custon icon-chevron"></svg></div>
+                    <div class="task-header-icon"><svg class="icon-custon icon-target"></svg></div>
+                    <h3 class="task-header-title">Lição da seção</h3>
+                </div>
+            </a>
+            <div class="collapse" id="task-content-4">
+                <div class="task-body">
+                    <div class="collapsible-description"><p>Para liberar a próxima seção do curso, você precisa concluir a lição sobre a ferramenta <b>Apps: Dashboard</b>.</p></div>
+                    <div class="collapsible-content">
+                        <div class="collapsible-content-btn">
+                            <a href="/mod/lesson/view.php?id=1038" class="task-action-button"><span>Acessar Lição</span><svg class="icon-custon icon-arrow-right"></svg></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- ACCORDION MATERIAIS DA SEÇÃO -->
+        <div class="collapsible-material-section">
+            <a href="#material-sct-content-criandoDashboards" class="material-sct-header" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="material-sct-content-criandoDashboards">
+                <div class="collapsible-header-title-group">
+                    <div class="material-sct-chevron">
+                        <svg class="icon-custon icon-chevron"></svg>
+                    </div>
+                    <div class="material-sct-header-icon">
+                        <svg class="icon-custon icon-book"></svg>
+                    </div>
+                    <h3 class="material-sct-header-title">Materiais de Apoio</h3>
+                </div>
+            </a>
+            <div class="collapse" id="material-sct-content-criandoDashboards">
+                <div class="material-sct-body">
+                    <div class="collapsible-description">
+                        <p>Para expandir seu conhecimento sobre criação de dashboards no Geohab, acesse os materiais abaixo.</p>
+                    </div>
+                    <div class="collapsible-content">
+                        <div class="collapsible-content-btn">
+                            <a href="https://mapstore.geosolutionsgroup.com/mapstore/docs/" target="_blank" class="material-sct-action-button" title="Acesse a documentação oficial" data-toggle="tooltip" data-placement="right">
+                                <span>Documentação Oficial</span>
+                                <svg class="icon-custon icon-arrow-right"></svg>
+                            </a>
+                        </div>
+                        <div class="collapsible-content-btn">
+                            <a href="https://mapstore.geo-solutions.it/mapstore/#/viewer" target="_blank" class="material-sct-action-button" title="Veja exemplos prontos" data-toggle="tooltip" data-placement="right">
+                                <span>Exemplos Prontos</span>
+                                <svg class="icon-custon icon-arrow-right"></svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 </div>
-
- 
 
         <!-- ======================================================= -->
         <!--     SCRIPTS ESSENCIAIS (jQuery, Popper, Bootstrap)      -->

@@ -8,13 +8,8 @@ DATA ATUALIZAÇÃO: 19/11/2025
 Obs.: Use bootstrap 4.0*/
 
 /* =======================================================
-   6. ESTILO DA PÁGINA FINAL (CONCLUSÃO)
+   Correção de layout de lições
    ======================================================= */
-/* /mod/lesson */
-/* =======================================================
-     #page-mod-lesson-view
-   ======================================================= */
-
 /* 1. CONFIGURAÇÃO GERAL */
 body#page-mod-lesson-view {
     background-color: #f8f9fa;
@@ -2935,6 +2930,19 @@ body {
   text-decoration: none;
   transition: all 0.2s ease;
 }
+
+.file-type-slider {
+  display: inline-block;
+  font-size: 0.8em;
+  font-weight: 650;
+  color: #eb5e00;
+  background-color: #ffebe9;
+  padding: 4px 10px;
+  border-radius: 6px;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
 .material-card:hover .file-type:hover {
   background-color: var(--color-primary);
   color: #fff;

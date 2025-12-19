@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Curso Geohab - Teste Local</title>
+
+    <!-- FONTES -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/3.0.0/uicons-thin-rounded/css/uicons-thin-rounded.css'>
+    <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/3.0.0/uicons-bold-rounded/css/uicons-bold-rounded.css'>    
+    <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/3.0.0/uicons-regular-rounded/css/uicons-regular-rounded.css'>    
+    
+    <!-- CSS DO BOOTSTRAP 4 (Apenas um é necessário) -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+    <!-- CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox.css" />
+
+    <!-- JS -->
+    <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox.umd.js"></script>
+    <!-- SEU ARQUIVO DE ESTILOS -->
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<style>
+    /* --- ESTILOS GERAIS --- */
+    body {
+        font-family: 'Montserrat', sans-serif;
+        background-color: #ffffff;
+        color: #333;
+        margin: 0;
+        line-height: 1.6;
+    }
+
+    .container {
+        max-width: 1100px;
+        margin: 0 auto;
+        background-color: #ffffff;
+        padding: 30px;
+        border-radius: 8px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    }
+
+    :root {
+        --font-primary: 'Axiforma', 'Montserrat', sans-serif;
+        --font-secondary: 'Montserrat', sans-serif;
+        --color-primary: #ff1100;
+        --color-secondary: #000000;
+        --color-text: #333;
+        --color-border: #e0e0e0;
+    }
+    
+/* ================================================ */
+/* FIM - NOVOS ESTILOS PARA CONTEÚDO DE INTEROPERABILIDADE */
+/* ================================================ */
+/* Container Principal */
+.gh-header-right-align {
+        position: relative;
+        width: 100%;
+        height: 75px;
+        margin-bottom: 30px;
+        font-family: 'Segoe UI', sans-serif;
+        background-color: #000000; 
+        overflow: hidden;
+    }
+
+    /* O SVG posicionado na DIREITA */
+    .gh-decoration-right {
+        position: absolute;
+        top: 0;
+        right: 0;
+        height: 100%;
+        width: 290px; 
+        z-index: 0;
+        /* Opcional: Se quiser inverter o desenho horizontalmente, descomente abaixo: */
+        /* transform: scaleX(-1); */
+    }
+
+    /* O resto é igual: Texto por cima */
+    .gh-content-layer {
+        position: relative;
+        z-index: 1;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        height: 100%;
+        padding: 0 30px;
+        color: white;
+    }
+
+
+
+    .gh-item {
+      flex: 1;
+  }
+
+  /* 3. ESTILO DO LOGO */
+  .gh-logo img {
+      height: 45px;
+      width: auto;
+      display: block;
+  }
+
+  /* 4. ESTILO DOS TÍTULOS */
+  .gh-main {
+      font-size: 1.2rem;
+      font-weight: 600;
+      margin: 0;
+      letter-spacing: 2px;
+      line-height: 1.2;
+      color: #fff;
+  }
+
+  .gh-titles { text-align: center; }
+
+  .gh-sub {
+      font-size: 0.87rem;
+      font-weight: 400;
+      margin: 0;
+      color: #ffffff;
+      letter-spacing: 1px;
+  }
+
+  /* 5. ESTILO DO DEPARTAMENTO */
+  .gh-dept {
+      text-align: right;
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: #e3e3e3;
+      text-transform: uppercase;
+
+  }
+
+  /* =========================================================
+     6. A MÁGICA: O DESIGN DA BARRA INFERIOR (ESTILO TECH)
+     ========================================================= */
+  
+  /* A linha vermelha fina na base inteira */
+  .gh-decoration-bar {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 5px;
+      background-color: #ff1100;
+      z-index: 1;
+  }
+
+  /* O detalhe "grosso" e angulado na esquerda (Pseudo-elemento) */
+  .gh-decoration-bar::before {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0; /* Começa na esquerda */
+      width: 180px; /* Largura do detalhe */
+      height: 10px; /* Altura do detalhe (sobe um pouco) */
+      background-color: #ff1100;
+      /* Cria o corte em ângulo (Tech Shape) */
+      clip-path: polygon(0 0, 75% 0, 100% 100%, 0% 100%); 
+      z-index: 2;
+  }
+
+    /* Mobile */
+    @media (max-width: 768px) {
+      .gh-header-right-align { height: auto; }
+      .gh-decoration-right { display: none; } /* Oculta detalhe no mobile */
+      .gh-content-layer { flex-direction: column; padding: 15px; text-align: center; gap: 10px; }
+      .gh-logo img { margin: 0 auto; }
+      .gh-dept { text-align: center; }
+  }
+
+  /* Impressão */
+  @media print {
+      .gh-header-right-align { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; background-color: #000000 !important; }
+      .gh-main, .gh-sub, .gh-dept span { color: #ffffff !important; text-shadow: none !important; }
+      .gh-decoration-right { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+  }
+
+/* =========================================
+   CONFIGURAÇÃO DE IMPRESSÃO (CTRL+P)
+   ========================================= */
+   @media print {
+    /* 1. OBRIGA O NAVEGADOR A IMPRIMIR CORES DE FUNDO */
+    * {
+        -webkit-print-color-adjust: exact !important;   /* Chrome/Edge/Safari */
+        print-color-adjust: exact !important;           /* Firefox */
+        color-adjust: exact !important;                 /* Padrão */
+    }
+
+    /* 2. FORÇA AS CORES DOS SEUS ELEMENTOS */
+    .geohab-tech-header, 
+    .geohab-tech-footer {
+        background-color: var(--color-secondary)!important;
+        color: #ffffff !important;
+        box-shadow: none !important; /* Sombras não ficam boas impressas */
+    }
+
+    /* Força os detalhes vermelhos */
+    .gh-decoration-bar,
+    .gh-decoration-bar::before,
+    .gh-footer-bar,
+    .gh-bar-shape,
+    .gh-footer-tag {
+        background-color: #ff1100 !important;
+        /* Garante que o Pseudo-elemento apareça */
+        display: block !important; 
+        visibility: visible !important;
+    }
+
+    /* 3. AJUSTES DE POSICIONAMENTO PARA PAPEL */
+    
+    /* Garante que o header fique no topo da folha */
+    .geohab-tech-header {
+        position: relative !important;
+        top: 0 !important;
+        margin-top: 0 !important;
+        width: 100% !important;
+    }
+
+    /* Garante que o footer não quebre no meio */
+    .geohab-tech-footer {
+        page-break-inside: avoid;
+        break-inside: avoid;
+    }
+
+    /* Corrige textos que podem ficar brancos no fundo branco se o fundo falhar */
+    .gh-main-title, 
+    .gh-sub-title, 
+    .gh-dept, 
+    .gh-footer-info p {
+        color: #ffffff !important; /* Força branco pois o fundo preto vai imprimir */
+        text-shadow: none !important;
+    }
+    
+    /* Se tiver algum logo SVG ou PNG, força contraste */
+
+    
+    /* 4. LIMPEZA (Opcional) */
+    /* Esconde elementos do Moodle que não devem sair no PDF (Menu, Breadcrumbs, etc) */
+    /* Descomente as linhas abaixo se quiser limpar a folha */
+    /*
+    nav.navbar, 
+    #page-header, 
+    .drawer, 
+    .footer-content-debugging {
+        display: none !important;
+    }
+    */
+    /* Estilos para legendas de imagens no PDF */
+.image-caption {
+    display: flex;
+    align-content: center;
+    align-items: center;
+    font-size: 0.9rem;
+    font-style: italic;
+    color: #666;
+    margin-top: 0.5em;
+    text-align: center;
+    margin-bottom: 1.5em;
+}
+
+@media print {
+    .image-caption {
+        page-break-inside: avoid;
+        margin-bottom: 1em;
+    }
+}
+}
+
+
+</style>
+</head>
+<body>
+
+<div class="gh-header-right-align">
+  <div class="gh-decoration-right">
+    <svg width="100%" height="100%" viewBox="0 0 279.83276 72.34375" preserveAspectRatio="none"
+      xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <clipPath id="clipRight1">
+          <path d="m 1230,0 h 210 v 54.457031 h -210 z m 0,0" clip-rule="nonzero" />
+        </clipPath>
+        <clipPath id="clipRight2">
+          <path
+            d="m 1246.9375,54.257812 c -1.3359,-1.792968 -1.3633,-4.414062 0.3477,-6.3125 2.8086,-3.050781 5.7265,-6.019531 8.5859,-9.015624 2.8633,-2.996094 2.8359,-5.828126 -0.1875,-8.71875 -7.8359,-7.566407 -15.6992,-15.136719 -23.5625,-22.679688 -1.2305,-1.203125 -2.1406,-2.511719 -1.9766,-4.332031 0.211,-2.40625 1.5508,-3.929688 3.7696,-4.492188 h 223.0547 v 55.550781 z m 0,0"
+            clip-rule="nonzero" />
+        </clipPath>
+      </defs>
+      <g transform="translate(-18237.147,-3230.4205)">
+        <g clip-path="url(#clipRight1)" transform="matrix(1.3333333,0,0,1.3333333,16596.98,3230.4205)">
+          <g clip-path="url(#clipRight2)">
+            <path fill="#ff1100" d="M -31.859375,-14.640625 H 1470.2305 V 67.632812 H -31.859375 Z" fill-opacity="1"
+              fill-rule="nonzero" />
+          </g>
+        </g>
+      </g>
+    </svg>
+  </div>
+  <div class="gh-content-layer">
+    <div class="gh-item gh-logo">
+      <img src="https://cda.cdhu.sp.gov.br/pics/logos/source/GLPI_Logo-white.svg" alt="Logo">
+    </div>
+    <div class="gh-item gh-titles">
+      <h1 class="gh-main">CURSO DO GEOHAB</h1>
+      <h2 class="gh-sub">MÓDULO 1</h2>
+    </div>
+    <div class="gh-item gh-dept">
+      <span>Sup. de Tecnologia e Informação</span>
+    </div>
+  </div>
+</div>
+
+    <!-- ======================================================= -->
+    <!--                     M1S1 e 2 - PADRÕES                      -->
+    <!-- ======================================================= -->
+    <div class="guide-container" style="padding: 0 45px 45px 45px;">
+      <div class="materials-hero" style="text-align: center;">
+        <h1 style="font-size: 2.5rem;">Fundamentos de Dados Geoespaciais</h1><br>
+      </div>
+    
+      <h2>Conceitos Fundamentais de Dados Geoespaciais</h2>
+      <p>Dados geoespaciais representam informações com referência geográfica, permitindo analisar fenômenos espaciais e suas relações. Esses dados são a base para sistemas de informação geográfica (GIS) e possibilitam desde simples localizações até complexas análises espaciais que suportam decisões estratégicas em diversas áreas.</p>
+      
+      <div class="content-layout-cols">
+          <div class="content-col-text">
+              <p>A capacidade de associar informações a localizações específicas na Terra transforma dados brutos em conhecimento acionável. Por exemplo, ao analisar dados de ocorrências de doenças combinados com informações demográficas e ambientais, autoridades de saúde podem identificar padrões e implementar medidas preventivas mais eficazes.</p>
+              <p>No contexto corporativo, dados geoespaciais otimizam logística, planejamento urbano, gestão de recursos naturais e análise de mercado, entre outras aplicações.</p>
+          </div>
+          <div class="content-col-media">
+              <div class="image-modal-wrapper">
+                  <img class="modal-trigger-img img-decoration" title="Clique para expandir"
+                      src="https://stor.cdhu.sp.gov.br/treina/publico/img-1-1.png"
+                      alt="Diagrama mostrando os tipos de dados espaciais: pontos, linhas, polígonos e raster">
+                  <div class="image-modal-popup">
+                      <span class="custom-close">×</span>
+                      <img class="modal-display-img">
+                      <div class="modal-caption-text">Representação dos principais tipos de dados geoespaciais utilizados em análises espaciais.</div>
+                  </div>
+                  <p class="image-caption">Diagrama mostrando os tipos de dados espaciais: pontos, linhas, polígonos e raster</p>
+              </div>
+          </div>
+      </div>
+      
+      <div class="terminology-box">
+          <h3 class="terminology-title-exemple">Exemplos e Tipos Fundamentais</h3>
+    
+          <!-- Grid de duas colunas para separar os conceitos -->
+          <div class="definition-group">
+              <h4 class="definition-group-title">Exemplos Práticos:</h4>
+              <ul>
+                  <li><strong>Coordenadas GNSS:</strong> GNSS, popularmente GPS, obtém localização precisa na Terra usando latitude e longitude ou metros</li>
+                  <li><strong>Endereços Georreferenciados:</strong> Um endereço de rua convertido para coordenadas geográficas</li>
+                  <li><strong>Mapas de Uso do Solo:</strong> Mapas que mostram como a terra é utilizada (agricultura, área urbana, etc.)</li>
+                  <li><strong>Imagens de Satélite:</strong> Fotografias da Terra tiradas por satélites</li>
+                  <li><strong>Redes de Infraestrutura:</strong> Localização de redes físicas como cabos ou tubulações</li>
+              </ul>
+          </div>
+    
+          <!-- Coluna 2: Tipos de Dados -->
+          <div>
+              <h4 class="definition-group-title">Tipos de Dados Fundamentais:</h4>
+              <dl class="definition-list">
+                  <div class="definition-item">
+                      <dt class="definition-term">
+                          <!-- Ícone para Ponto -->
+                          <div class="definition-icon">
+                              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                  fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round"
+                                  stroke-linejoin="round">
+                                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                                  <circle cx="12" cy="10" r="3"></circle>
+                              </svg>
+                          </div>
+                          <span>Pontos</span>
+                      </dt>
+                      <dd class="definition-desc">Representam localizações específicas com coordenadas x,y (e z, quando aplicável). Utilizados para marcar posições de interesse como endereços, estações de monitoramento ou localização de equipamentos.
+                      </dd>
+                  </div>
+                  <div class="definition-item">
+                      <dt class="definition-term">
+                          <!-- Ícone para Linha -->
+                          <div class="definition-icon">
+                              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                  fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round"
+                                  stroke-linejoin="round">
+                                  <path d="M3 21L9 9l6 6L21 3"></path>
+                              </svg>
+                          </div>
+                          <span>Linhas</span>
+                      </dt>
+                      <dd class="definition-desc">Formadas por sequências de pontos conectados, representam elementos lineares como rodovias, hidrovias, redes de transporte e fronteiras. Permitem análises de conectividade, roteamento e proximidade.
+                      </dd>
+                  </div>
+                  <div class="definition-item">
+                      <dt class="definition-term">
+                          <!-- Ícone para Polígono -->
+                          <div class="definition-icon">
+                              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                  fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round"
+                                  stroke-linejoin="round">
+                                  <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                              </svg>
+                          </div>
+                          <span>Polígonos</span>
+                      </dt>
+                      <dd class="definition-desc">Áreas fechadas definidas por múltiplos vértices, representando regiões como bairros, lotes, unidades de conservação ou zonas climáticas. Fundamentais para análises de sobreposição e agregação por área.</dd>
+                  </div>
+                  <div class="definition-item">
+                      <dt class="definition-term">
+                          <!-- Ícone para Raster -->
+                          <div class="definition-icon">
+                              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                  fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round"
+                                  stroke-linejoin="round">
+                                  <rect x="3" y="3" width="7" height="7"></rect>
+                                  <rect x="14" y="3" width="7" height="7"></rect>
+                                  <rect x="14" y="14" width="7" height="7"></rect>
+                                  <rect x="3" y="14" width="7" height="7"></rect>
+                              </svg>
+                          </div>
+                          <span>Raster</span>
+                      </dt>
+                      <dd class="definition-desc">Matrizes de células (pixels) com valores associados, representando fenômenos contínuos como elevação, temperatura, cobertura vegetal ou imagens de satélite. Essenciais para modelagem espacial e análise de superfícies.</dd>
+                  </div>
+              </dl>
+          </div>
+      </div>
+      
+      <h2>Metadados: O Contexto Essencial dos Dados Geoespaciais</h2>
+      <p>Metadados constituem a documentação descritiva dos dados geoespaciais, fornecendo informações cruciais sobre sua origem, qualidade, estrutura e condições de uso. Sem metadados adequados, mesmo os dados mais precisos podem se tornar inúteis ou ser utilizados incorretamente, resultando em análises falhas ou decisões equivocadas.</p>
+      
+      <div class="content-layout-cols">
+          <div class="content-col-text">
+              <p>A importância dos metadados torna-se evidente em cenários práticos. Por exemplo, ao analisar séries temporais de desmatamento, é fundamental conhecer a metodologia de coleta, a resolução espacial, as datas de aquisição e a precisão dos dados. Sem essas informações, comparações temporais podem ser inválidas e conclusões, equivocadas.</p>
+              <p>No ambiente Geohab, o <span class="badge-link badge-text-salmon"
+                  title="Ferramenta para gerenciar e catalogar metadados no Geohab" data-toggle="tooltip">Catálogo (GeoNetwork)</span>
+                  funciona como repositório centralizado, padronizando e facilitando a descoberta de dados disponíveis, seus limites e condições de uso.</p>
+          </div>
+          <div class="content-col-media">
+              <div class="image-modal-wrapper">
+                  <img class="modal-trigger-img img-decoration" title="Clique para expandir"
+                      src="https://stor.cdhu.sp.gov.br/treina/publico/img-1-2.png"
+                      alt="Diagrama ilustrando que metadados são 'dados sobre os dados'">
+                  <div class="image-modal-popup">
+                      <span class="custom-close">×</span>
+                      <img class="modal-display-img">
+                      <div class="modal-caption-text">Metadados fornecem o contexto necessário para utilização adequada dos dados geoespaciais.</div>
+                  </div>
+                  <p class="image-caption">Diagrama ilustrando que metadados são 'dados sobre os dados'</p>
+              </div>
+          </div>
+      </div>
+    
+      <div class="notice-block notice-warning">
+          <div class="notice-icon">
+              <svg class="icon-custon icon-warning"></svg>
+          </div>
+          <div class="notice-content">
+              <p><strong>Nota Essencial:</strong> Metadados transformam dados brutos em informação confiável, estabelecendo <strong>confiança, clareza e utilidade</strong>. Sem eles, dados geoespaciais perdem contexto, reprodutibilidade e, frequentemente, seu valor analítico.</p>
+          </div>
+      </div>
+      
+      <h2>Formatos de Arquivos: Escolhas Estratégicas para Dados Geoespaciais</h2>
+      <p>A seleção adequada do formato de arquivo impacta diretamente na integridade, desempenho e interoperabilidade dos dados geoespaciais. A escolha deve considerar fatores como volume de dados, necessidades de análise, compatibilidade com sistemas existentes e requisitos de compartilhamento.</p>
+      
+      <div class="content-layout-cols">
+          <div class="content-col-text">
+              <p>A evolução tecnológica tem trazido formatos mais eficientes e robustos, superando limitações de soluções antigas. A transição para formatos modernos representa não apenas uma atualização técnica, mas uma estratégia para garantir longevidade e acessibilidade dos dados geoespaciais produzidos.</p>
+              <p>Para a CDHU, a padronização de formatos facilita o intercâmbio de informações entre departamentos, reduz erros de conversão e otimiza processos de integração com o Geohab.</p>
+          </div>
+          <div class="content-col-media">
+              <div class="image-modal-wrapper">
+                  <img class="modal-trigger-img img-decoration" title="Clique para expandir"
+                      src="https://stor.cdhu.sp.gov.br/treina/publico/img-1-3.png"
+                      alt="Ilustração dos diferentes formatos de dados geoespaciais, como Shapefile, GeoJSON e KML">
+                  <div class="image-modal-popup"><span class="custom-close">×</span><img class="modal-display-img">
+                      <div class="modal-caption-text">Diversidade de formatos para diferentes necessidades e aplicações em dados geoespaciais.</div>
+                  </div>
+                  <p class="image-caption">Ilustração dos diferentes formatos de dados geoespaciais, como Shapefile, GeoJSON e KML</p>
+              </div>
+          </div>
+      </div>
+    
+      <!-- Seção de Formatos Vetoriais -->
+      <div class="definition-group">
+          <h4 class="definition-group-title">Formatos Vetoriais (Pontos, Linhas, Polígonos)</h4>
+          <dl class="definition-list">
+              <div class="definition-item">
+                  <dt class="definition-term">
+                      <div class="definition-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                              viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+                              stroke-linecap="round" stroke-linejoin="round">
+                              <circle cx="12" cy="12" r="10"></circle>
+                              <line x1="4.93" y1="4.93" x2="19.07" y2="19.07"></line>
+                          </svg></div>
+                      <span>Shapefile (.shp)</span>
+                  </dt>
+                  <dd class="definition-desc"><strong>Status: Obsoleto.</strong> Apesar de sua ampla utilização histórica, apresenta limitações significativas: exige múltiplos arquivos interdependentes (.shp, .shx, .dbf, .prj, etc.), limitação de 10 caracteres para nomes de campos, suporte limitado a caracteres Unicode e tamanho máximo de 2GB. Essas restrições frequentemente resultam em perda de dados e problemas de interoperabilidade em projetos complexos.</dd>
+              </div>
+              <div class="definition-item">
+                  <dt class="definition-term">
+                      <div class="definition-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                              viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+                              stroke-linecap="round" stroke-linejoin="round">
+                              <path
+                                  d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z">
+                              </path>
+                              <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
+                              <line x1="12" y1="22.08" x2="12" y2="12"></line>
+                          </svg></div>
+                      <span>GeoPackage (.gpkg)</span>
+                  </dt>
+                  <dd class="definition-desc"><strong>Status: Recomendado.</strong> Formato moderno baseado em SQLite, consolidando todos os componentes em um único arquivo. Suporta geometrias complexas, dados atributivos robustos, índices espaciais otimizados e transações ACID. Sua natureza de banco de dados leve permite consultas SQL diretamente no arquivo, facilitando análises e extrações específicas sem necessidade de conversão.</dd>
+              </div>
+              <div class="definition-item">
+                  <dt class="definition-term">
+                      <div class="definition-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                              viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+                              stroke-linecap="round" stroke-linejoin="round">
+                              <polyline points="16 18 22 12 16 6"></polyline>
+                              <polyline points="8 6 2 12 8 18"></polyline>
+                          </svg></div>
+                      <span>GeoJSON / KML</span>
+                  </dt>
+                  <dd class="definition-desc"><strong>Status: Uso Específico.</strong> Formatos baseados em texto com aplicações distintas. GeoJSON é ideal para desenvolvimento web e APIs devido à sua compatibilidade nativa com JavaScript. KML é otimizado para visualização em plataformas como Google Earth. Ambos são excelentes para compartilhamento e visualização, mas inadequados para grandes volumes de dados devido ao tamanho de arquivo e performance limitada.</dd>
+              </div>
+          </dl>
+      </div>
+    
+      <!-- Seção de Formatos Matriciais -->
+      <div>
+          <h4 class="definition-group-title">Formatos Matriciais (Raster)</h4>
+          <dl>
+              <div>
+                  <dt class="definition-term">
+                      <div class="definition-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                              viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"
+                              stroke-linecap="round" stroke-linejoin="round">
+                              <rect x="3" y="3" width="7" height="7"></rect>
+                              <rect x="14" y="3" width="7" height="7"></rect>
+                              <rect x="14" y="14" width="7" height="7"></rect>
+                              <rect x="3" y="14" width="7" height="7"></rect>
+                          </svg></div>
+                      <span>GeoTIFF (.tif / .tiff)</span>
+                  </dt>
+                  <dd class="definition-desc"><strong>Status: Padrão da Indústria.</strong> Evolução do formato TIFF que incorpora informações de georreferenciamento como sistema de coordenadas, datum, projeção e resolução. Suporta múltiplas bandas, compressão eficiente e metadados extensivos. Fundamental para imagens de satélite, modelos digitais de elevação, mapas de temperatura e qualquer dado espacial contínuo.</dd>
+              </div>
+          </dl>
+      </div>
+    
+      <h3>Arquitetura Moderna: Bancos de Dados Espaciais</h3>
+      <p>Embora arquivos como GeoPackage representem avanços significativos, a abordagem mais robusta para gerenciamento de dados geoespaciais em escala empresarial é através de bancos de dados espaciais como PostGIS. Essa solução oferece benefícios substanciais: controle centralizado, acesso concorrente, segurança granular, backup automatizado e capacidade para realizar análises espaciais complexas diretamente no servidor.</p>
+      <p>No ecossistema Geohab, essa arquitetura permite integração perfeita entre componentes, otimização de consultas e escalabilidade para atender demandas crescentes, mantendo performance mesmo com grandes volumes de dados.</p>
+    
+      <div class="notice-block notice-warning">
+          <div class="notice-icon">
+              <svg class="icon-custon icon-warning"></svg>
+          </div>
+          <div class="notice-content">
+              <p><strong>Padrão CDHU:</strong> Para intercâmbio e armazenamento local de dados geoespaciais, o formato <strong>GeoPackage (.gpkg)</strong> é estabelecido como padrão institucional, balanceando compatibilidade, eficiência e recursos modernos.</p>
+          </div>
+      </div>
+    
+      <hr>
+      <div class="document-footer">
+          <p><i class="fi fi-tr-calendar"></i> Data de criação: 19 de dez. de 2024<br>
+            <i class="fi fi-tr-calendar-pen"></i> Data de atualização: <span class="gh-auto-date"></span><br>
+            <i class="fi fi-tr-code-compare"></i> Versão: 1.0
+          </p>
+      </div>
+    </div>
+
+
+  
+<!--     SCRIPTS ESSENCIAIS (jQuery, Popper, Bootstrap)      -->
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js"></script>
+<script src="script.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+      // 1. Pega a data de hoje
+      var hoje = new Date();
+      
+      // 2. Formata para português (Ex: 24/10/2023)
+      //var dataFormatada = hoje.toLocaleDateString('pt-BR');
+      
+      // Se preferir por extenso (Ex: 24 de outubro de 2023), use esta linha no lugar da de cima:
+      var dataFormatada = hoje.toLocaleDateString('pt-BR', { day: 'numeric', month: 'short', year: 'numeric' });
+  
+      // 3. Procura o elemento e coloca a data dentro
+      var elementosData = document.querySelectorAll('.gh-auto-date');
+      elementosData.forEach(function(elemento) {
+          elemento.textContent = dataFormatada;
+      });
+  });
+</script>
+</body>
+
+</html>    
