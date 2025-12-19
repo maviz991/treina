@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>modulo4-secao4-criando_geostory</title>
+    <title>modulo2-secao4-explorando_visualizador</title>
 
     <!-- FONTES -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -176,7 +176,10 @@
       .gh-main, .gh-sub, .gh-dept span { color: #ffffff !important; text-shadow: none !important; }
       .gh-decoration-right { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
       .thead-dark{ -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+      h2 { page-break-after: avoid; }
+      .content-layout-cols { page-break-inside: avoid; }
   }
+
 
 /* =========================================
    CONFIGURAÇÃO DE IMPRESSÃO (CTRL+P)
@@ -436,7 +439,7 @@
     </div>
     <div class="gh-item gh-titles">
       <h1 class="gh-main">CURSO DO GEOHAB</h1>
-      <h2 class="gh-sub">MÓDULO 4</h2>
+      <h2 class="gh-sub">MÓDULO 2</h2>
     </div>
     <div class="gh-item gh-dept">
       <span>Sup. de Tecnologia e Informação</span>
@@ -447,172 +450,187 @@
 <!-- Colocar abaixo pagina formatadas para PDF-->
 <div class="guide-container" style="padding: 0 45px 45px 45px;">
   <div class="materials-hero" style="text-align: center;">
-      <h1 style="font-size: 2.5rem;">Criando GeoStory no Geohab</h1><br>
+      <h1 style="font-size: 2.5rem;">Apresentação da Página Inicial</h1><br>
   </div>
   
-  <p>O <strong>GeoStory</strong> é uma funcionalidade que permite criar <strong>narrativas interativas e visuais</strong> usando texto, imagens, vídeos e mapas geográficos. É ideal para apresentar informações espaciais de forma atrativa, sequencial e baseada em contexto, como em reportagens, apresentações, relatórios ou <strong>storytelling</strong> institucional.</p>
-  
-  <div class="notice-block notice-info">
-      <div class="notice-icon">
-          <svg class="icon-custon icon-info"></svg>
-      </div>
-      <div class="notice-content">
-          <p><strong>Dica:</strong> Abra o Geohab e realize os passos abaixo.</p>
-      </div>
-  </div>
-  
-  <h2>1. Criando uma Nova GeoStory</h2>
-  <p>No topo da interface do Geohab, acesse o menu <span class="badge-link badge-text-lilac">Apps</span> e clique em <span class="badge-link badge-text-lilac">Criar Nova GeoStory</span>.</p>
-  
+  <p>A tela inicial do Geohab é o seu portal de entrada para todos os recursos da plataforma. Abaixo, detalhamos os principais componentes que você encontrará.</p>
+
   <div class="content-layout-cols">
       <div class="content-col-text">
           <ul>
-              <li><span class="badge-circular-red mr-2">1</span> <strong>Apps:</strong> Acesso às ferramentas do Geohab.</li>
-              <li><span class="badge-circular-red mr-2">2</span> <strong>Criar Nova GeoStory:</strong> Inicia o editor de narrativas.</li>
+              <li><span class="badge-circular-red mr-2">1</span> <strong>Catálogo:</strong> Ponto de partida para explorar os dados. O <span class="badge-link badge-text-salmon">Catálogo (GeoNetwork)</span> permite buscar e descobrir os <span class="info-badge-text">metadados</span> de todos os recursos disponíveis.</li>
+              <li><span class="badge-circular-red mr-2">2</span> <strong>Visualizador:</strong> Abre a principal ferramenta para análise visual, o <span class="badge-link badge-text-purple">Visualizador (MapStore)</span>. Aqui você pode sobrepor <span class="info-badge-text">camadas de mapa</span> e explorar os dados de forma interativa.</li>
+              <li><span class="badge-circular-red mr-2">3</span> <strong>Apps:</strong> Agrupa aplicações complementares, como <span class="info-badge-text">Dashboards</span> e <span class="info-badge-text">GeoStories</span>, que estendem as funcionalidades da plataforma.</li>
+              <li><span class="badge-circular-red mr-2">4</span> <strong>Serviços:</strong> Dá acesso ao <span class="badge-link badge-text-blue">Serviços (GeoServer)</span>, que permite gerenciar a publicação de camadas e obter links de <span class="info-badge-text">GeoServiços</span> para usar em softwares GIS.</li>
+              <li><span class="badge-circular-red mr-2">5</span> <strong>Administração:</strong> Painel de controle central, destinado a usuários com <span class="info-badge-text">papéis administrativos</span>, para gerenciar os diferentes componentes da plataforma. Suas subseções incluem:
+                  <ul>
+                      <li>Console de Administração do Catálogo</li>
+                      <li>Console de Administração do Visualizador</li>
+                      <li>Console de Administração de Usuários</li>
+                  </ul>
+              </li>
+              <li><span class="badge-circular-red mr-2">6, 7 e 8</span> <strong>Perfil, Sair e Idioma:</strong> No canto superior direito, você encontra:
+                  <ul>
+                      <li>Seu <b>Perfil</b> (confirmando o usuário logado)</li>
+                      <li>Botão de <b>Sair</b></li>
+                      <li>Lista suspensa para alterar o <b>Idioma</b> da interface</li>
+                  </ul>
+              </li>
           </ul>
       </div>
       <div class="content-col-media">
           <div class="image-modal-wrapper">
               <img class="modal-trigger-img img-decoration" title="Clique para expandir"
-                  src="https://stor.cdhu.sp.gov.br/treina/publico/img-4-18.png"
-                  alt="Tela de criação de GeoStory, mostrando as opções 'Em Branco' e 'Com base em modelo'">
+                  src="https://stor.cdhu.sp.gov.br/treina/publico/curso1/img-home-login-adm-exp.png"
+                  alt="Tela inicial do Geohab com os principais componentes numerados">
               <div class="image-modal-popup">
                   <span class="custom-close">×</span>
                   <img class="modal-display-img">
-                  <div class="modal-caption-text">Tela de criação de GeoStory, mostrando as opções 'Em Branco' e 'Com base em modelo'</div>
+                  <div class="modal-caption-text">Tela inicial do Geohab com os principais componentes numerados</div>
               </div>
-              <p class="image-caption">Tela de criação de GeoStory, mostrando as opções 'Em Branco' e 'Com base em modelo'</p>
+              <p class="image-caption">Tela inicial do Geohab com os principais componentes numerados</p>
           </div>
       </div>
   </div>
   
-  <h2>2. Conheça as áreas de edição do GeoStory</h2>
-  <p>Uma GeoStory é construída a partir de diferentes tipos de seções, cada uma com um propósito específico:</p>
+  <hr>
+  <div class="document-footer">
+      <p><i class="fi fi-tr-calendar"></i> Data de criação: 19 de dez. de 2024<br>
+        <i class="fi fi-tr-calendar-pen"></i> Data de atualização: <span class="gh-auto-date"></span><br>
+        <i class="fi fi-tr-code-compare"></i> Versão: 1.0
+      </p>
+  </div>
+</div>
+
+<!-- Colocar abaixo pagina formatadas para PDF-->
+<div class="guide-container" style="padding: 0 45px 45px 45px;">
+  <div class="materials-hero" style="text-align: center;">
+      <h1 style="font-size: 2.5rem;">Explorando o Visualizador (MapStore)</h1><br>
+  </div>
+  
+  <p>O Visualizador é sua principal ferramenta para análise visual. Ele permite sobrepor camadas, realizar consultas e compreender as relações geográficas entre os dados. Vamos explorar suas principais áreas de interação.</p>
+
+  <h2>1. Acesso rápido pela home</h2>
+  <p>O <span class="badge-link badge-text-purple">Visualizador</span> tem fácil acesso pela página inicial do Geohab, sendo um dos componentes centrais da plataforma.</p>
   
   <div class="content-layout-cols">
       <div class="content-col-text">
+          <p>Para acessar o Visualizador:</p>
           <ul>
-              <li><span class="badge-circular-red mr-2">1</span> <strong>Título:</strong> Apresenta o título da história, com imagem de fundo.</li>
-              <li><span class="badge-circular-red mr-2">2</span> <strong>Modo Edição:</strong> Alterna para edição do GeoStory (Se você tiver permissão).</li>
-              <li><span class="badge-circular-red mr-2">3</span> <strong>Barra de ferramentas:</strong> Configura o GeoStory e exibição de edição.</li>
-              <li><span class="badge-circular-red mr-2">4</span> <strong>Elementos adicionados:</strong> Exibe todos os elementos que você Adiciona, aqui você pode Reordenar.</li>
-              <li><span class="badge-circular-red mr-2">5</span> <strong>Adicionar elementos:</strong> Onde você escolhe o tipo de elemento que deseja adicionar.</li>
+              <li><span class="badge-circular-red mr-2">1</span> Na página inicial do Geohab, clique no componente <span class="badge-link badge-text-purple">Visualizador</span></li>
+              <li><span class="badge-circular-red mr-2">2</span> Você será redirecionado para a interface do MapStore</li>
+              <li><span class="badge-circular-red mr-2">3</span> A interface do Visualizador será carregada com o mapa base padrão</li>
           </ul>
       </div>
       <div class="content-col-media">
           <div class="image-modal-wrapper">
               <img class="modal-trigger-img img-decoration" title="Clique para expandir"
-                  src="https://stor.cdhu.sp.gov.br/treina/publico/img-4-19.png"
-                  alt="Menu de tipos de seção disponíveis no editor de GeoStory">
+                  src="https://stor.cdhu.sp.gov.br/treina/publico/curso1/img-home-login.png"
+                  alt="Tela inicial do Geohab com destaque para o componente Visualizador">
               <div class="image-modal-popup">
                   <span class="custom-close">×</span>
                   <img class="modal-display-img">
-                  <div class="modal-caption-text">Menu de tipos de seção disponíveis no editor de GeoStory</div>
+                  <div class="modal-caption-text">Tela inicial do Geohab com destaque para o componente Visualizador</div>
               </div>
-              <p class="image-caption">Menu de tipos de seção disponíveis no editor de GeoStory</p>
+              <p class="image-caption">Tela inicial do Geohab com destaque para o componente Visualizador</p>
           </div>
       </div>
   </div>
-  
-  <h2>3. Tipos de Conteúdos para as Seções</h2>
-  <p>Clique no botão <kbd>+</kbd> para adicionar uma nova seção à sua história:</p>
+
+  <h2>2. Barra Lateral: Ferramentas de Gerenciamento</h2>
+  <p>A barra à direita agrupa as principais ações de gerenciamento do seu mapa:</p>
   
   <div class="content-layout-cols">
       <div class="content-col-text">
           <ul>
-              <li><span class="badge-circular-red mr-2">1</span> <strong>Seção de Título:</strong> Ideal para o início da história.</li>
-              <li><span class="badge-circular-red mr-2">2</span> <strong>Seção de Banner:</strong> Para dar destaque a uma Imagem, Vídeo ou Mapa decorativo.</li><br><br><br><br>
-              <li><span class="badge-circular-red mr-2">3</span> <strong>Seção de Parágrafo/Texto:</strong> Para descrever dados ou contextualizar.</li>
-              <li><span class="badge-circular-red mr-2">4</span> <strong>Seção Imersiva:</strong> Combina Parágrafo mais Banner. E o parágrafo pode conter imagens, textos ou Páginas Web.</li>
-              <li><span class="badge-circular-red mr-2">5</span> <strong>Seção de Geocarrossel:</strong> Insere vários marcadores para você dar destaque a locais específico em mapas.</li>
-              <li><span class="badge-circular-red mr-2">6</span> <strong>Seção de Mídia:</strong> Permite Inserir imagens, vídeos ou mapas.</li>
-              <li><span class="badge-circular-red mr-2">7</span> <strong>Seção Página da Web:</strong> Insere uma página de web dentro da sua história.</li>
+              <li><span class="badge-circular-red mr-2">1</span> <strong>Importar:</strong> Carrega uma configuração de mapa (KML, GeoJSON, etc)</li>
+              <li><span class="badge-circular-red mr-2">2</span> <strong>Exportar:</strong> Salva a configuração atual do mapa</li>
+              <li><span class="badge-circular-red mr-2">3</span> <strong>Catálogo:</strong> Adiciona novas camadas ao mapa</li>
+              <li><span class="badge-circular-red mr-2">4</span> <strong>Mapas:</strong> Gerencia seus mapas salvos</li>
+              <li><span class="badge-circular-red mr-2">5</span> <strong>Régua:</strong> Mede distâncias e áreas no mapa</li>
+              <li><span class="badge-circular-red mr-2">6</span> <strong>Salvar:</strong> Grava as alterações no mapa atual</li>
+              <li><span class="badge-circular-red mr-2">7</span> <strong>Salvar Como:</strong> Cria um novo mapa com as alterações</li>
+              <li><span class="badge-circular-red mr-2">8</span> <strong>Apagar:</strong> Deleta o mapa atual</li>
+              <li><span class="badge-circular-red mr-2">9</span> <strong>Configurações:</strong> Ajusta opções do visualizador</li>
+              <li><span class="badge-circular-red mr-2">10</span> <strong>Compartilhar:</strong> Gera um link para compartilhar o mapa</li>
+              <li><span class="badge-circular-red mr-2">11</span> <strong>Ajuda:</strong> Acessa a documentação</li>
+              <li><span class="badge-circular-red mr-2">12</span> <strong>Mais Opções:</strong> Exibe funções adicionais</li>
           </ul>
       </div>
       <div class="content-col-media">
           <div class="image-modal-wrapper">
               <img class="modal-trigger-img img-decoration" title="Clique para expandir"
-                  src="https://stor.cdhu.sp.gov.br/treina/publico/img-4-20.png"
-                  alt="Editor de GeoStory mostrando a adição de uma seção de mapa interativo">
+                  src="https://stor.cdhu.sp.gov.br/treina/publico/curso1/img-visualizador.png"
+                  alt="Interface do Visualizador com a barra lateral numerada">
               <div class="image-modal-popup">
                   <span class="custom-close">×</span>
                   <img class="modal-display-img">
-                  <div class="modal-caption-text">Editor de GeoStory mostrando a adição de uma seção de mapa interativo</div>
+                  <div class="modal-caption-text">Interface do Visualizador com a barra lateral numerada</div>
               </div>
-              <p class="image-caption">Editor de GeoStory mostrando a adição de uma seção de mapa interativo</p>
+              <p class="image-caption">Interface do Visualizador com a barra lateral numerada</p>
           </div>
       </div>
   </div>
-  
-  <h2>4. Estilizando e Organizando</h2>
-  <p>Personalize sua GeoStory com as opções de estilo e organização:</p>
+
+  <h2>3. Barra de Navegação: Interação com o Mapa</h2>
+  <p>As ferramentas ao redor do mapa permitem navegar, pesquisar e interagir diretamente com a visualização:</p>
   
   <div class="content-layout-cols">
       <div class="content-col-text">
           <ul>
-              <li><span class="badge-circular-red mr-2">1</span> <strong>Configurações:</strong> Personalize as cores de fundo e texto, bem como adicione logo e barra de navegação.</li>
-              <li><span class="badge-circular-red mr-2">2</span> <strong>Renomear seções:</strong> Dê nome as seções para ter uma boa organização delas.</li>
-              <li><span class="badge-circular-red mr-2">3</span> <strong>Reordenar seções:</strong> Altere a ordem das seções.</li>
-              <li><span class="badge-circular-red mr-2">4</span> <strong>Zoom no conteúdo:</strong> Clique e localize a seção rapidamente.</li>
+              <li><span class="badge-circular-red mr-2">1</span> <strong>Temas:</strong> Gerencia as camadas no mapa</li>
+              <li><span class="badge-circular-red mr-2">2</span> <strong>Busca:</strong> Pesquisa por cidades, bairros, locais, etc</li>
+              <li><span class="badge-circular-red mr-2">3</span> <strong>Config. Busca:</strong> Abre configurações de pesquisa</li>
+              <li><span class="badge-circular-red mr-2">4</span> <strong>Pesquisar:</strong> Executa a busca</li>
+              <li><span class="badge-circular-red mr-2">5</span> <strong>Menu Busca:</strong> Mais opções de pesquisa</li>
+              <li><span class="badge-circular-red mr-2">6</span> <strong>Minha Localização:</strong> Centraliza em sua posição atual</li>
+              <li><span class="badge-circular-red mr-2">7</span> <strong>Zoom In:</strong> Aumenta o zoom do mapa</li>
+              <li><span class="badge-circular-red mr-2">8</span> <strong>Zoom Out:</strong> Diminui o zoom do mapa</li>
+              <li><span class="badge-circular-red mr-2">9</span> <strong>Tela Cheia:</strong> Ativa o modo de tela cheia</li>
+              <li><span class="badge-circular-red mr-2">10</span> <strong>Zoom Inicial:</strong> Redefine para a visão inicial</li>
+              <li><span class="badge-circular-red mr-2">11</span> <strong>Modo 3D:</strong> Ativa a visualização 3D, se disponível</li>
+              <li><span class="badge-circular-red mr-2">12</span> <strong>Mais Opções:</strong> Exibe ferramentas adicionais</li>
           </ul>
       </div>
       <div class="content-col-media">
           <div class="image-modal-wrapper">
               <img class="modal-trigger-img img-decoration" title="Clique para expandir"
-                  src="https://stor.cdhu.sp.gov.br/treina/publico/img-4-21.png"
-                  alt="Opções de personalização de uma seção no GeoStory">
+                  src="https://stor.cdhu.sp.gov.br/treina/publico/curso1/img-visualizador-toolbar.png"
+                  alt="Barra de navegação do mapa com ferramentas de zoom e busca">
               <div class="image-modal-popup">
                   <span class="custom-close">×</span>
                   <img class="modal-display-img">
-                  <div class="modal-caption-text">Opções de personalização de uma seção no GeoStory</div>
+                  <div class="modal-caption-text">Barra de navegação do mapa com ferramentas de zoom e busca</div>
               </div>
-              <p class="image-caption">Opções de personalização de uma seção no GeoStory</p>
+              <p class="image-caption">Barra de navegação do mapa com ferramentas de zoom e busca</p>
           </div>
       </div>
   </div>
-  
-  <h2>5. Salvando e Compartilhando</h2>
-  <p>Após concluir sua GeoStory, salve e compartilhe:</p>
+
+  <h2>4. Barra Inferior: Escala e Projeção</h2>
+  <p>Na parte de baixo, você controla aspectos técnicos como a escala e o sistema de coordenadas (CRS):</p>
   
   <div class="content-layout-cols">
       <div class="content-col-text">
           <ul>
-              <li><span class="badge-circular-red mr-2">1</span> <strong>Opções:</strong> Clique no Menu de Opções.</li>
-              <li><span class="badge-circular-red mr-2">2</span> <strong>Salvar ou Salvar como:</strong> <kbd>Salvar como</kbd> para a primeira vez, ou quando deseja criar uma cópia, ou <kbd>Salvar</kbd> Para salvar edições em um GeoStory.</li>
+              <li><span class="badge-circular-red mr-2">1</span> <strong>Escala Gráfica:</strong> Referência visual de distância</li>
+              <li><span class="badge-circular-red mr-2">2</span> <strong>Escala Numérica:</strong> Seleciona uma escala pré-definida</li>
+              <li><span class="badge-circular-red mr-2">3</span> <strong>Coordenadas:</strong> Exibe a posição do ponteiro do mouse</li>
+              <li><span class="badge-circular-red mr-2">4</span> <strong>Projeção (CRS):</strong> Altera o sistema de referência de coordenadas</li>
           </ul>
-          <p><b>Para novos GeoStories:</b> Defina nome, detalhes, Ícone e permissões de Acesso.</p>
       </div>
       <div class="content-col-media">
           <div class="image-modal-wrapper">
               <img class="modal-trigger-img img-decoration" title="Clique para expandir"
-                  src="https://stor.cdhu.sp.gov.br/treina/publico/img-4-22.png"
-                  alt="Botão 'Salvar' destacado na interface do editor de GeoStory">
+                  src="https://stor.cdhu.sp.gov.br/treina/publico/curso1/img-visualizador.png"
+                  alt="Barra inferior do mapa com ferramentas de escala e projeção">
               <div class="image-modal-popup">
                   <span class="custom-close">×</span>
                   <img class="modal-display-img">
-                  <div class="modal-caption-text">Botão 'Salvar' destacado na interface do editor de GeoStory</div>
+                  <div class="modal-caption-text">Barra inferior do mapa com ferramentas de escala e projeção</div>
               </div>
-              <p class="image-caption">Botão 'Salvar' destacado na interface do editor de GeoStory</p>
+              <p class="image-caption">Barra inferior do mapa com ferramentas de escala e projeção</p>
           </div>
-      </div>
-  </div>
-  <br><br><br><br><br><br>
-  <div class="notice-block notice-info">
-      <div class="notice-icon">
-          <svg class="icon-custon icon-info"></svg>
-      </div>
-      <div class="notice-content">
-          <h4>Dicas e Boas Práticas</h4>
-          <ul>
-              <li>Combine seções de mapa com zooms e camadas diferentes para focar em detalhes específicos.</li>
-              <li>Use transições suaves entre as seções para criar um fluxo narrativo contínuo.</li>
-              <li>Insira dashboards via página de web. Copie o URL do Dashboard criado na plataforma e cole no GeoStory.</li>
-              <li>Ideal para apresentações públicas, relatórios de projetos ou material educacional.</li>
-              <li>Mantenha os textos curtos e objetivos em cada seção.</li>
-              <li>Crie uma estrutura lógica: introdução → contexto → análise → conclusão.</li>
-              <li>Use imagens em boa resolução para um visual profissional.</li>
-              <li>Teste a sua GeoStory em diferentes tamanhos de tela para garantir a responsividade.</li>
-          </ul>
       </div>
   </div>
   

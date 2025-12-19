@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Curso Geohab - Teste Local</title>
+
+    <!-- FONTES -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/3.0.0/uicons-thin-rounded/css/uicons-thin-rounded.css'>
+    <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/3.0.0/uicons-bold-rounded/css/uicons-bold-rounded.css'>    
+    <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/3.0.0/uicons-regular-rounded/css/uicons-regular-rounded.css'>    
+    
+    <!-- CSS DO BOOTSTRAP 4 (Apenas um é necessário) -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+    <!-- CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox.css" />
+
+    <!-- JS -->
+    <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox.umd.js"></script>
+    <!-- SEU ARQUIVO DE ESTILOS -->
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<style>
+    /* --- ESTILOS GERAIS --- */
+    body {
+        font-family: 'Montserrat', sans-serif;
+        background-color: #ffffff;
+        color: #333;
+        margin: 0;
+        line-height: 1.6;
+    }
+
+    .container {
+        max-width: 1100px;
+        margin: 0 auto;
+        background-color: #ffffff;
+        padding: 30px;
+        border-radius: 8px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    }
+
+    :root {
+        --font-primary: 'Axiforma', 'Montserrat', sans-serif;
+        --font-secondary: 'Montserrat', sans-serif;
+        --color-primary: #ff1100;
+        --color-secondary: #000000;
+        --color-text: #333;
+        --color-border: #e0e0e0;
+    }
+    
+/* ================================================ */
+/* FIM - NOVOS ESTILOS PARA CONTEÚDO DE INTEROPERABILIDADE */
+/* ================================================ */
+/* Container Principal */
+.gh-header-right-align {
+        position: relative;
+        width: 100%;
+        height: 75px;
+        margin-bottom: 30px;
+        font-family: 'Segoe UI', sans-serif;
+        background-color: #000000; 
+        overflow: hidden;
+    }
+
+    /* O SVG posicionado na DIREITA */
+    .gh-decoration-right {
+        position: absolute;
+        top: 0;
+        right: 0;
+        height: 100%;
+        width: 290px; 
+        z-index: 0;
+        /* Opcional: Se quiser inverter o desenho horizontalmente, descomente abaixo: */
+        /* transform: scaleX(-1); */
+    }
+
+    /* O resto é igual: Texto por cima */
+    .gh-content-layer {
+        position: relative;
+        z-index: 1;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        height: 100%;
+        padding: 0 30px;
+        color: white;
+    }
+
+
+/* Estilo para remover marcadores de lista */
+.content-col-text ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+    .gh-item {
+      flex: 1;
+  }
+
+  /* 3. ESTILO DO LOGO */
+  .gh-logo img {
+      height: 45px;
+      width: auto;
+      display: block;
+  }
+
+  /* 4. ESTILO DOS TÍTULOS */
+  .gh-main {
+      font-size: 1.2rem;
+      font-weight: 600;
+      margin: 0;
+      letter-spacing: 2px;
+      line-height: 1.2;
+      color: #fff;
+  }
+
+  .gh-titles { text-align: center; }
+
+  .gh-sub {
+      font-size: 0.87rem;
+      font-weight: 400;
+      margin: 0;
+      color: #ffffff;
+      letter-spacing: 1px;
+  }
+
+  /* 5. ESTILO DO DEPARTAMENTO */
+  .gh-dept {
+      text-align: right;
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: #e3e3e3;
+      text-transform: uppercase;
+
+  }
+
+  /* =========================================================
+     6. A MÁGICA: O DESIGN DA BARRA INFERIOR (ESTILO TECH)
+     ========================================================= */
+  
+  /* A linha vermelha fina na base inteira */
+  .gh-decoration-bar {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 5px;
+      background-color: #ff1100;
+      z-index: 1;
+  }
+
+  /* O detalhe "grosso" e angulado na esquerda (Pseudo-elemento) */
+  .gh-decoration-bar::before {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0; /* Começa na esquerda */
+      width: 180px; /* Largura do detalhe */
+      height: 10px; /* Altura do detalhe (sobe um pouco) */
+      background-color: #ff1100;
+      /* Cria o corte em ângulo (Tech Shape) */
+      clip-path: polygon(0 0, 75% 0, 100% 100%, 0% 100%); 
+      z-index: 2;
+  }
+
+    /* Mobile */
+    @media (max-width: 768px) {
+      .gh-header-right-align { height: auto; }
+      .gh-decoration-right { display: none; } /* Oculta detalhe no mobile */
+      .gh-content-layer { flex-direction: column; padding: 15px; text-align: center; gap: 10px; }
+      .gh-logo img { margin: 0 auto; }
+      .gh-dept { text-align: center; }
+  }
+
+  /* Impressão */
+  @media print {
+      .gh-header-right-align { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; background-color: #000000 !important; }
+      .gh-main, .gh-sub, .gh-dept span { color: #ffffff !important; text-shadow: none !important; }
+      .gh-decoration-right { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+  }
+
+/* =========================================
+   CONFIGURAÇÃO DE IMPRESSÃO (CTRL+P)
+   ========================================= */
+   @media print {
+    /* 1. OBRIGA O NAVEGADOR A IMPRIMIR CORES DE FUNDO */
+    * {
+        -webkit-print-color-adjust: exact !important;   /* Chrome/Edge/Safari */
+        print-color-adjust: exact !important;           /* Firefox */
+        color-adjust: exact !important;                 /* Padrão */
+    }
+
+    /* 2. FORÇA AS CORES DOS SEUS ELEMENTOS */
+    .geohab-tech-header, 
+    .geohab-tech-footer {
+        background-color: var(--color-secondary)!important;
+        color: #ffffff !important;
+        box-shadow: none !important; /* Sombras não ficam boas impressas */
+    }
+
+    /* Força os detalhes vermelhos */
+    .gh-decoration-bar,
+    .gh-decoration-bar::before,
+    .gh-footer-bar,
+    .gh-bar-shape,
+    .gh-footer-tag {
+        background-color: #ff1100 !important;
+        /* Garante que o Pseudo-elemento apareça */
+        display: block !important; 
+        visibility: visible !important;
+    }
+
+    /* 3. AJUSTES DE POSICIONAMENTO PARA PAPEL */
+    
+    /* Garante que o header fique no topo da folha */
+    .geohab-tech-header {
+        position: relative !important;
+        top: 0 !important;
+        margin-top: 0 !important;
+        width: 100% !important;
+    }
+
+    /* Garante que o footer não quebre no meio */
+    .geohab-tech-footer {
+        page-break-inside: avoid;
+        break-inside: avoid;
+    }
+
+    /* Corrige textos que podem ficar brancos no fundo branco se o fundo falhar */
+    .gh-main-title, 
+    .gh-sub-title, 
+    .gh-dept, 
+    .gh-footer-info p {
+        color: #ffffff !important; /* Força branco pois o fundo preto vai imprimir */
+        text-shadow: none !important;
+    }
+    
+    /* Se tiver algum logo SVG ou PNG, força contraste */
+
+    
+    /* 4. LIMPEZA (Opcional) */
+    /* Esconde elementos do Moodle que não devem sair no PDF (Menu, Breadcrumbs, etc) */
+    /* Descomente as linhas abaixo se quiser limpar a folha */
+    /*
+    nav.navbar, 
+    #page-header, 
+    .drawer, 
+    .footer-content-debugging {
+        display: none !important;
+    }
+    */
+    /* Estilos para legendas de imagens no PDF */
+.image-caption {
+    display: flex;
+    align-content: center;
+    align-items: center;
+    font-size: 0.9rem;
+    font-style: italic;
+    color: #666;
+    margin-top: 0.5em;
+    text-align: center;
+    margin-bottom: 1.5em;
+}
+
+@media print {
+    .image-caption {
+        page-break-inside: avoid;
+        margin-bottom: 1em;
+    }
+}
+}
+
+
+</style>
+</head>
+<body>
+
+<div class="gh-header-right-align">
+  <div class="gh-decoration-right">
+    <svg width="100%" height="100%" viewBox="0 0 279.83276 72.34375" preserveAspectRatio="none"
+      xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <clipPath id="clipRight1">
+          <path d="m 1230,0 h 210 v 54.457031 h -210 z m 0,0" clip-rule="nonzero" />
+        </clipPath>
+        <clipPath id="clipRight2">
+          <path
+            d="m 1246.9375,54.257812 c -1.3359,-1.792968 -1.3633,-4.414062 0.3477,-6.3125 2.8086,-3.050781 5.7265,-6.019531 8.5859,-9.015624 2.8633,-2.996094 2.8359,-5.828126 -0.1875,-8.71875 -7.8359,-7.566407 -15.6992,-15.136719 -23.5625,-22.679688 -1.2305,-1.203125 -2.1406,-2.511719 -1.9766,-4.332031 0.211,-2.40625 1.5508,-3.929688 3.7696,-4.492188 h 223.0547 v 55.550781 z m 0,0"
+            clip-rule="nonzero" />
+        </clipPath>
+      </defs>
+      <g transform="translate(-18237.147,-3230.4205)">
+        <g clip-path="url(#clipRight1)" transform="matrix(1.3333333,0,0,1.3333333,16596.98,3230.4205)">
+          <g clip-path="url(#clipRight2)">
+            <path fill="#ff1100" d="M -31.859375,-14.640625 H 1470.2305 V 67.632812 H -31.859375 Z" fill-opacity="1"
+              fill-rule="nonzero" />
+          </g>
+        </g>
+      </g>
+    </svg>
+  </div>
+  <div class="gh-content-layer">
+    <div class="gh-item gh-logo">
+      <img src="https://cda.cdhu.sp.gov.br/pics/logos/source/GLPI_Logo-white.svg" alt="Logo">
+    </div>
+    <div class="gh-item gh-titles">
+      <h1 class="gh-main">CURSO DO GEOHAB</h1>
+      <h2 class="gh-sub">MÓDULO 1</h2>
+    </div>
+    <div class="gh-item gh-dept">
+      <span>Sup. de Tecnologia e Informação</span>
+    </div>
+  </div>
+</div>
+
+    <!-- ======================================================= -->
+    <!--                      M3S1 -                       -->
+    <!-- ======================================================= -->
+    <div class="guide-container" style="padding: 0 45px 45px 45px;">
+        <div class="materials-hero" style="text-align: center;">
+            <h1 style="font-size: 2.5rem;">Como Encontrar Dados no Catálogo</h1><br>
+        </div>
+        
+        <p>O Catálogo (GeoNetwork) é a porta de entrada para encontrar e entender os dados geoespaciais disponíveis. Siga os passos abaixo para localizar as camadas que você precisa.</p>
+        
+        <h2>1. Acesse o Catálogo</h2>
+        <p>Na página inicial do Geohab, a interface do <span class="badge-link badge-text-salmon">Catálogo</span> já é apresentada. Se estiver em outra seção, clique no menu superior para retornar à interface de busca de <strong>metadados</strong> (dados sobre os dados: informações descritivas de uma camada).</p>
+        
+        <div class="content-layout-cols">
+            <div class="content-col-text">
+                <ul>
+                    <li><span class="badge-circular-red mr-2">1</span> <strong>Botão de acesso:</strong> ferramenta Catálogo.</li>
+                </ul>
+            </div>
+            <div class="content-col-media">
+                <div class="image-modal-wrapper">
+                    <img class="modal-trigger-img img-decoration" title="Clique para expandir"
+                        src="https://stor.cdhu.sp.gov.br/treina/publico/img-3-1.png"
+                        alt="Lista de resultados de metadados no Catálogo.">
+                    <div class="image-modal-popup">
+                        <span class="custom-close">×</span>
+                        <img class="modal-display-img">
+                        <div class="modal-caption-text">Lista de resultados de metadados no Catálogo</div>
+                    </div>
+                    <p class="image-caption">Lista de resultados de metadados no Catálogo</p>
+                </div>
+            </div>
+        </div>
+        
+        <h2>2. Realize a Busca</h2>
+        <p>Use a caixa de busca principal para encontrar camadas por nome ou palavras-chave. Por exemplo: "hidrografia", "são paulo", "uso do solo".</p>
+        <p>Clique na lupa ou pressione <kbd>Enter ↵</kbd> no teclado para ver os resultados. Você também pode encontrar camadas em destaque rolando a página.</p>
+        <p>Em News feed temos os metadados publicados mais recentes.</p>
+        
+        <div class="content-layout-cols">
+            <div class="content-col-text">
+                <ul>
+                    <li><span class="badge-circular-red mr-2">1</span> <strong>Caixa de pesquisa:</strong> Onde você digita a sua busca.</li>
+                    <li><span class="badge-circular-red mr-2">2</span> <strong>Lupa:</strong> Aciona a pesquisa.</li>
+                    <li><span class="badge-circular-red mr-2">3</span> <strong>News feed:</strong> Lista de metadados publicados recentes.</li>
+                </ul>
+            </div>
+            <div class="content-col-media">
+                <div class="image-modal-wrapper">
+                    <img class="modal-trigger-img img-decoration" title="Clique para expandir"
+                        src="https://stor.cdhu.sp.gov.br/treina/publico/img-3-2.png"
+                        alt="Lista de resultados de metadados no Catálogo.">
+                    <div class="image-modal-popup">
+                        <span class="custom-close">×</span>
+                        <img class="modal-display-img">
+                        <div class="modal-caption-text">Lista de resultados de metadados no Catálogo</div>
+                    </div>
+                    <p class="image-caption">Lista de resultados de metadados no Catálogo</p>
+                </div>
+            </div>
+        </div>
+        
+        <h2>3. Analise os Resultados</h2>
+        <p>A plataforma exibirá uma lista de resultados de metadados, de acordo com a sua palavras-chave digitada na caixa de busca.</p>
+        
+        <div class="content-layout-cols">
+            <div class="content-col-text">
+                <ul>
+                    <li><span class="badge-circular-red mr-2">1</span> <strong>Quantidades encontradas:</strong> De acordo com a sua pesquisa.</li>
+                    <li><span class="badge-circular-red mr-2">2</span> <strong>Prévia da Camada:</strong> Miniatura do mapa.</li>
+                    <li><span class="badge-circular-red mr-2">3</span> <strong>Nome da Camada:</strong> Título e link.</li>
+                    <li><span class="badge-circular-red mr-2">4</span> <strong>Resumo:</strong> Descrição da camada.</li>
+                    <li><span class="badge-circular-red mr-2">5</span> <strong>Favoritar:</strong> Adicionar à sua lista.</li>
+                </ul>
+            </div>
+            <div class="content-col-media">
+                <div class="image-modal-wrapper">
+                    <img class="modal-trigger-img img-decoration" title="Clique para expandir"
+                        src="https://stor.cdhu.sp.gov.br/treina/publico/img-3-4.png"
+                        alt="Lista de resultados de metadados no Catálogo.">
+                    <div class="image-modal-popup">
+                        <span class="custom-close">×</span>
+                        <img class="modal-display-img">
+                        <div class="modal-caption-text">Lista de resultados de metadados no Catálogo</div>
+                    </div>
+                    <p class="image-caption">Lista de resultados de metadados no Catálogo</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="notice-block notice-warning">
+            <div class="notice-icon">
+                <svg class="icon-custon icon-warning"></svg>
+            </div>
+            <div class="notice-content">
+                <p><strong>Importante:</strong> Algumas camadas podem estar ocultas e visíveis apenas para setores ou usuários específicos, de acordo com as permissões definidas.</p>
+            </div>
+        </div>
+        
+        <hr>
+        <div class="document-footer">
+            <p><i class="fi fi-tr-calendar"></i> Data de criação: 19 de dez. de 2024<br>
+              <i class="fi fi-tr-calendar-pen"></i> Data de atualização: <span class="gh-auto-date"></span><br>
+              <i class="fi fi-tr-code-compare"></i> Versão: 1.0
+            </p>
+        </div>
+      </div>
+
+    <!-- ======================================================= -->
+    <!--                      M3S1 -                       -->2
+    <!-- ======================================================= -->    
+<div class="guide-container" style="padding: 0 45px 45px 45px;">
+    <div class="materials-hero" style="text-align: center;">
+        <h1 style="font-size: 2.5rem;">Visualizando Camadas</h1><br>
+    </div>
+    
+    <p>O <span class="badge-link badge-text-lilac">Visualizador</span> é um dos componentes principais do Geohab, integrado ao <span class="badge-link badge-text-blue">Serviços (GeoServer)</span> e ao <span class="badge-link badge-text-salmon">Catálogo (GeoNetwork)</span>. Ele é a principal ferramenta para a exploração visual interativa das camadas geoespaciais.</p>
+    
+    <p>Este guia demonstra as formas mais comuns de adicionar e visualizar uma camada, permitindo que você analise se ela atende aos seus requisitos.</p>
+    
+    <div class="notice-block notice-warning">
+        <div class="notice-icon">
+            <svg class="icon-custon icon-warning"></svg>
+        </div>
+        <div class="notice-content">
+            <p><strong>Nota Importante:</strong> Lembre-se que para visualizar efetivamente uma camada, seu perfil de usuário no Geohab deve ter as permissões de acesso necessárias para o serviço (WMS/WFS) correspondente.</p>
+        </div>
+    </div>
+    
+    <h2>1. A partir do Catálogo</h2>
+    <p>Utilize o <span class="badge-link badge-text-salmon">Catálogo (GeoNetwork)</span> para encontrar a camada de seu interesse.</p>
+    <p>Na página de detalhes do metadado da camada desejada, selecione o tipo de GeoServiço (WMS para mapa ou WFS para vetor) e clique em visualizar. A camada será automaticamente carregada no Visualizador.</p>
+    
+    <h2>2. Diretamente no Visualizador</h2>
+    <p>Se você já conhece a camada que deseja visualizar:</p>
+    
+    <div class="content-layout-cols">
+        <div class="content-col-text">
+            <ul>
+                <li><span class="badge-circular-red mr-2">1</span> Acesse o <span class="badge-link badge-text-lilac">Visualizador</span> na página inicial do Geohab</li>
+                <li><span class="badge-circular-red mr-2">2</span> Clique no botão <span class="badge-color-black">Add data to map</span></li>
+                <li><span class="badge-circular-red mr-2">3</span> Selecione a fonte de dados: <span class="badge-color-black">Catálogo de dados da plataforma</span></li>
+                <li><span class="badge-circular-red mr-2">4</span> Busque pelo nome da camada</li>
+                <li><span class="badge-circular-red mr-2">5</span> Clique no ícone de adicionar ao mapa ao lado do nome da camada</li>
+            </ul>
+        </div>
+        <div class="content-col-media">
+            <div class="image-modal-wrapper">
+                <img class="modal-trigger-img img-decoration" title="Clique para expandir"
+                    src="https://stor.cdhu.sp.gov.br/treina/publico/img-3-5.png"
+                    alt="Interface do Visualizador do Geohab">
+                <div class="image-modal-popup">
+                    <span class="custom-close">×</span>
+                    <img class="modal-display-img">
+                    <div class="modal-caption-text">Interface do Visualizador do Geohab</div>
+                </div>
+                <p class="image-caption">Interface do Visualizador do Geohab</p>
+            </div>
+        </div>
+    </div>
+    
+    <hr>
+    <div class="document-footer">
+        <p><i class="fi fi-tr-calendar"></i> Data de criação: 19 de dez. de 2024<br>
+          <i class="fi fi-tr-calendar-pen"></i> Data de atualização: <span class="gh-auto-date"></span><br>
+          <i class="fi fi-tr-code-compare"></i> Versão: 1.0
+        </p>
+    </div>
+  </div>
+
+    <!-- ======================================================= -->
+    <!--                      M3S3 -                       -->
+    <!-- ======================================================= -->  
+    <div class="guide-container" style="padding: 0 45px 45px 45px;">
+        <div class="materials-hero" style="text-align: center;">
+            <h1 style="font-size: 2.5rem;">Filtrando Dados em Camadas Espaciais</h1><br>
+        </div>
+        
+        <p>O <span class="badge-link badge-text-lilac">Visualizador</span>, componente de visualização do Geohab, oferece recursos avançados para filtrar dados em camadas espaciais. Esta funcionalidade permite refinar a visualização de acordo com critérios específicos, facilitando a análise de informações relevantes.</p>
+        
+        <p>O processo de filtragem pode ser aplicado a diferentes tipos de camadas, permitindo selecionar elementos com base em atributos tabulares ou condições espaciais.</p>
+        
+        <div class="notice-block notice-warning">
+            <div class="notice-icon">
+                <svg class="icon-custon icon-warning"></svg>
+            </div>
+            <div class="notice-content">
+                <p><strong>Nota Importante:</strong> Para utilizar os recursos de filtragem, seu perfil de usuário no Geohab deve ter as permissões de acesso necessárias para a camada que deseja filtrar.</p>
+            </div>
+        </div>
+        
+        <h2>Processo de Filtragem no Visualizador</h2>
+        
+        <div class="content-layout-cols">
+            <div class="content-col-text">
+                <ul>
+                    <li><span class="badge-circular-red mr-2">1</span> <strong>Acessar a Camada:</strong> No <span class="badge-link badge-text-lilac">Visualizador</span>, selecione a camada que deseja filtrar no painel de camadas. Clique com o botão direito sobre a camada ou no ícone de opções para acessar o menu de ferramentas da camada.</li>
+                    <li><span class="badge-circular-red mr-2">2</span> <strong>Abrir a Ferramenta de Filtro:</strong> No menu de opções da camada, selecione a ferramenta <span class="badge-color-black">Filtro</span> ou <span class="badge-color-black">Filter</span>. Isso abrirá uma interface onde você pode definir os critérios de filtragem com base nos atributos disponíveis na camada.</li>
+                    <li><span class="badge-circular-red mr-2">3</span> <strong>Definir Critérios de Filtragem:</strong> Na interface de filtro, você pode:
+                        <ul>
+                            <li>Selecionar o atributo que deseja filtrar</li>
+                            <li>Escolher o operador de comparação (igual a, diferente de, maior que, contém, etc.)</li>
+                            <li>Inserir o valor ou valores para a condição</li>
+                            <li>Combinar múltiplas condições usando operadores lógicos (E, OU)</li>
+                        </ul>
+                    </li>
+                    <li><span class="badge-circular-red mr-2">4</span> <strong>Aplicar e Visualizar o Resultado:</strong> Após definir os critérios, clique em <span class="badge-color-black">Aplicar</span> ou <span class="badge-color-black">Apply</span>. O mapa será atualizado para mostrar apenas os elementos que atendem aos critérios de filtragem definidos. Você pode salvar o filtro para uso futuro ou compartilhá-lo com outros usuários.</li>
+                </ul>
+            </div>
+            <div class="content-col-media">
+                <div class="image-modal-wrapper">
+                    <img class="modal-trigger-img img-decoration" title="Clique para expandir"
+                        src="https://stor.cdhu.sp.gov.br/treina/publico/img-3-6.png"
+                        alt="Interface de filtro de dados no Visualizador">
+                    <div class="image-modal-popup">
+                        <span class="custom-close">×</span>
+                        <img class="modal-display-img">
+                        <div class="modal-caption-text">Interface de filtro de dados no Visualizador</div>
+                    </div>
+                    <p class="image-caption">Interface de filtro de dados no Visualizador</p>
+                </div>
+            </div>
+        </div>
+        
+        <hr>
+        <div class="document-footer">
+            <p><i class="fi fi-tr-calendar"></i> Data de criação: 19 de dez. de 2024<br>
+              <i class="fi fi-tr-calendar-pen"></i> Data de atualização: <span class="gh-auto-date"></span><br>
+              <i class="fi fi-tr-code-compare"></i> Versão: 1.0
+            </p>
+        </div>
+      </div>
+
+    <!-- ======================================================= -->
+    <!--                      M3S4 -                       -->
+    <!-- ======================================================= -->    
+    <div class="guide-container" style="padding: 0 45px 45px 45px;">
+        <div class="materials-hero" style="text-align: center;">
+            <h1 style="font-size: 2.5rem;">Filtro Espacial em Camadas</h1><br>
+        </div>
+        
+        <p>O <span class="badge-link badge-text-lilac">Visualizador</span> oferece poderosas funcionalidades de filtro espacial que permitem selecionar elementos geográficos com base em sua localização e relação espacial com outros elementos.</p>
+        
+        <p>Os filtros espaciais são ferramentas essenciais para análise geográfica, permitindo isolar feições específicas com base em critérios como proximidade, intersecção, contenção e outras relações topológicas.</p>
+        
+        <div class="notice-block notice-warning">
+            <div class="notice-icon">
+                <svg class="icon-custon icon-warning"></svg>
+            </div>
+            <div class="notice-content">
+                <p><strong>Nota Importante:</strong> Para utilizar os recursos de filtro espacial, além das permissões de acesso à camada, é necessário que a camada possua geometrias adequadas para este tipo de operação.</p>
+            </div>
+        </div>
+        
+        <h2>Processo de Filtro Espacial no Visualizador</h2>
+        
+        <div class="content-layout-cols">
+            <div class="content-col-text">
+                <ul>
+                    <li><span class="badge-circular-red mr-2">1</span> <strong>Acessar a Ferramenta de Filtro Espacial:</strong> No <span class="badge-link badge-text-lilac">Visualizador</span>, selecione a camada que deseja filtrar no painel de camadas. Clique com o botão direito sobre a camada e selecione a opção <span class="badge-color-black">Filtro Espacial</span> ou <span class="badge-color-black">Spatial Filter</span>.</li>
+                    <li><span class="badge-circular-red mr-2">2</span> <strong>Definir a Geometria de Referência:</strong> Você pode definir a geometria de referência para o filtro espacial de várias formas:
+                        <ul>
+                            <li>Desenhando diretamente no mapa (ponto, linha ou polígono)</li>
+                            <li>Selecionando uma feição de outra camada</li>
+                            <li>Importando uma geometria de um arquivo</li>
+                        </ul>
+                    </li>
+                    <li><span class="badge-circular-red mr-2">3</span> <strong>Selecionar o Tipo de Relação Espacial:</strong> Escolha o tipo de relação espacial que deseja aplicar:
+                        <ul>
+                            <li><span class="badge-color-black">Intersect</span> - Seleciona elementos que interceptam a geometria de referência</li>
+                            <li><span class="badge-color-black">Contains</span> - Seleciona elementos contidos na geometria de referência</li>
+                            <li><span class="badge-color-black">Within</span> - Seleciona elementos que contêm a geometria de referência</li>
+                            <li><span class="badge-color-black">Touches</span> - Seleciona elementos que tocam a geometria de referência</li>
+                            <li><span class="badge-color-black">DWithin</span> - Seleciona elementos dentro de uma distância específica</li>
+                        </ul>
+                    </li>
+                    <li><span class="badge-circular-red mr-2">4</span> <strong>Aplicar e Analisar o Resultado:</strong> Após definir a geometria e o tipo de relação, clique em <span class="badge-color-black">Aplicar</span> ou <span class="badge-color-black">Apply</span>. O mapa será atualizado para mostrar apenas os elementos que atendem ao critério espacial definido. Os resultados podem ser exportados ou combinados com outros filtros para análises mais complexas.</li>
+                </ul>
+            </div>
+            <div class="content-col-media">
+                <div class="image-modal-wrapper">
+                    <img class="modal-trigger-img img-decoration" title="Clique para expandir"
+                        src="https://stor.cdhu.sp.gov.br/treina/publico/img-3-7.png"
+                        alt="Interface de filtro espacial no Visualizador">
+                    <div class="image-modal-popup">
+                        <span class="custom-close">×</span>
+                        <img class="modal-display-img">
+                        <div class="modal-caption-text">Interface de filtro espacial no Visualizador</div>
+                    </div>
+                    <p class="image-caption">Interface de filtro espacial no Visualizador</p>
+                </div>
+            </div>
+        </div>
+        
+        <hr>
+        <div class="document-footer">
+            <p><i class="fi fi-tr-calendar"></i> Data de criação: 19 de dez. de 2024<br>
+              <i class="fi fi-tr-calendar-pen"></i> Data de atualização: <span class="gh-auto-date"></span><br>
+              <i class="fi fi-tr-code-compare"></i> Versão: 1.0
+            </p>
+        </div>
+      </div>
+
+
+<!--     SCRIPTS ESSENCIAIS (jQuery, Popper, Bootstrap)      -->
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js"></script>
+<script src="script.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+      // 1. Pega a data de hoje
+      var hoje = new Date();
+      
+      // 2. Formata para português (Ex: 24/10/2023)
+      //var dataFormatada = hoje.toLocaleDateString('pt-BR');
+      
+      // Se preferir por extenso (Ex: 24 de outubro de 2023), use esta linha no lugar da de cima:
+      var dataFormatada = hoje.toLocaleDateString('pt-BR', { day: 'numeric', month: 'short', year: 'numeric' });
+  
+      // 3. Procura o elemento e coloca a data dentro
+      var elementosData = document.querySelectorAll('.gh-auto-date');
+      elementosData.forEach(function(elemento) {
+          elemento.textContent = dataFormatada;
+      });
+  });
+</script>
+</body>
+
+</html>      
