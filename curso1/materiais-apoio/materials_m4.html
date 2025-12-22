@@ -321,859 +321,1048 @@
     <!--                      M4S1 - WebGis                      -->
     <!-- ======================================================= -->
     <div class="guide-container" style="padding: 0 45px 45px 45px;">
-      <div class="materials-hero" style="text-align: center;">
-          <h1 style="font-size: 2.5rem;">Tecnologias por Trás dos Mapas</h1><br>
-      </div>
-      
-      <p>Já se perguntou como os mapas interativos na internet funcionam? Vamos descobrir as tecnologias que fazem a mágica acontecer!</p>
-      
-      <div class="content-layout-cols">
-          <div class="content-col-text">
-              <p>A capacidade de visualizar dados geoespaciais em navegadores web representa uma revolução na forma como interagimos com informações espaciais. Essa experiência é possível graças a um ecossistema de tecnologias que trabalham em conjunto, desde servidores especializados até bibliotecas de programação que "desenham" mapas diretamente na tela do seu dispositivo.</p>
-              <p>No Geohab, essas tecnologias foram integradas para criar uma plataforma acessível que permite explorar dados complexos sem necessidade de conhecimento técnico avançado.</p>
-          </div>
-          <div class="content-col-media">
-              <div class="image-modal-wrapper">
-                  <img class="modal-trigger-img img-decoration" title="Clique para expandir"
-                      src="https://stor.cdhu.sp.gov.br/treina/publico/img-4-1.png"
-                      alt="Tecnologias por trás dos mapas interativos">
-                  <div class="image-modal-popup">
-                      <span class="custom-close">×</span>
-                      <img class="modal-display-img">
-                      <div class="modal-caption-text">Tecnologias por trás dos mapas interativos.</div>
-                  </div>
-                  <p class="image-caption">Fonte: Workshop on national geospatial data policies and standards</p>
-              </div>
-          </div>
-      </div>
-      
-      <div class="notice-block notice-info">
-          <div class="notice-icon">
-              <svg class="icon-custon icon-info"></svg>
-          </div>
-          <div class="notice-content">
-              <p>Nesta seção, vamos explorar de forma simples e prática as tecnologias que permitem que você visualize e interaja com mapas no Geohab.</p>
-          </div>
-      </div>
-      
-      <h2>Como os Mapas "Ganham Vida" na sua Tela?</h2>
-      <p>O processo de exibição de mapas interativos envolve múltiplas camadas tecnológicas que trabalham em harmonia para transformar dados brutos em visualizações dinâmicas e responsivas.</p>
-      
-      <div class="definition-group">
-          <dl class="definition-list">
-              <div class="definition-item">
-                  <dt class="definition-term">
-                      <div class="definition-icon"><svg class="icon-custon icon-eye" style="width: 24px; height: 24px;"></svg></div>
-                      <span>Visualizador (MapStore 2)</span>
-                  </dt>
-                  <dd class="definition-desc">Interface que você vê e interage no Geohab, construída com bibliotecas JavaScript avançadas para criar uma experiência de mapa intuitiva. Oferece controles de navegação, ferramentas de consulta e personalização de camadas.</dd>
-              </div>
-              <div class="definition-item">
-                  <dt class="definition-term">
-                      <div class="definition-icon"><svg class="icon-custon icon-search" style="width: 24px; height: 24px;"></svg></div>
-                      <span>Serviços (GeoServer)</span>
-                  </dt>
-                  <dd class="definition-desc">Servidor que armazena e fornece os dados geoespaciais para o visualizador, respondendo às requisições e enviando as informações no formato adequado. Implementa padrões OGC como WMS, WFS e WMTS.</dd>
-              </div>
-              <div class="definition-item">
-                  <dt class="definition-term">
-                      <div class="definition-icon"><svg class="icon-custon icon-js" style="width: 24px; height: 24px;"></svg></div>
-                      <span>Bibliotecas JavaScript (OpenLayers)</span>
-                  </dt>
-                  <dd class="definition-desc">Conjunto de ferramentas de programação que permitem "desenhar" mapas, conectar com servidores e criar interatividade na tela do navegador. OpenLayers é uma das bibliotecas mais robustas para aplicações empresariais.</dd>
-              </div>
-          </dl>
-      </div>
-      
-      <h2>KML: A Linguagem dos Lugares</h2>
-      <p>Para que dados geoespaciais possam ser compartilhados e visualizados em diferentes plataformas, é necessário utilizar formatos padronizados que descrevam tanto a geometria quanto os atributos associados.</p>
-      
-      <div class="definition-group">
-          <dl class="definition-list">
-              <div class="definition-item">
-                  <dt class="definition-term">
-                      <div class="definition-icon"><svg class="icon-custon icon-code" style="width: 24px; height: 24px;"></svg></div>
-                      <span>KML (Keyhole Markup Language)</span>
-                  </dt>
-                  <dd class="definition-desc">Formato de arquivo baseado em XML que descreve pontos, linhas, polígonos e imagens para serem exibidos em mapas. Popularizado pelo Google Earth, permite incluir estilos, descrições e até mesmo tours animados.</dd>
-              </div>
-              <div class="definition-item">
-                  <dt class="definition-term">
-                      <div class="definition-icon"><svg class="icon-custon icon-file" style="width: 24px; height: 24px;"></svg></div>
-                      <span>GeoJSON</span>
-                  </dt>
-                  <dd class="definition-desc">Formato aberto baseado em JSON para codificar estruturas de dados geográficas. Ideal para aplicações web e interoperabilidade entre sistemas devido à sua compatibilidade nativa com JavaScript e APIs REST.</dd>
-              </div>
-              <div class="definition-item">
-                  <dt class="definition-term">
-                      <div class="definition-icon"><svg class="icon-custon icon-search" style="width: 24px; height: 24px;"></svg></div>
-                      <span>Shapefile</span>
-                  </dt>
-                  <dd class="definition-desc">Formato vetorial clássico de dados geoespaciais, composto por múltiplos arquivos (.shp, .shx, .dbf). Embora antigo, ainda é amplamente utilizado devido à sua compatibilidade com a maioria dos softwares GIS.</dd>
-              </div>
-          </dl>
-      </div>
-      
-      <h2>Bibliotecas de Mapas: As Ferramentas que "Desenham"</h2>
-      <p>As bibliotecas JavaScript são o motor por trás dos mapas interativos na web, fornecendo as funcionalidades necessárias para renderizar, manipular e interagir com dados geoespaciais diretamente no navegador.</p>
-      
-      <div class="definition-group">
-          <dl class="definition-list">
-              <div class="definition-item">
-                  <dt class="definition-term">
-                      <div class="definition-icon"><svg class="icon-custon icon-search" style="width: 24px; height: 24px;"></svg></div>
-                      <span>OpenLayers</span>
-                  </dt>
-                  <dd class="definition-desc">Biblioteca JavaScript de código aberto para exibir mapas em navegadores. Permite criar camadas, adicionar controles de interação e conectar com diversos serviços de mapas. É a biblioteca utilizada pelo MapStore 2.</dd>
-              </div>
-              <div class="definition-item">
-                  <dt class="definition-term">
-                      <div class="definition-icon"><svg class="icon-custon icon-code" style="width: 24px; height: 24px;"></svg></div>
-                      <span>Leaflet</span>
-                  </dt>
-                  <dd class="definition-desc">Biblioteca JavaScript leve e simples para mapas interativos. Focada em simplicidade, desempenho e usabilidade em diversos dispositivos. Popular para aplicações web que necessitam de visualização básica de mapas.</dd>
-              </div>
-              <div class="definition-item">
-                  <dt class="definition-term">
-                      <div class="definition-icon"><svg class="icon-custon icon-eye" style="width: 24px; height: 24px;"></svg></div>
-                      <span>MapStore 2</span>
-                  </dt>
-                  <dd class="definition-desc">Plataforma completa de visualização de mapas utilizada no Geohab. Oferece uma interface amigável que permite criar, personalizar e compartilhar mapas interativos sem necessidade de conhecimento técnico avançado.</dd>
-              </div>
-          </dl>
-      </div>
-      
-      <h2>Como isso se Conecta no Ecossistema do Geohab?</h2>
-      <p>No Geohab, essas tecnologias foram integradas para criar um fluxo contínuo de dados, desde o armazenamento até a visualização, garantindo performance e usabilidade para os usuários finais.</p>
-      
-      <div class="definition-group">
-          <dl class="definition-list">
-              <div class="definition-item">
-                  <dt class="definition-term">
-                      <div class="definition-icon"><svg class="icon-custon icon-eye" style="width: 24px; height: 24px;"></svg></div>
-                      <span>Visualização</span>
-                  </dt>
-                  <dd class="definition-desc">O <span class="badge-link badge-text-purple">Visualizador</span> do Geohab renderiza os dados na tela, permitindo que você visualize e interaja com as camadas de informação através de controles intuitivos de navegação e consulta.</dd>
-              </div>
-              <div class="definition-item">
-                  <dt class="definition-term">
-                      <div class="definition-icon"><svg class="icon-custon icon-completation" style="width: 24px; height: 24px;"></svg></div>
-                      <span>Requisições</span>
-                  </dt>
-                  <dd class="definition-desc">Quando você navega pelo mapa, o visualizador faz requisições ao <span class="badge-link badge-text-blue">GeoServer</span> para obter os dados necessários para exibir na área visível, otimizando o tráfego de rede.</dd>
-              </div>
-              <div class="definition-item">
-                  <dt class="definition-term">
-                      <div class="definition-icon"><svg class="icon-custon icon-process" style="width: 24px; height: 24px;"></svg></div>
-                      <span>Processamento</span>
-                  </dt>
-                  <dd class="definition-desc">Os dados recebidos (imagens, KML, GeoJSON, etc.) são interpretados e processados pela biblioteca JavaScript antes de serem desenhados na tela do navegador, aplicando estilos e simbologias definidos.</dd>
-              </div>
-          </dl>
-      </div>
-      
-      <div class="notice-block notice-info">
-          <div class="notice-icon">
-              <svg class="icon-custon icon-info"></svg>
-          </div>
-          <div class="notice-content">
-              <h4>O que você precisa saber?</h4>
-              <p>Como usuário do Geohab, você não precisa saber programar ou criar KML manualmente. O importante é entender que existe um ecossistema de tecnologias trabalhando juntas para que você possa visualizar e interagir com os dados geoespaciais de maneira intuitiva!</p>
-          </div>
-      </div>
-      
-      <hr>
-      <div class="document-footer">
-          <p><i class="fi fi-tr-calendar"></i> Data de criação: 19 de dez. de 2024<br>
-            <i class="fi fi-tr-calendar-pen"></i> Data de atualização: <span class="gh-auto-date"></span><br>
-            <i class="fi fi-tr-code-compare"></i> Versão: 1.0
-          </p>
-      </div>
-  </div>
-
+        <div class="materials-hero" style="text-align: center;">
+            <h1 style="font-size: 2.5rem;">Tecnologias por Trás dos Mapas</h1><br>
+        </div>
+    
+        <p>Já se perguntou como os mapas interativos na internet funcionam? Vamos descobrir as tecnologias que fazem a
+            mágica acontecer!</p>
+    
+        <div class="content-layout-cols">
+            <div class="content-col-text">
+                <p>A capacidade de visualizar dados geoespaciais em navegadores web representa uma revolução na forma como
+                    interagimos com informações espaciais. Essa experiência é possível graças a um ecossistema de
+                    tecnologias que trabalham em conjunto, desde servidores especializados até bibliotecas de programação
+                    que "desenham" mapas diretamente na tela do seu dispositivo.</p>
+                <p>No Geohab, essas tecnologias foram integradas para criar uma plataforma acessível que permite explorar
+                    dados complexos sem necessidade de conhecimento técnico avançado.</p>
+            </div>
+            <div class="content-col-media">
+                <div class="image-modal-wrapper">
+                    <img class="modal-trigger-img img-decoration" title="Clique para expandir"
+                        src="https://stor.cdhu.sp.gov.br/treina/publico/img-4-1.png"
+                        alt="Tecnologias por trás dos mapas interativos">
+                    <div class="image-modal-popup">
+                        <span class="custom-close">×</span>
+                        <img class="modal-display-img">
+                        <div class="modal-caption-text">Tecnologias por trás dos mapas interativos.</div>
+                    </div>
+                    <p class="image-caption">Fonte: Workshop on national geospatial data policies and standards</p>
+                </div>
+            </div>
+        </div>
+    
+        <div class="notice-block notice-info">
+            <div class="notice-icon">
+                <svg class="icon-custon icon-info"></svg>
+            </div>
+            <div class="notice-content">
+                <p>Nesta seção, vamos explorar de forma simples e prática as tecnologias que permitem que você visualize e
+                    interaja com mapas no Geohab.</p>
+            </div>
+        </div>
+    
+        <h2>Como os Mapas "Ganham Vida" na sua Tela?</h2>
+        <p>O processo de exibição de mapas interativos envolve múltiplas camadas tecnológicas que trabalham em harmonia para
+            transformar dados brutos em visualizações dinâmicas e responsivas.</p>
+    
+        <div class="definition-group">
+            <dl class="definition-list">
+                <div class="definition-item">
+                    <dt class="definition-term">
+                        <div class="definition-icon"><svg class="icon-custon icon-eye"
+                                style="width: 24px; height: 24px;"></svg></div>
+                        <span>Visualizador (MapStore 2)</span>
+                    </dt>
+                    <dd class="definition-desc">Interface que você vê e interage no Geohab, construída com bibliotecas
+                        JavaScript avançadas para criar uma experiência de mapa intuitiva. Oferece controles de navegação,
+                        ferramentas de consulta e personalização de camadas.</dd>
+                </div>
+                <div class="definition-item">
+                    <dt class="definition-term">
+                        <div class="definition-icon"><svg class="icon-custon icon-search"
+                                style="width: 24px; height: 24px;"></svg></div>
+                        <span>Serviços (GeoServer)</span>
+                    </dt>
+                    <dd class="definition-desc">Servidor que armazena e fornece os dados geoespaciais para o visualizador,
+                        respondendo às requisições e enviando as informações no formato adequado. Implementa padrões OGC
+                        como WMS, WFS e WMTS.</dd>
+                </div>
+                <div class="definition-item">
+                    <dt class="definition-term">
+                        <div class="definition-icon"><svg class="icon-custon icon-js"
+                                style="width: 24px; height: 24px;"></svg></div>
+                        <span>Bibliotecas JavaScript (OpenLayers)</span>
+                    </dt>
+                    <dd class="definition-desc">Conjunto de ferramentas de programação que permitem "desenhar" mapas,
+                        conectar com servidores e criar interatividade na tela do navegador. OpenLayers é uma das
+                        bibliotecas mais robustas para aplicações empresariais.</dd>
+                </div>
+            </dl>
+        </div>
+    
+        <h2>KML: A Linguagem dos Lugares</h2>
+        <p>Para que dados geoespaciais possam ser compartilhados e visualizados em diferentes plataformas, é necessário
+            utilizar formatos padronizados que descrevam tanto a geometria quanto os atributos associados.</p>
+    
+        <div class="definition-group">
+            <dl class="definition-list">
+                <div class="definition-item">
+                    <dt class="definition-term">
+                        <div class="definition-icon"><svg class="icon-custon icon-code"
+                                style="width: 24px; height: 24px;"></svg></div>
+                        <span>KML (Keyhole Markup Language)</span>
+                    </dt>
+                    <dd class="definition-desc">Formato de arquivo baseado em XML que descreve pontos, linhas, polígonos e
+                        imagens para serem exibidos em mapas. Popularizado pelo Google Earth, permite incluir estilos,
+                        descrições e até mesmo tours animados.</dd>
+                </div>
+                <div class="definition-item">
+                    <dt class="definition-term">
+                        <div class="definition-icon"><svg class="icon-custon icon-file"
+                                style="width: 24px; height: 24px;"></svg></div>
+                        <span>GeoJSON</span>
+                    </dt>
+                    <dd class="definition-desc">Formato aberto baseado em JSON para codificar estruturas de dados
+                        geográficas. Ideal para aplicações web e interoperabilidade entre sistemas devido à sua
+                        compatibilidade nativa com JavaScript e APIs REST.</dd>
+                </div>
+                <div class="definition-item">
+                    <dt class="definition-term">
+                        <div class="definition-icon"><svg class="icon-custon icon-search"
+                                style="width: 24px; height: 24px;"></svg></div>
+                        <span>Shapefile</span>
+                    </dt>
+                    <dd class="definition-desc">Formato vetorial clássico de dados geoespaciais, composto por múltiplos
+                        arquivos (.shp, .shx, .dbf). Embora antigo, ainda é amplamente utilizado devido à sua
+                        compatibilidade com a maioria dos softwares GIS.</dd>
+                </div>
+            </dl>
+        </div>
+    <br><br><br>
+        <h2>Bibliotecas de Mapas: As Ferramentas que "Desenham"</h2>
+        <p>As bibliotecas JavaScript são o motor por trás dos mapas interativos na web, fornecendo as funcionalidades
+            necessárias para renderizar, manipular e interagir com dados geoespaciais diretamente no navegador.</p>
+    
+        <div class="definition-group">
+            <dl class="definition-list">
+                <div class="definition-item">
+                    <dt class="definition-term">
+                        <div class="definition-icon"><svg class="icon-custon icon-search"
+                                style="width: 24px; height: 24px;"></svg></div>
+                        <span>OpenLayers</span>
+                    </dt>
+                    <dd class="definition-desc">Biblioteca JavaScript de código aberto para exibir mapas em navegadores.
+                        Permite criar camadas, adicionar controles de interação e conectar com diversos serviços de mapas. É
+                        a biblioteca utilizada pelo MapStore 2.</dd>
+                </div>
+                <div class="definition-item">
+                    <dt class="definition-term">
+                        <div class="definition-icon"><svg class="icon-custon icon-code"
+                                style="width: 24px; height: 24px;"></svg></div>
+                        <span>Leaflet</span>
+                    </dt>
+                    <dd class="definition-desc">Biblioteca JavaScript leve e simples para mapas interativos. Focada em
+                        simplicidade, desempenho e usabilidade em diversos dispositivos. Popular para aplicações web que
+                        necessitam de visualização básica de mapas.</dd>
+                </div>
+                <div class="definition-item">
+                    <dt class="definition-term">
+                        <div class="definition-icon"><svg class="icon-custon icon-eye"
+                                style="width: 24px; height: 24px;"></svg></div>
+                        <span>MapStore 2</span>
+                    </dt>
+                    <dd class="definition-desc">Plataforma completa de visualização de mapas utilizada no Geohab. Oferece
+                        uma interface amigável que permite criar, personalizar e compartilhar mapas interativos sem
+                        necessidade de conhecimento técnico avançado.</dd>
+                </div>
+            </dl>
+        </div>
+    
+        <h2>Como isso se Conecta no Ecossistema do Geohab?</h2>
+        <p>No Geohab, essas tecnologias foram integradas para criar um fluxo contínuo de dados, desde o armazenamento até a
+            visualização, garantindo performance e usabilidade para os usuários finais.</p>
+    
+        <div class="definition-group">
+            <dl class="definition-list">
+                <div class="definition-item">
+                    <dt class="definition-term">
+                        <div class="definition-icon"><svg class="icon-custon icon-eye"
+                                style="width: 24px; height: 24px;"></svg></div>
+                        <span>Visualização</span>
+                    </dt>
+                    <dd class="definition-desc">O <span class="badge-link badge-text-purple">Visualizador</span> do Geohab
+                        renderiza os dados na tela, permitindo que você visualize e interaja com as camadas de informação
+                        através de controles intuitivos de navegação e consulta.</dd>
+                </div>
+                <div class="definition-item">
+                    <dt class="definition-term">
+                        <div class="definition-icon"><svg class="icon-custon icon-completation"
+                                style="width: 24px; height: 24px;"></svg></div>
+                        <span>Requisições</span>
+                    </dt>
+                    <dd class="definition-desc">Quando você navega pelo mapa, o visualizador faz requisições ao <span
+                            class="badge-link badge-text-blue">GeoServer</span> para obter os dados necessários para exibir
+                        na área visível, otimizando o tráfego de rede.</dd>
+                </div>
+                <div class="definition-item">
+                    <dt class="definition-term">
+                        <div class="definition-icon"><svg class="icon-custon icon-process"
+                                style="width: 24px; height: 24px;"></svg></div>
+                        <span>Processamento</span>
+                    </dt>
+                    <dd class="definition-desc">Os dados recebidos (imagens, KML, GeoJSON, etc.) são interpretados e
+                        processados pela biblioteca JavaScript antes de serem desenhados na tela do navegador, aplicando
+                        estilos e simbologias definidos.</dd>
+                </div>
+            </dl>
+        </div>
+    
+        <div class="notice-block notice-info">
+            <div class="notice-icon">
+                <svg class="icon-custon icon-info"></svg>
+            </div>
+            <div class="notice-content">
+                <h4>O que você precisa saber?</h4>
+                <p>Como usuário do Geohab, você não precisa saber programar ou criar KML manualmente. O importante é
+                    entender que existe um ecossistema de tecnologias trabalhando juntas para que você possa visualizar e
+                    interagir com os dados geoespaciais de maneira intuitiva!</p>
+            </div>
+        </div>
+    
+        <hr>
+        <div class="document-footer">
+            <p><i class="fi fi-tr-calendar"></i> Data de criação: 19 de dez. de 2024<br>
+                <i class="fi fi-tr-calendar-pen"></i> Data de atualização: <span class="gh-auto-date"></span><br>
+                <i class="fi fi-tr-code-compare"></i> Versão: 1.0
+            </p>
+        </div>
+    </div>
+    
+    
     <!-- ======================================================= -->
     <!--                       M4S2 - Mapas                      -->
     <!-- ======================================================= -->
     <div class="guide-container" style="padding: 0 45px 45px 45px;">
-      <div class="materials-hero" style="text-align: center;">
-          <h1 style="font-size: 2.5rem;">Criando Mapas no Geohab</h1><br>
-      </div>
-      
-      <p>A funcionalidade de 'Criar Mapas' do Geohab permite criar mapas interativos a partir de camadas geoespaciais. Você pode configurar estilos, adicionar legendas, ativar pop-ups, controlar a visibilidade das camadas e compartilhar o mapa com outros usuários ou incorporá-lo em websites.</p>
-      
-      <div class="notice-block notice-warning">
-          <div class="notice-icon">
-              <svg class="icon-custon icon-warning"></svg>
-          </div>
-          <div class="notice-content">
-              <p><strong>Pré-requisitos:</strong> Ter um usuário autenticado no Geohab com permissão para criar mapas e acesso a camadas públicas ou privadas (WMS, WFS, GeoJSON, etc.).</p>
-          </div>
-      </div>
-      
-      <h2>1. Criando um Novo Mapa</h2>
-      <p>No menu principal, clique em <span class="badge-link badge-text-lilac">Apps</span> e depois em <span class="badge-link badge-text-lilac">Criar novo mapa</span>. O sistema abrirá o editor de mapas em branco.</p>
-      
-      <div class="content-layout-cols">
-          <div class="content-col-text">
-              <ul>
-                  <li><span class="badge-circular-red mr-2">1</span> <strong>Menu Apps:</strong> Acesso às ferramentas do Geohab.</li>
-                  <li><span class="badge-circular-red mr-2">2</span> <strong>Criar novo mapa:</strong> Inicia um novo mapa em branco.</li>
-              </ul>
-          </div>
-          <div class="content-col-media">
-              <div class="image-modal-wrapper">
-                  <img class="modal-trigger-img img-decoration" title="Clique para expandir"
-                      src="https://stor.cdhu.sp.gov.br/treina/publico/img-4-2.png"
-                      alt="Tela para adicionar um novo mapa no Geohab">
-                  <div class="image-modal-popup">
-                      <span class="custom-close">×</span>
-                      <img class="modal-display-img">
-                      <div class="modal-caption-text">Tela para adicionar um novo mapa no Geohab</div>
-                  </div>
-                  <p class="image-caption">Tela para adicionar um novo mapa no Geohab</p>
-              </div>
-          </div>
-      </div>
-      
-      <h2>2. Adicionando Camadas ao Mapa</h2>
-      <p>Clique no botão <span class="badge-link badge-text-lilac">Adicionar Camada</span> (ícone de camada no canto superior direito) e escolha a origem:</p>
-      
-      <div class="content-layout-cols">
-          <div class="content-col-text">
-              <ul>
-                  <li><span class="badge-circular-red mr-2">1</span> <strong>Adicionar Camada:</strong> Abre a janela para adicionar novas camadas.</li>
-                  <li><span class="badge-circular-red mr-2">2</span> <strong>Catálogo de Camadas:</strong> Busca camadas no Geohab.</li>
-                  <li><span class="badge-circular-red mr-2">3</span> <strong>Pesquisa:</strong> Digite o nome da camada desejada.</li>
-                  <li><span class="badge-circular-red mr-2">4</span> <strong>Adicionar ao Mapa:</strong> Adiciona a camada selecionada.</li>
-              </ul>
-          </div>
-          <div class="content-col-media">
-              <div class="image-modal-wrapper">
-                  <img class="modal-trigger-img img-decoration" title="Clique para expandir"
-                      src="https://stor.cdhu.sp.gov.br/treina/publico/img-4-3.png"
-                      alt="Janela para adicionar nova camada ao mapa">
-                  <div class="image-modal-popup">
-                      <span class="custom-close">×</span>
-                      <img class="modal-display-img">
-                      <div class="modal-caption-text">Janela para adicionar nova camada ao mapa</div>
-                  </div>
-                  <p class="image-caption">Janela para adicionar nova camada ao mapa</p>
-              </div>
-          </div>
-      </div>
-      
-      <h2>3. Personalizando o Mapa</h2>
-      <p>Ative ou desative camadas na lista lateral. Clique em uma camada para abrir o menu de configurações.</p>
-      
-      <div class="content-layout-cols">
-          <div class="content-col-text">
-              <ul>
-                  <li><span class="badge-circular-red mr-2">1</span> <strong>Ativar/Desativar:</strong> Mostra ou oculta a camada no mapa.</li>
-                  <li><span class="badge-circular-red mr-2">2</span> <strong>Configurações:</strong> Abre o menu de opções da camada.</li>
-                  <li><span class="badge-circular-red mr-2">3</span> <strong>Estilo:</strong> Personaliza cores, símbolos e legendas.</li>
-              </ul>
-          </div>
-          <div class="content-col-media">
-              <div class="image-modal-wrapper">
-                  <img class="modal-trigger-img img-decoration" title="Clique para expandir"
-                      src="https://stor.cdhu.sp.gov.br/treina/publico/img-4-4.png"
-                      alt="Lista de camadas na barra lateral para personalização">
-                  <div class="image-modal-popup">
-                      <span class="custom-close">×</span>
-                      <img class="modal-display-img">
-                      <div class="modal-caption-text">Lista de camadas na barra lateral para personalização</div>
-                  </div>
-                  <p class="image-caption">Lista de camadas na barra lateral para personalização</p>
-              </div>
-          </div>
-      </div>
-      
-      <h2>4. Configurações de Estilo</h2>
-      <p>No menu de configurações, você pode personalizar:</p>
-      
-      <div class="content-layout-cols">
-          <div class="content-col-text">
-              <ul>
-                  <li><span class="badge-circular-red mr-2">1</span> <strong>Aba de Estilo:</strong> Configurações gerais de aparência.</li>
-                  <li><span class="badge-circular-red mr-2">2</span> <strong>Preenchimento:</strong> Estilo para áreas poligonais.</li>
-                  <li><span class="badge-circular-red mr-2">3</span> <strong>Ícones:</strong> Estilo para pontos e marcadores.</li>
-                  <li><span class="badge-circular-red mr-2">4</span> <strong>Legendas:</strong> Configuração de textos no mapa.</li>
-              </ul>
-          </div>
-          <div class="content-col-media">
-              <div class="image-modal-wrapper">
-                  <img class="modal-trigger-img img-decoration" title="Clique para expandir"
-                      src="https://stor.cdhu.sp.gov.br/treina/publico/img-4-5.png"
-                      alt="Opções de configuração de estilo de uma camada">
-                  <div class="image-modal-popup">
-                      <span class="custom-close">×</span>
-                      <img class="modal-display-img">
-                      <div class="modal-caption-text">Opções de configuração de estilo de uma camada</div>
-                  </div>
-                  <p class="image-caption">Opções de configuração de estilo de uma camada</p>
-              </div>
-          </div>
-      </div>
-      
-      <h2>5. Exemplo de Preenchimento Categorizado</h2>
-      <p>Clique em regras de preenchimento e selecione o modo <span class="badge-link badge-text-purple">Categorizado</span>. Defina um campo (ex: 'area_km2') para criar categorias de cor a partir dos valores desse campo.</p>
-      
-      <div class="content-layout-cols">
-          <div class="content-col-text">
-              <ul>
-                  <li><span class="badge-circular-red mr-2">1</span> <strong>Regras de preenchimento:</strong> Abre as opções de estilo.</li>
-                  <li><span class="badge-circular-red mr-2">2</span> <strong>Categorizado:</strong> Cria cores por categorias.</li>
-                  <li><span class="badge-circular-red mr-2">3</span> <strong>Campo area_km2:</strong> Base para as categorias.</li>
-                  <li><span class="badge-circular-red mr-2">4</span> <strong>Aplicar:</strong> Salva as configurações.</li>
-              </ul>
-          </div>
-          <div class="content-col-media">
-              <div class="image-modal-wrapper">
-                  <img class="modal-trigger-img img-decoration" title="Clique para expandir"
-                      src="https://stor.cdhu.sp.gov.br/treina/publico/img-4-6.png"
-                      alt="Exemplo de configuração de preenchimento categorizado">
-                  <div class="image-modal-popup">
-                      <span class="custom-close">×</span>
-                      <img class="modal-display-img">
-                      <div class="modal-caption-text">Exemplo de configuração de preenchimento categorizado</div>
-                  </div>
-                  <p class="image-caption">Exemplo de configuração de preenchimento categorizado</p>
-              </div>
-          </div>
-      </div>
-      
-      <h2>6. Configurando o Fundo do Mapa</h2>
-      <p>Clique em <span class="badge-link badge-text-lilac">Fundo</span> ou <span class="badge-link badge-text-lilac">Base Map</span> na barra lateral. Escolha entre fundo padrão, satélite, OpenStreetMap, ou adicione serviços personalizados (TMS, XYZ).</p>
-      
-      <div class="content-layout-cols">
-          <div class="content-col-text">
-              <ul>
-                  <li><span class="badge-circular-red mr-2">1</span> <strong>Base Map:</strong> Abre as opções de fundo.</li>
-                  <li><span class="badge-circular-red mr-2">2</span> <strong>Satélite:</strong> Fundo com imagens de satélite.</li>
-                  <li><span class="badge-circular-red mr-2">3</span> <strong>Serviço personalizado:</strong> Adiciona outros fundos.</li>
-              </ul>
-          </div>
-          <div class="content-col-media">
-              <div class="image-modal-wrapper">
-                  <img class="modal-trigger-img img-decoration" title="Clique para expandir"
-                      src="https://stor.cdhu.sp.gov.br/treina/publico/img-4-8.png"
-                      alt="Menu para seleção de mapa de fundo (Base Map)">
-                  <div class="image-modal-popup">
-                      <span class="custom-close">×</span>
-                      <img class="modal-display-img">
-                      <div class="modal-caption-text">Menu para seleção de mapa de fundo (Base Map)</div>
-                  </div>
-                  <p class="image-caption">Menu para seleção de mapa de fundo (Base Map)</p>
-              </div>
-          </div>
-      </div>
-      
-      <h2>7. Salvando o Mapa</h2>
-      <p>Clique em <span class="badge-link badge-text-lilac">Salvar</span> na barra lateral e preencha:</p>
-      
-      <div class="content-layout-cols">
-          <div class="content-col-text">
-              <ul>
-                  <li><span class="badge-circular-red mr-2">1</span> <strong>Salvar:</strong> Abre a janela para salvar o mapa.</li>
-                  <li><span class="badge-circular-red mr-2">2</span> <strong>Título:</strong> Nome do seu mapa.</li>
-                  <li><span class="badge-circular-red mr-2">3</span> <strong>Descrição/Tags:</strong> Detalhes e palavras-chave.</li>
-                  <li><span class="badge-circular-red mr-2">4</span> <strong>Detalhes:</strong> Adicionar informações adicionais.</li>
-                  <li><span class="badge-circular-red mr-2">5</span> <strong>Permissões:</strong> Definir quem pode acessar.</li>
-                  <li><span class="badge-circular-red mr-2">6</span> <strong>Salvar final:</strong> Confirma e salva o mapa.</li>
-              </ul>
-          </div>
-          <div class="content-col-media">
-              <div class="image-modal-wrapper">
-                  <img class="modal-trigger-img img-decoration" title="Clique para expandir"
-                      src="https://stor.cdhu.sp.gov.br/treina/publico/img-4-9.png"
-                      alt="Janela de diálogo para salvar o mapa">
-                  <div class="image-modal-popup">
-                      <span class="custom-close">×</span>
-                      <img class="modal-display-img">
-                      <div class="modal-caption-text">Janela de diálogo para salvar o mapa</div>
-                  </div>
-                  <p class="image-caption">Janela de diálogo para salvar o mapa</p>
-              </div>
-          </div>
-      </div>
-      
-      <h2>8. Compartilhando o Mapa</h2>
-      <p>Após salvar, use o botão <span class="badge-link badge-text-lilac">Compartilhar</span>. Opções disponíveis:</p>
-      
-      <div class="content-layout-cols">
-          <div class="content-col-text">
-              <ul>
-                  <li><span class="badge-circular-red mr-2">1</span> <strong>Compartilhar:</strong> Abre as opções de compartilhamento.</li>
-                  <li><span class="badge-circular-red mr-2">2</span> <strong>Link direto:</strong> URL para acessar o mapa.</li>
-                  <li><span class="badge-circular-red mr-2">3</span> <strong>Incorporar iframe:</strong> Código para websites.</li>
-              </ul>
-          </div>
-          <div class="content-col-media">
-              <div class="image-modal-wrapper">
-                  <img class="modal-trigger-img img-decoration" title="Clique para expandir"
-                      src="https://stor.cdhu.sp.gov.br/treina/publico/img-4-10.png"
-                      alt="Opções para compartilhar o mapa, incluindo link e iframe">
-                  <div class="image-modal-popup">
-                      <span class="custom-close">×</span>
-                      <img class="modal-display-img">
-                      <div class="modal-caption-text">Opções para compartilhar o mapa, incluindo link e iframe</div>
-                  </div>
-                  <p class="image-caption">Opções para compartilhar o mapa, incluindo link e iframe</p>
-              </div>
-          </div>
-      </div>
-      
-      <div class="notice-block notice-info">
-          <div class="notice-icon">
-              <svg class="icon-custon icon-info"></svg>
-          </div>
-          <div class="notice-content">
-              <h4>Dicas e Boas Práticas</h4>
-              <ul>
-                  <li>Dênomes significativos às camadas.</li>
-                  <li>Agrupe camadas por tema ou função.</li>
-                  <li>Teste o mapa em resoluções diferentes.</li>
-                  <li>Mantenha a interface limpa e compreensível para usuários finais.</li>
-                  <li>Use mapas salvos como base para Dashboards e GeoStories.</li>
-              </ul>
-          </div>
-      </div>
-      
-      <hr>
-      <div class="document-footer">
-          <p><i class="fi fi-tr-calendar"></i> Data de criação: 19 de dez. de 2024<br>
-            <i class="fi fi-tr-calendar-pen"></i> Data de atualização: <span class="gh-auto-date"></span><br>
-            <i class="fi fi-tr-code-compare"></i> Versão: 1.0
-          </p>
-      </div>
-  </div>
-
+        <div class="materials-hero" style="text-align: center;">
+            <h1 style="font-size: 2.5rem;">Criando Mapas no Geohab</h1><br>
+        </div>
+    
+        <p>A funcionalidade de 'Criar Mapas' do Geohab permite criar mapas interativos a partir de camadas geoespaciais.
+            Você pode configurar estilos, adicionar legendas, ativar pop-ups, controlar a visibilidade das camadas e
+            compartilhar o mapa com outros usuários ou incorporá-lo em websites.</p>
+    
+        <div class="notice-block notice-warning">
+            <div class="notice-icon">
+                <svg class="icon-custon icon-warning"></svg>
+            </div>
+            <div class="notice-content">
+                <p><strong>Pré-requisitos:</strong> Ter um usuário autenticado no Geohab com permissão para criar mapas e
+                    acesso a camadas públicas ou privadas (WMS, WFS, GeoJSON, etc.).</p>
+            </div>
+        </div>
+    
+        <h2>1. Criando um Novo Mapa</h2>
+        <p>No menu principal, clique em <b>Apps</b> e depois em <b>Criar novo mapa</b>. O sistema abrirá o editor de mapas em branco.
+        </p>
+    
+        <div class="content-layout-cols">
+            <div class="content-col-text">
+                <ul>
+                    <li><span class="badge-circular-red mr-2">1</span> <strong>Menu Apps:</strong> Acesso às ferramentas do
+                        Geohab.</li>
+                    <li><span class="badge-circular-red mr-2">2</span> <strong>Criar novo mapa:</strong> Inicia um novo mapa
+                        em branco.</li>
+                </ul>
+            </div>
+    
+        </div>
+        <div class="content-col-media">
+            <div class="image-modal-wrapper">
+                <img class="modal-trigger-img img-content" title="Clique para expandir"
+                    src="https://stor.cdhu.sp.gov.br/treina/publico/img-4-2.png"
+                    alt="Tela para adicionar um novo mapa no Geohab">
+                <div class="image-modal-popup">
+                    <span class="custom-close">×</span>
+                    <img class="modal-display-img">
+                    <div class="modal-caption-text">Tela para adicionar um novo mapa no Geohab</div>
+                </div>
+                <p class="image-caption">Tela para adicionar um novo mapa no Geohab</p>
+            </div>
+        </div>
+    
+        <h2>2. Adicionando Camadas ao Mapa</h2>
+        <p>Clique no botão <b>Adicionar Camada</b> (ícone de camada no canto
+            superior direito) e escolha a origem:</p>
+    
+        <div class="content-layout-cols">
+            <div class="content-col-text">
+                <ul>
+                    <li><span class="badge-circular-red mr-2">1</span> <strong>Adicionar Camada:</strong> Abre a janela para
+                        adicionar novas camadas.</li>
+                    <li><span class="badge-circular-red mr-2">2</span> <strong>Catálogo de Camadas:</strong> Busca camadas
+                        no Geohab.</li>
+                    <li><span class="badge-circular-red mr-2">3</span> <strong>Pesquisa:</strong> Digite o nome da camada
+                        desejada.</li>
+                    <li><span class="badge-circular-red mr-2">4</span> <strong>Adicionar ao Mapa:</strong> Adiciona a camada
+                        selecionada.</li>
+                </ul>
+            </div>
+            
+        </div>
+        <div class="content-col-media">
+            <div class="image-modal-wrapper">
+                <img class="modal-trigger-img img-content" title="Clique para expandir"
+                    src="https://stor.cdhu.sp.gov.br/treina/publico/img-4-3.png"
+                    alt="Janela para adicionar nova camada ao mapa">
+                <div class="image-modal-popup">
+                    <span class="custom-close">×</span>
+                    <img class="modal-display-img">
+                    <div class="modal-caption-text">Janela para adicionar nova camada ao mapa</div>
+                </div>
+                <p class="image-caption">Janela para adicionar nova camada ao mapa</p>
+            </div>
+        </div>
+        <br><br><br><br>
+        <h2>3. Personalizando o Mapa</h2>
+        <p>Ative ou desative camadas na lista lateral. Clique em uma camada para abrir o menu de configurações.</p>
+    
+        <div class="content-layout-cols">
+            <div class="content-col-text">
+                <ul>
+                    <li><span class="badge-circular-red mr-2">1</span> <strong>Ativar/Desativar:</strong> Mostra ou oculta a
+                        camada no mapa.</li>
+                    <li><span class="badge-circular-red mr-2">2</span> <strong>Configurações:</strong> Abre o menu de opções
+                        da camada.</li>
+                    <li><span class="badge-circular-red mr-2">3</span> <strong>Estilo:</strong> Personaliza cores, símbolos
+                        e legendas.</li>
+                </ul>
+            </div>
+            
+        </div>
+        <div class="content-col-media">
+            <div class="image-modal-wrapper">
+                <img class="modal-trigger-img img-content" title="Clique para expandir"
+                    src="https://stor.cdhu.sp.gov.br/treina/publico/img-4-4.png"
+                    alt="Lista de camadas na barra lateral para personalização">
+                <div class="image-modal-popup">
+                    <span class="custom-close">×</span>
+                    <img class="modal-display-img">
+                    <div class="modal-caption-text">Lista de camadas na barra lateral para personalização</div>
+                </div>
+                <p class="image-caption">Lista de camadas na barra lateral para personalização</p>
+            </div>
+        </div>
+    
+        <h2>4. Configurações de Estilo</h2>
+        <p>No menu de configurações, você pode personalizar:</p>
+    
+        <div class="content-layout-cols">
+            <div class="content-col-text">
+                <ul>
+                    <li><span class="badge-circular-red mr-2">1</span> <strong>Aba de Estilo:</strong> Configurações gerais
+                        de aparência.</li>
+                    <li><span class="badge-circular-red mr-2">2</span> <strong>Preenchimento:</strong> Estilo para áreas
+                        poligonais.</li>
+                    <li><span class="badge-circular-red mr-2">3</span> <strong>Ícones:</strong> Estilo para pontos e
+                        marcadores.</li>
+                    <li><span class="badge-circular-red mr-2">4</span> <strong>Legendas:</strong> Configuração de textos no
+                        mapa.</li>
+                </ul>
+            </div>
+    
+        </div>
+        <div class="content-col-media">
+            <div class="image-modal-wrapper">
+                <img class="modal-trigger-img img-content" title="Clique para expandir"
+                    src="https://stor.cdhu.sp.gov.br/treina/publico/img-4-5.png"
+                    alt="Opções de configuração de estilo de uma camada">
+                <div class="image-modal-popup">
+                    <span class="custom-close">×</span>
+                    <img class="modal-display-img">
+                    <div class="modal-caption-text">Opções de configuração de estilo de uma camada</div>
+                </div>
+                <p class="image-caption">Opções de configuração de estilo de uma camada</p>
+            </div>
+        </div>
+    
+        <h2>5. Exemplo de Preenchimento Categorizado</h2>
+        <p>Clique em regras de preenchimento e selecione o modo <b>Categorizado</b>. Defina um campo (ex: 'area_km2') para criar
+            categorias de cor a partir dos valores desse campo.</p>
+    
+        <div class="content-layout-cols">
+            <div class="content-col-text">
+                <ul>
+                    <li><span class="badge-circular-red mr-2">1</span> <strong>Regras de preenchimento:</strong> Abre as
+                        opções de estilo.</li>
+                    <li><span class="badge-circular-red mr-2">2</span> <strong>Categorizado:</strong> Cria cores por
+                        categorias.</li>
+                    <li><span class="badge-circular-red mr-2">3</span> <strong>Campo area_km2:</strong> Base para as
+                        categorias.</li>
+                    <li><span class="badge-circular-red mr-2">4</span> <strong>Aplicar:</strong> Salva as configurações.
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <br><br><br><br><br>
+        <div class="content-col-media">
+            <div class="image-modal-wrapper">
+                <img class="modal-trigger-img img-content" title="Clique para expandir"
+                    src="https://stor.cdhu.sp.gov.br/treina/publico/img-4-6.png"
+                    alt="Exemplo de configuração de preenchimento categorizado">
+                <div class="image-modal-popup">
+                    <span class="custom-close">×</span>
+                    <img class="modal-display-img">
+                    <div class="modal-caption-text">Exemplo de configuração de preenchimento categorizado</div>
+                </div>
+                <p class="image-caption">Exemplo de configuração de preenchimento categorizado</p>
+            </div>
+        </div>
+    
+        <h2>6. Configurando o Fundo do Mapa</h2>
+        <p>Clique em <b>Fundo</b> ou <b>Base Map</b> na barra lateral. Escolha entre fundo padrão, satélite,
+            OpenStreetMap, ou adicione serviços personalizados (TMS, XYZ).</p>
+    
+        <div class="content-layout-cols">
+            <div class="content-col-text">
+                <ul>
+                    <li><span class="badge-circular-red mr-2">1</span> <strong>Base Map:</strong> Abre as opções de fundo.
+                    </li>
+                    <li><span class="badge-circular-red mr-2">2</span> <strong>Satélite:</strong> Fundo com imagens de
+                        satélite.</li>
+                    <li><span class="badge-circular-red mr-2">3</span> <strong>Serviço personalizado:</strong> Adiciona
+                        outros fundos.</li>
+                </ul>
+            </div>
+    
+        </div>
+        <div class="content-col-media">
+            <div class="image-modal-wrapper">
+                <img class="modal-trigger-img img-content" title="Clique para expandir"
+                    src="https://stor.cdhu.sp.gov.br/treina/publico/img-4-8.png"
+                    alt="Menu para seleção de mapa de fundo (Base Map)">
+                <div class="image-modal-popup">
+                    <span class="custom-close">×</span>
+                    <img class="modal-display-img">
+                    <div class="modal-caption-text">Menu para seleção de mapa de fundo (Base Map)</div>
+                </div>
+                <p class="image-caption">Menu para seleção de mapa de fundo (Base Map)</p>
+            </div>
+        </div>
+    
+        <h2>7. Salvando o Mapa</h2>
+        <p>Clique em <b>Salvar</b> na barra lateral e preencha:</p>
+    
+        <div class="content-layout-cols">
+            <div class="content-col-text">
+                <ul>
+                    <li><span class="badge-circular-red mr-2">1</span> <strong>Salvar:</strong> Abre a janela para salvar o
+                        mapa.</li>
+                    <li><span class="badge-circular-red mr-2">2</span> <strong>Título:</strong> Nome do seu mapa.</li>
+                    <li><span class="badge-circular-red mr-2">3</span> <strong>Descrição/Tags:</strong> Detalhes e
+                        palavras-chave.</li>
+                    <li><span class="badge-circular-red mr-2">4</span> <strong>Detalhes:</strong> Adicionar informações
+                        adicionais.</li>
+                    <li><span class="badge-circular-red mr-2">5</span> <strong>Permissões:</strong> Definir quem pode
+                        acessar.</li>
+                    <li><span class="badge-circular-red mr-2">6</span> <strong>Salvar final:</strong> Confirma e salva o
+                        mapa.</li>
+                </ul>
+            </div>
+    
+        </div>
+        <br><br><br><br><br><br><br><br><br>
+        <div class="content-col-media">
+            <div class="image-modal-wrapper">
+                <img class="modal-trigger-img img-content" title="Clique para expandir"
+                    src="https://stor.cdhu.sp.gov.br/treina/publico/img-4-9.png"
+                    alt="Janela de diálogo para salvar o mapa">
+                <div class="image-modal-popup">
+                    <span class="custom-close">×</span>
+                    <img class="modal-display-img">
+                    <div class="modal-caption-text">Janela de diálogo para salvar o mapa</div>
+                </div>
+                <p class="image-caption">Janela de diálogo para salvar o mapa</p>
+            </div>
+        </div>
+    
+        <h2>8. Compartilhando o Mapa</h2>
+        <p>Após salvar, use o botão <b>Compartilhar</b>. Opções disponíveis:</p>
+    
+        <div class="content-layout-cols">
+            <div class="content-col-text">
+                <ul>
+                    <li><span class="badge-circular-red mr-2">1</span> <strong>Compartilhar:</strong> Abre as opções de
+                        compartilhamento.</li>
+                    <li><span class="badge-circular-red mr-2">2</span> <strong>Link direto:</strong> URL para acessar o
+                        mapa.</li>
+                    <li><span class="badge-circular-red mr-2">3</span> <strong>Incorporar iframe:</strong> Código para
+                        websites.</li>
+                </ul>
+            </div>
+    
+        </div>
+        <div class="content-col-media">
+            <div class="image-modal-wrapper">
+                <img class="modal-trigger-img img-content" title="Clique para expandir"
+                    src="https://stor.cdhu.sp.gov.br/treina/publico/img-4-10.png"
+                    alt="Opções para compartilhar o mapa, incluindo link e iframe">
+                <div class="image-modal-popup">
+                    <span class="custom-close">×</span>
+                    <img class="modal-display-img">
+                    <div class="modal-caption-text">Opções para compartilhar o mapa, incluindo link e iframe</div>
+                </div>
+                <p class="image-caption">Opções para compartilhar o mapa, incluindo link e iframe</p>
+            </div>
+        </div>
+    
+        <div class="notice-block notice-info">
+            <div class="notice-icon">
+                <svg class="icon-custon icon-info"></svg>
+            </div>
+            <div class="notice-content">
+                <h4>Dicas e Boas Práticas</h4>
+                <ul>
+                    <li>Dênomes significativos às camadas.</li>
+                    <li>Agrupe camadas por tema ou função.</li>
+                    <li>Teste o mapa em resoluções diferentes.</li>
+                    <li>Mantenha a interface limpa e compreensível para usuários finais.</li>
+                    <li>Use mapas salvos como base para Dashboards e GeoStories.</li>
+                </ul>
+            </div>
+        </div>
+    
+        <hr>
+        <div class="document-footer">
+            <p><i class="fi fi-tr-calendar"></i> Data de criação: 19 de dez. de 2024<br>
+                <i class="fi fi-tr-calendar-pen"></i> Data de atualização: <span class="gh-auto-date"></span><br>
+                <i class="fi fi-tr-code-compare"></i> Versão: 1.0
+            </p>
+        </div>
+    </div>
+    
     <!-- ======================================================= -->
     <!--                       M4S3 - Dashs                      -->
     <!-- ======================================================= -->
-<div class="guide-container" style="padding: 0 45px 45px 45px;">
-  <div class="materials-hero" style="text-align: center;">
-      <h1 style="font-size: 2.5rem;">Criando Dashboards no Geohab</h1><br>
-  </div>
-  
-  <p>O <strong>Dashboard</strong> é uma ferramenta poderosa para criar <strong>painéis interativos</strong>, combinando <strong>mapas</strong>, <strong>gráficos</strong>, <strong>tabelas</strong>, <strong>indicadores</strong> e <strong>filtros</strong> em uma única interface visual. Ele permite que usuários finais explorem dados geoespaciais de forma intuitiva, facilitando a <strong>análise de dados</strong> e a <strong>tomada de decisão</strong>.</p>
-  
-  <div class="notice-block notice-warning">
-      <div class="notice-icon">
-          <svg class="icon-custon icon-warning"></svg>
-      </div>
-      <div class="notice-content">
-          <p><strong>Pré-requisitos:</strong> Estar autenticado no Geohab com permissões para criar conteúdo, ter ao menos um mapa ou camada configurado, e ter acesso a fontes de dados (camadas vetoriais com atributos).</p>
-      </div>
-  </div>
-  
-  <h2>1. Acessando a Área de Dashboards</h2>
-  <p>Acesse o menu <span class="badge-link badge-text-lilac">Apps</span> e clique no ícone de novo <span class="badge-link badge-text-lilac">Dashboard</span>.</p>
-  
-  <div class="content-layout-cols">
-      <div class="content-col-text">
-          <ul>
-              <li><span class="badge-circular-red mr-2">1</span> <strong>Apps:</strong> Acesso às ferramentas do Geohab.</li>
-              <li><span class="badge-circular-red mr-2">2</span> <strong>Dashboard:</strong> Inicia um novo painel.</li>
-          </ul>
-      </div>
-      <div class="content-col-media">
-          <div class="image-modal-wrapper">
-              <img class="modal-trigger-img img-decoration" title="Clique para expandir"
-                  src="https://stor.cdhu.sp.gov.br/treina/publico/img-4-11.png"
-                  alt="Menu de aplicativos do Geohab com destaque para o ícone de criação de Dashboard">
-              <div class="image-modal-popup">
-                  <span class="custom-close">×</span>
-                  <img class="modal-display-img">
-                  <div class="modal-caption-text">Menu de aplicativos do Geohab com destaque para o ícone de criação de Dashboard</div>
-              </div>
-              <p class="image-caption">Menu de aplicativos do Geohab com destaque para o ícone de criação de Dashboard</p>
-          </div>
-      </div>
-  </div>
-  
-  <h2>2. Tipos de Widgets do Dashboard</h2>
-  <p>Adicione Widgets ao seu dashboard:</p>
-  
-  <div class="content-layout-cols">
-      <div class="content-col-text">
-          <ul>
-              <li><span class="badge-circular-red mr-2">1</span> <strong>Adicionar Widget:</strong> Abre o painel de Widgets.</li>
-              <li><span class="badge-circular-red mr-2">2</span> <strong>Gráficos:</strong> Adiciona gráficos, Barras, pizza ou linha.</li>
-              <li><span class="badge-circular-red mr-2">3</span> <strong>Texto:</strong> Adiciona caixa de texto para títulos ou explicações.</li>
-              <li><span class="badge-circular-red mr-2">4</span> <strong>Tabelas:</strong> Adiciona uma tabela para exibição de dados em formato tabular.</li>
-              <li><span class="badge-circular-red mr-2">5</span> <strong>Contador:</strong> Adiciona um contador para KPIs (Key Performance Indicators).</li>
-              <li><span class="badge-circular-red mr-2">6</span> <strong>Mapa:</strong> Adiciona mapas ou camadas interativas com seleção de feições.</li>
-          </ul>
-      </div>
-      <div class="content-col-media">
-          <div class="image-modal-wrapper">
-              <img class="modal-trigger-img img-decoration" title="Clique para expandir"
-                  src="https://stor.cdhu.sp.gov.br/treina/publico/img-4-12.png"
-                  alt="Tipos de Widgets do Dashboard">
-              <div class="image-modal-popup">
-                  <span class="custom-close">×</span>
-                  <img class="modal-display-img">
-                  <div class="modal-caption-text">Tipos de Widgets do Dashboard</div>
-              </div>
-              <p class="image-caption">Tipos de Widgets do Dashboard</p>
-          </div>
-      </div>
-  </div>
-  
-  <h2>3. Exemplo de Dashboard</h2>
-  <p>O dashboard possui uma interface modular onde você pode adicionar <span class="badge-link badge-text-blue">Widgets</span> em qualquer posição. Veja o exemplo:</p>
-  
-  <div class="content-layout-cols">
-      <div class="content-col-text">
-          <ul>
-              <li><span class="badge-circular-red mr-2">1</span> <strong>Exemplo de Gráficos:</strong> Barras, pizza ou linha.</li>
-              <li><span class="badge-circular-red mr-2">2</span> <strong>Exemplo de Tabela:</strong> Dados em formato tabular.</li>
-              <li><span class="badge-circular-red mr-2">3</span> <strong>Exemplo de Texto:</strong> Títulos ou explicações.</li>
-              <li><span class="badge-circular-red mr-2">4</span> <strong>Exemplo de Indicadores:</strong> KPIs de desempenho.</li>
-              <li><span class="badge-circular-red mr-2">5</span> <strong>Exemplo de Mapa:</strong> Mapas interativos.</li>
-          </ul>
-      </div>
-      <div class="content-col-media">
-          <div class="image-modal-wrapper">
-              <img class="modal-trigger-img img-decoration" title="Clique para expandir"
-                  src="https://stor.cdhu.sp.gov.br/treina/publico/img-4-13.png"
-                  alt="Interface de adição de widgets ao dashboard">
-              <div class="image-modal-popup">
-                  <span class="custom-close">×</span>
-                  <img class="modal-display-img">
-                  <div class="modal-caption-text">Interface de adição de widgets ao dashboard</div>
-              </div>
-              <p class="image-caption">Interface de adição de widgets ao dashboard</p>
-          </div>
-      </div>
-  </div>
-  
-  <h2>4. Filtros em Contadores (KPIs)</h2>
-  <p>Os contadores precisam ser filtrados para que reflitam a informação que você deseja, a partir de um dados em uma dada camada:</p>
-  
-  <div class="content-layout-cols">
-      <div class="content-col-text">
-          <ul>
-              <li><span class="badge-circular-red mr-2">1</span> <strong>Editar Widget:</strong> Abra a edição de um contador.</li>
-              <li><span class="badge-circular-red mr-2">2</span> <strong>Editar contador:</strong> Clique em 'Editar'.</li>
-              <li><span class="badge-circular-red mr-2">3</span> <strong>Filtro:</strong> Abra o painel de filtro.</li>
-              <li><span class="badge-circular-red mr-2">4</span> <strong>Lógica de contagem:</strong> Todos (lógica AND ou E) Qualquer (lógica OR ou OU).</li>
-              <li><span class="badge-circular-red mr-2">5</span> <strong>Condição:</strong> Adicione condições de filtragem de dados.</li>
-              <li><span class="badge-circular-red mr-2">6</span> <strong>Campo:</strong> Selecione um campo da camada selecionada associada ao contador.</li>
-              <li><span class="badge-circular-red mr-2">7</span> <strong>Regra:</strong> Igual, maior, maior ou igual, etc.</li>
-              <li><span class="badge-circular-red mr-2">8</span> <strong>O que deve ser filtrado:</strong> Selecione o que você deseja filtrar.</li>
-              <li><span class="badge-circular-red mr-2">9</span> <strong>Pesquisa:</strong> Aplica o filtro.</li>
-              <li><span class="badge-circular-red mr-2">10</span> <strong>Interatividade:</strong> Liga a interatividade do filtro.</li>
-              <li><span class="badge-circular-red mr-2">11</span> <strong>Conexão de interatividade:</strong> Clique em qual mapa você deseja associar o contador interativo.</li>
-              <li><span class="badge-circular-red mr-2">12</span> <strong>Salvar:</strong> Aqui você vai para a tela de salvar as edições de filtro.</li>
-          </ul>
-      </div>
-      <div class="content-col-media">
-          <div class="image-modal-wrapper">
-              <img class="modal-trigger-img img-decoration" title="Clique para expandir"
-                  src="https://stor.cdhu.sp.gov.br/treina/publico/img-4-14.png"
-                  alt="Janela de configuração de filtros em contadores">
-              <div class="image-modal-popup">
-                  <span class="custom-close">×</span>
-                  <img class="modal-display-img">
-                  <div class="modal-caption-text">Janela de configuração de filtros em contadores</div>
-              </div>
-              <p class="image-caption">Janela de configuração de filtros em contadores</p>
-          </div>
-      </div>
-  </div>
-  
-  <h2>5. Layout e Design</h2>
-  <p>Você pode ajustar o layout do seu dashboard:</p>
-  
-  <div class="content-layout-cols">
-      <div class="content-col-text">
-          <ul>
-              <li><span class="badge-circular-red mr-2">1</span> <strong>Redimensionar:</strong> Arraste as bordas para ajustar o tamanho.</li>
-              <li><span class="badge-circular-red mr-2">2</span> <strong>Mover:</strong> Clique na parte superior e arraste e solte para reposicionar.</li>
-              <li><span class="badge-circular-red mr-2">3</span> <strong>Organizar:</strong> Agrupe por seções lógicas, como esses contadores.</li>
-              <li><span class="badge-circular-red mr-2">4</span> <strong>Textos:</strong> Use widgets de texto para títulos e explicações.</li>
-          </ul>
-      </div>
-      <div class="content-col-media">
-          <div class="image-modal-wrapper">
-              <img class="modal-trigger-img img-decoration" title="Clique para expandir"
-                  src="https://stor.cdhu.sp.gov.br/treina/publico/img-4-15.png"
-                  alt="Exemplo de layout e design de dashboard">
-              <div class="image-modal-popup">
-                  <span class="custom-close">×</span>
-                  <img class="modal-display-img">
-                  <div class="modal-caption-text">Exemplo de layout e design de dashboard</div>
-              </div>
-              <p class="image-caption">Exemplo de layout e design de dashboard</p>
-          </div>
-      </div>
-  </div>
-  
-  <h2>6. Exemplo de Dashboard Completo</h2>
-  <p>Exemplo de dashboard completo com layout ajustado:</p>
-  
-  <div class="content-layout-cols">
-      <div class="content-col-text">
-          <ul>
-              <li><span class="badge-circular-red mr-2">1</span> <strong>Redimensionar Widget:</strong> Ajuste o tamanho dos widgets.</li>
-              <li><span class="badge-circular-red mr-2">2</span> <strong>Mover Widget:</strong> Reposicione os widgets.</li>
-              <li><span class="badge-circular-red mr-2">3</span> <strong>Organizar por Seções:</strong> Agrupe por seções lógicas.</li>
-              <li><span class="badge-circular-red mr-2">4</span> <strong>Widget de Texto:</strong> Use para títulos e explicações.</li>
-          </ul>
-      </div>
-      <div class="content-col-media">
-          <div class="image-modal-wrapper">
-              <img class="modal-trigger-img img-decoration" title="Clique para expandir"
-                  src="https://stor.cdhu.sp.gov.br/treina/publico/img-4-16.png"
-                  alt="Dashboard com layout ajustado, mostrando widgets redimensionados e organizados">
-              <div class="image-modal-popup">
-                  <span class="custom-close">×</span>
-                  <img class="modal-display-img">
-                  <div class="modal-caption-text">Dashboard com layout ajustado, mostrando widgets redimensionados e organizados</div>
-              </div>
-              <p class="image-caption">Dashboard com layout ajustado, mostrando widgets redimensionados e organizados</p>
-          </div>
-      </div>
-  </div>
-  
-  <h2>7. Salvando e Compartilhando</h2>
-  <p>Após concluir seu dashboard, salve e compartilhe:</p>
-  
-  <div class="content-layout-cols">
-      <div class="content-col-text">
-          <ul>
-              <li><span class="badge-circular-red mr-2">1</span> <strong>Salvar:</strong> Salva as alterações do dashboard.</li>
-              <li><span class="badge-circular-red mr-2">2</span> <strong>Compartilhar:</strong> Abre opções de compartilhamento.</li>
-              <li><span class="badge-circular-red mr-2">3</span> <strong>Link:</strong> URL para acessar o dashboard.</li>
-              <li><span class="badge-circular-red mr-2">4</span> <strong>Permissões:</strong> Quem pode visualizar ou editar.</li>
-          </ul>
-      </div>
-      <div class="content-col-media">
-          <div class="image-modal-wrapper">
-              <img class="modal-trigger-img img-decoration" title="Clique para expandir"
-                  src="https://stor.cdhu.sp.gov.br/treina/publico/img-4-17.png"
-                  alt="Janela de compartilhamento do dashboard com opções de link e permissões">
-              <div class="image-modal-popup">
-                  <span class="custom-close">×</span>
-                  <img class="modal-display-img">
-                  <div class="modal-caption-text">Janela de compartilhamento do dashboard com opções de link e permissões</div>
-              </div>
-              <p class="image-caption">Janela de compartilhamento do dashboard com opções de link e permissões</p>
-          </div>
-      </div>
-  </div>
-  
-  <div class="notice-block notice-info">
-      <div class="notice-icon">
-          <svg class="icon-custon icon-info"></svg>
-      </div>
-      <div class="notice-content">
-          <h4>Dicas e Boas Práticas</h4>
-          <ul>
-              <li>Use expressões de agregação para KPIs (ex: média de população por região).</li>
-              <li>Combine mapas com widgets vinculados para análises geoespaciais interativas.</li>
-              <li>Habilite o modo de seleção no mapa para filtrar dados clicando em feições.</li>
-              <li>Mantenha o layout limpo e objetivo.</li>
-              <li>Nomeie widgets e filtros claramente.</li>
-              <li>Evite muitos gráficos em um único painel – prefira vários dashboards pequenos.</li>
-              <li>Revise os metadados das camadas para garantir que os campos estão bem definidos.</li>
-          </ul>
-      </div>
-  </div>
-  
-  <hr>
-  <div class="document-footer">
-      <p><i class="fi fi-tr-calendar"></i> Data de criação: 19 de dez. de 2024<br>
-        <i class="fi fi-tr-calendar-pen"></i> Data de atualização: <span class="gh-auto-date"></span><br>
-        <i class="fi fi-tr-code-compare"></i> Versão: 1.0
-      </p>
-  </div>
-</div>
-  
+    <div class="guide-container" style="padding: 0 45px 45px 45px;">
+        <div class="materials-hero" style="text-align: center;">
+            <h1 style="font-size: 2.5rem;">Criando Dashboards no Geohab</h1><br>
+        </div>
+    
+        <p>O <strong>Dashboard</strong> é uma ferramenta poderosa para criar <strong>painéis interativos</strong>,
+            combinando <strong>mapas</strong>, <strong>gráficos</strong>, <strong>tabelas</strong>,
+            <strong>indicadores</strong> e <strong>filtros</strong> em uma única interface visual. Ele permite que usuários
+            finais explorem dados geoespaciais de forma intuitiva, facilitando a <strong>análise de dados</strong> e a
+            <strong>tomada de decisão</strong>.</p>
+    
+        <div class="notice-block notice-warning">
+            <div class="notice-icon">
+                <svg class="icon-custon icon-warning"></svg>
+            </div>
+            <div class="notice-content">
+                <p><strong>Pré-requisitos:</strong> Estar autenticado no Geohab com permissões para criar conteúdo, ter ao
+                    menos um mapa ou camada configurado, e ter acesso a fontes de dados (camadas vetoriais com atributos).
+                </p>
+            </div>
+        </div>
+    
+        <h2>1. Acessando a Área de Dashboards</h2>
+        <p>Acesse o menu <span class="badge-link badge-text-lilac">Apps</span> e clique no ícone de novo <span
+                class="badge-link badge-text-lilac">Dashboard</span>.</p>
+    
+        <div class="content-layout-cols">
+            <div class="content-col-text">
+                <ul>
+                    <li><span class="badge-circular-red mr-2">1</span> <strong>Apps:</strong> Acesso às ferramentas do
+                        Geohab.</li>
+                    <li><span class="badge-circular-red mr-2">2</span> <strong>Dashboard:</strong> Inicia um novo painel.
+                    </li>
+                </ul>
+            </div>
+            
+        </div>
+        <div class="content-col-media">
+            <div class="image-modal-wrapper">
+                <img class="modal-trigger-img img-content" title="Clique para expandir"
+                    src="https://stor.cdhu.sp.gov.br/treina/publico/img-4-11.png"
+                    alt="Menu de aplicativos do Geohab com destaque para o ícone de criação de Dashboard">
+                <div class="image-modal-popup">
+                    <span class="custom-close">×</span>
+                    <img class="modal-display-img">
+                    <div class="modal-caption-text">Menu de aplicativos do Geohab com destaque para o ícone de criação
+                        de Dashboard</div>
+                </div>
+                <p class="image-caption">Menu de aplicativos do Geohab com destaque para o ícone de criação de Dashboard
+                </p>
+            </div>
+        </div>
+    
+        <h2>2. Tipos de Widgets do Dashboard</h2>
+        <p>Adicione Widgets ao seu dashboard:</p>
+    
+        <div class="content-layout-cols">
+            <div class="content-col-text">
+                <ul>
+                    <li><span class="badge-circular-red mr-2">1</span> <strong>Adicionar Widget:</strong> Abre o painel de
+                        Widgets.</li>
+                    <li><span class="badge-circular-red mr-2">2</span> <strong>Gráficos:</strong> Adiciona gráficos, Barras,
+                        pizza ou linha.</li>
+                    <li><span class="badge-circular-red mr-2">3</span> <strong>Texto:</strong> Adiciona caixa de texto para
+                        títulos ou explicações.</li>
+                    <li><span class="badge-circular-red mr-2">4</span> <strong>Tabelas:</strong> Adiciona uma tabela para
+                        exibição de dados em formato tabular.</li>
+                    <li><span class="badge-circular-red mr-2">5</span> <strong>Contador:</strong> Adiciona um contador para
+                        KPIs (Key Performance Indicators).</li>
+                    <li><span class="badge-circular-red mr-2">6</span> <strong>Mapa:</strong> Adiciona mapas ou camadas
+                        interativas com seleção de feições.</li>
+                </ul>
+            </div>
+        </div>
+        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+        <div class="content-col-media">
+            <div class="image-modal-wrapper">
+                <img class="modal-trigger-img img-content" title="Clique para expandir"
+                    src="https://stor.cdhu.sp.gov.br/treina/publico/img-4-12.png" alt="Tipos de Widgets do Dashboard">
+                <div class="image-modal-popup">
+                    <span class="custom-close">×</span>
+                    <img class="modal-display-img">
+                    <div class="modal-caption-text">Tipos de Widgets do Dashboard</div>
+                </div>
+                <p class="image-caption">Tipos de Widgets do Dashboard</p>
+            </div>
+        </div>
+    
+        <h2>3. Exemplo de Dashboard</h2>
+        <p>O dashboard possui uma interface modular onde você pode adicionar <span
+                class="badge-link badge-text-blue">Widgets</span> em qualquer posição. Veja o exemplo:</p>
+    
+        <div class="content-layout-cols">
+            <div class="content-col-text">
+                <ul>
+                    <li><span class="badge-circular-red mr-2">1</span> <strong>Exemplo de Gráficos:</strong> Barras, pizza
+                        ou linha.</li>
+                    <li><span class="badge-circular-red mr-2">2</span> <strong>Exemplo de Tabela:</strong> Dados em formato
+                        tabular.</li>
+                    <li><span class="badge-circular-red mr-2">3</span> <strong>Exemplo de Texto:</strong> Títulos ou
+                        explicações.</li>
+                    <li><span class="badge-circular-red mr-2">4</span> <strong>Exemplo de Indicadores:</strong> KPIs de
+                        desempenho.</li>
+                    <li><span class="badge-circular-red mr-2">5</span> <strong>Exemplo de Mapa:</strong> Mapas interativos.
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="content-col-media">
+            <div class="image-modal-wrapper">
+                <img class="modal-trigger-img img-content" title="Clique para expandir"
+                    src="https://stor.cdhu.sp.gov.br/treina/publico/img-4-13.png"
+                    alt="Interface de adição de widgets ao dashboard">
+                <div class="image-modal-popup">
+                    <span class="custom-close">×</span>
+                    <img class="modal-display-img">
+                    <div class="modal-caption-text">Interface de adição de widgets ao dashboard</div>
+                </div>
+                <p class="image-caption">Interface de adição de widgets ao dashboard</p>
+            </div>
+        </div>
+    <br>
+        <h2>4. Filtros em Contadores (KPIs)</h2>
+        <p>Os contadores precisam ser filtrados para que reflitam a informação que você deseja, a partir de um dados em uma
+            dada camada:</p>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+        <div class="content-layout-cols">
+            <div class="content-col-text">
+                <ul>
+                    <li><span class="badge-circular-red mr-2">1</span> <strong>Editar Widget:</strong> Abra a edição de um
+                        contador.</li>
+                    <li><span class="badge-circular-red mr-2">2</span> <strong>Editar contador:</strong> Clique em 'Editar'.
+                    </li>
+                    <li><span class="badge-circular-red mr-2">3</span> <strong>Filtro:</strong> Abra o painel de filtro.
+                    </li>
+                    <li><span class="badge-circular-red mr-2">4</span> <strong>Lógica de contagem:</strong> Todos (lógica
+                        AND ou E) Qualquer (lógica OR ou OU).</li>
+                    <li><span class="badge-circular-red mr-2">5</span> <strong>Condição:</strong> Adicione condições de
+                        filtragem de dados.</li>
+                    <li><span class="badge-circular-red mr-2">6</span> <strong>Campo:</strong> Selecione um campo da camada
+                        selecionada associada ao contador.</li>
+                    <li><span class="badge-circular-red mr-2">7</span> <strong>Regra:</strong> Igual, maior, maior ou igual,
+                        etc.</li>
+                    <li><span class="badge-circular-red mr-2">8</span> <strong>O que deve ser filtrado:</strong> Selecione o
+                        que você deseja filtrar.</li>
+                    <li><span class="badge-circular-red mr-2">9</span> <strong>Pesquisa:</strong> Aplica o filtro.</li>
+                    <li><span class="badge-circular-red mr-2">10</span> <strong>Interatividade:</strong> Liga a
+                        interatividade do filtro.</li>
+                    <li><span class="badge-circular-red mr-2">11</span> <strong>Conexão de interatividade:</strong> Clique
+                        em qual mapa você deseja associar o contador interativo.</li>
+                    <li><span class="badge-circular-red mr-2">12</span> <strong>Salvar:</strong> Aqui você vai para a tela
+                        de salvar as edições de filtro.</li>
+                </ul>
+            </div>
+        </div>
+        <div class="content-col-media">
+            <div class="image-modal-wrapper">
+                <img class="modal-trigger-img img-content" title="Clique para expandir"
+                    src="https://stor.cdhu.sp.gov.br/treina/publico/img-4-14.png"
+                    alt="Janela de configuração de filtros em contadores">
+                <div class="image-modal-popup">
+                    <span class="custom-close">×</span>
+                    <img class="modal-display-img">
+                    <div class="modal-caption-text">Janela de configuração de filtros em contadores</div>
+                </div>
+                <p class="image-caption">Janela de configuração de filtros em contadores</p>
+            </div>
+        </div>
+    
+        <h2>5. Layout e Design</h2>
+        <p>Você pode ajustar o layout do seu dashboard:</p>
+    
+        <div class="content-layout-cols">
+            <div class="content-col-text">
+                <ul>
+                    <li><span class="badge-circular-red mr-2">1</span> <strong>Redimensionar:</strong> Arraste as bordas
+                        para ajustar o tamanho.</li>
+                    <li><span class="badge-circular-red mr-2">2</span> <strong>Mover:</strong> Clique na parte superior e
+                        arraste e solte para reposicionar.</li>
+                    <li><span class="badge-circular-red mr-2">3</span> <strong>Organizar:</strong> Agrupe por seções
+                        lógicas, como esses contadores.</li>
+                    <li><span class="badge-circular-red mr-2">4</span> <strong>Textos:</strong> Use widgets de texto para
+                        títulos e explicações.</li>
+                </ul>
+            </div>
+    
+        </div>
+        <div class="content-col-media">
+            <div class="image-modal-wrapper">
+                <img class="modal-trigger-img img-content" title="Clique para expandir"
+                    src="https://stor.cdhu.sp.gov.br/treina/publico/img-4-15.png"
+                    alt="Exemplo de layout e design de dashboard">
+                <div class="image-modal-popup">
+                    <span class="custom-close">×</span>
+                    <img class="modal-display-img">
+                    <div class="modal-caption-text">Exemplo de layout e design de dashboard</div>
+                </div>
+                <p class="image-caption">Exemplo de layout e design de dashboard</p>
+            </div>
+        </div>
+        <br><br><br><br><br><br>
+        <h2>6. Exemplo de Dashboard Completo</h2>
+        <p>Exemplo de dashboard completo com layout ajustado:</p>
+    
+        <div class="content-layout-cols">
+            <div class="content-col-text">
+                <ul>
+                    <li><span class="badge-circular-red mr-2">1</span> <strong>Redimensionar Widget:</strong> Ajuste o
+                        tamanho dos widgets.</li>
+                    <li><span class="badge-circular-red mr-2">2</span> <strong>Mover Widget:</strong> Reposicione os
+                        widgets.</li>
+                    <li><span class="badge-circular-red mr-2">3</span> <strong>Organizar por Seções:</strong> Agrupe por
+                        seções lógicas.</li>
+                    <li><span class="badge-circular-red mr-2">4</span> <strong>Widget de Texto:</strong> Use para títulos e
+                        explicações.</li>
+                </ul>
+            </div>
+        </div>
+        <div class="content-col-media">
+            <div class="image-modal-wrapper">
+                <img class="modal-trigger-img img-content" title="Clique para expandir"
+                    src="https://stor.cdhu.sp.gov.br/treina/publico/img-4-16.png"
+                    alt="Dashboard com layout ajustado, mostrando widgets redimensionados e organizados">
+                <div class="image-modal-popup">
+                    <span class="custom-close">×</span>
+                    <img class="modal-display-img">
+                    <div class="modal-caption-text">Dashboard com layout ajustado, mostrando widgets redimensionados e
+                        organizados</div>
+                </div>
+                <p class="image-caption">Dashboard com layout ajustado, mostrando widgets redimensionados e organizados
+                </p>
+            </div>
+        </div>
+    
+        <h2>7. Salvando e Compartilhando</h2>
+        <p>Após concluir seu dashboard, salve e compartilhe:</p>
+    
+        <div class="content-layout-cols">
+            <div class="content-col-text">
+                <ul>
+                    <li><span class="badge-circular-red mr-2">1</span> <strong>Salvar:</strong> Salva as alterações do
+                        dashboard.</li>
+                    <li><span class="badge-circular-red mr-2">2</span> <strong>Compartilhar:</strong> Abre opções de
+                        compartilhamento.</li>
+                    <li><span class="badge-circular-red mr-2">3</span> <strong>Link:</strong> URL para acessar o dashboard.
+                    </li>
+                    <li><span class="badge-circular-red mr-2">4</span> <strong>Permissões:</strong> Quem pode visualizar ou
+                        editar.</li>
+                </ul>
+            </div>
+        </div>
+        <div class="content-col-media">
+            <div class="image-modal-wrapper">
+                <img class="modal-trigger-img img-content" title="Clique para expandir"
+                    src="https://stor.cdhu.sp.gov.br/treina/publico/img-4-17.png"
+                    alt="Janela de compartilhamento do dashboard com opções de link e permissões">
+                <div class="image-modal-popup">
+                    <span class="custom-close">×</span>
+                    <img class="modal-display-img">
+                    <div class="modal-caption-text">Janela de compartilhamento do dashboard com opções de link e
+                        permissões</div>
+                </div>
+                <p class="image-caption">Janela de compartilhamento do dashboard com opções de link e permissões</p>
+            </div>
+        </div>
+        <br><br><br><br><br><br><br><br><br><br><br><br><br>
+        <div class="notice-block notice-info">
+            <div class="notice-icon">
+                <svg class="icon-custon icon-info"></svg>
+            </div>
+            <div class="notice-content">
+                <h4>Dicas e Boas Práticas</h4>
+                <ul>
+                    <li>Use expressões de agregação para KPIs (ex: média de população por região).</li>
+                    <li>Combine mapas com widgets vinculados para análises geoespaciais interativas.</li>
+                    <li>Habilite o modo de seleção no mapa para filtrar dados clicando em feições.</li>
+                    <li>Mantenha o layout limpo e objetivo.</li>
+                    <li>Nomeie widgets e filtros claramente.</li>
+                    <li>Evite muitos gráficos em um único painel – prefira vários dashboards pequenos.</li>
+                    <li>Revise os metadados das camadas para garantir que os campos estão bem definidos.</li>
+                </ul>
+            </div>
+        </div>
+    
+        <hr>
+        <div class="document-footer">
+            <p><i class="fi fi-tr-calendar"></i> Data de criação: 19 de dez. de 2024<br>
+                <i class="fi fi-tr-calendar-pen"></i> Data de atualização: <span class="gh-auto-date"></span><br>
+                <i class="fi fi-tr-code-compare"></i> Versão: 1.0
+            </p>
+        </div>
+    </div>
+    
     <!-- ======================================================= -->
     <!--                       M4S3 - Dashs                      -->
     <!-- ======================================================= -->
-<div class="guide-container" style="padding: 0 45px 45px 45px;">
-  <div class="materials-hero" style="text-align: center;">
-      <h1 style="font-size: 2.5rem;">Criando GeoStory no Geohab</h1><br>
-  </div>
-  
-  <p>O <strong>GeoStory</strong> é uma funcionalidade que permite criar <strong>narrativas interativas e visuais</strong> usando texto, imagens, vídeos e mapas geográficos. É ideal para apresentar informações espaciais de forma atrativa, sequencial e baseada em contexto, como em reportagens, apresentações, relatórios ou <strong>storytelling</strong> institucional.</p>
-  
-  <div class="notice-block notice-info">
-      <div class="notice-icon">
-          <svg class="icon-custon icon-info"></svg>
-      </div>
-      <div class="notice-content">
-          <p><strong>Dica:</strong> Abra o Geohab e realize os passos abaixo.</p>
-      </div>
-  </div>
-  
-  <h2>1. Criando uma Nova GeoStory</h2>
-  <p>No topo da interface do Geohab, acesse o menu <span class="badge-link badge-text-lilac">Apps</span> e clique em <span class="badge-link badge-text-lilac">Criar Nova GeoStory</span>.</p>
-  
-  <div class="content-layout-cols">
-      <div class="content-col-text">
-          <ul>
-              <li><span class="badge-circular-red mr-2">1</span> <strong>Apps:</strong> Acesso às ferramentas do Geohab.</li>
-              <li><span class="badge-circular-red mr-2">2</span> <strong>Criar Nova GeoStory:</strong> Inicia o editor de narrativas.</li>
-          </ul>
-      </div>
-      <div class="content-col-media">
-          <div class="image-modal-wrapper">
-              <img class="modal-trigger-img img-decoration" title="Clique para expandir"
-                  src="https://stor.cdhu.sp.gov.br/treina/publico/img-4-18.png"
-                  alt="Tela de criação de GeoStory, mostrando as opções 'Em Branco' e 'Com base em modelo'">
-              <div class="image-modal-popup">
-                  <span class="custom-close">×</span>
-                  <img class="modal-display-img">
-                  <div class="modal-caption-text">Tela de criação de GeoStory, mostrando as opções 'Em Branco' e 'Com base em modelo'</div>
-              </div>
-              <p class="image-caption">Tela de criação de GeoStory, mostrando as opções 'Em Branco' e 'Com base em modelo'</p>
-          </div>
-      </div>
-  </div>
-  
-  <h2>2. Conheça as áreas de edição do GeoStory</h2>
-  <p>Uma GeoStory é construída a partir de diferentes tipos de seções, cada uma com um propósito específico:</p>
-  
-  <div class="content-layout-cols">
-      <div class="content-col-text">
-          <ul>
-              <li><span class="badge-circular-red mr-2">1</span> <strong>Título:</strong> Apresenta o título da história, com imagem de fundo.</li>
-              <li><span class="badge-circular-red mr-2">2</span> <strong>Modo Edição:</strong> Alterna para edição do GeoStory (Se você tiver permissão).</li>
-              <li><span class="badge-circular-red mr-2">3</span> <strong>Barra de ferramentas:</strong> Configura o GeoStory e exibição de edição.</li>
-              <li><span class="badge-circular-red mr-2">4</span> <strong>Elementos adicionados:</strong> Exibe todos os elementos que você Adiciona, aqui você pode Reordenar.</li>
-              <li><span class="badge-circular-red mr-2">5</span> <strong>Adicionar elementos:</strong> Onde você escolhe o tipo de elemento que deseja adicionar.</li>
-          </ul>
-      </div>
-      <div class="content-col-media">
-          <div class="image-modal-wrapper">
-              <img class="modal-trigger-img img-decoration" title="Clique para expandir"
-                  src="https://stor.cdhu.sp.gov.br/treina/publico/img-4-19.png"
-                  alt="Menu de tipos de seção disponíveis no editor de GeoStory">
-              <div class="image-modal-popup">
-                  <span class="custom-close">×</span>
-                  <img class="modal-display-img">
-                  <div class="modal-caption-text">Menu de tipos de seção disponíveis no editor de GeoStory</div>
-              </div>
-              <p class="image-caption">Menu de tipos de seção disponíveis no editor de GeoStory</p>
-          </div>
-      </div>
-  </div>
-  
-  <h2>3. Tipos de Conteúdos para as Seções</h2>
-  <p>Clique no botão <kbd>+</kbd> para adicionar uma nova seção à sua história:</p>
-  
-  <div class="content-layout-cols">
-      <div class="content-col-text">
-          <ul>
-              <li><span class="badge-circular-red mr-2">1</span> <strong>Seção de Título:</strong> Ideal para o início da história.</li>
-              <li><span class="badge-circular-red mr-2">2</span> <strong>Seção de Banner:</strong> Para dar destaque a uma Imagem, Vídeo ou Mapa decorativo.</li>
-              <li><span class="badge-circular-red mr-2">3</span> <strong>Seção de Parágrafo/Texto:</strong> Para descrever dados ou contextualizar.</li>
-              <li><span class="badge-circular-red mr-2">4</span> <strong>Seção Imersiva:</strong> Combina Parágrafo mais Banner. E o parágrafo pode conter imagens, textos ou Páginas Web.</li>
-              <li><span class="badge-circular-red mr-2">5</span> <strong>Seção de Geocarrossel:</strong> Insere vários marcadores para você dar destaque a locais específico em mapas.</li>
-              <li><span class="badge-circular-red mr-2">6</span> <strong>Seção de Mídia:</strong> Permite Inserir imagens, vídeos ou mapas.</li>
-              <li><span class="badge-circular-red mr-2">7</span> <strong>Seção Página da Web:</strong> Insere uma página de web dentro da sua história.</li>
-          </ul>
-      </div>
-      <div class="content-col-media">
-          <div class="image-modal-wrapper">
-              <img class="modal-trigger-img img-decoration" title="Clique para expandir"
-                  src="https://stor.cdhu.sp.gov.br/treina/publico/img-4-20.png"
-                  alt="Editor de GeoStory mostrando a adição de uma seção de mapa interativo">
-              <div class="image-modal-popup">
-                  <span class="custom-close">×</span>
-                  <img class="modal-display-img">
-                  <div class="modal-caption-text">Editor de GeoStory mostrando a adição de uma seção de mapa interativo</div>
-              </div>
-              <p class="image-caption">Editor de GeoStory mostrando a adição de uma seção de mapa interativo</p>
-          </div>
-      </div>
-  </div>
-  
-  <h2>4. Estilizando e Organizando</h2>
-  <p>Personalize sua GeoStory com as opções de estilo e organização:</p>
-  
-  <div class="content-layout-cols">
-      <div class="content-col-text">
-          <ul>
-              <li><span class="badge-circular-red mr-2">1</span> <strong>Configurações:</strong> Personalize as cores de fundo e texto, bem como adicione logo e barra de navegação.</li>
-              <li><span class="badge-circular-red mr-2">2</span> <strong>Renomear seções:</strong> Dê nome as seções para ter uma boa organização delas.</li>
-              <li><span class="badge-circular-red mr-2">3</span> <strong>Reordenar seções:</strong> Altere a ordem das seções.</li>
-              <li><span class="badge-circular-red mr-2">4</span> <strong>Zoom no conteúdo:</strong> Clique e localize a seção rapidamente.</li>
-          </ul>
-      </div>
-      <div class="content-col-media">
-          <div class="image-modal-wrapper">
-              <img class="modal-trigger-img img-decoration" title="Clique para expandir"
-                  src="https://stor.cdhu.sp.gov.br/treina/publico/img-4-21.png"
-                  alt="Opções de personalização de uma seção no GeoStory">
-              <div class="image-modal-popup">
-                  <span class="custom-close">×</span>
-                  <img class="modal-display-img">
-                  <div class="modal-caption-text">Opções de personalização de uma seção no GeoStory</div>
-              </div>
-              <p class="image-caption">Opções de personalização de uma seção no GeoStory</p>
-          </div>
-      </div>
-  </div>
-  
-  <h2>5. Salvando e Compartilhando</h2>
-  <p>Após concluir sua GeoStory, salve e compartilhe:</p>
-  
-  <div class="content-layout-cols">
-      <div class="content-col-text">
-          <ul>
-              <li><span class="badge-circular-red mr-2">1</span> <strong>Opções:</strong> Clique no Menu de Opções.</li>
-              <li><span class="badge-circular-red mr-2">2</span> <strong>Salvar ou Salvar como:</strong> <kbd>Salvar como</kbd> para a primeira vez, ou quando deseja criar uma cópia, ou <kbd>Salvar</kbd> Para salvar edições em um GeoStory.</li>
-          </ul>
-          <p><b>Para novos GeoStories:</b> Defina nome, detalhes, Ícone e permissões de Acesso.</p>
-      </div>
-      <div class="content-col-media">
-          <div class="image-modal-wrapper">
-              <img class="modal-trigger-img img-decoration" title="Clique para expandir"
-                  src="https://stor.cdhu.sp.gov.br/treina/publico/img-4-22.png"
-                  alt="Botão 'Salvar' destacado na interface do editor de GeoStory">
-              <div class="image-modal-popup">
-                  <span class="custom-close">×</span>
-                  <img class="modal-display-img">
-                  <div class="modal-caption-text">Botão 'Salvar' destacado na interface do editor de GeoStory</div>
-              </div>
-              <p class="image-caption">Botão 'Salvar' destacado na interface do editor de GeoStory</p>
-          </div>
-      </div>
-  </div>
-  
-  <div class="notice-block notice-info">
-      <div class="notice-icon">
-          <svg class="icon-custon icon-info"></svg>
-      </div>
-      <div class="notice-content">
-          <h4>Dicas e Boas Práticas</h4>
-          <ul>
-              <li>Combine seções de mapa com zooms e camadas diferentes para focar em detalhes específicos.</li>
-              <li>Use transições suaves entre as seções para criar um fluxo narrativo contínuo.</li>
-              <li>Insira dashboards via página de web. Copie o URL do Dashboard criado na plataforma e cole no GeoStory.</li>
-              <li>Ideal para apresentações públicas, relatórios de projetos ou material educacional.</li>
-              <li>Mantenha os textos curtos e objetivos em cada seção.</li>
-              <li>Crie uma estrutura lógica: introdução → contexto → análise → conclusão.</li>
-              <li>Use imagens em boa resolução para um visual profissional.</li>
-              <li>Teste a sua GeoStory em diferentes tamanhos de tela para garantir a responsividade.</li>
-          </ul>
-      </div>
-  </div>
-  
-  <hr>
-  <div class="document-footer">
-      <p><i class="fi fi-tr-calendar"></i> Data de criação: 19 de dez. de 2024<br>
-        <i class="fi fi-tr-calendar-pen"></i> Data de atualização: <span class="gh-auto-date"></span><br>
-        <i class="fi fi-tr-code-compare"></i> Versão: 1.0
-      </p>
-  </div>
-</div>
+    <div class="guide-container" style="padding: 0 45px 45px 45px;">
+        <div class="materials-hero" style="text-align: center;">
+            <h1 style="font-size: 2.5rem;">Criando GeoStory no Geohab</h1><br>
+        </div>
+    
+        <p>O <strong>GeoStory</strong> é uma funcionalidade que permite criar <strong>narrativas interativas e
+                visuais</strong> usando texto, imagens, vídeos e mapas geográficos. É ideal para apresentar informações
+            espaciais de forma atrativa, sequencial e baseada em contexto, como em reportagens, apresentações, relatórios ou
+            <strong>storytelling</strong> institucional.</p>
+    
+        <div class="notice-block notice-info">
+            <div class="notice-icon">
+                <svg class="icon-custon icon-info"></svg>
+            </div>
+            <div class="notice-content">
+                <p><strong>Dica:</strong> Abra o Geohab e realize os passos abaixo.</p>
+            </div>
+        </div>
+    
+        <h2>1. Criando uma Nova GeoStory</h2>
+        <p>No topo da interface do Geohab, acesse o menu <span class="badge-link badge-text-lilac">Apps</span> e clique em
+            <span class="badge-link badge-text-lilac">Criar Nova GeoStory</span>.</p>
+    
+        <div class="content-layout-cols">
+            <div class="content-col-text">
+                <ul>
+                    <li><span class="badge-circular-red mr-2">1</span> <strong>Apps:</strong> Acesso às ferramentas do
+                        Geohab.</li>
+                    <li><span class="badge-circular-red mr-2">2</span> <strong>Criar Nova GeoStory:</strong> Inicia o editor
+                        de narrativas.</li>
+                </ul>
+            </div>
+            <div class="content-col-media">
+                <div class="image-modal-wrapper">
+                    <img class="modal-trigger-img img-decoration" title="Clique para expandir"
+                        src="https://stor.cdhu.sp.gov.br/treina/publico/img-4-18.png"
+                        alt="Tela de criação de GeoStory, mostrando as opções 'Em Branco' e 'Com base em modelo'">
+                    <div class="image-modal-popup">
+                        <span class="custom-close">×</span>
+                        <img class="modal-display-img">
+                        <div class="modal-caption-text">Tela de criação de GeoStory, mostrando as opções 'Em Branco' e 'Com
+                            base em modelo'</div>
+                    </div>
+                    <p class="image-caption">Tela de criação de GeoStory, mostrando as opções 'Em Branco' e 'Com base em
+                        modelo'</p>
+                </div>
+            </div>
+        </div>
+    
+        <br>
+        <h2>2. Conheça as áreas de edição do GeoStory</h2>
+        <p>Uma GeoStory é construída a partir de diferentes tipos de seções, cada uma com um propósito específico:</p>
+    
+        <div class="content-layout-cols">
+            <div class="content-col-text">
+                <ul>
+                    <li><span class="badge-circular-red mr-2">1</span> <strong>Título:</strong> Apresenta o título da
+                        história, com imagem de fundo.</li>
+                    <li><span class="badge-circular-red mr-2">2</span> <strong>Modo Edição:</strong> Alterna para edição do
+                        GeoStory (Se você tiver permissão).</li>
+                    <li><span class="badge-circular-red mr-2">3</span> <strong>Barra de ferramentas:</strong> Configura o
+                        GeoStory e exibição de edição.</li>
+                    <li><span class="badge-circular-red mr-2">4</span> <strong>Elementos adicionados:</strong> Exibe todos
+                        os elementos que você Adiciona, aqui você pode Reordenar.</li>
+                    <li><span class="badge-circular-red mr-2">5</span> <strong>Adicionar elementos:</strong> Onde você
+                        escolhe o tipo de elemento que deseja adicionar.</li>
+                </ul>
+            </div>
+        </div>
+        <div class="content-col-media">
+            <div class="image-modal-wrapper">
+                <img class="modal-trigger-img img-content" title="Clique para expandir"
+                    src="https://stor.cdhu.sp.gov.br/treina/publico/img-4-19.png"
+                    alt="Menu de tipos de seção disponíveis no editor de GeoStory">
+                <div class="image-modal-popup">
+                    <span class="custom-close">×</span>
+                    <img class="modal-display-img">
+                    <div class="modal-caption-text">Menu de tipos de seção disponíveis no editor de GeoStory</div>
+                </div>
+                <p class="image-caption">Menu de tipos de seção disponíveis no editor de GeoStory</p>
+            </div>
+        </div>
+        <br>
+        <br>
+        <br>
+        <br><br>
+        <br>
+        <br>
+        <br><br>
+    
+    
+        <h2>3. Tipos de Conteúdos para as Seções</h2>
+        <p>Clique no botão <kbd>+</kbd> para adicionar uma nova seção à sua história:</p>
+    
+        <div class="content-layout-cols">
+            <div class="content-col-text">
+                <ul>
+                    <li><span class="badge-circular-red mr-2">1</span> <strong>Seção de Título:</strong> Ideal para o início
+                        da história.</li>
+                    <li><span class="badge-circular-red mr-2">2</span> <strong>Seção de Banner:</strong> Para dar destaque a
+                        uma Imagem, Vídeo ou Mapa decorativo.</li>
+                    <li><span class="badge-circular-red mr-2">3</span> <strong>Seção de Parágrafo/Texto:</strong> Para
+                        descrever dados ou contextualizar.</li>
+                    <li><span class="badge-circular-red mr-2">4</span> <strong>Seção Imersiva:</strong> Combina Parágrafo
+                        mais Banner. E o parágrafo pode conter imagens, textos ou Páginas Web.</li>
+                    <li><span class="badge-circular-red mr-2">5</span> <strong>Seção de Geocarrossel:</strong> Insere vários
+                        marcadores para você dar destaque a locais específico em mapas.</li>
+                    <li><span class="badge-circular-red mr-2">6</span> <strong>Seção de Mídia:</strong> Permite Inserir
+                        imagens, vídeos ou mapas.</li>
+                    <li><span class="badge-circular-red mr-2">7</span> <strong>Seção Página da Web:</strong> Insere uma
+                        página de web dentro da sua história.</li>
+                </ul>
+            </div>
+        </div>
+        <div class="content-col-media">
+            <div class="image-modal-wrapper">
+                <img class="modal-trigger-img img-content" title="Clique para expandir"
+                    src="https://stor.cdhu.sp.gov.br/treina/publico/img-4-20.png"
+                    alt="Editor de GeoStory mostrando a adição de uma seção de mapa interativo">
+                <div class="image-modal-popup">
+                    <span class="custom-close">×</span>
+                    <img class="modal-display-img">
+                    <div class="modal-caption-text">Editor de GeoStory mostrando a adição de uma seção de mapa
+                        interativo</div>
+                </div>
+                <p class="image-caption">Editor de GeoStory mostrando a adição de uma seção de mapa interativo</p>
+            </div>
+        </div>
+    
+        <h2>4. Estilizando e Organizando</h2>
+        <p>Personalize sua GeoStory com as opções de estilo e organização:</p>
+    
+        <div class="content-layout-cols">
+            <div class="content-col-text">
+                <ul>
+                    <li><span class="badge-circular-red mr-2">1</span> <strong>Configurações:</strong> Personalize as cores
+                        de fundo e texto, bem como adicione logo e barra de navegação.</li>
+                    <li><span class="badge-circular-red mr-2">2</span> <strong>Renomear seções:</strong> Dê nome as seções
+                        para ter uma boa organização delas.</li>
+                    <li><span class="badge-circular-red mr-2">3</span> <strong>Reordenar seções:</strong> Altere a ordem das
+                        seções.</li>
+                    <li><span class="badge-circular-red mr-2">4</span> <strong>Zoom no conteúdo:</strong> Clique e localize
+                        a seção rapidamente.</li>
+                </ul>
+            </div>
+        </div>
+        <div class="content-col-media">
+            <div class="image-modal-wrapper">
+                <img class="modal-trigger-img img-content" title="Clique para expandir"
+                    src="https://stor.cdhu.sp.gov.br/treina/publico/img-4-21.png"
+                    alt="Opções de personalização de uma seção no GeoStory">
+                <div class="image-modal-popup">
+                    <span class="custom-close">×</span>
+                    <img class="modal-display-img">
+                    <div class="modal-caption-text">Opções de personalização de uma seção no GeoStory</div>
+                </div>
+                <p class="image-caption">Opções de personalização de uma seção no GeoStory</p>
+            </div>
+        </div>
+        <br>
+        <br>
+        <br>
+        <br><br>
+        <br>
+        <br>
+        <br><br><br>
+        <h2>5. Salvando e Compartilhando</h2>
+        <p>Após concluir sua GeoStory, salve e compartilhe:</p>
+    
+        <div class="content-layout-cols">
+            <div class="content-col-text">
+                <ul>
+                    <li><span class="badge-circular-red mr-2">1</span> <strong>Opções:</strong> Clique no Menu de Opções.
+                    </li>
+                    <li><span class="badge-circular-red mr-2">2</span> <strong>Salvar ou Salvar como:</strong> <kbd>Salvar
+                            como</kbd> para a primeira vez, ou quando deseja criar uma cópia, ou <kbd>Salvar</kbd> Para
+                        salvar edições em um GeoStory.</li>
+                </ul>
+                <p><b>Para novos GeoStories:</b> Defina nome, detalhes, Ícone e permissões de Acesso.</p>
+            </div>
+        </div>
+        <div class="content-col-media">
+            <div class="image-modal-wrapper">
+                <img class="modal-trigger-img img-content" title="Clique para expandir"
+                    src="https://stor.cdhu.sp.gov.br/treina/publico/img-4-22.png"
+                    alt="Botão 'Salvar' destacado na interface do editor de GeoStory">
+                <div class="image-modal-popup">
+                    <span class="custom-close">×</span>
+                    <img class="modal-display-img">
+                    <div class="modal-caption-text">Botão 'Salvar' destacado na interface do editor de GeoStory</div>
+                </div>
+                <p class="image-caption">Botão 'Salvar' destacado na interface do editor de GeoStory</p>
+            </div>
+        </div>
+    
+        <div class="notice-block notice-info">
+            <div class="notice-icon">
+                <svg class="icon-custon icon-info"></svg>
+            </div>
+            <div class="notice-content">
+                <h4>Dicas e Boas Práticas</h4>
+                <ul>
+                    <li>Combine seções de mapa com zooms e camadas diferentes para focar em detalhes específicos.</li>
+                    <li>Use transições suaves entre as seções para criar um fluxo narrativo contínuo.</li>
+                    <li>Insira dashboards via página de web. Copie o URL do Dashboard criado na plataforma e cole no
+                        GeoStory.</li>
+                    <li>Ideal para apresentações públicas, relatórios de projetos ou material educacional.</li>
+                    <li>Mantenha os textos curtos e objetivos em cada seção.</li>
+                    <li>Crie uma estrutura lógica: introdução → contexto → análise → conclusão.</li>
+                    <li>Use imagens em boa resolução para um visual profissional.</li>
+                    <li>Teste a sua GeoStory em diferentes tamanhos de tela para garantir a responsividade.</li>
+                </ul>
+            </div>
+        </div>
+    
+        <hr>
+        <div class="document-footer">
+            <p><i class="fi fi-tr-calendar"></i> Data de criação: 19 de dez. de 2024<br>
+                <i class="fi fi-tr-calendar-pen"></i> Data de atualização: <span class="gh-auto-date"></span><br>
+                <i class="fi fi-tr-code-compare"></i> Versão: 1.0
+            </p>
+        </div>
+    </div>
 
 
 <!--     SCRIPTS ESSENCIAIS (jQuery, Popper, Bootstrap)      -->
