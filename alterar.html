@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>modulo3-secao4-filtro_espacial</title>
+    <title>modulo2-secao4-explorando_visualizador</title>
 
     <!-- FONTES -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -254,9 +254,11 @@
     }
     */
 }
-</style>
-
-<style>
+/* Estilo para remover marcadores de lista */
+.content-col-text ul {
+    list-style-type: none;
+    padding-left: 0;
+}
 /* Estilos para legendas de imagens no PDF */
 .image-caption {
     display: flex;
@@ -268,6 +270,7 @@
     margin-top: 0.5em;
     text-align: center;
     margin-bottom: 1.5em;
+    justify-content: center;
 }
 
 @media print {
@@ -278,236 +281,182 @@
 }
 </style>
 
-<style>
-/* Estilos para formatação PDF */
-@media print {
-    /* Container principal */
-    .guide-container {
-        padding: 0 45px 45px 45px !important;
-    }
-    
-    /* Remover elementos interativos */
-    .image-modal-wrapper {
-        position: relative !important;
-    }
-    
-    .image-modal-popup {
-        display: none !important;
-    }
-    
-    .modal-trigger-img {
-        cursor: default !important;
-        border-radius: 8px;
-        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-        max-width: 100%;
-        height: auto;
-    }
-    
-    /* Formatação para badges */
-    .badge-link {
-        font-weight: bold;
-        text-decoration: none;
-    }
-    
-    .badge-text-purple {
-        color: #6f42c1;
-        font-weight: bold;
-    }
-    
-    .badge-text-blue {
-        color: #007bff;
-        font-weight: bold;
-    }
-    
-    /* Evitar quebra de página em elementos importantes */
-    .step-component {
-        page-break-inside: avoid;
-        margin-bottom: 30px;
-    }
-    
-    .definition-item {
-        page-break-inside: avoid;
-        margin-bottom: 15px;
-    }
-    
-    /* Legendas de imagens */
-    .image-caption {
-        display: block;
-        font-size: 0.9rem;
-        font-style: italic;
-        color: #666;
-        margin-top: 0.5em;
-        text-align: center;
-        margin-bottom: 1.5em;
-    }
-    
-    /* Ajustes para impressão */
-    .notice-block {
-        page-break-inside: avoid;
-        margin: 20px 0;
-    }
-    
-    .content-layout-cols {
-        display: block;
-    }
-    
-    .content-col-text,
-    .content-col-media {
-        width: 100%;
-        margin-bottom: 20px;
-    }
-}
-
-/* Estilos para visualização em tela */
-@media screen {
-    .image-modal-wrapper {
-        position: relative;
-        cursor: pointer;
-    }
-    
-    .image-modal-popup {
-        display: none;
-        position: fixed;
-        z-index: 1000;
-        left: 0;
-        top: 0;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(0,0,0,0.9);
-        text-align: center;
-    }
-    
-    .modal-display-img {
-        max-width: 90%;
-        max-height: 90%;
-        margin: 20px auto;
-        display: block;
-    }
-    
-    .custom-close {
-        position: absolute;
-        top: 15px;
-        right: 35px;
-        color: #f1f1f1;
-        font-size: 40px;
-        font-weight: bold;
-        cursor: pointer;
-    }
-    
-    .modal-caption-text {
-        color: #f1f1f1;
-        text-align: center;
-        padding: 10px;
-    }
-}
-
-/* Estilo para remover marcadores de lista */
-.content-col-text ul {
-    list-style-type: none;
-    padding-left: 0;
-}
-</style>
 </head>
 <body>
-<div class="gh-header-right-align">
-  <div class="gh-decoration-right">
-    <svg width="100%" height="100%" viewBox="0 0 279.83276 72.34375" preserveAspectRatio="none"
-      xmlns="http://www.w3.org/2000/svg">
-      <defs>
-        <clipPath id="clipRight1">
-          <path d="m 1230,0 h 210 v 54.457031 h -210 z m 0,0" clip-rule="nonzero" />
-        </clipPath>
-        <clipPath id="clipRight2">
-          <path
-            d="m 1246.9375,54.257812 c -1.3359,-1.792968 -1.3633,-4.414062 0.3477,-6.3125 2.8086,-3.050781 5.7265,-6.019531 8.5859,-9.015624 2.8633,-2.996094 2.8359,-5.828126 -0.1875,-8.71875 -7.8359,-7.566407 -15.6992,-15.136719 -23.5625,-22.679688 -1.2305,-1.203125 -2.1406,-2.511719 -1.9766,-4.332031 0.211,-2.40625 1.5508,-3.929688 3.7696,-4.492188 h 223.0547 v 55.550781 z m 0,0"
-            clip-rule="nonzero" />
-        </clipPath>
-      </defs>
-      <g transform="translate(-18237.147,-3230.4205)">
-        <g clip-path="url(#clipRight1)" transform="matrix(1.3333333,0,0,1.3333333,16596.98,3230.4205)">
-          <g clip-path="url(#clipRight2)">
-            <path fill="#ff1100" d="M -31.859375,-14.640625 H 1470.2305 V 67.632812 H -31.859375 Z" fill-opacity="1"
-              fill-rule="nonzero" />
-          </g>
-        </g>
-      </g>
-    </svg>
-  </div>
-  <div class="gh-content-layer">
-    <div class="gh-item gh-logo">
-      <img src="https://cda.cdhu.sp.gov.br/pics/logos/source/GLPI_Logo-white.svg" alt="Logo">
-    </div>
-    <div class="gh-item gh-titles">
-      <h1 class="gh-main">CURSO DO GEOHAB</h1>
-      <h2 class="gh-sub">MÓDULO 2</h2>
-    </div>
-    <div class="gh-item gh-dept">
-      <span>Sup. de Tecnologia e Informação</span>
-    </div>
-  </div>
-</div>
+    <header>
+        <div class="gh-header-right-align">
+            <div class="gh-decoration-right">
+              <svg width="100%" height="100%" viewBox="0 0 279.83276 72.34375" preserveAspectRatio="none"
+                xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                  <clipPath id="clipRight1">
+                    <path d="m 1230,0 h 210 v 54.457031 h -210 z m 0,0" clip-rule="nonzero" />
+                  </clipPath>
+                  <clipPath id="clipRight2">
+                    <path
+                      d="m 1246.9375,54.257812 c -1.3359,-1.792968 -1.3633,-4.414062 0.3477,-6.3125 2.8086,-3.050781 5.7265,-6.019531 8.5859,-9.015624 2.8633,-2.996094 2.8359,-5.828126 -0.1875,-8.71875 -7.8359,-7.566407 -15.6992,-15.136719 -23.5625,-22.679688 -1.2305,-1.203125 -2.1406,-2.511719 -1.9766,-4.332031 0.211,-2.40625 1.5508,-3.929688 3.7696,-4.492188 h 223.0547 v 55.550781 z m 0,0"
+                      clip-rule="nonzero" />
+                  </clipPath>
+                </defs>
+                <g transform="translate(-18237.147,-3230.4205)">
+                  <g clip-path="url(#clipRight1)" transform="matrix(1.3333333,0,0,1.3333333,16596.98,3230.4205)">
+                    <g clip-path="url(#clipRight2)">
+                      <path fill="#ff1100" d="M -31.859375,-14.640625 H 1470.2305 V 67.632812 H -31.859375 Z" fill-opacity="1"
+                        fill-rule="nonzero" />
+                    </g>
+                  </g>
+                </g>
+              </svg>
+            </div>
+            <div class="gh-content-layer">
+              <div class="gh-item gh-logo">
+                <img src="https://cda.cdhu.sp.gov.br/pics/logos/source/GLPI_Logo-white.svg" alt="Logo">
+              </div>
+              <div class="gh-item gh-titles">
+                <h1 class="gh-main">CURSO DO GEOHAB</h1>
+                <h2 class="gh-sub">MÓDULO 2</h2>
+              </div>
+              <div class="gh-item gh-dept">
+                <span>Sup. de Tecnologia e Informação</span>
+              </div>
+            </div>
+          </div>
+    </header>
 
 
 
 <!-- Colocar abaixo pagina formatadas para PDF-->
 <div class="guide-container" style="padding: 0 45px 45px 45px;">
     <div class="materials-hero" style="text-align: center;">
-        <h1 style="font-size: 2.5rem;">Filtro Espacial em Camadas</h1><br>
+        <h1 style="font-size: 2.5rem;">Explorando o Visualizador (MapStore)</h1><br>
     </div>
     
-    <p>O <span class="badge-link badge-text-lilac">Visualizador</span> oferece poderosas funcionalidades de filtro espacial que permitem selecionar elementos geográficos com base em sua localização e relação espacial com outros elementos.</p>
-    
-    <p>Os filtros espaciais são ferramentas essenciais para análise geográfica, permitindo isolar feições específicas com base em critérios como proximidade, intersecção, contenção e outras relações topológicas.</p>
-    
-    <div class="notice-block notice-warning">
-        <div class="notice-icon">
-            <svg class="icon-custon icon-warning"></svg>
-        </div>
-        <div class="notice-content">
-            <p><strong>Nota Importante:</strong> Para utilizar os recursos de filtro espacial, além das permissões de acesso à camada, é necessário que a camada possua geometrias adequadas para este tipo de operação.</p>
-        </div>
-    </div>
-    
-    <h2>Processo de Filtro Espacial no Visualizador</h2>
+    <p>O Visualizador é sua principal ferramenta para análise visual. Ele permite sobrepor camadas, realizar consultas e compreender as relações geográficas entre os dados. Vamos explorar suas principais áreas de interação.</p>
+  
+    <h2>1. Acesso rápido pela home</h2>
+    <p>O <strong>Visualizador</strong> tem fácil acesso pela página inicial do Geohab, sendo um dos componentes centrais da plataforma.</p>
     
     <div class="content-layout-cols">
         <div class="content-col-text">
+            <p>Para acessar o Visualizador:</p>
             <ul>
-                <li><span class="badge-circular-red mr-2">1</span> <strong>Acessar a Ferramenta de Filtro Espacial:</strong> No <span class="badge-link badge-text-lilac">Visualizador</span>, selecione a camada que deseja filtrar no painel de camadas. Clique com o botão direito sobre a camada e selecione a opção <span class="badge-color-black">Filtro Espacial</span> ou <span class="badge-color-black">Spatial Filter</span>.</li>
-                <li><span class="badge-circular-red mr-2">2</span> <strong>Definir a Geometria de Referência:</strong> Você pode definir a geometria de referência para o filtro espacial de várias formas:
-                    <ul>
-                        <li>Desenhando diretamente no mapa (ponto, linha ou polígono)</li>
-                        <li>Selecionando uma feição de outra camada</li>
-                        <li>Importando uma geometria de um arquivo</li>
-                    </ul>
-                </li>
-                <li><span class="badge-circular-red mr-2">3</span> <strong>Selecionar o Tipo de Relação Espacial:</strong> Escolha o tipo de relação espacial que deseja aplicar:
-                    <ul>
-                        <li><span class="badge-color-black">Intersect</span> - Seleciona elementos que interceptam a geometria de referência</li>
-                        <li><span class="badge-color-black">Contains</span> - Seleciona elementos contidos na geometria de referência</li>
-                        <li><span class="badge-color-black">Within</span> - Seleciona elementos que contêm a geometria de referência</li>
-                        <li><span class="badge-color-black">Touches</span> - Seleciona elementos que tocam a geometria de referência</li>
-                        <li><span class="badge-color-black">DWithin</span> - Seleciona elementos dentro de uma distância específica</li>
-                    </ul>
-                </li>
-                <li><span class="badge-circular-red mr-2">4</span> <strong>Aplicar e Analisar o Resultado:</strong> Após definir a geometria e o tipo de relação, clique em <span class="badge-color-black">Aplicar</span> ou <span class="badge-color-black">Apply</span>. O mapa será atualizado para mostrar apenas os elementos que atendem ao critério espacial definido. Os resultados podem ser exportados ou combinados com outros filtros para análises mais complexas.</li>
+                <li><span class="badge-circular-red mr-2">1</span> Na página inicial do Geohab, clique no componente <strong>Visualizador</strong></li>
+                <li>- Você será redirecionado para a interface do MapStore</li>
+                <li>- A interface do Visualizador será carregada com o mapa base padrão</li>
             </ul>
         </div>
         <div class="content-col-media">
             <div class="image-modal-wrapper">
                 <img class="modal-trigger-img img-decoration" title="Clique para expandir"
-                    src="https://stor.cdhu.sp.gov.br/treina/publico/img-3-7.png"
-                    alt="Interface de filtro espacial no Visualizador">
+                    src="https://stor.cdhu.sp.gov.br/treina/publico/curso1/img/img-home-login-num-view.png"
+                    alt="Tela inicial do Geohab com destaque para o componente Visualizador">
                 <div class="image-modal-popup">
                     <span class="custom-close">×</span>
                     <img class="modal-display-img">
-                    <div class="modal-caption-text">Interface de filtro espacial no Visualizador</div>
+                    <div class="modal-caption-text">Tela inicial do Geohab com destaque para o componente Visualizador</div>
                 </div>
-                <p class="image-caption">Interface de filtro espacial no Visualizador</p>
+                <p class="image-caption">Tela inicial do Geohab com destaque para o componente Visualizador</p>
             </div>
         </div>
     </div>
+
+    <h2>2. Barra Lateral: Ferramentas de Gerenciamento</h2>
+    <p>A barra à direita agrupa as principais ações de gerenciamento do seu mapa:</p>
     
+    <div class="content-layout-cols">
+        <div class="content-col-text">
+            <ul>
+                <li><span class="badge-circular-red mr-2">1</span> <strong>Importar:</strong> Carrega uma configuração de mapa (KML, GeoJSON, etc)</li>
+                <li><span class="badge-circular-red mr-2">2</span> <strong>Exportar:</strong> Salva a configuração atual do mapa</li>
+                <li><span class="badge-circular-red mr-2">3</span> <strong>Catálogo:</strong> Adiciona novas camadas ao mapa</li>
+                <li><span class="badge-circular-red mr-2">4</span> <strong>Mapas:</strong> Gerencia seus mapas salvos</li>
+                <li><span class="badge-circular-red mr-2">5</span> <strong>Régua:</strong> Mede distâncias e áreas no mapa</li>
+                <li><span class="badge-circular-red mr-2">6</span> <strong>Salvar:</strong> Grava as alterações no mapa atual</li>
+                <li><span class="badge-circular-red mr-2">7</span> <strong>Salvar Como:</strong> Cria um novo mapa com as alterações</li>
+                <li><span class="badge-circular-red mr-2">8</span> <strong>Apagar:</strong> Deleta o mapa atual</li>
+                <li><span class="badge-circular-red mr-2">9</span> <strong>Configurações:</strong> Ajusta opções do visualizador</li>
+                <li><span class="badge-circular-red mr-2">10</span> <strong>Compartilhar:</strong> Gera um link para compartilhar o mapa</li>
+                <li><span class="badge-circular-red mr-2">11</span> <strong>Ajuda:</strong> Acessa a documentação</li>
+                <li><span class="badge-circular-red mr-2">12</span> <strong>Mais Opções:</strong> Exibe funções adicionais</li>
+            </ul>
+        </div>
+    </div>
+    <div class="content-col-media">
+        <div class="image-modal-wrapper">
+            <img class="modal-trigger-img img-content" title="Clique para expandir"
+                src="https://stor.cdhu.sp.gov.br/treina/publico/curso1/img/img-visualizador-num-side-toolbar.png"
+                alt="Interface do Visualizador com a barra lateral numerada">
+            <div class="image-modal-popup">
+                <span class="custom-close">×</span>
+                <img class="modal-display-img">
+                <div class="modal-caption-text">Interface do Visualizador com a barra lateral numerada</div>
+            </div>
+            <p class="image-caption">Interface do Visualizador com a barra lateral numerada</p>
+        </div>
+    </div>
+  <br><br><br><br><br>
+    <h2>3. Barra de Navegação: Interação com o Mapa</h2>
+    <p>As ferramentas ao redor do mapa permitem navegar, pesquisar e interagir diretamente com a visualização:</p>
+    
+    <div class="content-layout-cols">
+        <div class="content-col-text">
+            <ul>
+                <li><span class="badge-circular-red mr-2">1</span> <strong>Temas:</strong> Gerencia as camadas no mapa</li>
+                <li><span class="badge-circular-red mr-2">2</span> <strong>Busca:</strong> Pesquisa por cidades, bairros, locais, etc</li>
+                <li><span class="badge-circular-red mr-2">3</span> <strong>Config. Busca:</strong> Abre configurações de pesquisa</li>
+                <li><span class="badge-circular-red mr-2">4</span> <strong>Pesquisar:</strong> Executa a busca</li>
+                <li><span class="badge-circular-red mr-2">5</span> <strong>Menu Busca:</strong> Mais opções de pesquisa</li>
+                <li><span class="badge-circular-red mr-2">6</span> <strong>Minha Localização:</strong> Centraliza em sua posição atual</li>
+                <li><span class="badge-circular-red mr-2">7</span> <strong>Zoom In:</strong> Aumenta o zoom do mapa</li>
+                <li><span class="badge-circular-red mr-2">8</span> <strong>Zoom Out:</strong> Diminui o zoom do mapa</li>
+                <li><span class="badge-circular-red mr-2">9</span> <strong>Tela Cheia:</strong> Ativa o modo de tela cheia</li>
+                <li><span class="badge-circular-red mr-2">10</span> <strong>Zoom Inicial:</strong> Redefine para a visão inicial</li>
+                <li><span class="badge-circular-red mr-2">11</span> <strong>Modo 3D:</strong> Ativa a visualização 3D, se disponível</li>
+                <li><span class="badge-circular-red mr-2">12</span> <strong>Mais Opções:</strong> Exibe ferramentas adicionais</li>
+            </ul>
+        </div>
+    </div>
+    <div class="content-col-media">
+        <div class="image-modal-wrapper">
+            <img class="modal-trigger-img img-content" title="Clique para expandir"
+                src="https://stor.cdhu.sp.gov.br/treina/publico/curso1/img/img-visualizador-num-inside-toolbar.png"
+                alt="Barra de navegação do mapa com ferramentas de zoom e busca">
+            <div class="image-modal-popup">
+                <span class="custom-close">×</span>
+                <img class="modal-display-img">
+                <div class="modal-caption-text">Barra de navegação do mapa com ferramentas de zoom e busca</div>
+            </div>
+            <p class="image-caption">Barra de navegação do mapa com ferramentas de zoom e busca</p>
+        </div>
+    </div>
+  
+    <h2>4. Barra Inferior: Escala e Projeção</h2>
+    <p>Na parte de baixo, você controla aspectos técnicos como a escala e o sistema de coordenadas (CRS):</p>
+    
+    <div class="content-layout-cols">
+        <div class="content-col-text">
+            <ul>
+                <li><span class="badge-circular-red mr-2">1</span> <strong>Escala Gráfica:</strong> Referência visual de distância</li>
+                <li><span class="badge-circular-red mr-2">2</span> <strong>Escala Numérica:</strong> Seleciona uma escala pré-definida</li>
+                <li><span class="badge-circular-red mr-2">3</span> <strong>Coordenadas:</strong> Exibe a posição do ponteiro do mouse</li>
+                <li><span class="badge-circular-red mr-2">4</span> <strong>Projeção (CRS):</strong> Altera o sistema de referência de coordenadas</li>
+            </ul>
+        </div>
+    </div>
+    <div class="content-col-media">
+        <div class="image-modal-wrapper">
+            <img class="modal-trigger-img img-content" title="Clique para expandir"
+                src="https://stor.cdhu.sp.gov.br/treina/publico/curso1/img/img-visualizador-num-bottom.png                    "
+                alt="Barra inferior do mapa com ferramentas de escala e projeção">
+            <div class="image-modal-popup">
+                <span class="custom-close">×</span>
+                <img class="modal-display-img">
+                <div class="modal-caption-text">Barra inferior do mapa com ferramentas de escala e projeção</div>
+            </div>
+            <p class="image-caption">Barra inferior do mapa com ferramentas de escala e projeção</p>
+        </div>
+    </div>
+    <br><br>
     <hr>
     <div class="document-footer">
         <p><i class="fi fi-tr-calendar"></i> Data de criação: 19 de dez. de 2024<br>

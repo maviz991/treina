@@ -2138,7 +2138,7 @@ body {
 }
 
 /*                            Responsividade                           */
-@media (max-width: 768px) {
+@media (max-width: 1068px) {
   .img-decoration {
     float: none;
     display: block;
