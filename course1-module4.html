@@ -54,259 +54,10 @@
 </head>
 
 <body>
-    <!--                        INÍCIO: BLOCO SEÇÃO 1                        -->
-    <div class="module-intro-block" id="m4-s1-techMapas">
-        <div class="guide-container">
-            <h2 class="guide-container-title">Tecnologias por Trás dos Mapas</h2>
-            
-            <div class="content-layout-cols">
-                <div class="content-col-text">
-                    <p>Já se perguntou como os mapas interativos na internet funcionam? Vamos descobrir as tecnologias que fazem a mágica acontecer!</p>
-                    
-                    <div class="notice-block notice-info">
-                        <div class="notice-icon">
-                            <svg class="icon-custon icon-info"></svg>
-                        </div>
-                        <div class="notice-content">
-                            <p>Nesta seção, vamos explorar de forma simples e prática as tecnologias que permitem que você visualize e interaja com mapas no Geohab.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="content-col-media">
-                    <div class="image-modal-wrapper">
-                        <img class="modal-trigger-img img-decoration" title="Clique para expandir"
-                            src="https://stor.cdhu.sp.gov.br/treina/publico/img-4-1.png"
-                            alt="Tecnologias por trás dos mapas interativos">
-                        <div class="image-modal-popup">
-                            <span class="custom-close">×</span>
-                            <img class="modal-display-img">
-                            <div class="modal-caption-text">Tecnologias por trás dos mapas interativos.</div>
-                        </div>
-                    </div>
-                    <p class="image-caption"><sub>Fonte: Workshop on national geospatial data policies and standards</sub></p>
-                </div>
-            </div>
-            
-            <!-- COMPONENTE DE PASSO A PASSO -->
-            <div class="step-component" id="m4-s1-techMapas-passo1">
-                <div class="step-header">
-                    <div class="step-number">1</div>
-                    <h3 class="step-title">Como os Mapas "Ganham Vida" na sua Tela?</h3>
-                </div>
-                <div class="step-body">
-                    <div class="step-content-col-text">
-                        <div class="definition-group">
-                            <dl class="definition-list">
-                                <div class="definition-item">
-                                    <dt class="definition-term">
-                                        <div class="definition-icon"><svg class="icon-custon icon-eye" style="width: 24px; height: 24px;"></svg></div>
-                                        <span>Visualizador (MapStore 2)</span>
-                                    </dt>
-                                    <dd class="definition-desc">Interface que você vê e interage no Geohab, construída com bibliotecas JavaScript avançadas para criar uma experiência de mapa intuitiva.</dd>
-                                </div>
-                                <div class="definition-item">
-                                    <dt class="definition-term">
-                                        <div class="definition-icon"><svg class="icon-custon icon-search" style="width: 24px; height: 24px;"></svg></div>
-                                        <span>Serviços (GeoServer)</span>
-                                    </dt>
-                                    <dd class="definition-desc">Servidor que armazena e fornece os dados geoespaciais para o visualizador, respondendo às requisições e enviando as informações no formato adequado.</dd>
-                                </div>
-                                <div class="definition-item">
-                                    <dt class="definition-term">
-                                        <div class="definition-icon"><svg class="icon-custon icon-js" style="width: 24px; height: 24px;"></svg></div>
-                                        <span>Bibliotecas JavaScript (OpenLayers)</span>
-                                    </dt>
-                                    <dd class="definition-desc">Conjunto de ferramentas de programação que permitem "desenhar" mapas, conectar com servidores e criar interatividade na tela do navegador.</dd>
-                                </div>
-                            </dl>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="step-component" id="m4-s1-techMapas-passo2">
-                <div class="step-header">
-                    <div class="step-number">2</div>
-                    <h3 class="step-title">KML: A Linguagem dos Lugares</h3>
-                </div>
-                <div class="step-body">
-                    <div class="step-content-col-text">
-                        <div class="definition-group">
-                            <dl class="definition-list">
-                                <div class="definition-item">
-                                    <dt class="definition-term">
-                                        <div class="definition-icon"><svg class="icon-custon icon-code" style="width: 24px; height: 24px;"></svg></div>
-                                        <span>KML (Keyhole Markup Language)</span>
-                                    </dt>
-                                    <dd class="definition-desc">Formato de arquivo baseado em XML que descreve pontos, linhas, polígonos e imagens para serem exibidos em mapas. Popularizado pelo Google Earth.</dd>
-                                </div>
-                                <div class="definition-item">
-                                    <dt class="definition-term">
-                                        <div class="definition-icon"><svg class="icon-custon icon-file" style="width: 24px; height: 24px;"></svg></div>
-                                        <span>GeoJSON</span>
-                                    </dt>
-                                    <dd class="definition-desc">Formato aberto baseado em JSON para codificar estruturas de dados geográficas. Ideal para aplicações web e interoperabilidade entre sistemas.</dd>
-                                </div>
-                                <div class="definition-item">
-                                    <dt class="definition-term">
-                                        <div class="definition-icon"><svg class="icon-custon icon-search" style="width: 24px; height: 24px;"></svg></div>
-                                        <span>Shapefile</span>
-                                    </dt>
-                                    <dd class="definition-desc">Formato vetorial clássico de dados geoespaciais, composto por múltiplos arquivos (.shp, .shx, .dbf). Embora antigo, ainda é amplamente utilizado.</dd>
-                                </div>
-                            </dl>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="step-component" id="m4-s1-techMapas-passo3">
-                <div class="step-header">
-                    <div class="step-number">3</div>
-                    <h3 class="step-title">Bibliotecas de Mapas: As Ferramentas que "Desenham"</h3>
-                </div>
-                <div class="step-body">
-                    <div class="step-content-col-text">
-                        <div class="definition-group">
-                            <dl class="definition-list">
-                                <div class="definition-item">
-                                    <dt class="definition-term">
-                                        <div class="definition-icon"><svg class="icon-custon icon-search" style="width: 24px; height: 24px;"></svg></div>
-                                        <span>OpenLayers</span>
-                                    </dt>
-                                    <dd class="definition-desc">Biblioteca JavaScript de código aberto para exibir mapas em navegadores. Permite criar camadas, adicionar controles de interação e conectar com diversos serviços de mapas.</dd>
-                                </div>
-                                <div class="definition-item">
-                                    <dt class="definition-term">
-                                        <div class="definition-icon"><svg class="icon-custon icon-code" style="width: 24px; height: 24px;"></svg></div>
-                                        <span>Leaflet</span>
-                                    </dt>
-                                    <dd class="definition-desc">Biblioteca JavaScript leve e simples para mapas interativos. Focada em simplicidade, desempenho e usabilidade em diversos dispositivos.</dd>
-                                </div>
-                                <div class="definition-item">
-                                    <dt class="definition-term">
-                                        <div class="definition-icon"><svg class="icon-custon icon-eye" style="width: 24px; height: 24px;"></svg></div>
-                                        <span>MapStore 2</span>
-                                    </dt>
-                                    <dd class="definition-desc">Plataforma completa de visualização de mapas utilizada no Geohab. Oferece uma interface amigável que permite criar, personalizar e compartilhar mapas interativos sem necessidade de conhecimento técnico avançado.</dd>
-                                </div>
-                            </dl>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="step-component" id="m4-s1-techMapas-passo4">
-                <div class="step-header">
-                    <div class="step-number">4</div>
-                    <h3 class="step-title">Como isso se Conecta no Ecossistema do Geohab?</h3>
-                </div>
-                <div class="step-body">
-                    <div class="step-content-col-text">
-                        <div class="definition-group">
-                            <dl class="definition-list">
-                                <div class="definition-item">
-                                    <dt class="definition-term">
-                                        <div class="definition-icon"><svg class="icon-custon icon-eye" style="width: 24px; height: 24px;"></svg></div>
-                                        <span>Visualização</span>
-                                    </dt>
-                                    <dd class="definition-desc">O <span class="badge-link badge-text-purple">Visualizador</span> do Geohab renderiza os dados na tela, permitindo que você visualize e interaja com as camadas de informação.</dd>
-                                </div>
-                                <div class="definition-item">
-                                    <dt class="definition-term">
-                                        <div class="definition-icon"><svg class="icon-custon icon-completation" style="width: 24px; height: 24px;"></svg></div>
-                                        <span>Requisições</span>
-                                    </dt>
-                                    <dd class="definition-desc">Quando você navega pelo mapa, o visualizador faz requisições ao <span class="badge-link badge-text-blue">GeoServer</span> para obter os dados necessários para exibir na área visível.</dd>
-                                </div>
-                                <div class="definition-item">
-                                    <dt class="definition-term">
-                                        <div class="definition-icon"><svg class="icon-custon icon-process" style="width: 24px; height: 24px;"></svg></div>
-                                        <span>Processamento</span>
-                                    </dt>
-                                    <dd class="definition-desc">Os dados recebidos (imagens, KML, GeoJSON, etc.) são interpretados e processados pela biblioteca JavaScript antes de serem desenhados na tela do navegador.</dd>
-                                </div>
-                            </dl>
-                        </div>
-                        
-                        <div class="notice-block notice-info">
-                            <div class="notice-icon">
-                                <svg class="icon-custon icon-info"></svg>
-                            </div>
-                            <div class="notice-content">
-                                <h4>O que você precisa saber?</h4>
-                                <p>Como usuário do Geohab, você não precisa saber programar ou criar KML manualmente. O importante é entender que existe um ecossistema de tecnologias trabalhando juntas para que você possa visualizar e interagir com os dados geoespaciais de maneira intuitiva!</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- ACCORDION TASK -->
-            <div class="collapsible-task-section">
-                <a href="#task-content-4" class="task-header" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="task-content-4">
-                    <div class="collapsible-header-title-group">
-                        <div class="task-chevron">
-                            <svg class="icon-custon icon-chevron"></svg>
-                        </div>
-                        <div class="task-header-icon">
-                            <svg class="icon-custon icon-target"></svg>
-                        </div>
-                        <h3 class="task-header-title">Lição da seção</h3>
-                    </div>
-                </a>
-                <div class="collapse" id="task-content-4">
-                    <div class="task-body">
-                        <div class="collapsible-description">
-                            <p>Para liberar a próxima seção do curso, você precisa concluir a lição sobre as <b>Tecnologias por Trás dos Mapas</b>.</p>
-                        </div>
-                        <div class="collapsible-content">
-                            <div class="collapsible-content-btn">
-                                <a href="/mod/lesson/view.php?id=1036" class="task-action-button">
-                                    <span>Acessar Lição</span>
-                                    <svg class="icon-custon icon-arrow-right"></svg>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- ACCORDION MATERIAIS DA SEÇÃO -->
-            <div class="collapsible-material-section">
-                <a href="#material-sct-content-tecologiasMapas" class="material-sct-header" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="material-sct-content-tecologiasMapas">
-                    <div class="collapsible-header-title-group">
-                        <div class="material-sct-chevron">
-                            <svg class="icon-custon icon-chevron"></svg>
-                        </div>
-                        <div class="material-sct-header-icon">
-                            <svg class="icon-custon icon-book"></svg>
-                        </div>
-                        <h3 class="material-sct-header-title">Materiais de Apoio</h3>
-                    </div>
-                </a>
-                <div class="collapse" id="material-sct-content-tecologiasMapas">
-                    <div class="material-sct-body">
-                        <div class="collapsible-description">
-                            <p>Para expandir seu conhecimento sobre as tecnologias por trás dos mapas, acesse os materiais abaixo.</p>
-                        </div>
-                        <div class="collapsible-content">
-                            <div class="collapsible-content-btn">
-                                <a href="#" class="material-sct-action-button" title="Acese o PDF" data-toggle="tooltip" data-placement="right">
-                                    <span>PDF - Tecnologias por Trás dos Mapas</span>
-                                    <svg class="icon-custon icon-arrow-right"></svg>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!--                         FIM: BLOCO SEÇÃO 1                          -->
 
 
-    <!--                       INÍCIO: BLOCO SEÇÃO 2                         -->
+
+    <!--                       INÍCIO: BLOCO SEÇÃO 1                         -->
     <div class="module-intro-block" id="m4-s2-mapas">
         <div class="guide-container">
             <h2 class="guide-container-title">Criando Mapas no Geohab</h2>
@@ -892,10 +643,10 @@
             </div>
         </div>
     </div>
-    <!--                         FIM: BLOCO SEÇÃO 2                          -->
+    <!--                         FIM: BLOCO SEÇÃO 1                          -->
 
 
-    <!--                        INÍCIO: BLOCO SEÇÃO 3 - DASHBOARDS           -->
+    <!--                        INÍCIO: BLOCO SEÇÃO 2 - DASHBOARDS           -->
     <div class="module-intro-block" id="m4-s3-dashboard">
         <div class="guide-container">
             <h2 class="guide-container-title">Criando Dashboards no Geohab</h2>
@@ -1507,9 +1258,9 @@
                 </div>
             </div>
     </div>
-    <!--                         FIM: BLOCO SEÇÃO 3                          -->
+    <!--                         FIM: BLOCO SEÇÃO 2                          -->
 
-    <!--                    INÍCIO: BLOCO SEÇÃO 4 - GEOSTORY           -->
+    <!--                    INÍCIO: BLOCO SEÇÃO 3 - GEOSTORY           -->
     <div class="module-intro-block" id="m4-s4-geoStory">
         <div class="guide-container">
             <h2 class="guide-container-title">Criando GeoStory no MapStore2</h2>
@@ -1925,7 +1676,7 @@
             </div>
         </div>
     </div>
-    <!--                         FIM: BLOCO SEÇÃO 4                          -->      
+    <!--                         FIM: BLOCO SEÇÃO 3                          -->      
 
     <!-- ----------------- INÍCIO: BLOCO MATERIAIS ---------------- -->
     <div class="module-intro-block" id="m4-s5-materials">
@@ -1936,49 +1687,9 @@
         <!-- Seção: Módulo 4 -->
         <div class="materials-section">
             <div class="materials-grid">
-                <!-- Card 1: Tecnologias por Trás dos Mapas -->
+               
+                <!-- Card 1: Criando Mapas no Geohab -->
                 <div class="material-card" id="m4-s5-materials-card1">
-                    <div class="material-header">
-                        <div class="material-icon">
-                            <svg class="icon-custon icon-chip"></svg>                        
-                        </div>
-                        <h3 class="material-title">1. Tecnologias por Trás dos Mapas</h3>
-                    </div>
-                    <div class="material-content">
-                        <p class="material-description">Material de apoio para a seção sobre tecnologias que possibilitam a visualização e interação com mapas digitais.</p>
-                        <div class="material-files">
-                            <div class="file-item">
-                                <div class="file-info">
-                                    <div class="file-info-header">
-                                        <svg class="file-icon icon-custon icon-file"></svg>
-                                        <span class="file-name">Materiais Disponíveis</span>
-                                    </div>
-                                    <div class="file-info-icons">
-                                    <a href="#" 
-                                        onclick="forceDownload('https://stor.cdhu.sp.gov.br/treina/publico/curso1/docs/modulo4-secao1-tecnologias_mapas.pdf',
-                                         'modulo4-secao1-tecnologias_mapas.pdf'); return false;" 
-                                        class="file-type" 
-                                        title="Baixar PDF" 
-                                        data-placement="auto" 
-                                        data-toggle="tooltip">
-                                        <i class="fi fi-br-align-center"></i> PDF*
-                                    </a>
-                                    </div>
-                                </div>
-                                <!-- <a href="#" target="_blank" title="Baixe todos os materiais" data-toggle="tooltip">
-                                    <svg class="download-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
-                                        <polyline points="7 10 12 15 17 10"></polyline>
-                                        <line x1="12" y1="15" x2="12" y2="3"></line>
-                                    </svg>
-                                </a> -->
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Card 2: Criando Mapas no Geohab -->
-                <div class="material-card" id="m4-s5-materials-card2">
                     <div class="material-header">
                         <div class="material-icon">
                             <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="red" version="1.1" id="Layer_1" x="0px" y="0px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve" width="512" height="512">
@@ -2020,8 +1731,8 @@
                     </div>
                 </div>
                 
-                <!-- Card 3: Criando Dashboards no Geohab -->
-                <div class="material-card" id="m4-s5-materials-card3">
+                <!-- Card 2: Criando Dashboards no Geohab -->
+                <div class="material-card" id="m4-s5-materials-card2">
                     <div class="material-header">
                         <div class="material-icon">
                             <svg class="icon-custon icon-dashboard">
@@ -2063,8 +1774,8 @@
                     </div>
                 </div>
                 
-                <!-- Card 4: Criando GeoStory no MapStore2 -->
-                <div class="material-card" id="m4-s5-materials-card4">
+                <!-- Card 3: Criando GeoStory no MapStore2 -->
+                <div class="material-card" id="m4-s5-materials-card3">
                     <div class="material-header">
                         <div class="material-icon">
                             <svg class="icon-custon icon-telling">

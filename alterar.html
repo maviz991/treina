@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>modulo3-secao1-catalogo</title>
+    <title>modulo2-secao4-tecnologias_mapas</title>
 
     <!-- FONTES -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -340,7 +340,7 @@
               </div>
               <div class="gh-item gh-titles">
                 <h1 class="gh-main">CURSO DO GEOHAB</h1>
-                <h2 class="gh-sub">MÓDULO 3</h2>
+                <h2 class="gh-sub">MÓDULO 2</h2>
               </div>
               <div class="gh-item gh-dept">
                 <span>Sup. de Tecnologia e Informação</span>
@@ -354,95 +354,222 @@
 <!-- Colocar abaixo pagina formatadas para PDF-->
 <div class="guide-container" style="padding: 0 45px 45px 45px;">
     <div class="materials-hero" style="text-align: center;">
-      <h1 style="font-size: 2.5rem;">Conexão de GeoServiços do Geohab ao QGIS</h1><br>
+        <h1 style="font-size: 2.5rem;">Tecnologias por Trás dos Mapas</h1><br>
     </div>
-  
-    <h2>Sobre os GeoServiços no Geohab</h2>
-    <p>Dentro da arquitetura do Geohab, o componente <b>Serviços (GeoServer)</b> é o motor que publica e entrega os dados
-      geoespaciais aos usuários e outras aplicações. Ele faz isso através de diferentes tipos de "GeoServiços", cada um
-      com uma função específica, formato de entrega e capacidades distintas.</p>
-    <p>Embora existam diversos padrões de GeoServiços, os mais utilizados e conhecidos pelos usuários são o WMS (para
-      visualização de mapas como imagens) e o WFS (para acesso direto aos dados das feições). Compreender a diferença
-      entre eles é fundamental para utilizar o Geohab de forma eficaz.</p>
-    <br>
-    <h2>Links dos Principais GeoServiços Oferecidos pelo Geohab</h2>
-    <p>Selecione o serviço e copie e cole o link no seu QGIS, para realizar a conexão. Sempre faça login no Geohab direto na conexão do GeoServiço no QGIS.</p>
-    <div class="step-component">
-      <div class="step-header">
-        <div class="step-number">1</div>
-        <h3 class="step-title">WMS (Web Map Service - Serviço de Mapas da Web)</h3>
-      </div>
-      <div class="step-body">
-        <div class="step-content-col-text">
-            <div class="link-box">
-                <input 
-                  type="text" 
-                  value="https://geo.cdhu.sp.gov.br/geoserver/ows?service=WMS&version=1.3.0&request=GetCapabilities"
-                  readonly
-                  id="wms-link"
-                >
-                <button class="btn btn-next-module" onclick="copyLink('wms-link', this)">
-                  Copiar
-                </button>
-              </div>        </div>
-      </div>
-    </div>
-  
-    <div class="step-component">
-      <div class="step-header">
-        <div class="step-number">2</div>
-        <h3 class="step-title">WFS (Web Feature Service - Serviço de Feições da Web)</h3>
-      </div>
-      <div class="step-body">
-        <div class="step-content-col-text">
-            <div class="link-box">
-                <input 
-                  type="text" 
-                  value="https://geo.cdhu.sp.gov.br/geoserver/ows?service=WFS&acceptversions=2.0.0&request=GetCapabilities"
-                  readonly
-                  id="wfs-link"
-                >
-                <button class="btn btn-next-module" onclick="copyLink('wfs-link', this)">
-                  Copiar
-                </button>
-              </div>
-        </div>
-      </div>
-    </div>
-  
-    <div class="step-component">
-      <div class="step-header">
-        <div class="step-number">3</div>
-        <h3 class="step-title">WCS (Web Coverage Service - Serviço de Cobertura da Web)</h3>
-      </div>
-      <div class="step-body">
-        <div class="step-content-col-text">
-            <div class="link-box">
-                <input 
-                  type="text" 
-                  value="https://geo.cdhu.sp.gov.br/geoserver/ows?service=WCS&acceptversions=2.0.1&request=GetCapabilities"
-                  readonly
-                  id="wcs-link"
-                >
-                <button class="btn btn-next-module" onclick="copyLink('wcs-link', this)">
-                  Copiar
-                </button>
-              </div>
-        </div>
-      </div>
-    </div>      
 
-    <h2>Conclusão</h2>
-          <p>Agora você pode utilizar as camadas do Geohab via Geoserviços direto no seu computador.</p>
-    
-      <hr>
-      <div class="document-footer">
-        <p><i class="fi fi-tr-calendar"></i> Data de criação: 23 de dez. de 2025<br>
-          <i class="fi fi-tr-calendar-pen"></i> Data de atualização: <span class="gh-auto-date"></span><br>
-          <i class="fi fi-tr-code-compare"></i> Versão: 1.0
-        </p>
-      </div>
+    <p>Já se perguntou como os mapas interativos na internet funcionam? Vamos descobrir as tecnologias que fazem a
+        mágica acontecer!</p>
+
+    <div class="content-layout-cols">
+        <div class="content-col-text">
+            <p>A capacidade de visualizar dados geoespaciais em navegadores web representa uma revolução na forma como
+                interagimos com informações espaciais. Essa experiência é possível graças a um ecossistema de
+                tecnologias que trabalham em conjunto, desde servidores especializados até bibliotecas de programação
+                que "desenham" mapas diretamente na tela do seu dispositivo.</p>
+            <p>No Geohab, essas tecnologias foram integradas para criar uma plataforma acessível que permite explorar
+                dados complexos sem necessidade de conhecimento técnico avançado.</p>
+        </div>
+        <div class="content-col-media">
+            <div class="image-modal-wrapper">
+                <img class="modal-trigger-img img-decoration" title="Clique para expandir"
+                    src="https://stor.cdhu.sp.gov.br/treina/publico/img-4-1.png"
+                    alt="Tecnologias por trás dos mapas interativos">
+                <div class="image-modal-popup">
+                    <span class="custom-close">×</span>
+                    <img class="modal-display-img">
+                    <div class="modal-caption-text">Tecnologias por trás dos mapas interativos.</div>
+                </div>
+                <p class="image-caption">Fonte: Workshop on national geospatial data policies and standards</p>
+            </div>
+        </div>
     </div>
+
+    <div class="notice-block notice-info">
+        <div class="notice-icon">
+            <svg class="icon-custon icon-info"></svg>
+        </div>
+        <div class="notice-content">
+            <p>Nesta seção, vamos explorar de forma simples e prática as tecnologias que permitem que você visualize e
+                interaja com mapas no Geohab.</p>
+        </div>
+    </div>
+
+    <h2>Como os Mapas "Ganham Vida" na sua Tela?</h2>
+    <p>O processo de exibição de mapas interativos envolve múltiplas camadas tecnológicas que trabalham em harmonia para
+        transformar dados brutos em visualizações dinâmicas e responsivas.</p>
+
+    <div class="definition-group">
+        <dl class="definition-list">
+            <div class="definition-item">
+                <dt class="definition-term">
+                    <div class="definition-icon"><svg class="icon-custon icon-eye"
+                            style="width: 24px; height: 24px;"></svg></div>
+                    <span>Visualizador (MapStore 2)</span>
+                </dt>
+                <dd class="definition-desc">Interface que você vê e interage no Geohab, construída com bibliotecas
+                    JavaScript avançadas para criar uma experiência de mapa intuitiva. Oferece controles de navegação,
+                    ferramentas de consulta e personalização de camadas.</dd>
+            </div>
+            <div class="definition-item">
+                <dt class="definition-term">
+                    <div class="definition-icon"><svg class="icon-custon icon-search"
+                            style="width: 24px; height: 24px;"></svg></div>
+                    <span>Serviços (GeoServer)</span>
+                </dt>
+                <dd class="definition-desc">Servidor que armazena e fornece os dados geoespaciais para o visualizador,
+                    respondendo às requisições e enviando as informações no formato adequado. Implementa padrões OGC
+                    como WMS, WFS e WMTS.</dd>
+            </div>
+            <div class="definition-item">
+                <dt class="definition-term">
+                    <div class="definition-icon"><svg class="icon-custon icon-js"
+                            style="width: 24px; height: 24px;"></svg></div>
+                    <span>Bibliotecas JavaScript (OpenLayers)</span>
+                </dt>
+                <dd class="definition-desc">Conjunto de ferramentas de programação que permitem "desenhar" mapas,
+                    conectar com servidores e criar interatividade na tela do navegador. OpenLayers é uma das
+                    bibliotecas mais robustas para aplicações empresariais.</dd>
+            </div>
+        </dl>
+    </div>
+
+    <h2>KML: A Linguagem dos Lugares</h2>
+    <p>Para que dados geoespaciais possam ser compartilhados e visualizados em diferentes plataformas, é necessário
+        utilizar formatos padronizados que descrevam tanto a geometria quanto os atributos associados.</p>
+
+    <div class="definition-group">
+        <dl class="definition-list">
+            <div class="definition-item">
+                <dt class="definition-term">
+                    <div class="definition-icon"><svg class="icon-custon icon-code"
+                            style="width: 24px; height: 24px;"></svg></div>
+                    <span>KML (Keyhole Markup Language)</span>
+                </dt>
+                <dd class="definition-desc">Formato de arquivo baseado em XML que descreve pontos, linhas, polígonos e
+                    imagens para serem exibidos em mapas. Popularizado pelo Google Earth, permite incluir estilos,
+                    descrições e até mesmo tours animados.</dd>
+            </div>
+            <div class="definition-item">
+                <dt class="definition-term">
+                    <div class="definition-icon"><svg class="icon-custon icon-file"
+                            style="width: 24px; height: 24px;"></svg></div>
+                    <span>GeoJSON</span>
+                </dt>
+                <dd class="definition-desc">Formato aberto baseado em JSON para codificar estruturas de dados
+                    geográficas. Ideal para aplicações web e interoperabilidade entre sistemas devido à sua
+                    compatibilidade nativa com JavaScript e APIs REST.</dd>
+            </div>
+            <div class="definition-item">
+                <dt class="definition-term">
+                    <div class="definition-icon"><svg class="icon-custon icon-search"
+                            style="width: 24px; height: 24px;"></svg></div>
+                    <span>Shapefile</span>
+                </dt>
+                <dd class="definition-desc">Formato vetorial clássico de dados geoespaciais, composto por múltiplos
+                    arquivos (.shp, .shx, .dbf). Embora antigo, ainda é amplamente utilizado devido à sua
+                    compatibilidade com a maioria dos softwares GIS.</dd>
+            </div>
+        </dl>
+    </div>
+<br><br><br>
+    <h2>Bibliotecas de Mapas: As Ferramentas que "Desenham"</h2>
+    <p>As bibliotecas JavaScript são o motor por trás dos mapas interativos na web, fornecendo as funcionalidades
+        necessárias para renderizar, manipular e interagir com dados geoespaciais diretamente no navegador.</p>
+
+    <div class="definition-group">
+        <dl class="definition-list">
+            <div class="definition-item">
+                <dt class="definition-term">
+                    <div class="definition-icon"><svg class="icon-custon icon-search"
+                            style="width: 24px; height: 24px;"></svg></div>
+                    <span>OpenLayers</span>
+                </dt>
+                <dd class="definition-desc">Biblioteca JavaScript de código aberto para exibir mapas em navegadores.
+                    Permite criar camadas, adicionar controles de interação e conectar com diversos serviços de mapas. É
+                    a biblioteca utilizada pelo MapStore 2.</dd>
+            </div>
+            <div class="definition-item">
+                <dt class="definition-term">
+                    <div class="definition-icon"><svg class="icon-custon icon-code"
+                            style="width: 24px; height: 24px;"></svg></div>
+                    <span>Leaflet</span>
+                </dt>
+                <dd class="definition-desc">Biblioteca JavaScript leve e simples para mapas interativos. Focada em
+                    simplicidade, desempenho e usabilidade em diversos dispositivos. Popular para aplicações web que
+                    necessitam de visualização básica de mapas.</dd>
+            </div>
+            <div class="definition-item">
+                <dt class="definition-term">
+                    <div class="definition-icon"><svg class="icon-custon icon-eye"
+                            style="width: 24px; height: 24px;"></svg></div>
+                    <span>MapStore 2</span>
+                </dt>
+                <dd class="definition-desc">Plataforma completa de visualização de mapas utilizada no Geohab. Oferece
+                    uma interface amigável que permite criar, personalizar e compartilhar mapas interativos sem
+                    necessidade de conhecimento técnico avançado.</dd>
+            </div>
+        </dl>
+    </div>
+
+    <h2>Como isso se Conecta no Ecossistema do Geohab?</h2>
+    <p>No Geohab, essas tecnologias foram integradas para criar um fluxo contínuo de dados, desde o armazenamento até a
+        visualização, garantindo performance e usabilidade para os usuários finais.</p>
+
+    <div class="definition-group">
+        <dl class="definition-list">
+            <div class="definition-item">
+                <dt class="definition-term">
+                    <div class="definition-icon"><svg class="icon-custon icon-eye"
+                            style="width: 24px; height: 24px;"></svg></div>
+                    <span>Visualização</span>
+                </dt>
+                <dd class="definition-desc">O <span class="badge-link badge-text-purple">Visualizador</span> do Geohab
+                    renderiza os dados na tela, permitindo que você visualize e interaja com as camadas de informação
+                    através de controles intuitivos de navegação e consulta.</dd>
+            </div>
+            <div class="definition-item">
+                <dt class="definition-term">
+                    <div class="definition-icon"><svg class="icon-custon icon-completation"
+                            style="width: 24px; height: 24px;"></svg></div>
+                    <span>Requisições</span>
+                </dt>
+                <dd class="definition-desc">Quando você navega pelo mapa, o visualizador faz requisições ao <span
+                        class="badge-link badge-text-blue">GeoServer</span> para obter os dados necessários para exibir
+                    na área visível, otimizando o tráfego de rede.</dd>
+            </div>
+            <div class="definition-item">
+                <dt class="definition-term">
+                    <div class="definition-icon"><svg class="icon-custon icon-process"
+                            style="width: 24px; height: 24px;"></svg></div>
+                    <span>Processamento</span>
+                </dt>
+                <dd class="definition-desc">Os dados recebidos (imagens, KML, GeoJSON, etc.) são interpretados e
+                    processados pela biblioteca JavaScript antes de serem desenhados na tela do navegador, aplicando
+                    estilos e simbologias definidos.</dd>
+            </div>
+        </dl>
+    </div>
+
+    <div class="notice-block notice-info">
+        <div class="notice-icon">
+            <svg class="icon-custon icon-info"></svg>
+        </div>
+        <div class="notice-content">
+            <h4>O que você precisa saber?</h4>
+            <p>Como usuário do Geohab, você não precisa saber programar ou criar KML manualmente. O importante é
+                entender que existe um ecossistema de tecnologias trabalhando juntas para que você possa visualizar e
+                interagir com os dados geoespaciais de maneira intuitiva!</p>
+        </div>
+    </div>
+
+    <hr>
+    <div class="document-footer">
+        <p><i class="fi fi-tr-calendar"></i> Data de criação: 19 de dez. de 2024<br>
+            <i class="fi fi-tr-calendar-pen"></i> Data de atualização: <span class="gh-auto-date"></span><br>
+            <i class="fi fi-tr-code-compare"></i> Versão: 1.0
+        </p>
+    </div>
+</div>
   
  
   </div>
