@@ -1706,6 +1706,30 @@ body {
 /*     FIM -  INFOS-CHAVE: PÚBLICO E PRÉ-REQ. (Interno main -home)     */
 /* =================================================================== */
 
+/* Link-box copy*/
+.link-box {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #f6f6f6;
+  border: 1px solid #dcdfe3;
+  border-radius: 6px;
+  padding: 8px;
+  max-width: 100%;
+  margin-bottom: 15px;
+}
+
+.link-box input {
+  flex: 1;
+  border: none;
+  font-family: var(--font-secondary);
+  background: transparent;
+  font-size: 16px;
+  color: #4c4c4c;
+  outline: none;
+}
+
+
 /* =================================================================== */
 /*               INÍCIO -  OBJETIVOS (Interno main -home)              */
 /* =================================================================== */

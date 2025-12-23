@@ -328,6 +328,8 @@
           <div class="content-col-text">
               <p>A capacidade de associar informações a localizações específicas na Terra transforma dados brutos em conhecimento acionável. Por exemplo, ao analisar dados de ocorrências de doenças combinados com informações demográficas e ambientais, autoridades de saúde podem identificar padrões e implementar medidas preventivas mais eficazes.</p>
               <p>No contexto corporativo, dados geoespaciais otimizam logística, planejamento urbano, gestão de recursos naturais e análise de mercado, entre outras aplicações.</p>
+              <p>Fundamentalmente, temos quatro tipos de dados geoespaciais: Ponto, Linha, Polígono e Raster. No Goehab, quem serve esses dados no sistema é o componente 
+                <b>Serviços (GeoServer)</b>.</p>
           </div>
           <div class="content-col-media">
               <div class="image-modal-wrapper">
@@ -351,11 +353,11 @@
           <div class="definition-group">
               <h4 class="definition-group-title">Exemplos Práticos:</h4>
               <ul>
-                  <li><strong>Coordenadas GNSS:</strong> GNSS, popularmente GPS, obtém localização precisa na Terra usando latitude e longitude ou metros</li>
-                  <li><strong>Endereços Georreferenciados:</strong> Um endereço de rua convertido para coordenadas geográficas</li>
-                  <li><strong>Mapas de Uso do Solo:</strong> Mapas que mostram como a terra é utilizada (agricultura, área urbana, etc.)</li>
-                  <li><strong>Imagens de Satélite:</strong> Fotografias da Terra tiradas por satélites</li>
-                  <li><strong>Redes de Infraestrutura:</strong> Localização de redes físicas como cabos ou tubulações</li>
+                  <li><strong>Ponto → Coordenadas GNSS:</strong> GNSS, popularmente GPS, obtém localização precisa na Terra usando latitude e longitude ou metros</li>
+                  <li><strong>Ponto → Endereços Georreferenciados:</strong> Um endereço de rua convertido para coordenadas geográficas</li>
+                  <li><strong>Polígono ou Raster → Mapas de Uso do Solo:</strong> Mapas que mostram como a terra é utilizada (agricultura, área urbana, etc.)</li>
+                  <li><strong>Raster → Imagens de Satélite:</strong> Fotografias da Terra tiradas por satélites</li>
+                  <li><strong>Linhas → Redes de Infraestrutura:</strong> Localização de redes físicas como cabos ou tubulações</li>
               </ul>
           </div>
     
@@ -454,12 +456,12 @@
           </div>
       </div>
     
-      <div class="notice-block notice-warning">
+      <div class="notice-block notice-info">
           <div class="notice-icon">
-              <svg class="icon-custon icon-warning"></svg>
+              <svg class="icon-custon icon-info"></svg>
           </div>
           <div class="notice-content">
-              <p><strong>Nota Essencial:</strong> Metadados transformam dados brutos em informação confiável, estabelecendo <strong>confiança, clareza e utilidade</strong>. Sem eles, dados geoespaciais perdem contexto, reprodutibilidade e, frequentemente, seu valor analítico.</p>
+              <p><strong>Nota:</strong> Metadados transformam dados brutos em informação confiável, estabelecendo <strong>confiança, clareza e utilidade</strong>. Sem eles, dados geoespaciais perdem contexto, reprodutibilidade e, frequentemente, seu valor analítico.</p>
           </div>
       </div>
       
@@ -960,6 +962,99 @@
   
  
   </div>
+
+
+  <div class="guide-container" style="padding: 0 45px 45px 45px;">
+    <div class="materials-hero" style="text-align: center;">
+      <h1 style="font-size: 2.5rem;">Conexão de GeoServiços do Geohab ao QGIS</h1><br>
+    </div>
+  
+    <h2>Sobre os GeoServiços no Geohab</h2>
+    <p>Dentro da arquitetura do Geohab, o componente <b>Serviços (GeoServer)</b> é o motor que publica e entrega os dados
+      geoespaciais aos usuários e outras aplicações. Ele faz isso através de diferentes tipos de "GeoServiços", cada um
+      com uma função específica, formato de entrega e capacidades distintas.</p>
+    <p>Embora existam diversos padrões de GeoServiços, os mais utilizados e conhecidos pelos usuários são o WMS (para
+      visualização de mapas como imagens) e o WFS (para acesso direto aos dados das feições). Compreender a diferença
+      entre eles é fundamental para utilizar o Geohab de forma eficaz.</p>
+    <br>
+    <h2>Links dos Principais GeoServiços Oferecidos pelo Geohab</h2>
+    <p>Selecione o serviço e copie e cole o link no seu QGIS, para realizar a conexão. Sempre faça login no Geohab direto na conexão do GeoServiço no QGIS.</p>
+    <div class="step-component">
+      <div class="step-header">
+        <div class="step-number">1</div>
+        <h3 class="step-title">WMS (Web Map Service - Serviço de Mapas da Web)</h3>
+      </div>
+      <div class="step-body">
+        <div class="step-content-col-text">
+            <div class="link-box">
+                <input 
+                  type="text" 
+                  value="https://geo.cdhu.sp.gov.br/geoserver/ows?service=WMS&version=1.3.0&request=GetCapabilities"
+                  readonly
+                  id="wms-link"
+                >
+                <button class="btn btn-next-module" onclick="copyLink('wms-link', this)">
+                  Copiar
+                </button>
+              </div>        </div>
+      </div>
+    </div>
+  
+    <div class="step-component">
+      <div class="step-header">
+        <div class="step-number">2</div>
+        <h3 class="step-title">WFS (Web Feature Service - Serviço de Feições da Web)</h3>
+      </div>
+      <div class="step-body">
+        <div class="step-content-col-text">
+            <div class="link-box">
+                <input 
+                  type="text" 
+                  value="https://geo.cdhu.sp.gov.br/geoserver/ows?service=WFS&acceptversions=2.0.0&request=GetCapabilities"
+                  readonly
+                  id="wfs-link"
+                >
+                <button class="btn btn-next-module" onclick="copyLink('wfs-link', this)">
+                  Copiar
+                </button>
+              </div>
+        </div>
+      </div>
+    </div>
+  
+    <div class="step-component">
+      <div class="step-header">
+        <div class="step-number">3</div>
+        <h3 class="step-title">WCS (Web Coverage Service - Serviço de Cobertura da Web)</h3>
+      </div>
+      <div class="step-body">
+        <div class="step-content-col-text">
+            <div class="link-box">
+                <input 
+                  type="text" 
+                  value="https://geo.cdhu.sp.gov.br/geoserver/ows?service=WCS&acceptversions=2.0.1&request=GetCapabilities"
+                  readonly
+                  id="wcs-link"
+                >
+                <button class="btn btn-next-module" onclick="copyLink('wcs-link', this)">
+                  Copiar
+                </button>
+              </div>
+        </div>
+      </div>
+    </div>      
+
+    <h2>Conclusão</h2>
+          <p>Agora você pode utilizar as camadas do Geohab via Geoserviços direto no seu computador.</p>
+    
+      <hr>
+      <div class="document-footer">
+        <p><i class="fi fi-tr-calendar"></i> Data de criação: 23 de dez. de 2025<br>
+          <i class="fi fi-tr-calendar-pen"></i> Data de atualização: <span class="gh-auto-date"></span><br>
+          <i class="fi fi-tr-code-compare"></i> Versão: 1.0
+        </p>
+      </div>
+    </div>
 
  <!-- ======================================================= -->
   <!--                M1S6 - PERFIS DE ACESSO NO GEOHAB          -->

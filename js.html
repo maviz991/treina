@@ -858,5 +858,23 @@ setupInteractiveImages();
         }, 250);
     });
     </script>
+    <script>
+        function copyLink(inputId, button) {
+          const input = document.getElementById(inputId);
+          input.select();
+          input.setSelectionRange(0, 99999);
+        
+          navigator.clipboard.writeText(input.value);
+        
+          const originalText = button.innerText;
+          button.innerText = "Copiado!";
+          button.style.background = "#2da44e";
+        
+          setTimeout(() => {
+            button.innerText = originalText;
+            button.style.background = "red";
+          }, 1500);
+        }
+        </script>
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
         
