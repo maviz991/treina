@@ -1440,7 +1440,7 @@ body {
 /* ---------------- Grade de Informações Iniciais (Cards) -------------- */
 .welcome-info-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 25px;
   margin-top: 20px;
   padding: 0;
@@ -1509,6 +1509,13 @@ body {
 }
 .welcome-info-card .welcome-stretched-link:hover {
   text-decoration: none;
+}
+
+/* Header com badge*/
+.header-with-badge {
+  display: flex;
+  align-items: start;
+  gap: 5px;
 }
 
 /* -------------- Grade de atalhos para Módulos (Cards) -------------- */
@@ -2568,6 +2575,37 @@ body {
     background-color: #eb5e00;
     text-decoration: none;
 }
+
+/* Accordion (Cinza) */
+#guide-accordion-custom.collapsible-task-section {
+  background-color: #f8f9fa !important;
+  border: 1px solid #e9ecef !important;
+}
+#guide-accordion-custom .task-header {
+  background-color: #fff;
+  border-bottom: 1px solid transparent;
+}
+#guide-accordion-custom .task-header:hover {
+  background-color: #f2f2f2;
+}
+/* Ícone e Texto em Cinza/Preto */
+#guide-accordion-custom .task-header-title { color: #495057 !important; }
+#guide-accordion-custom .task-header-icon .icon-custon { background-color: #6c757d !important; }
+#guide-accordion-custom .task-chevron { background-color: #e9ecef !important; color: #6c757d !important; }
+#guide-accordion-custom .task-chevron .icon-custon { background-color: #6c757d !important; }
+
+/* Estado Ativo (Vermelho Sutil) */
+#guide-accordion-custom .task-header[aria-expanded="true"] {
+  background-color: #fff;
+  border-bottom: 1px solid #e9ecef;
+}
+#guide-accordion-custom .task-header[aria-expanded="true"] .task-chevron {
+  background-color: #ffeaea !important;
+  color: var(--color-primary) !important;
+}
+#guide-accordion-custom .task-header[aria-expanded="true"] .task-chevron .icon-custon {
+  background-color: var(--color-primary) !important;
+}
 /* =================================================================== */
 /*                             FIM - ACCORDIONS                        */
 /* =================================================================== */
@@ -3484,4 +3522,136 @@ body {
 /*                  FIM: TEXTO ANIMADO PARA EXEMPLOS                   */
 /* =================================================================== */
 
+
+/* =================================================================== */
+/*             NOVOS ÍCONES E AJUSTES DE CARD (HERO V3)                */
+/* =================================================================== */
+
+/* Ícones adicionais (Relógio e Vídeo) */
+.icon-clock {
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='10'%3E%3C/circle%3E%3Cpolyline points='12 6 12 12 16 14'%3E%3C/polyline%3E%3C/svg%3E");
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='10'%3E%3C/circle%3E%3Cpolyline points='12 6 12 12 16 14'%3E%3C/polyline%3E%3C/svg%3E");
+}
+
+.icon-video {
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolygon points='23 7 16 12 23 17 23 7'%3E%3C/polygon%3E%3Crect x='1' y='5' width='15' height='14' rx='2' ry='2'%3E%3C/rect%3E%3C/svg%3E");
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolygon points='23 7 16 12 23 17 23 7'%3E%3C/polygon%3E%3Crect x='1' y='5' width='15' height='14' rx='2' ry='2'%3E%3C/rect%3E%3C/svg%3E");
+}
+
+/* Informações extras no card (Duração/Tipo) */
+.card-extra-info {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 12px;
+    padding-top: 8px;
+    border-top: 1px dashed #e0e0e0;
+}
+
+.card-extra-info small {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    color: #666;
+    font-size: 0.85em;
+}
+
+/* Responsividade para cards */
+@media (max-width: 768px) {
+  .welcome-info-grid {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+  
+  .welcome-module-shortcut-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+  }
+  
+  .card-extra-info {
+    flex-direction: column;
+    gap: 5px;
+  }
+}
+
+/* Responsividade para cards */
+@media (max-width: 768px) {
+  .welcome-info-grid {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+  
+  .welcome-module-shortcut-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+  }
+  
+  .card-extra-info {
+    flex-direction: column;
+    gap: 5px;
+  }
+}
+
+/* Cores das Caixas de Aviso (Para legenda) */
+.badge-info-box  { 
+  display: flex;
+  align-items: flex-start;
+  padding: 5px;
+  border-radius: 8px;
+  margin: 20px 0;
+  border: 1px solid transparent;
+  background-color: #f0f7ff;
+  border-color: #d9eaff;
+  border-left: 3px solid #007bff;
+  color: #004085;
+  display: flex;
+  text-decoration: none;
+  
+} 
+.badge-warn-box  { 
+  display: flex;
+  align-items: flex-start;
+  padding: 5px;
+  border-radius: 8px;
+  margin: 20px 0;
+  border: 1px solid transparent;
+  background-color: #fffaf0;
+  border-color: #ffeed9;
+  border-left: 3px solid #fabd5a;
+  color: #856404;
+  text-decoration: none;
+}
+
+/* Accordion (Cinza) */
+#guide-accordion-custom.collapsible-task-section {
+  background-color: #f8f9fa !important;
+  border: 1px solid #e9ecef !important;
+}
+#guide-accordion-custom .task-header {
+  background-color: #fff;
+  border-bottom: 1px solid transparent;
+}
+#guide-accordion-custom .task-header:hover {
+  background-color: #f2f2f2;
+}
+/* Ícone e Texto em Cinza/Preto */
+#guide-accordion-custom .task-header-title { color: #495057 !important; }
+#guide-accordion-custom .task-header-icon .icon-custon { background-color: #6c757d !important; }
+#guide-accordion-custom .task-chevron { background-color: #e9ecef !important; color: #6c757d !important; }
+#guide-accordion-custom .task-chevron .icon-custon { background-color: #6c757d !important; }
+
+/* Estado Ativo (Vermelho Sutil) */
+#guide-accordion-custom .task-header[aria-expanded="true"] {
+  background-color: #fff;
+  border-bottom: 1px solid #e9ecef;
+}
+#guide-accordion-custom .task-header[aria-expanded="true"] .task-chevron {
+  background-color: #ffeaea !important;
+  color: var(--color-primary) !important;
+}
+#guide-accordion-custom .task-header[aria-expanded="true"] .task-chevron .icon-custon {
+  background-color: var(--color-primary) !important;
+}
 

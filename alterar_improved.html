@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-<!DOCTYPE html>
 <html lang="pt-br">
 
 <head>
@@ -129,8 +128,7 @@
       font-family: 'Axiforma';
       font-weight: 600;
       color: #ffffff;
-      text-transform: uppercase;
-
+      text-transform: uppercase; 
   }
 
   /* =========================================================
@@ -358,24 +356,21 @@
             style="display: none; border-radius: 0 10px 0 8px !important; padding: 4px !important;">
             Continuar de onde parei
         </a>
-    </div>    
-    <!-- Header -->
+    </div>
     <header class="header-welcome-hero">
         <h1>Bem-vindos(as) ao Curso Geohab - Introdução!</h1>
         <p>Sua jornada de aprendizado sobre a plataforma Geohab e o mundo dos dados geoespaciais começa agora.</p>
         <button class="btn btn-danger btn-geohab-popover" title="Escolha o ambiente de acesso" type="button"
-            data-toggle="popover" data-html="true" data-placement="bottom" data-content="
-              &lt;a class='popover-link-button' href='https://geo.cdhu.sp.gov.br/' target='_blank'&gt;
+            data-toggle="popover" data-html="true" data-content="
+              <a class='popover-link-button' href='https://geo.cdhu.sp.gov.br/' target='_blank'>
                 Produção
-              &lt;/a&gt;
-              &lt;a class='popover-link-button' href='https://geohab.cdhu.sp.gov.br/' target='_blank' 
-                 style='background-color: #f8f9fa; color: #343a40 !important;'&gt;
+              </a>
+              <a class='popover-link-button' href='https://geohab.cdhu.sp.gov.br/' target='_blank' 
+                 style='background-color: #f8f9fa; color: #343a40 !important;'>
                 Treinamento
-              &lt;/a&gt;
+              </a>
             ">Acessar Geohab</button>
     </header>
-
-    <!-- Barra de Progresso -->
     <div class="course-progress-container" data-courseid="29">
         <div class="course-progress-bar">
             <div class="course-progress-bar-fill" id="course-progress-fill"></div>
@@ -383,231 +378,189 @@
         <div class="course-progress-text" id="course-progress-text">Carregando progresso...</div>
     </div>
 
+    <!-- SEÇÃO DE GLOSSÁRIO -->
+    <section class="glossary-section">
+        <div class="glossary-container">
+            <h2 class="glossary-title">
+                <span class="icon-custon icon-book"></span>
+                Guia Rápido: Entendendo os Elementos do Curso
+            </h2>
+            <p class="glossary-intro">Para facilitar sua navegação e aprendizado, criamos este glossário com os principais elementos que você encontrará durante o curso.</p>
+            
+            <div class="glossary-grid">
+                <div class="glossary-item">
+                    <div class="glossary-header">
+                        <div class="glossary-icon">
+                            <span class="icon-custon icon-warning"></span>
+                        </div>
+                        <h3 class="glossary-term">Caixas de Aviso</h3>
+                    </div>
+                    <p class="glossary-description">Elementos visuais que destacam informações importantes, dicas ou alertas durante o conteúdo. Podem ser informativas (azuis), de atenção (amarelas) ou de alerta (vermelhas).</p>
+                </div>
+                
+                <div class="glossary-item">
+                    <div class="glossary-header">
+                        <div class="glossary-icon">
+                            <span class="badge-color-red">BADGE</span>
+                        </div>
+                        <h3 class="glossary-term">Badges</h3>
+                    </div>
+                    <p class="glossary-description">Indicadores visuais que identificam o tipo ou status de um conteúdo. Cada cor representa uma categoria diferente, facilitando a organização e identificação rápida dos materiais.</p>
+                </div>
+                
+                <div class="glossary-item">
+                    <div class="glossary-header">
+                        <div class="glossary-icon">
+                            <span class="icon-custon icon-file"></span>
+                        </div>
+                        <h3 class="glossary-term">Lições</h3>
+                    </div>
+                    <p class="glossary-description">Atividades interativas ao final de cada seção para reforçar o aprendizado. São essenciais para fixar o conteúdo e, em alguns casos, necessárias para desbloquear o próximo módulo.</p>
+                </div>
+                
+                <div class="glossary-item">
+                    <div class="glossary-header">
+                        <div class="glossary-icon">
+                            <span class="icon-custon icon-book"></span>
+                        </div>
+                        <h3 class="glossary-term">Materiais de Apoio</h3>
+                    </div>
+                    <p class="glossary-description">Recursos complementares como documentos, guias e referências que aprofundam os tópicos abordados. Podem ser baixados para consulta offline.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <main class="main-welcome-content">
+
+        <!-- SEÇÃO DE INFORMAÇÕES EM CARDS -->
+        <h2 class="main-welcome-content-title">Seus Primeiros Passos:</h2>
         
-        <!-- SEÇÃO 1: COMECE POR AQUI (Ação Imediata) -->
-        <h2 class="main-welcome-content-title">Comece por aqui:</h2>
+        <!-- AVISO INFORMATIVO -->
+        <div class="notice-block notice-info">
+            <div class="notice-icon">
+                <span class="icon-custon icon-info"></span>
+            </div>
+            <div class="notice-content">
+                <p><strong>Dica importante:</strong> Siga a sequência recomendada abaixo para aproveitar ao máximo sua experiência de aprendizado. Cada elemento foi projetado para construir seu conhecimento de forma progressiva.</p>
+            </div>
+        </div>
+        
+        <!-- AVISO DE ATENÇÃO -->
+        <div class="notice-block notice-warning">
+            <div class="notice-icon">
+                <span class="icon-custon icon-warning"></span>
+            </div>
+            <div class="notice-content">
+                <p><strong>Atenção:</strong> As lições marcadas como <span class="badge-color-red">OBRIGATÓRIO</span> são necessárias para desbloquear o próximo módulo. Não pule estas atividades!</p>
+            </div>
+        </div>
+        
+        <!-- AVISO DE DICAS -->
+        <div class="notice-block notice-tip">
+            <div class="notice-icon">
+                <span class="icon-custon icon-lightbulb"></span>
+            </div>
+            <div class="notice-content">
+                <p><strong>Dica de ouro:</strong> Os materiais de apoio podem ser baixados para consulta offline. Aproveite este recurso para estudar mesmo sem acesso à internet.</p>
+            </div>
+        </div>
         
         <ul class="welcome-info-grid">
-            <!-- Card 1: Vídeo Apresentação -->
             <li class="welcome-info-card">
                 <div class="welcome-info-card-icon">
-                    <!-- Ícone Play (Padrão) -->
-                    <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <polygon points="5 3 19 12 5 21 5 3"></polygon>
                     </svg>
                 </div>
                 <div>
                     <h4 class="welcome-info-card-title">
-                        <a class="welcome-stretched-link js-scroll-link" href="#coursecontentsection1" data-section-target="1">
+                        <a class="welcome-stretched-link js-scroll-link"
+                            href="#coursecontentsection1" data-section-target="1">
                             Apresentação
+                            <span class="badge-color-purple">INÍCIO</span>
                         </a>
                     </h4>
-                    <p class="welcome-info-card-text">Assista ao vídeo introdutório sobre o projeto.</p>
+                    <p class="welcome-info-card-text">Comece assistindo ao vídeo de apresentação do projeto de Georreferenciamento da CDHU. Este vídeo contextualizará todo o conteúdo do curso.</p>
                     <div class="card-extra-info">
-                        <small><span class="icon-custon icon-clock"></span> 3 min</small>
-                        <small><span class="icon-custon icon-video"></span> Vídeo</small>
+                        <small><span class="icon-custon icon-clock"></span> Duração: 10 min</small>
+                        <small><span class="icon-custon icon-video"></span> Vídeo introdutório</small>
                     </div>
                 </div>
             </li>
-
-            <!-- Card 2: Questionário -->
             <li class="welcome-info-card">
                 <div class="welcome-info-card-icon">
-                    <!-- Ícone Checklist (Padrão) -->
-                    <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path>
                         <rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect>
                     </svg>
                 </div>
                 <div>
                     <h4 class="welcome-info-card-title">
-                        <a class="welcome-stretched-link" href="/mod/quiz/view.php?id=965&amp;forceview=1">
+                        <a class="welcome-stretched-link" href="/mod/quiz/view.php?id=965&forceview=1">
                             Questionário Inicial
+                            <span class="badge-color-blue">AVALIAÇÃO</span>
                         </a>
                     </h4>
-                    <p class="welcome-info-card-text">Responda para nivelarmos o conhecimento.</p>
-
+                    <p class="welcome-info-card-text">Ajude-nos a entender seu nível de conhecimento para direcionarmos melhor o conteúdo. Esta avaliação não afeta seu resultado final.</p>
+                    <div class="card-extra-info">
+                        <small><span class="icon-custon icon-clock"></span> Duração: 15 min</small>
+                        <small><span class="icon-custon icon-help-circle"></span> 10 perguntas</small>
+                    </div>
                 </div>
             </li>
-
-            <!-- Card 3: Materiais -->
             <li class="welcome-info-card">
                 <div class="welcome-info-card-icon">
-                    <!-- Ícone Livro/Docs (Padrão) -->
-                    <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
-                        <polyline points="14 2 14 8 20 8"></polyline>
-                        <line x1="16" y1="13" x2="8" y2="13"></line>
-                        <line x1="16" y1="17" x2="8" y2="17"></line>
-                        <polyline points="10 9 9 9 8 9"></polyline>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
+                        <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
                     </svg>
                 </div>
                 <div>
                     <h4 class="welcome-info-card-title">
-                        <a class="welcome-stretched-link" href="/mod/page/view.php?id=966&amp;forceview=1">
-                            Biblioteca de Materiais
+                        <a class="welcome-stretched-link" href="/mod/page/view.php?id=966&forceview=1">
+                            Materiais de Apoio
+                            <span class="badge-color-green">RECURSOS</span>
                         </a>
                     </h4>
-                    <p class="welcome-info-card-text">Acesse o índice completo de manuais em PDF.</p>
-
+                    <p class="welcome-info-card-text">Todos os módulos possuem uma seção de materiais de apoio. Recomendamos a leitura para aprofundar seu conhecimento!</p>
+                    <div class="card-extra-info">
+                        <small><span class="icon-custon icon-download"></span> Downloads disponíveis</small>
+                        <small><span class="icon-custon icon-file-text"></span> PDFs e guias</small>
+                    </div>
+                </div>
+            </li>
+            <li class="welcome-info-card">
+                <div class="welcome-info-card-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <circle cx="12" cy="12" r="6"></circle>
+                        <circle cx="12" cy="12" r="2"></circle>
+                    </svg>
+                </div>
+                <div>
+                    <h4 class="welcome-info-card-title">
+                        Lição da Seção
+                        <span class="badge-color-red">OBRIGATÓRIO</span>
+                    </h4>
+                    <p class="welcome-info-card-text">Ao final de cada Seção, realize as lições para reforçar o aprendizado. A conclusão das lições é necessária para prosseguir para o próximo conteúdo.</p>
+                    <div class="card-extra-info">
+                        <small><span class="icon-custon icon-clock"></span> Duração: 20 min</small>
+                        <small><span class="icon-custon icon-check-circle"></span> Requer aprovação</small>
+                    </div>
                 </div>
             </li>
         </ul>
 
-        <!-- 4. SEÇÃO: GUIA RÁPIDO -->
-        <div class="collapsible-task-section mb-4" id="guide-accordion-custom">
-            
-            <!-- Header do Accordion -->
-            <div class="task-header collapsed" data-toggle="collapse" data-target="#collapseGuide" aria-expanded="false" aria-controls="collapseGuide">
-                                <!-- Seta (Chevron) -->
-
-                <!-- Grupo Título + Ícone (Alinhamento Corrigido) -->
-                <div class="collapsible-header-title-group" style="display: flex; align-items: center;">
-                                                    <div class="task-chevron">
-                                    <span class="icon-custon icon-chevron"></span>
-                                </div>
-     
-                    <h3 class="task-header-title" style="margin: 0;">Guia Rápido: Ícones e Avisos</h3>
-                </div>
-                
-
-            </div>
-
-            <!-- Corpo do Accordion -->
-            <div id="collapseGuide" class="collapse" data-parent="#guide-accordion-custom">
-                <div class="task-body pt-3">
-                    <p style="color: #666; margin-bottom: 20px;">Legenda dos elementos visuais que você encontrará nos módulos:</p>
-                    
-                    <ul class="welcome-info-grid">
-                        <!-- 1. Avisos -->
-                        <li class="welcome-info-card">
-                            <div class="welcome-info-card-icon">
-                                <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
-                                    <line x1="12" y1="9" x2="12" y2="13"></line>
-                                    <line x1="12" y1="17" x2="12.01" y2="17"></line>
-                                </svg>
-                            </div>
-                            <div>
-                                <h4 class="welcome-info-card-title">Caixas de Aviso</h4>
-                                <p class="welcome-info-card-text" style="font-size: 0.9em;">
-                                    Fique atento às caixas coloridas no texto, elas contém informações importante:
-                                    <span class="badge-pill-system badge-info-box"> Dica / Informação</span>
-                                    <span class="badge-pill-system badge-warn-box">Atenção / Alertas</span> 
-                                </p>
-                            </div>
-                        </li>
-                                            
-                        <!-- 2. Tags -->
-                        <li class="welcome-info-card" id="tags">
-                            <div class="welcome-info-card-icon">
-                                <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path>
-                                    <line x1="7" y1="7" x2="7.01" y2="7"></line>
-                                </svg>
-                            </div>
-                            <div>
-                                <h4 class="welcome-info-card-title">Tags</h4>
-                                <p class="welcome-info-card-text" style="font-size: 0.9em;">
-                                    Marcações sobre o tipo de conteúdo, se é recomendado a leitura ou opcional:<br><br></p>
-                                <p>
-                                    <span class="badge-color-red" style="font-size: 0.7em;">OBRIGATÓRIO</span> Essencial.<br>
-                                    <span class="badge-color-gray" style="font-size: 0.7em;">OPCIONAL</span> Complementar.
-                                </p>
-                            </div>
-                        </li>
-
-                        <!-- 3. Lições -->
-                        <li class="welcome-info-card">
-                            <div class="welcome-info-card-icon">
-                                <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                    <circle cx="12" cy="12" r="10"></circle>
-                                    <circle cx="12" cy="12" r="6"></circle>
-                                    <circle cx="12" cy="12" r="2"></circle>
-                                </svg>
-                            </div>
-                            <div>
-                                <div class="header-with-badge">
-                                     <h4 class="welcome-info-card-title">Lições Práticas </h4>
-                                     <span class="badge-color-red" style="font-size: 0.55em;">OBRIGATÓRIO</span>
-                                 </div>
-                                <p class="welcome-info-card-text" style="font-size: 0.9em;">
-                                    Atividades no final de cada seção. São lições simples, apenas para fixação de aprendizado.<br><br>
-                                    Você sempre terá mais de uma tentiva. E são necessárias para avançar de seção e módulo!
-                                </p>
-                            </div>
-                        </li>
-
-                        <!-- 4. Suporte (Materiais) -->
-                        <li class="welcome-info-card">
-                            <div class="welcome-info-card-icon">
-                                <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
-                                    <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
-                                </svg>
-                            </div>
-                            <div>
-                                <h4 class="welcome-info-card-title">Materiais de Apoio</h4>
-                                <p class="welcome-info-card-text" style="font-size: 0.9em;">
-                                    Cada módulo possui arquivos em PDF específicos para download. Em geral, temos:<br><br>
-                                    <span  target="_blank"
-                                        class="file-type-slider slider" data-toggle="tooltip" data-placement="auto" title="Material PDF dos Slides dos Vídeos"><i class="fi fi-br-rectangle-vertical-history"></i>
-                                         SLIDES</span>
-                                    <span  target="_blank"
-                                        class="file-type" data-toggle="tooltip" data-placement="auto" title="Material PDF do conteúdo do curso ou dos Materiais complementar"><i class="fi fi-br-align-center"></i> 
-                                        PDF</span>
-                                </p>
-                            </div>
-                        </li>
-                    <!-- 5. Sistemas -->
-                    <li class="welcome-info-card">
-                        <div class="welcome-info-card-icon">
-                            <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
-                        </div>
-                        <div>
-                            <h4 class="welcome-info-card-title">Sistemas</h4>
-                            <p class="welcome-info-card-text" style="font-size: 0.9em; line-height: 2;">
-                                Durante o curso, identificamos os ambientes do Geohab assim:<br>
-                                <span class="badge-link badge-text-blue">Serviços (Geoserver)</span>
-                                <span class="badge-link badge-text-lilac">Visualizador (MapStore)</span>
-                                <span class="badge-link badge-text-salmon">Catálogo (GeoNetwrok)</span>
-                            </p>
-                        </div>
-                    </li>
-
-                    <!-- 6. tooltips -->
-                    <li class="welcome-info-card">
-                        <div class="welcome-info-card-icon">
-                            <svg viewBox="0 0 24 24"width="20" height="20" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
-                        </div>
-                        <div>
-                            <h4 class="welcome-info-card-title">Definições</h4>
-                            <p class="welcome-info-card-text" style="font-size: 0.9em;">
-                                Passe o mouse ou clique em itens assim:
-                                <span class="info-badge-pill">
-                                    <span class="info-badge info-badge-text" data-toggle="tooltip" title="Definição de termo" data-placement="auto">Termo técnico <span class="icon-custon icon-question"></span></span>
-                                    
-                                </span>
-                                para ver a definição.
-                            </p>
-                        </div>
-                    </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-
-
-
-        <!-- SEÇÃO 3: NAVEGAÇÃO DOS MÓDULOS -->
-        <h2 class="main-welcome-content-title">Navegue pelos Módulos:</h2>
+        <!-- SEÇÃO ATALHOS EM CARDS -->
+        <h2 class="main-welcome-content-title"><br>Navegue pelos Módulos:</h2>
         <div class="welcome-module-shortcut-grid">
-            <!-- Módulo 1 -->
-            <a href="#coursecontentsection2" class="module-shortcut-card welcome-shortcut-card js-scroll-link" data-section-target="2">
+            <!-- Atalho para o Módulo 1 -->
+            <a href="#coursecontentsection2" class="module-shortcut-card welcome-shortcut-card js-scroll-link"
+                data-section-target="2">
                 <div class="welcome-shortcut-icon-card">
-                    <!-- Ícone Process -->
-                    <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="1" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
                         <path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"></path>
                         <line x1="4" y1="22" x2="4" y2="15"></line>
                     </svg>
@@ -615,53 +568,65 @@
                 <h5 class="welcome-shortcut-title-card ">1. Conceitos Fundamentais</h5>
             </a>
 
-            <!-- Módulo 2 -->
-            <a href="#coursecontentsection11" class="module-shortcut-card welcome-shortcut-card js-scroll-link" data-section-target="11">
+            <!-- Atalho para o Módulo 2 -->
+            <a href="#coursecontentsection11" class="module-shortcut-card welcome-shortcut-card js-scroll-link"
+                data-section-target="11">
                 <div class="welcome-shortcut-icon-card">
-                    <!-- Ícone Search -->
-                    <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="1" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
                         <polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"></polygon>
                         <line x1="8" y1="2" x2="8" y2="18"></line>
                         <line x1="16" y1="6" x2="16" y2="22"></line>
                     </svg>
                 </div>
-                <h5 class="welcome-shortcut-title-card">2. Primeiro Contato</h5>
+                <h5 class="welcome-shortcut-title-card">2. Primeiro Contato com o Geohab</h5>
             </a>
 
-            <!-- Módulo 3 -->
-            <a href="#coursecontentsection19" class="module-shortcut-card welcome-shortcut-card js-scroll-link" data-section-target="19">
+            <!-- Atalho para o Módulo 3 -->
+            <a href="#coursecontentsection19" class="module-shortcut-card welcome-shortcut-card js-scroll-link"
+                data-section-target="19">
                 <div class="welcome-shortcut-icon-card">
-                    <!-- Ícone Dashboard -->
-                    <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="1" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
                         <path d="M3 3l7.07 16.97 2.52-7.39 7.39-2.52L3 3z"></path>
                         <path d="M13 13l6 6"></path>
                     </svg>
                 </div>
-                <h5 class="welcome-shortcut-title-card ">3. Utilização Prática</h5>
+                <h5 class="welcome-shortcut-title-card ">3. Utilização Prática da Plataforma</h5>
             </a>
-
-            <!-- Módulo 4 -->
-            <a href="#coursecontentsection26" class="module-shortcut-card welcome-shortcut-card js-scroll-link" data-section-target="26">
+            <!-- Atalho para o Módulo 4 -->
+            <a href="#coursecontentsection26" class="module-shortcut-card welcome-shortcut-card js-scroll-link"
+                data-section-target="26">
                 <div class="welcome-shortcut-icon-card">
-                    <!-- Ícone Eye -->
-                    <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="1" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                         <path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path>
                     </svg>
                 </div>
-                <h5 class="welcome-shortcut-title-card ">4. Visualização de Dados</h5>
+                <h5 class="welcome-shortcut-title-card ">4. Visualização e Estilização de Dados</h5>
             </a>
         </div>
 
-        <!-- SEÇÃO: SUPORTE -->
+        <!-- SEÇÃO DE SUPORTE -->
         <div class="welcome-support-section">
             <h3>Precisa de Ajuda?</h3>
-            <p>Para dúvidas sobre o <strong>conteúdo</strong>: <span class="badge-link badge-text-purple"><a href="https://edu-homolog/mod/forum/view.php?id=624">Fórum de Dúvidas</a></span>.</p>
-            <p>Para <strong>problemas técnicos</strong>: <span class="badge-link badge-text-red"><a href="https://cda.cdhu.sp.gov.br/front/ticket.php" target="_blank">Suporte CDA</a></span>.</p>
+            <p>Para dúvidas referentes <strong>ao conteúdo do curso</strong>, utilize o <span
+                    class="badge-link badge-text-purple"><a title="Clique aqui para dúvidas do curso"
+                        href="https://edu-homolog/mod/forum/view.php?id=624" rel="noopener">Fórum de Dúvidas</a></span>.
+            </p>
+            <p>Para <strong>suporte técnico na plataforma Geohab</strong>, abra um chamado via <strong><span
+                        class="badge-link badge-text-red"><a title="Abra um chamado clicando aqui"
+                            href="https://cda.cdhu.sp.gov.br/front/ticket.php" target="_blank"
+                            rel="noopener">CDA</a></span></strong>.</p>
         </div>
     </main>
-    
-    <footer class="welcome-footer">Desejamos a todos um excelente aprendizado!<br><strong>Equipe Geohab</strong></footer>
+    <footer class="welcome-footer">Desejamos a todos um excelente aprendizado!<br>
+        <strong>Equipe Geohab</strong>
+    </footer>
 </div>
+ 
+  
+  </div>
 
 
         <!-- ======================================================= -->
@@ -714,4 +679,4 @@
     
 </body>
 
-</html>    
+</html>
